@@ -1,0 +1,529 @@
+---
+id: create-users-with-list-input
+title: "Creates list of users with given input list"
+description: ""
+sidebar_label: "Creates list of users with given input list"
+hide_title: true
+hide_table_of_contents: true
+api: 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
+sidebar_class_name: "post api-method"
+info_path: docs/petstore/swagger-petstore-yaml
+custom_edit_url: null
+---
+
+import ApiTabs from "@theme/ApiTabs";
+import DiscriminatorTabs from "@theme/DiscriminatorTabs";
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import SecuritySchemes from "@theme/ApiExplorer/SecuritySchemes";
+import MimeTabs from "@theme/MimeTabs";
+import ParamsItem from "@theme/ParamsItem";
+import ResponseSamples from "@theme/ResponseSamples";
+import SchemaItem from "@theme/SchemaItem";
+import SchemaTabs from "@theme/SchemaTabs";
+import Markdown from "@theme/Markdown";
+import Heading from "@theme/Heading";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Creates list of users with given input list"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"post"}
+  path={"/user/createWithList"}
+>
+  
+</MethodEndpoint>
+
+
+
+
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+  children={"Request"}
+>
+</Heading>
+
+<MimeTabs
+  className={"openapi-tabs__mime"}
+>
+  <TabItem
+    label={"application/json"}
+    value={"application/json-schema"}
+  >
+    <details
+      style={{}}
+      className={"openapi-markdown__details mime"}
+      data-collapsed={false}
+      open={true}
+    >
+      <summary
+        style={{}}
+        className={"openapi-markdown__details-summary-mime"}
+      >
+        <h3
+          className={"openapi-markdown__details-summary-header-body"}
+        >
+          Body
+        </h3><span
+          style={{"opacity":"0.6"}}
+        >
+           array
+        </span><strong
+          className={"openapi-schema__required"}
+        >
+          required
+        </strong>
+      </summary><div
+        style={{"textAlign":"left","marginLeft":"1rem"}}
+      >
+        <div
+          style={{"marginTop":"1rem","marginBottom":"1rem"}}
+        >
+          
+          
+          List of user object
+          
+          
+        </div>
+      </div><ul
+        style={{"marginLeft":"1rem"}}
+      >
+        <li>
+          <div
+            style={{"fontSize":"var(--ifm-code-font-size)","opacity":"0.6","marginLeft":"-.5rem","paddingBottom":".5rem"}}
+          >
+            Array [
+          </div>
+        </li><SchemaItem
+          collapsible={true}
+          className={"schemaItem"}
+        >
+          <details
+            style={{}}
+            className={"openapi-markdown__details"}
+          >
+            <summary
+              style={{}}
+            >
+              <strong>
+                pet
+              </strong><span
+                style={{"opacity":"0.6"}}
+              >
+                 object
+              </span>
+            </summary><div
+              style={{"marginLeft":"1rem"}}
+            >
+              
+            </div><div>
+              <span
+                className={"badge badge--info"}
+              >
+                oneOf
+              </span><SchemaTabs>
+                <TabItem
+                  label={"Pet"}
+                  value={"0-item-properties"}
+                >
+                  <SchemaItem
+                    collapsible={true}
+                    className={"schemaItem"}
+                  >
+                    <details
+                      style={{}}
+                      className={"openapi-markdown__details"}
+                    >
+                      <summary
+                        style={{}}
+                      >
+                        <span
+                          className={"openapi-schema__container"}
+                        >
+                          <strong
+                            className={"openapi-schema__property"}
+                          >
+                            category
+                          </strong><span
+                            className={"openapi-schema__name"}
+                          >
+                             Category
+                          </span>
+                        </span>
+                      </summary><div
+                        style={{"marginLeft":"1rem"}}
+                      >
+                        <SchemaItem
+                          collapsible={false}
+                          name={"name"}
+                          required={false}
+                          schemaName={"string"}
+                          qualifierMessage={"**Possible values:** `non-empty`"}
+                          schema={{"description":"Category name","type":"string","minLength":1}}
+                        >
+                          
+                        </SchemaItem><SchemaItem
+                          collapsible={true}
+                          className={"schemaItem"}
+                        >
+                          <details
+                            style={{}}
+                            className={"openapi-markdown__details"}
+                          >
+                            <summary
+                              style={{}}
+                            >
+                              <span
+                                className={"openapi-schema__container"}
+                              >
+                                <strong
+                                  className={"openapi-schema__property"}
+                                >
+                                  sub
+                                </strong><span
+                                  className={"openapi-schema__name"}
+                                >
+                                   object
+                                </span>
+                              </span>
+                            </summary><div
+                              style={{"marginLeft":"1rem"}}
+                            >
+                              <div
+                                style={{"marginTop":".5rem","marginBottom":".5rem"}}
+                              >
+                                
+                                
+                                Test Sub Category
+                                
+                                
+                              </div><SchemaItem
+                                collapsible={false}
+                                name={"prop1"}
+                                required={false}
+                                schemaName={"string"}
+                                qualifierMessage={undefined}
+                                schema={{"type":"string","description":"Dumb Property"}}
+                              >
+                                
+                              </SchemaItem>
+                            </div>
+                          </details>
+                        </SchemaItem>
+                      </div>
+                    </details>
+                  </SchemaItem><SchemaItem
+                    collapsible={false}
+                    name={"name"}
+                    required={true}
+                    schemaName={"string"}
+                    qualifierMessage={undefined}
+                    schema={{"description":"The name given to a pet","type":"string","example":"Guru"}}
+                  >
+                    
+                  </SchemaItem><SchemaItem
+                    collapsible={false}
+                    name={"photoUrls"}
+                    required={true}
+                    schemaName={"url[]"}
+                    qualifierMessage={"**Possible values:** `<= 20`"}
+                    schema={{"description":"The list of URL to a cute photos featuring pet","type":"array","maxItems":20,"xml":{"name":"photoUrl","wrapped":true},"items":{"type":"string","format":"url"}}}
+                  >
+                    
+                  </SchemaItem><SchemaItem
+                    collapsible={false}
+                    name={"friend"}
+                    required={false}
+                    schemaName={""}
+                    qualifierMessage={undefined}
+                    schema={{}}
+                  >
+                    
+                  </SchemaItem><SchemaItem
+                    collapsible={true}
+                    className={"schemaItem"}
+                  >
+                    <details
+                      style={{}}
+                      className={"openapi-markdown__details"}
+                    >
+                      <summary
+                        style={{}}
+                      >
+                        <span
+                          className={"openapi-schema__container"}
+                        >
+                          <strong
+                            className={"openapi-schema__property"}
+                          >
+                            tags
+                          </strong><span
+                            className={"openapi-schema__name"}
+                          >
+                             Tag[]
+                          </span><span
+                            className={"openapi-schema__divider"}
+                          >
+                            
+                          </span><span
+                            className={"openapi-schema__required"}
+                          >
+                            required
+                          </span>
+                        </span>
+                      </summary><div
+                        style={{"marginLeft":"1rem"}}
+                      >
+                        <div
+                          style={{"marginTop":".5rem","marginBottom":".5rem"}}
+                        >
+                          
+                          
+                          **Possible values:** `>= 1`
+                          
+                          
+                        </div><div
+                          style={{"marginTop":".5rem","marginBottom":".5rem"}}
+                        >
+                          
+                          
+                          Tags attached to the pet
+                          
+                          
+                        </div><li>
+                          <div
+                            style={{"fontSize":"var(--ifm-code-font-size)","opacity":"0.6","marginLeft":"-.5rem","paddingBottom":".5rem"}}
+                          >
+                            Array [
+                          </div>
+                        </li><SchemaItem
+                          collapsible={false}
+                          name={"name"}
+                          required={false}
+                          schemaName={"string"}
+                          qualifierMessage={"**Possible values:** `non-empty`"}
+                          schema={{"description":"Tag name","type":"string","minLength":1}}
+                        >
+                          
+                        </SchemaItem><li>
+                          <div
+                            style={{"fontSize":"var(--ifm-code-font-size)","opacity":"0.6","marginLeft":"-.5rem"}}
+                          >
+                            ]
+                          </div>
+                        </li>
+                      </div>
+                    </details>
+                  </SchemaItem><SchemaItem
+                    collapsible={false}
+                    name={"status"}
+                    required={false}
+                    schemaName={"string"}
+                    qualifierMessage={"**Possible values:** [`available`, `pending`, `sold`]"}
+                    schema={{"type":"string","description":"Pet status in the store","enum":["available","pending","sold"]}}
+                  >
+                    
+                  </SchemaItem><div
+                    className={"openapi-discriminator__item openapi-schema__list-item"}
+                  >
+                    <div>
+                      <span
+                        className={"openapi-schema__container"}
+                      >
+                        <strong
+                          className={"openapi-discriminator__name openapi-schema__property"}
+                        >
+                          petType
+                        </strong><span
+                          className={"openapi-schema__name"}
+                        >
+                           string
+                        </span>
+                      </span><div
+                        style={{"paddingLeft":"1rem"}}
+                      >
+                        
+                        
+                        **Possible values:** [`cat`, `dog`, `bee`]
+                        
+                        
+                      </div><div
+                        style={{"paddingLeft":"1rem"}}
+                      >
+                        
+                        
+                        Type of a pet
+                        
+                        
+                      </div><DiscriminatorTabs
+                        className={"openapi-tabs__discriminator"}
+                      >
+                        <TabItem
+                          label={"cat"}
+                          value={"0-item-discriminator"}
+                        >
+                          <SchemaItem
+                            collapsible={false}
+                            name={"huntingSkill"}
+                            required={true}
+                            schemaName={"string"}
+                            qualifierMessage={"**Possible values:** [`clueless`, `lazy`, `adventurous`, `aggressive`]"}
+                            schema={{"type":"string","description":"The measured skill for hunting","default":"lazy","example":"adventurous","enum":["clueless","lazy","adventurous","aggressive"]}}
+                          >
+                            
+                          </SchemaItem>
+                        </TabItem><TabItem
+                          label={"dog"}
+                          value={"1-item-discriminator"}
+                        >
+                          <SchemaItem
+                            collapsible={false}
+                            name={"packSize"}
+                            required={true}
+                            schemaName={"int32"}
+                            qualifierMessage={"**Possible values:** `>= 1`"}
+                            schema={{"type":"integer","format":"int32","description":"The size of the pack the dog is from","default":1,"minimum":1}}
+                          >
+                            
+                          </SchemaItem>
+                        </TabItem><TabItem
+                          label={"bee"}
+                          value={"2-item-discriminator"}
+                        >
+                          <SchemaItem
+                            collapsible={false}
+                            name={"honeyPerDay"}
+                            required={true}
+                            schemaName={"number"}
+                            qualifierMessage={undefined}
+                            schema={{"type":"number","description":"Average amount of honey produced per day in ounces","example":3.14,"multipleOf":0.01,"default":0}}
+                          >
+                            
+                          </SchemaItem>
+                        </TabItem>
+                      </DiscriminatorTabs>
+                    </div>
+                  </div>
+                </TabItem><TabItem
+                  label={"Tag"}
+                  value={"1-item-properties"}
+                >
+                  <SchemaItem
+                    collapsible={false}
+                    name={"name"}
+                    required={false}
+                    schemaName={"string"}
+                    qualifierMessage={"**Possible values:** `non-empty`"}
+                    schema={{"description":"Tag name","type":"string","minLength":1}}
+                  >
+                    
+                  </SchemaItem>
+                </TabItem>
+              </SchemaTabs>
+            </div>
+          </details>
+        </SchemaItem><SchemaItem
+          collapsible={false}
+          name={"username"}
+          required={false}
+          schemaName={"string"}
+          qualifierMessage={"**Possible values:** `>= 4 characters`"}
+          schema={{"description":"User supplied username","type":"string","minLength":4,"example":"John78"}}
+        >
+          
+        </SchemaItem><SchemaItem
+          collapsible={false}
+          name={"firstName"}
+          required={false}
+          schemaName={"string"}
+          qualifierMessage={"**Possible values:** `non-empty`"}
+          schema={{"description":"User first name","type":"string","minLength":1,"example":"John"}}
+        >
+          
+        </SchemaItem><SchemaItem
+          collapsible={false}
+          name={"lastName"}
+          required={false}
+          schemaName={"string"}
+          qualifierMessage={"**Possible values:** `non-empty`"}
+          schema={{"description":"User last name","type":"string","minLength":1,"example":"Smith"}}
+        >
+          
+        </SchemaItem><SchemaItem
+          collapsible={false}
+          name={"email"}
+          required={false}
+          schemaName={"email"}
+          qualifierMessage={undefined}
+          schema={{"description":"User email address","type":"string","format":"email","example":"john.smith@example.com"}}
+        >
+          
+        </SchemaItem><SchemaItem
+          collapsible={false}
+          name={"password"}
+          required={false}
+          schemaName={"password"}
+          qualifierMessage={"**Possible values:** `>= 8 characters`, Value must match regular expression `/(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])/`"}
+          schema={{"type":"string","description":"User password, MUST contain a mix of upper and lower case letters, as well as digits","format":"password","minLength":8,"pattern":"/(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])/","example":"drowssaP123"}}
+        >
+          
+        </SchemaItem><SchemaItem
+          collapsible={false}
+          name={"phone"}
+          required={false}
+          schemaName={"string"}
+          qualifierMessage={"**Possible values:** Value must match regular expression `/^\\+(?:[0-9]-?){6,14}[0-9]$/`"}
+          schema={{"description":"User phone number in international format","type":"string","pattern":"/^\\+(?:[0-9]-?){6,14}[0-9]$/","example":"+1-202-555-0192"}}
+        >
+          
+        </SchemaItem><SchemaItem
+          collapsible={false}
+          name={"userStatus"}
+          required={false}
+          schemaName={"int32"}
+          qualifierMessage={undefined}
+          schema={{"description":"User status","type":"integer","format":"int32"}}
+        >
+          
+        </SchemaItem><li>
+          <div
+            style={{"fontSize":"var(--ifm-code-font-size)","opacity":"0.6","marginLeft":"-.5rem"}}
+          >
+            ]
+          </div>
+        </li>
+      </ul>
+    </details>
+  </TabItem>
+</MimeTabs><div>
+  <div>
+    <ApiTabs
+      label={undefined}
+      id={undefined}
+    >
+      <TabItem
+        label={"default"}
+        value={"default"}
+      >
+        <div>
+          
+          
+          successful operation
+          
+          
+        </div><div>
+          
+        </div>
+      </TabItem>
+    </ApiTabs>
+  </div>
+</div>
+      
