@@ -1,0 +1,86 @@
+---
+id: t-1-pagos
+title: "T1pagos"
+description: "La interfaz para programación de la aplicación (API) T1pagos está diseñada para integrar fácilmente la funcionalidad de pagos en cualquier sitio web. Está basada en arquitectura REST que utiliza el protocolo HTTP para proveer una interfaz uniforme, agnóstica a lenguajes de programación, orientado a recursos y con códigos de respuesta estandarizados."
+sidebar_label: Introduction
+sidebar_position: 0
+hide_title: true
+custom_edit_url: null
+---
+
+import ApiLogo from "@theme/ApiLogo";
+import Heading from "@theme/Heading";
+import SchemaTabs from "@theme/SchemaTabs";
+import TabItem from "@theme/TabItem";
+import Export from "@theme/ApiExplorer/Export";
+
+<span
+  className={"theme-doc-version-badge badge badge--secondary"}
+  children={"Version: 1.10.15.150424"}
+>
+</span>
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"T1pagos"}
+>
+</Heading>
+
+
+
+La interfaz para programación de la aplicación (API) T1pagos está diseñada para integrar fácilmente la funcionalidad de pagos en cualquier sitio web. Está basada en arquitectura REST que utiliza el protocolo HTTP para proveer una interfaz uniforme, agnóstica a lenguajes de programación, orientado a recursos y con códigos de respuesta estandarizados.
+
+Todas las respuestas del API están en formato JSON y utiliza los códigos de respuesta del protocolo HTTP en los encabezados.
+
+El sistema utiliza dos ambientes: uno de sandbox y otro de producción, cada uno con diferentes llaves de acceso para evitar que peticiones destinadas a un ambiente se procesen en otro.
+
+<div
+  style={{"marginBottom":"2rem"}}
+>
+  <Heading
+    id={"authentication"}
+    as={"h2"}
+    className={"openapi-tabs__heading"}
+    children={"Authentication"}
+  >
+  </Heading><SchemaTabs
+    className={"openapi-tabs__security-schemes"}
+  >
+    <TabItem
+      label={"HTTP: Bearer Auth"}
+      value={"bearerAuth"}
+    >
+      
+      
+      
+      
+      <div>
+        <table>
+          <tbody>
+            <tr>
+              <th>
+                Security Scheme Type:
+              </th><td>
+                http
+              </td>
+            </tr><tr>
+              <th>
+                HTTP Authorization Scheme:
+              </th><td>
+                bearer
+              </td>
+            </tr><tr>
+              <th>
+                Bearer format:
+              </th><td>
+                JWT
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </TabItem>
+  </SchemaTabs>
+</div>
+      
