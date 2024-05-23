@@ -1,55 +1,91 @@
-import clsx from 'clsx';
-import Heading from '@theme/Heading';
-import styles from './styles.module.css';
+import clsx from "clsx";
+import Heading from "@theme/Heading";
+import styles from "./styles.module.css";
+import Link from "@docusaurus/Link";
 
 type FeatureItem = {
   title: string;
-  Svg: React.ComponentType<React.ComponentProps<'svg'>>;
+  Svg: React.ComponentType<React.ComponentProps<"svg">>;
   description: JSX.Element;
+  buttonLabel: string;
+  route: string;
 };
 
 const FeatureList: FeatureItem[] = [
   {
-    title: 'Easy to Use',
-    Svg: require('@site/static/img/undraw_docusaurus_mountain.svg').default,
+    title: "Aumenta tus ventas.",
+    Svg: require("@site/static/img/T1ComerciosLogo.svg").default,
     description: (
       <>
-        Docusaurus was designed from the ground up to be easily installed and
-        used to get your website up and running quickly.
+        Alcanzando a millones de clientes en los mejores marketplaces, con fácil
+        gestión de inventarios, fulfillment y logística integrada, todo desde un
+        mismo lugar.
       </>
     ),
+    buttonLabel: "Documentación T1Comercio",
+    route: "/docs/T1Pagos/t-1-pagos",
   },
   {
-    title: 'Focus on What Matters',
-    Svg: require('@site/static/img/undraw_docusaurus_tree.svg').default,
+    title: "Tu socio de pagos todo en uno",
+    Svg: require("@site/static/img/T1PagosLogos.svg").default,
     description: (
       <>
-        Docusaurus lets you focus on your docs, and we&apos;ll do the chores. Go
-        ahead and move your docs into the <code>docs</code> directory.
+        <ul style={{ listStyleType: "none", paddingLeft: 0 }}>
+          <li>Acepta pagos con tarjetas de Crédito y Debito </li>
+          <li>Aumenta tu aprobación</li>
+          <li>Reduce el fraude</li>
+        </ul>
       </>
     ),
+    buttonLabel: "Documentación T1Pagos",
+    route: "/docs/T1Pagos/t-1-pagos",
   },
   {
-    title: 'Powered by React',
-    Svg: require('@site/static/img/undraw_docusaurus_react.svg').default,
+    title: "Realiza todos tus envíos",
+    Svg: require("@site/static/img/T1EnviosLogo.svg").default,
     description: (
       <>
-        Extend or customize your website layout by reusing React. Docusaurus can
-        be extended while reusing the same header and footer.
+        Maneja tus envíos desde un solo lugar con las mejores paqueterías, los
+        mejores costos y el mejor servicio, de manera simple y segura.
       </>
     ),
+    buttonLabel: "Documentación T1Envios",
+    route: "/docs/T1Pagos/t-1-pagos",
+  },
+  {
+    title: "La mejor solución omnicanal para tu e-commerce.",
+    Svg: require("@site/static/img/T1PaginasLogos.svg").default,
+    description: (
+      <>
+        Haz crecer tu negocio con nuestra plataforma fácil de usar. Administra
+        todos los aspectos de tu negocio y aumenta tus ventas de manera
+        efectiva.
+      </>
+    ),
+    buttonLabel: "Documentación T1Paginas",
+    route: "/docs/T1Pagos/t-1-pagos",
   },
 ];
 
-function Feature({title, Svg, description}: FeatureItem) {
+function Feature({ title, Svg, description, buttonLabel, route }: FeatureItem) {
   return (
-    <div className={clsx('col col--4')}>
+    <div
+      className={clsx("col col--4")}
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "space-between",
+      }}
+    >
       <div className="text--center">
         <Svg className={styles.featureSvg} role="img" />
       </div>
       <div className="text--center padding-horiz--md">
         <Heading as="h3">{title}</Heading>
         <p>{description}</p>
+        <Link className="button button--secondary button--lg" to={route}>
+          {buttonLabel}
+        </Link>
       </div>
     </div>
   );
