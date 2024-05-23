@@ -4,7 +4,7 @@ import type * as Preset from '@docusaurus/preset-classic';
 
 const config: Config = {
   title: 'T1',
-  tagline: 'Digitaliza tu negocio con nuestro ecosistema Todo en 1. Obtén todos los beneficios: vende en mútliples canales digitales, optimiza tu logística, acepta pagos de manera segura, centraliza la adminsitración de tus productos y potencializa tus ventas',
+  tagline: 'Digitaliza tu negocio con nuestro ecosistema Todo en 1. Obtén todos los beneficios: vende en múltiples canales digitales, optimiza tu logística, acepta pagos de manera segura, centraliza la administración de tus productos y potencializa tus ventas.',
   favicon: 'img/favicon.ico',
 
   // Set the production url of your site here
