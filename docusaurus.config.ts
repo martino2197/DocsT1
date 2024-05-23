@@ -4,7 +4,7 @@ import type * as Preset from '@docusaurus/preset-classic';
 
 const config: Config = {
   title: 'T1',
-  tagline: 'Dinosaurs are cool',
+  tagline: 'Digitaliza tu negocio con nuestro ecosistema Todo en 1. Obtén todos los beneficios: vende en mútliples canales digitales, optimiza tu logística, acepta pagos de manera segura, centraliza la adminsitración de tus productos y potencializa tus ventas',
   favicon: 'img/favicon.ico',
 
   // Set the production url of your site here
@@ -70,7 +70,7 @@ const config: Config = {
           type: 'docSidebar',
           sidebarId: 'tutorialSidebar',
           position: 'left',
-          label: 'Tutorial',
+          label: 'Docs',
         },
         {to: '/blog', label: 'Blog', position: 'left'},
         {
@@ -138,9 +138,9 @@ const config: Config = {
         id: "openapi",
         docsPluginId: "classic", // e.g. "classic" or the plugin-content-docs id
         config: {
-          petstore: { // "petstore" is considered the <id> that you will reference in the CLI
-            specPath: "examples/petstore.yaml", // path or URL to the OpenAPI spec
-            outputDir: "docs/petstore", // output directory for generated *.mdx and sidebar.js files
+          T1Pagos: { // "petstore" is considered the <id> that you will reference in the CLI
+            specPath: "examples/T1Pagos/T1Pagos-API.yaml", // path or URL to the OpenAPI spec
+            outputDir: "docs/T1Pagos", // output directory for generated *.mdx and sidebar.js files
             sidebarOptions: {
               groupPathsBy: "tag", // generate a sidebar.js slice that groups operations by tag
             },
