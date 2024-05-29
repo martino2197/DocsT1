@@ -1,0 +1,526 @@
+---
+id: generarcotizacion
+title: "Generar cotización"
+description: "Método para la generación de la cotización."
+sidebar_label: "Generar cotización"
+hide_title: true
+hide_table_of_contents: true
+api: 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
+sidebar_class_name: "post api-method"
+info_path: docs/T1Envíos/t-1-envios
+custom_edit_url: null
+---
+
+import ApiTabs from "@theme/ApiTabs";
+import DiscriminatorTabs from "@theme/DiscriminatorTabs";
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import SecuritySchemes from "@theme/ApiExplorer/SecuritySchemes";
+import MimeTabs from "@theme/MimeTabs";
+import ParamsItem from "@theme/ParamsItem";
+import ResponseSamples from "@theme/ResponseSamples";
+import SchemaItem from "@theme/SchemaItem";
+import SchemaTabs from "@theme/SchemaTabs";
+import Markdown from "@theme/Markdown";
+import Heading from "@theme/Heading";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Generar cotización"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"post"}
+  path={"/mensajeria-tarificador"}
+>
+  
+</MethodEndpoint>
+
+
+
+Método para la generación de la cotización.
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+  children={"Request"}
+>
+</Heading>
+
+<MimeTabs
+  className={"openapi-tabs__mime"}
+>
+  <TabItem
+    label={"application/json"}
+    value={"application/json-schema"}
+  >
+    <details
+      style={{}}
+      className={"openapi-markdown__details mime"}
+      data-collapsed={false}
+      open={true}
+    >
+      <summary
+        style={{}}
+        className={"openapi-markdown__details-summary-mime"}
+      >
+        <h3
+          className={"openapi-markdown__details-summary-header-body"}
+        >
+          Body
+        </h3><strong
+          className={"openapi-schema__required"}
+        >
+          required
+        </strong>
+      </summary><div
+        style={{"textAlign":"left","marginLeft":"1rem"}}
+      >
+        <div
+          style={{"marginTop":"1rem","marginBottom":"1rem"}}
+        >
+          
+          
+          Pet to add to the store
+          
+          
+        </div>
+      </div><ul
+        style={{"marginLeft":"1rem"}}
+      >
+        <SchemaItem
+          collapsible={false}
+          name={"codigo_postal_origen"}
+          required={true}
+          schemaName={"string"}
+          qualifierMessage={undefined}
+          schema={{"type":"string","description":"Código postal de la dirección origen"}}
+        >
+          
+        </SchemaItem><SchemaItem
+          collapsible={false}
+          name={"codigo_postal_destino"}
+          required={true}
+          schemaName={"string"}
+          qualifierMessage={undefined}
+          schema={{"type":"string","description":"Código postal de la dirección destino"}}
+        >
+          
+        </SchemaItem><SchemaItem
+          collapsible={false}
+          name={"peso"}
+          required={true}
+          schemaName={"integer"}
+          qualifierMessage={undefined}
+          schema={{"type":"integer","description":"Peso de paquete en kilogramos","contentEncoding":"int32"}}
+        >
+          
+        </SchemaItem><SchemaItem
+          collapsible={false}
+          name={"largo"}
+          required={true}
+          schemaName={"integer"}
+          qualifierMessage={undefined}
+          schema={{"type":"integer","description":"Largo de paquete en centímetros","contentEncoding":"int32"}}
+        >
+          
+        </SchemaItem><SchemaItem
+          collapsible={false}
+          name={"ancho"}
+          required={true}
+          schemaName={"integer"}
+          qualifierMessage={undefined}
+          schema={{"type":"integer","description":"Ancho de paquete en centímetros","contentEncoding":"int32"}}
+        >
+          
+        </SchemaItem><SchemaItem
+          collapsible={false}
+          name={"alto"}
+          required={true}
+          schemaName={"integer"}
+          qualifierMessage={undefined}
+          schema={{"type":"integer","description":"Alto de paquete en centímetros","contentEncoding":"int32"}}
+        >
+          
+        </SchemaItem><SchemaItem
+          collapsible={false}
+          name={"dias_embarque"}
+          required={true}
+          schemaName={"integer"}
+          qualifierMessage={undefined}
+          schema={{"type":"integer","description":"Días de embarque","contentEncoding":"int32"}}
+        >
+          
+        </SchemaItem><SchemaItem
+          collapsible={false}
+          name={"seguro"}
+          required={true}
+          schemaName={"boolean"}
+          qualifierMessage={undefined}
+          schema={{"type":"boolean","description":"Determina si el paquete tiene seguro. True para asegurar paquete, False para caso contrario."}}
+        >
+          
+        </SchemaItem><SchemaItem
+          collapsible={false}
+          name={"valor_paquete"}
+          required={false}
+          schemaName={"integer"}
+          qualifierMessage={undefined}
+          schema={{"type":"integer","description":"Es requerido si el campo \"seguro\" es true. Valor de factura del paquete","contentEncoding":"int32"}}
+        >
+          
+        </SchemaItem><SchemaItem
+          collapsible={false}
+          name={"tipo_paquete"}
+          required={true}
+          schemaName={"integer"}
+          qualifierMessage={undefined}
+          schema={{"type":"integer","description":"Indica si es paquete o sobre, 1 para sobre y 2 para paquete","contentEncoding":"int32"}}
+        >
+          
+        </SchemaItem><SchemaItem
+          collapsible={true}
+          className={"schemaItem"}
+        >
+          <details
+            style={{}}
+            className={"openapi-markdown__details"}
+          >
+            <summary
+              style={{}}
+            >
+              <span
+                className={"openapi-schema__container"}
+              >
+                <strong
+                  className={"openapi-schema__property"}
+                >
+                  productos
+                </strong><span
+                  className={"openapi-schema__name"}
+                >
+                   object
+                </span><span
+                  className={"openapi-schema__divider"}
+                >
+                  
+                </span><span
+                  className={"openapi-schema__required"}
+                >
+                  required
+                </span>
+              </span>
+            </summary><div
+              style={{"marginLeft":"1rem"}}
+            >
+              <div
+                style={{"marginTop":".5rem","marginBottom":".5rem"}}
+              >
+                
+                
+                Array de productos que contiene el paquete el cual es opcional, en caso de no enviar esta información se tomara como 1 pieza.
+                Por disposición del SAT solo será opcional hasta el 1 de septiembre de 2023, a partir de esa fecha este atributo sera obligatorio.
+                
+                
+              </div><SchemaItem
+                collapsible={false}
+                name={"descripcion_sat"}
+                required={true}
+                schemaName={"string"}
+                qualifierMessage={undefined}
+                schema={{"type":"string","description":"Descripción correspondiente al catalogo de complemento Carta Porte del SAT"}}
+              >
+                
+              </SchemaItem><SchemaItem
+                collapsible={false}
+                name={"codigo_sat"}
+                required={true}
+                schemaName={"string"}
+                qualifierMessage={undefined}
+                schema={{"type":"string","description":"Código correspondiente al catalogo de complemento Carta Porte del SAT"}}
+              >
+                
+              </SchemaItem><SchemaItem
+                collapsible={false}
+                name={"peso"}
+                required={true}
+                schemaName={"integer"}
+                qualifierMessage={undefined}
+                schema={{"type":"integer","description":"Peso individual de producto en kilogramos","contentEncoding":"int32"}}
+              >
+                
+              </SchemaItem><SchemaItem
+                collapsible={false}
+                name={"largo"}
+                required={true}
+                schemaName={"integer"}
+                qualifierMessage={undefined}
+                schema={{"type":"integer","description":"Largo individual de producto en centímetros","contentEncoding":"int32"}}
+              >
+                
+              </SchemaItem><SchemaItem
+                collapsible={false}
+                name={"ancho"}
+                required={true}
+                schemaName={"integer"}
+                qualifierMessage={undefined}
+                schema={{"type":"integer","description":"Ancho individual de producto en centímetros","contentEncoding":"int32"}}
+              >
+                
+              </SchemaItem><SchemaItem
+                collapsible={false}
+                name={"alto"}
+                required={true}
+                schemaName={"integer"}
+                qualifierMessage={undefined}
+                schema={{"type":"integer","description":"Alto individual de producto en centímetros","contentEncoding":"int32"}}
+              >
+                
+              </SchemaItem><SchemaItem
+                collapsible={false}
+                name={"precio"}
+                required={true}
+                schemaName={"number"}
+                qualifierMessage={undefined}
+                schema={{"type":"number","description":"Precio individual de producto"}}
+              >
+                
+              </SchemaItem>
+            </div>
+          </details>
+        </SchemaItem>
+      </ul>
+    </details>
+  </TabItem>
+</MimeTabs><div>
+  <div>
+    <ApiTabs
+      label={undefined}
+      id={undefined}
+    >
+      <TabItem
+        label={"200"}
+        value={"200"}
+      >
+        <div>
+          
+          
+          pet response
+          
+          
+        </div><details
+          style={{"textAlign":"left","marginBottom":"1rem"}}
+          className={"openapi-markdown__details"}
+          data-collaposed={true}
+          open={false}
+        >
+          <summary
+            style={{}}
+          >
+            <strong>
+              Response Headers
+            </strong>
+          </summary><ul
+            style={{"marginLeft":"1rem"}}
+          >
+            
+          </ul>
+        </details><div>
+          <MimeTabs
+            className={"openapi-tabs__mime"}
+            schemaType={"response"}
+          >
+            <TabItem
+              label={"application/json"}
+              value={"application/json"}
+            >
+              <SchemaTabs
+                className={"openapi-tabs__schema"}
+              >
+                <TabItem
+                  label={"Schema"}
+                  value={"Schema"}
+                >
+                  <details
+                    style={{}}
+                    className={"openapi-markdown__details response"}
+                    data-collapsed={false}
+                    open={true}
+                  >
+                    <summary
+                      style={{}}
+                      className={"openapi-markdown__details-summary-response"}
+                    >
+                      <strong>
+                        Schema
+                      </strong>
+                    </summary><div
+                      style={{"textAlign":"left","marginLeft":"1rem"}}
+                    >
+                      
+                    </div><ul
+                      style={{"marginLeft":"1rem"}}
+                    >
+                      <SchemaItem
+                        collapsible={false}
+                        name={"success"}
+                        required={false}
+                        schemaName={"boolean"}
+                        qualifierMessage={undefined}
+                        schema={{"type":"boolean","description":"true | false"}}
+                      >
+                        
+                      </SchemaItem><SchemaItem
+                        collapsible={false}
+                        name={"message"}
+                        required={false}
+                        schemaName={"string"}
+                        qualifierMessage={undefined}
+                        schema={{"type":"string","description":"Mensaje arrojado cuando se obtiene la respuesta de la cotización."}}
+                      >
+                        
+                      </SchemaItem><SchemaItem
+                        collapsible={false}
+                        name={"detail"}
+                        required={false}
+                        schemaName={"array"}
+                        qualifierMessage={undefined}
+                        schema={{"type":"array","description":"Contiene un arreglo de las cotizaciones de las mensajerías configuradas."}}
+                      >
+                        
+                      </SchemaItem>
+                    </ul>
+                  </details>
+                </TabItem><TabItem
+                  label={"Example (from schema)"}
+                  value={"Example (from schema)"}
+                >
+                  <ResponseSamples
+                    responseExample={"{\n  \"success\": true,\n  \"message\": \"string\",\n  \"detail\": [\n    null\n  ]\n}"}
+                    language={"json"}
+                  >
+                    
+                  </ResponseSamples>
+                </TabItem><TabItem
+                  label={"Estructura de Response"}
+                  value={"Estructura de Response"}
+                >
+                  <ResponseSamples
+                    responseExample={"{\n  \"success\": true,\n  \"message\": \"Búsqueda exitosa!\",\n  \"detail\": [\n    {\n      \"id\": 1,\n      \"clave\": \"DHL\",\n      \"comercio\": \"149\",\n      \"seguro\": true,\n      \"cotizacion\": {\n        \"success\": true,\n        \"servicios\": {\n          \"ECONOMY SELECT DOMESTIC\": {\n            \"servicio\": \"EXPRESS DOMESTIC\",\n            \"tipo_servicio\": \"Dia Siguiente\",\n            \"costo_total\": 522.07,\n            \"fecha_mensajeria_entrega\": \"2024-01-01\",\n            \"fecha_claro_entrega\": \"2024-01-02\",\n            \"dias_entrega\": 1,\n            \"negociacion_id\": 1,\n            \"valor_paquete\": \"1200\",\n            \"moneda\": \"MXN\",\n            \"peso\": \"1\",\n            \"peso_volumetrico\": 12,\n            \"peso_unidades\": \"KG\",\n            \"largo\": \"100\",\n            \"ancho\": \"20\",\n            \"alto\": \"30\",\n            \"costo_zona_extendida\": 0,\n            \"costo_total_seguro\": 0,\n            \"token\": \"WP9ESYVvmNtSQi6ztXNxwagCm..\"\n          }\n        }\n      }\n    }\n  ]\n}"}
+                    language={"json"}
+                  >
+                    
+                  </ResponseSamples>
+                </TabItem>
+              </SchemaTabs>
+            </TabItem>
+          </MimeTabs>
+        </div>
+      </TabItem><TabItem
+        label={"default"}
+        value={"default"}
+      >
+        <div>
+          
+          
+          unexpected error
+          
+          
+        </div><details
+          style={{"textAlign":"left","marginBottom":"1rem"}}
+          className={"openapi-markdown__details"}
+          data-collaposed={true}
+          open={false}
+        >
+          <summary
+            style={{}}
+          >
+            <strong>
+              Response Headers
+            </strong>
+          </summary><ul
+            style={{"marginLeft":"1rem"}}
+          >
+            
+          </ul>
+        </details><div>
+          <MimeTabs
+            className={"openapi-tabs__mime"}
+            schemaType={"response"}
+          >
+            <TabItem
+              label={"application/json"}
+              value={"application/json"}
+            >
+              <SchemaTabs
+                className={"openapi-tabs__schema"}
+              >
+                <TabItem
+                  label={"Schema"}
+                  value={"Schema"}
+                >
+                  <details
+                    style={{}}
+                    className={"openapi-markdown__details response"}
+                    data-collapsed={false}
+                    open={true}
+                  >
+                    <summary
+                      style={{}}
+                      className={"openapi-markdown__details-summary-response"}
+                    >
+                      <strong>
+                        Schema
+                      </strong>
+                    </summary><div
+                      style={{"textAlign":"left","marginLeft":"1rem"}}
+                    >
+                      
+                    </div><ul
+                      style={{"marginLeft":"1rem"}}
+                    >
+                      <SchemaItem
+                        collapsible={false}
+                        name={"code"}
+                        required={true}
+                        schemaName={"integer"}
+                        qualifierMessage={undefined}
+                        schema={{"type":"integer","contentEncoding":"int32"}}
+                      >
+                        
+                      </SchemaItem><SchemaItem
+                        collapsible={false}
+                        name={"message"}
+                        required={true}
+                        schemaName={"string"}
+                        qualifierMessage={undefined}
+                        schema={{"type":"string"}}
+                      >
+                        
+                      </SchemaItem>
+                    </ul>
+                  </details>
+                </TabItem><TabItem
+                  label={"Example (from schema)"}
+                  value={"Example (from schema)"}
+                >
+                  <ResponseSamples
+                    responseExample={"{\n  \"code\": 0,\n  \"message\": \"string\"\n}"}
+                    language={"json"}
+                  >
+                    
+                  </ResponseSamples>
+                </TabItem>
+              </SchemaTabs>
+            </TabItem>
+          </MimeTabs>
+        </div>
+      </TabItem>
+    </ApiTabs>
+  </div>
+</div>
+      

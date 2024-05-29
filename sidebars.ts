@@ -105,6 +105,16 @@ const sidebars: SidebarsConfig = {
       label: 'T1Pagos',
       items: require("./docs/T1Pagos/sidebar.ts"),
     },
+    {
+      type: 'category',
+      label: 'T1Comercios',
+      items: require("./docs/T1Comercios/sidebar.ts"),
+    },
+    {
+      type: 'category',
+      label: 'T1Envíos',
+      items: require("./docs/T1Envíos/sidebar.ts"),
+    },
   ],
 };
 

@@ -1,0 +1,1145 @@
+openapi: 3.1.0
+info:
+  title: T1Envios
+  description: ''
+  contact:
+    name: T1Envios
+    url: https://enapi.dev.t1envios.com/t1/api/
+    email: apiteam@swagger.io
+  version: '1.0.0'
+jsonSchemaDialect: https://json-schema.org/draft/2020-12/schema
+servers:
+- url: https://enapi.dev.t1envios.com/t1/api/
+  description: ''
+  variables: {}
+paths:
+  /mensajeria-tarificador:
+    post:
+      tags:
+      - API
+      summary: Generar cotización
+      description: Método para la generación de la cotización.
+      operationId: Generarcotización
+      parameters: []
+      requestBody:
+        description: Pet to add to the store
+        content:
+          application/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/RootTypeforGenerarCotizacion'
+              - description: Pet to add to the store
+              contentMediaType: application/json
+        required: true
+      responses:
+        '200':
+          description: pet response
+          headers: {}
+          content:
+            application/json:
+              schema:
+                allOf:
+                - $ref: '#/components/schemas/RootTypeforGenerarCotizacion2'
+                - description: Request para la generación de la cotización.
+                  examples:
+                  - success: true
+                    message: Búsqueda exitosa!
+                    detail:
+                    - id: 1
+                      clave: DHL
+                      comercio: '149'
+                      seguro: true
+                      cotizacion:
+                        success: true
+                        servicios:
+                          ECONOMY SELECT DOMESTIC:
+                            servicio: EXPRESS DOMESTIC
+                            tipo_servicio: Dia Siguiente
+                            costo_total: 522.07
+                            fecha_mensajeria_entrega: 2024-01-01
+                            fecha_claro_entrega: 2024-01-02
+                            dias_entrega: 1
+                            negociacion_id: 1
+                            valor_paquete: '1200'
+                            moneda: MXN
+                            peso: '1'
+                            peso_volumetrico: 12
+                            peso_unidades: KG
+                            largo: '100'
+                            ancho: '20'
+                            alto: '30'
+                            costo_zona_extendida: 0
+                            costo_total_seguro: 0
+                            token: WP9ESYVvmNtSQi6ztXNxwagCm..
+                contentMediaType: application/json
+              examples:
+                Estructura de Response:
+                  value:
+                    success: true
+                    message: Búsqueda exitosa!
+                    detail:
+                    - id: 1
+                      clave: DHL
+                      comercio: '149'
+                      seguro: true
+                      cotizacion:
+                        success: true
+                        servicios:
+                          ECONOMY SELECT DOMESTIC:
+                            servicio: EXPRESS DOMESTIC
+                            tipo_servicio: Dia Siguiente
+                            costo_total: 522.07
+                            fecha_mensajeria_entrega: 2024-01-01
+                            fecha_claro_entrega: 2024-01-02
+                            dias_entrega: 1
+                            negociacion_id: 1
+                            valor_paquete: '1200'
+                            moneda: MXN
+                            peso: '1'
+                            peso_volumetrico: 12
+                            peso_unidades: KG
+                            largo: '100'
+                            ancho: '20'
+                            alto: '30'
+                            costo_zona_extendida: 0
+                            costo_total_seguro: 0
+                            token: WP9ESYVvmNtSQi6ztXNxwagCm..
+        default:
+          description: unexpected error
+          headers: {}
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      deprecated: false
+    parameters: []
+  /generar-guia-mensajeria/{tokenCotizacion}:
+    post:
+      tags:
+      - API
+      summary: Generar guía a partir de cotización previa
+      description: Método para la generación de una guía a partir de una cotización.
+      operationId: Generarguíaapartirdecotizaciónprevia
+      parameters:
+      - name: tokenCotizacion
+        in: path
+        description: ''
+        required: true
+        style: simple
+        schema:
+          type: string
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/GenerarGuiaAPartirDeCotizacionPreviaRequest'
+              - examples:
+                - contenido: Breve descripción del contenido
+                  nombre_origen: David
+                  apellidos_origen: Pérez
+                  email_origen: david_perez@correo.com
+                  calle_origen: Lago mayor
+                  numero_origen: '20'
+                  colonia_origen: Flores
+                  telefono_origen: '81345345'
+                  estado_origen: Estado de México
+                  municipio_origen: Coacalco
+                  referencias_origen: Referencia remitente
+                  nombre_destino: Jesus
+                  apellidos_destino: Luna
+                  email_destino: jesus@correo.com
+                  calle_destino: Duraznos
+                  numero_destino: '20'
+                  colonia_destino: Granjas
+                  telefono_destino: '67865432'
+                  estado_destino: Sonora
+                  municipio_destino: Sonora
+                  referencias_destino: Referencia destino
+                  generar_recoleccion: false
+              contentMediaType: application/json
+            examples:
+              Estructura de Request:
+                value:
+                  contenido: Breve descripción del contenido
+                  nombre_origen: David
+                  apellidos_origen: Pérez
+                  email_origen: david_perez@correo.com
+                  calle_origen: Lago mayor
+                  numero_origen: '20'
+                  colonia_origen: Flores
+                  telefono_origen: '81345345'
+                  estado_origen: Estado de México
+                  municipio_origen: Coacalco
+                  referencias_origen: Referencia remitente
+                  nombre_destino: Jesus
+                  apellidos_destino: Luna
+                  email_destino: jesus@correo.com
+                  calle_destino: Duraznos
+                  numero_destino: '20'
+                  colonia_destino: Granjas
+                  telefono_destino: '67865432'
+                  estado_destino: Sonora
+                  municipio_destino: Sonora
+                  referencias_destino: Referencia destino
+                  generar_recoleccion: false
+        required: true
+      responses:
+        '200':
+          description: Respuesta de petición de generación de guía JSON.
+          headers: {}
+          content:
+            application/json:
+              schema:
+                allOf:
+                - $ref: '#/components/schemas/RootTypeforGenerarCotizacion1'
+                - description: Respuesta de petición de generación de guía JSON.
+                  examples:
+                  - success: true
+                    message: Guia generada correctamente
+                    location: test
+                    detail:
+                      num_orden: '3532'
+                contentMediaType: application/json
+              examples:
+                Estructura de Response:
+                  value:
+                    success: true
+                    message: Guia generada correctamente
+                    location: test
+                    detail:
+                      num_orden: '3532'
+      deprecated: false
+    parameters: []
+  /generar-guia:
+    post:
+      tags:
+      - API
+      summary: Generar guía sin cotización
+      description: Método para la generación de una guía sin una cotización.
+      operationId: Generarguíasincotización
+      parameters: []
+      requestBody:
+        description: 'Estructura de Request:'
+        content:
+          application/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/RootTypeforGenerarGuiaSinCotizacion'
+              - description: 'Estructura de Request:'
+              contentMediaType: application/json
+        required: true
+      responses:
+        '200':
+          description: Respuesta de petición de generación de guía JSON
+          headers: {}
+          content:
+            application/json:
+              schema:
+                allOf:
+                - $ref: '#/components/schemas/RootTypeforGenerarGuiaSinCotizacionResponse'
+                - description: Respuesta de petición de generación de guía JSON.
+                  examples:
+                  - success: true
+                    message: Guía generada correctamente
+                    location: location
+                    detail:
+                      num_orden: '1243'
+                      guia: '8617898483'
+                      file: '%PDF-1.4...'
+                      pick_up: '139103'
+                      carta_porte: true
+                contentMediaType: application/json
+              examples:
+                Estructura de Response:
+                  value:
+                    success: true
+                    message: Guía generada correctamente
+                    location: location
+                    detail:
+                      num_orden: '1243'
+                      guia: '8617898483'
+                      file: '%PDF-1.4...'
+                      pick_up: '139103'
+                      carta_porte: true
+      deprecated: false
+    parameters: []
+  /guias/registros/{total_registros}/pag/{numero_pagina}:
+    get:
+      tags:
+      - API
+      summary: Consultar guías
+      description: Método para consultar guiás generadas el cual recibe el número de registros que desea consultar y el número de pagina.
+      operationId: Consultarguías
+      parameters:
+      - name: total_registros
+        in: path
+        description: número de registros
+        required: true
+        style: simple
+        schema:
+          type: string
+      - name: numero_pagina
+        in: path
+        description: número de pagina
+        required: true
+        style: simple
+        schema:
+          type: string
+      - name: columna
+        in: query
+        description: >-
+          Columna por la cual se desea ordenar, es requerida cuando el parámetro “orden_columna” esta presente y diferente de null las opciones permitidas son:
+               fecha_hora
+               num_orden
+               orden_columna
+        style: form
+        explode: true
+        schema:
+          type: string
+      - name: orden_columna
+        in: query
+        description: >-
+          Forma por la cual se desea ordenar una columna, es requerida cuando el parámetro “columna” esta presente y diferente de null las opciones permitidas son:
+               asc
+               desc
+        style: form
+        explode: true
+        schema:
+          type: string
+      - name: guia
+        in: query
+        description: Número de guiá o rastreo
+        style: form
+        explode: true
+        schema:
+          type: string
+      - name: fecha_inicio
+        in: query
+        description: Fecha en que se creo la guiá, indica la fecha inicio de búsqueda
+        style: form
+        explode: true
+        schema:
+          type: string
+          contentEncoding: date
+      - name: fecha_fin
+        in: query
+        description: Fecha en que se creo la guiá, indica la fecha final de búsqueda
+        style: form
+        explode: true
+        schema:
+          type: string
+          contentEncoding: date
+      - name: num_orden
+        in: query
+        description: Número de orden de t1envios
+        style: form
+        explode: true
+        schema:
+          type: string
+      - name: estatus
+        in: query
+        description: "Estatus de la guía:\n    1. Por Recolectar \n    2. Recolectado\n    3. En Transito \n    4. Entregado"
+        style: form
+        explode: true
+        schema:
+          type: integer
+          contentEncoding: int32
+      - name: mensajeria
+        in: query
+        description: "Nombre de mensajería, las opciones permitidas son:\n     DHL\n     FEDEX\n     ESTAFETA\n     UBER\n     TOOKAN\n     99MIN\n     REDPACK\n     PAQUETERIA EXPRESS \n     QUALITY"
+        style: form
+        explode: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Respuesta de petición.
+          headers: {}
+          content: {}
+      deprecated: false
+    parameters: []
+components:
+  schemas:
+    Error:
+      title: Error
+      required:
+      - code
+      - message
+      type: object
+      properties:
+        code:
+          type: integer
+          contentEncoding: int32
+        message:
+          type: string
+    RootTypeforGenerarCotizacion:
+      title: RootTypeforGenerarCotizacion
+      required:
+      - codigo_postal_origen
+      - codigo_postal_destino
+      - peso
+      - largo
+      - ancho
+      - alto
+      - dias_embarque
+      - seguro
+      - tipo_paquete
+      - productos
+      type: object
+      properties:
+        codigo_postal_origen:
+          type: string
+          description: Código postal de la dirección origen
+        codigo_postal_destino:
+          type: string
+          description: Código postal de la dirección destino
+        peso:
+          type: integer
+          description: Peso de paquete en kilogramos
+          contentEncoding: int32
+        largo:
+          type: integer
+          description: Largo de paquete en centímetros
+          contentEncoding: int32
+        ancho:
+          type: integer
+          description: Ancho de paquete en centímetros
+          contentEncoding: int32
+        alto:
+          type: integer
+          description: Alto de paquete en centímetros
+          contentEncoding: int32
+        dias_embarque:
+          type: integer
+          description: Días de embarque
+          contentEncoding: int32
+        seguro:
+          type: boolean
+          description: Determina si el paquete tiene seguro. True para asegurar paquete, False para caso contrario.
+        valor_paquete:
+          type: integer
+          description: Es requerido si el campo "seguro" es true. Valor de factura del paquete
+          contentEncoding: int32
+        tipo_paquete:
+          type: integer
+          description: Indica si es paquete o sobre, 1 para sobre y 2 para paquete
+          contentEncoding: int32
+        productos:
+          allOf:
+          - $ref: '#/components/schemas/Producto'
+          - description: >-
+              Array de productos que contiene el paquete el cual es opcional, en caso de no enviar esta información se tomara como 1 pieza.
+
+              Por disposición del SAT solo será opcional hasta el 1 de septiembre de 2023, a partir de esa fecha este atributo sera obligatorio.
+            examples:
+            - descripcion_sat: 'Zapatos para mujer '
+              codigo_sat: '53111602'
+              peso: 2
+              largo: 35
+              ancho: 20
+              alto: 10
+              precio: 820.5
+      description: Request para la generación de la cotización.
+    RootTypeforGenerarCotizacion1:
+      title: RootTypeforGenerarCotizacion1
+      type: object
+      properties:
+        success:
+          type: boolean
+          description: Indica si la búsqueda fue exitosa o no.
+          readOnly: true
+        message:
+          type: string
+          description: Mensaje mostrado cuando se obtiene la respuesta de una cotización.
+        location:
+          type: string
+          description: Ambiente donde se realizo la petición
+        detail:
+          allOf:
+          - $ref: '#/components/schemas/RootTypeforDetailGeneracionDeLaGuia'
+          - description: Detalle de respuesta
+            examples:
+            - num_orden: '3532'
+              guia: '8617898483'
+              file: '%PDF-1.4...'
+              pick_up: '139103'
+              carta_porte: true
+      description: Respuesta de petición de generación de guía JSON.
+      examples:
+      - success: true
+        message: Guia generada correctamente
+        location: test
+        detail:
+          num_orden: '3532'
+          guia: '8617898483'
+          file: '%PDF-1.4...'
+          pick_up: '139103'
+          carta_porte: true
+    Producto:
+      title: Producto
+      required:
+      - descripcion_sat
+      - codigo_sat
+      - peso
+      - largo
+      - ancho
+      - alto
+      - precio
+      type: object
+      properties:
+        descripcion_sat:
+          type: string
+          description: Descripción correspondiente al catalogo de complemento Carta Porte del SAT
+        codigo_sat:
+          type: string
+          description: Código correspondiente al catalogo de complemento Carta Porte del SAT
+        peso:
+          type: integer
+          description: Peso individual de producto en kilogramos
+          contentEncoding: int32
+        largo:
+          type: integer
+          description: Largo individual de producto en centímetros
+          contentEncoding: int32
+        ancho:
+          type: integer
+          description: Ancho individual de producto en centímetros
+          contentEncoding: int32
+        alto:
+          type: integer
+          description: Alto individual de producto en centímetros
+          contentEncoding: int32
+        precio:
+          type: number
+          description: Precio individual de producto
+      description: >-
+        Array de productos que contiene el paquete el cual es opcional, en caso de no enviar esta información se tomara como 1 pieza.
+
+        Por disposición del SAT solo será opcional hasta el 1 de septiembre de 2023, a partir de esa fecha este atributo sera obligatorio.
+      examples:
+      - descripcion_sat: 'Zapatos para mujer '
+        codigo_sat: '53111602'
+        peso: 2
+        largo: 35
+        ancho: 20
+        alto: 10
+        precio: 820.5
+    GenerarGuiaAPartirDeCotizacionPreviaRequest:
+      title: GenerarGuiaAPartirDeCotizacionPreviaRequest
+      required:
+      - contenido
+      - nombre_origen
+      - apellidos_origen
+      - email_origen
+      - calle_origen
+      - numero_origen
+      - colonia_origen
+      - telefono_origen
+      - estado_origen
+      - municipio_origen
+      - referencias_origen
+      - nombre_destino
+      - apellidos_destino
+      - email_destino
+      - calle_destino
+      - numero_destino
+      - colonia_destino
+      - telefono_destino
+      - estado_destino
+      - municipio_destino
+      - referencias_destino
+      type: object
+      properties:
+        contenido:
+          type: string
+          description: 'Breve descripción del contenido del paquete (Max: 256)'
+        nombre_origen:
+          type: string
+          description: 'Nombre de remitente (Max: 50)'
+        apellidos_origen:
+          description: 'Código postal de la dirección remitente (Max: 30)'
+        email_origen:
+          type: string
+          description: Email de remitente
+        calle_origen:
+          type: string
+          description: Calle de remitente
+        numero_origen:
+          type: string
+          description: Número de remitente
+        colonia_origen:
+          type: string
+          description: Colonia remitente
+        telefono_origen:
+          type: string
+          description: 'Teléfono remitente (Min: 8)'
+        estado_origen:
+          type: string
+          description: Estado remitente
+        municipio_origen:
+          type: string
+          description: Municipio remitente
+        referencias_origen:
+          type: string
+          description: 'Referencias de remitente (Max: 81)'
+        nombre_destino:
+          type: string
+          description: 'Nombre de destinatario (Max: 20)'
+        apellidos_destino:
+          type: string
+          description: 'Apellidos de destinatario (Max: 20)'
+        email_destino:
+          type: string
+          description: Email de destinatario
+        calle_destino:
+          type: string
+          description: Calle de destinatario
+        numero_destino:
+          type: string
+          description: Número de destinatario
+        colonia_destino:
+          type: string
+          description: Colonia de destinatario
+        telefono_destino:
+          type: string
+          description: 'Teléfono de destinatario (Min: 8)'
+        estado_destino:
+          type: string
+          description: Estado de destinatario
+        municipio_destino:
+          type: string
+          description: Municipio de destinatario
+        referencias_destino:
+          type: string
+          description: 'Referencias de destinatario (Max: 81)'
+        generar_recoleccion:
+          type: boolean
+          description: True si desea generar recolección cuando se genera la guía
+        tiene_notificacion:
+          type: boolean
+          description: Determina si la guía enviara notificaciones
+        codificacion:
+          type: string
+          description: >-
+            Codificación de salida de la etiqueta, por default la codificación es UTF-8.
+
+            Valores permitidos:
+
+             utf8
+
+             base64
+      description: >-
+        Para las siguientes mensajerías el largo máximo permitido son:
+
+
+        DHL
+
+         estado_origen y colonia_origen juntas: 44 caracteres
+
+         estado_destino y colonia_ destino juntas: 44 caracteres
+
+         calle_origen y numero_origen: 44 caracteres
+
+         calle_destino y numero_destino: 44 caracteres
+
+
+        FEDEX
+
+         calle_origen, numero_origen y colonia_origen juntas : 35 caracteres
+
+         calle_destino, numero_ destino y colonia_ destino juntas : 35 caracteres
+      examples:
+      - contenido: Breve descripción del contenido
+        nombre_origen: David
+        apellidos_origen: Pérez
+        email_origen: david_perez@correo.com
+        calle_origen: Lago mayor
+        numero_origen: '20'
+        colonia_origen: Flores
+        telefono_origen: '81345345'
+        estado_origen: Estado de México
+        municipio_origen: Coacalco
+        referencias_origen: Referencia remitente
+        nombre_destino: Jesus
+        apellidos_destino: Luna
+        email_destino: jesus@correo.com
+        calle_destino: Duraznos
+        numero_destino: '20'
+        colonia_destino: Granjas
+        telefono_destino: '67865432'
+        estado_destino: Sonora
+        municipio_destino: Sonora
+        referencias_destino: Referencia destino
+        generar_recoleccion: false
+    RootTypeforDetailGeneracionDeLaGuia:
+      title: RootTypeforDetailGeneracionDeLaGuia
+      type: object
+      properties:
+        num_orden:
+          type: string
+          description: Identificador interno
+        guia:
+          type: string
+          description: Identificador de guía de mensajería
+        file:
+          type: string
+          description: Contenido de guia (PDF)
+        pick_up:
+          type: string
+          description: Id de pick up
+        carta_porte:
+          type: boolean
+      description: Detalle de respuesta
+      examples:
+      - num_orden: '3532'
+        guia: '8617898483'
+        file: '%PDF-1.4...'
+        pick_up: '139103'
+        carta_porte: true
+    RootTypeforGenerarCotizacion2:
+      title: RootTypeforGenerarCotizacion2
+      type: object
+      properties:
+        success:
+          type: boolean
+          description: true | false
+        message:
+          type: string
+          description: Mensaje arrojado cuando se obtiene la respuesta de la cotización.
+        detail:
+          type: array
+          items: {}
+          description: Contiene un arreglo de las cotizaciones de las mensajerías configuradas.
+      description: Request para la generación de la cotización.
+      examples:
+      - success: true
+        message: Búsqueda exitosa!
+        detail:
+        - id: 1
+          clave: DHL
+          comercio: '149'
+          seguro: true
+          cotizacion:
+            success: true
+            servicios:
+              ECONOMY SELECT DOMESTIC:
+                servicio: EXPRESS DOMESTIC
+                tipo_servicio: Dia Siguiente
+                costo_total: 522.07
+                fecha_mensajeria_entrega: 2021-01-01
+                fecha_claro_entrega: 2021-01-02
+                dias_entrega: 1
+                negociacion_id: 1
+                valor_paquete: '1200'
+                moneda: MXN
+                peso: '1'
+                peso_volumetrico: 12
+                peso_unidades: KG
+                largo: '100'
+                ancho: '20'
+                alto: '30'
+                costo_zona_extendida: 0
+                costo_total_seguro: 0
+                token: WP9ESYVvmNtSQi6ztXNxwagCm..
+    RootTypeforGenerarGuiaSinCotizacion:
+      title: RootTypeforGenerarGuiaSinCotizacion
+      required:
+      - contenido
+      - mensajeria
+      - datos_origen
+      - datos_destino
+      type: object
+      properties:
+        contenido:
+          allOf:
+          - $ref: '#/components/schemas/RootTypeforGenerarGuiaSinCotizacion_Contenido'
+          - description: Detalles del contenido
+        mensajeria:
+          allOf:
+          - $ref: '#/components/schemas/RootTypeforGenerarGuiaSinCotizacion_Mensajeria'
+          - description: Datos de la mensajería
+            examples:
+            - mensajeria: FEDEX
+              tipo_servicio: STANDARD_OVERNIGHT
+              generar_recoleccion: true
+              dias_embarque: 2
+        datos_origen:
+          allOf:
+          - $ref: '#/components/schemas/RootTypeforGenerarGuiaSinCotizacion_Datos_Origen'
+          - description: Datos de remitente
+            examples:
+            - codigo_postal: '78000'
+              nombre: Pablo
+              apellidos: Origen
+              email: pablo@gmail.com
+              calle: calle origen
+              numero: '23'
+              colonia: colonia_origen
+              telefono: '245678345'
+              estado: estado
+              municipio: municipio
+              referencias: referencia origen
+        datos_destino:
+          allOf:
+          - $ref: '#/components/schemas/RootTypeforGenerarGuiaSinCotizacion_Datos_Destino'
+          - description: Referencias de destinatario
+            examples:
+            - codigo_postal: '56000'
+              nombre: Jose
+              apellidos: destino
+              email: jose@gmail.com
+              calle: calle destino
+              numero: '23'
+              colonia: colonia destino
+              telefono: '245678345'
+              estado: estado
+              municipio: municipio
+              referencias: referencia destino
+      description: Json de datos para armar la petición.
+    RootTypeforGenerarGuiaSinCotizacion_Contenido:
+      title: RootTypeforGenerarGuiaSinCotizacion_Contenido
+      required:
+      - descripcion
+      - tipo_paquete
+      - peso
+      - largo
+      - ancho
+      - alto
+      - seguro
+      - valor_paquete
+      - productos
+      type: object
+      properties:
+        descripcion:
+          maxLength: 25
+          type: string
+          description: Breve descripción del contenido del paquete (Max:25)
+        tipo_paquete:
+          maximum: 2
+          minimum: 1
+          type: integer
+          description: Indica si es paquete o sobre, 1 para sobre y 2 para paquete. Integer 1 o 2.
+          contentEncoding: int32
+        peso:
+          type: integer
+          description: Peso total de paquete en kilogramos
+          contentEncoding: int32
+        largo:
+          type: integer
+          description: Largo total de paquete en centímetros
+          contentEncoding: int32
+        ancho:
+          type: integer
+          description: Ancho total de paquete en centímetros
+          contentEncoding: int32
+        alto:
+          type: integer
+          description: Alto total de paquete en centímetros
+          contentEncoding: int32
+        seguro:
+          type: boolean
+          description: Determina si el paquete tiene seguro. True para asegurar paquete, False para caso contrario.
+        valor_paquete:
+          type: number
+          description: Valor de factura del paquete
+        tiene_notificacion:
+          type: boolean
+          description: Determina si la guía enviara notificaciones
+        productos:
+          type: array
+          items:
+            $ref: '#/components/schemas/Producto'
+          description: >-
+            Array de productos que contiene el paquete
+
+            Por disposición del SAT solo será opcional hasta el 1 de septiembre de 2023, a partir de esa fecha este atributo sera obligatorio.
+          examples:
+          - - descripcion_sat: Zapatos para mujer
+              codigo_sat: '53111602'
+              peso: 2
+              largo: 35
+              ancho: 20
+              alto: 10
+              precio: 820.5
+            - descripcion_sat: Relojes digitales
+              codigo_sat: '46171628'
+              peso: 1
+              largo: 30
+              ancho: 10
+              alto: 20
+              precio: 1000
+        pedido:
+          description: Número de identificación interno de cada comercio
+        codificacion:
+          type: string
+          description: >-
+            Codificación de salida de la etiqueta, por default la codificación es UTF-8. Valores permitidos:
+
+             utf8
+
+             base64
+      description: Detalles del contenido
+    RootTypeforGenerarGuiaSinCotizacion_Mensajeria:
+      title: RootTypeforGenerarGuiaSinCotizacion_Mensajeria
+      required:
+      - mensajeria
+      - tipo_servicio
+      - dias_embarque
+      type: object
+      properties:
+        mensajeria:
+          type: string
+          description: >-
+            Nombre de la mensajería Valores permitidos:
+
+             FEDEX
+
+             DHL
+
+             BIGSMART  IVOY
+
+             99MIN
+
+             REDPACK  QUALITY
+
+             EXPRESS
+        tipo_servicio:
+          type: string
+          description: "Tipo de servicio que ofrece la paquetearía Valores permitidos según la mensajería:\n    \n     FEDEX:\n        ◦ FEDEX_EXPRESS_SAVER\n        ◦ STANDARD_OVERNIGHT\n    \n     DHL:\n        ◦ ECONOMY SELECT DOMESTIC\n        ◦ EXPRESS DOMESTIC\n        \n     BIGSMART:\n        ◦ order\n        \n     IVOY:\n        ◦ SAME_DAY\n        ◦ ON_DEMAND\n        ◦ NEXT_DAY \n    \n     99MIN:\n        ◦ SAMEDAY \n        \n     REDPACK:\n        ◦ ECOEXPRESS \n        \n     QUALITY:\n        ◦ NEXT_DAY \n    \n     EXPRESS:\n        ◦ NEXT_DAY"
+        generar_recoleccion:
+          type: boolean
+          description: True si desea generar recolección cuando se genera la guía.
+        dias_embarque:
+          type: integer
+          description: Días de embarque
+          contentEncoding: int32
+      description: Datos de la mensajería
+      examples:
+      - mensajeria: FEDEX
+        tipo_servicio: STANDARD_OVERNIGHT
+        generar_recoleccion: true
+        dias_embarque: 2
+    RootTypeforGenerarGuiaSinCotizacion_Datos_Origen:
+      title: RootTypeforGenerarGuiaSinCotizacion_Datos_Origen
+      required:
+      - codigo_postal
+      - nombre
+      - apellidos
+      - email
+      - calle
+      - numero
+      - colonia
+      - telefono
+      - estado
+      - municipio
+      - referencias
+      type: object
+      properties:
+        codigo_postal:
+          type: string
+          description: Código postal de la dirección origen
+        nombre:
+          type: string
+          description: Nombre de remitente
+        apellidos:
+          type: string
+          description: Apellidos de remitente
+        email:
+          type: string
+          description: Email de remitente
+        calle:
+          type: string
+          description: Calle de remitente
+        numero:
+          type: string
+          description: Número de remitente
+        colonia:
+          type: string
+          description: Colonia remitente
+        telefono:
+          minLength: 8
+          type: string
+          description: Teléfono remitente
+        estado:
+          type: string
+          description: Estado remitente
+        municipio:
+          type: string
+          description: Municipio remitente
+        referencias:
+          type: string
+          description: Referencias de remitente
+      description: Datos de remitente
+      examples:
+      - codigo_postal: '78000'
+        nombre: Pablo
+        apellidos: Origen
+        email: pablo@gmail.com
+        calle: calle origen
+        numero: '23'
+        colonia: colonia_origen
+        telefono: '245678345'
+        estado: estado
+        municipio: municipio
+        referencias: referencia origen
+    RootTypeforGenerarGuiaSinCotizacion_Datos_Destino:
+      title: RootTypeforGenerarGuiaSinCotizacion_Datos_Destino
+      required:
+      - codigo_postal
+      - nombre
+      - apellidos
+      - email
+      - calle
+      - numero
+      - colonia
+      - telefono
+      - estado
+      - municipio
+      - referencias
+      type: object
+      properties:
+        codigo_postal:
+          type: string
+          description: Código postal de la dirección del destinatario
+        nombre:
+          type: string
+          description: Nombre de destinatario
+        apellidos:
+          type: string
+          description: Código postal de la dirección destinatario
+        email:
+          type: string
+          description: Email de destinatario
+        calle:
+          type: string
+          description: Calle de destinatario
+        numero:
+          type: string
+          description: Número de destinatario
+        colonia:
+          type: string
+          description: Colonia destinatario
+        telefono:
+          minLength: 8
+          type: string
+          description: Teléfono destinatario
+        estado:
+          type: string
+          description: Estado destinatario
+        municipio:
+          type: string
+          description: Municipio destinatario
+        referencias:
+          type: string
+          description: Referencias de destinatario
+      description: Referencias de destinatario
+      examples:
+      - codigo_postal: '56000'
+        nombre: Jose
+        apellidos: destino
+        email: jose@gmail.com
+        calle: calle destino
+        numero: '23'
+        colonia: colonia destino
+        telefono: '245678345'
+        estado: estado
+        municipio: municipio
+        referencias: referencia destino
+    RootTypeforGenerarGuiaSinCotizacionResponse:
+      title: RootTypeforGenerarGuiaSinCotizacionResponse
+      type: object
+      properties:
+        success:
+          type: boolean
+          description: true | false
+        message:
+          type: string
+          description: Mensaje mostrado cuando se obtiene la respuesta de una cotización
+        location:
+          type: string
+          description: Ambiente donde se realizo la petición
+        detail:
+          allOf:
+          - $ref: '#/components/schemas/RootTypeforDetailGeneracionDeLaGuia'
+          - description: Detalle de respuesta
+            examples:
+            - num_orden: '3532'
+              guia: '8617898483'
+              file: '%PDF-1.4...'
+              pick_up: '139103'
+              carta_porte: true
+      description: Respuesta de petición de generación de guía JSON.
+      examples:
+      - success: true
+        message: Guía generada correctamente
+        location: location
+        detail:
+          num_orden: '1243'
+          guia: '8617898483'
+          file: '%PDF-1.4...'
+          pick_up: '139103'
+          carta_porte: true
+    RootTypeforConsultarGuiasResponse:
+      title: RootTypeforConsultarGuiasResponse
+      type: object
+      properties:
+        success:
+          type: boolean
+          description: true | false
+        message:
+          type: string
+          description: Mensaje de respuesta
+        detail:
+          type: array
+          items:
+            $ref: '#/components/schemas/RootTypeforConsultarGuiasResponse_Data_Guia'
+          description: Array con los datos de guiá encontrados
+      description: Respuesta de petición.
+    RootTypeforConsultarGuiasResponse_Data_Guia:
+      title: RootTypeforConsultarGuiasResponse_Data_Guia
+      type: object
+      properties:
+        fecha_hora:
+          type: string
+          contentEncoding: date-time
+        num_orden:
+          type: integer
+          contentEncoding: int32
+        pedido_comercio:
+          type: string
+        mensajeria:
+          type: string
+        guia:
+          type: string
+        codigo_mensajeria:
+          type: string
+        estatus:
+          type: string
+        estatus_generico:
+          type: string
+          description: Estatus interno de T1envios
+        nombre_recibe:
+          type: string
+        nombre_destino:
+          type: string
+        apellido_destino:
+          type: string
+        correo_destino:
+          type: string
+        direccion_destino:
+          type: string
+        telefono_destino:
+          type: string
+        notificaciones:
+          type: integer
+          contentEncoding: int32
+        link_rastreo:
+          type: string
+        g_ret:
+          type: string
+      description: Guiá encontrada
+tags:
+- name: API
+  description: ''

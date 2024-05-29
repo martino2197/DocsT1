@@ -1,0 +1,182 @@
+---
+id: consultarguias
+title: "Consultar guías"
+description: "Método para consultar guiás generadas el cual recibe el número de registros que desea consultar y el número de pagina."
+sidebar_label: "Consultar guías"
+hide_title: true
+hide_table_of_contents: true
+api: eJzdWM1uGzcQfhWCpxZYSLbTS/ZU1V63Rv4cWQZSpIYxXo5WbHdJmuQ6EYQFgj5He8ixB596KJCr3iQv0FcohitpJVmRZdlN0Zwkzs5yvvlmOPywI+4hczx+zTvHR/ws4gJdaqXxUise82fjP7wWmhmwwFKtXJl7sCwr5fi9YxkqtCDAMcxZWkLOLKbyAmmpxh8KtJoJZBYz6bzVjl2WyAQ6nN9ruORtIJMKWjzi2qAFAnIkeMz3p29k5fgaHI84gSrQoyX8I66gQB5zrz3k57OYPOKSMjHgB3w5vVUgecQtXpbSouCxtyVG3PlhTls7WZgcecRdOsACeDzifmjCE2+lynhVRTMcqqStz+t0NkUx834QCKnOy6IJflmiHd6Ivl87MaMty6Euo5uWSVuBCmzE0DGChFaK4KOEproZsOP3BXqr2cd3vwXv80nUj+9+Z+g8MGPRofLIhkzIPtrwXyBTZZ6zHBzTJpVaoWMGbSG9pIZyWsU/KcYY+/vXv1gf0wGcD7SFxqbK4jwEbEwL8XlDWl/bgkcc35pcC5xRugGDyzuu4fFQ22I9i6xU1Phhrw0Z/Re4BJc2C0rhQYjKSnkLP8+bLg/jg2lmwXmL+kEA1C0ilUylvqVQ5MlQhWnkkKUWNdUsoIqYVEKmQIawJau3JNgX4w/uskSxfWtFPNXKo/KJSrUgS8wFeFyRSV+qB02jLxXknzGL2fHcuCuCN/3xu6iuZJjE9+8LOja+dOtRJLUTBQ8Mjq9hcmJ2W+xYW9bFVOeY0n1V2/dajU3o2vaoxRLFehaUk15PHL8ho7eYgdii0aXymKFdSblU/tHeQq4FKgc/o731KOriwoa5MX1jfA3RhvPj4IenzeIwOUheNcvkpNc5THqdxnL6XdJtVr0XL550njfrx4+fHc0tu8nBcWf/SWM47rw8TXpJ96jDklfH3eTkhDUPX552nh71frxHl5zRPeuMVg4dPd/b2aGfRbK66EwZhi/dz+hlKsd/KtInAwQRxMeomtWHFlVFhBuLKXi6wfuQO4x4gX6gSclk6IN68QMe8zZNTteeyY/2aEnAVG0DWXu0ICcqShrt1VT6lDbnMR94b1zcbqMCI1sCr1rTk9RKddH2u20wsn2jG3jEr8BKuMgDC4EWqfo6MCZ9YLa3m0yP5I2XKXNIKfNpH8553xEZFiDpBTDSIxTfujeQZWhbUvMq4pRvHXa3tdPaIZPRzheg5oLvz6nUiVBcgDxqSvXfyttJN3p869smB6kon8DXaNIcr8O1WivSRp3GNxWuAZrK8aLkPIv4QDtP24xGF+Dw1OZVReZ6KlDjCOmo7k2TfpKqL1gmrizELzhcUNBXkJfkxWnebk7b/1kVruFlmcIt2VmrCdeEn6jNbWvyEAJwDbolKfp5UK7Ud7eCrFXm/au3SrutCT4vDrcM/vkk25o8GnG5LYVfmBJbw9WCOG3oOmvUxx1vpK+6k28kX6+8jT+FZmIENZzHMUW5fLferZyrIc0+6myBZ/FKr86qOR35fdLjVfUP/cD0NQ==
+sidebar_class_name: "get api-method"
+info_path: docs/T1Envíos/t-1-envios
+custom_edit_url: null
+---
+
+import ApiTabs from "@theme/ApiTabs";
+import DiscriminatorTabs from "@theme/DiscriminatorTabs";
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import SecuritySchemes from "@theme/ApiExplorer/SecuritySchemes";
+import MimeTabs from "@theme/MimeTabs";
+import ParamsItem from "@theme/ParamsItem";
+import ResponseSamples from "@theme/ResponseSamples";
+import SchemaItem from "@theme/SchemaItem";
+import SchemaTabs from "@theme/SchemaTabs";
+import Markdown from "@theme/Markdown";
+import Heading from "@theme/Heading";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Consultar guías"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"get"}
+  path={"/guias/registros/{total_registros}/pag/{numero_pagina}"}
+>
+  
+</MethodEndpoint>
+
+
+
+Método para consultar guiás generadas el cual recibe el número de registros que desea consultar y el número de pagina.
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+  children={"Request"}
+>
+</Heading>
+
+<details
+  style={{"marginBottom":"1rem"}}
+  className={"openapi-markdown__details"}
+  data-collapsed={false}
+  open={true}
+>
+  <summary
+    style={{}}
+  >
+    <h3
+      className={"openapi-markdown__details-summary-header-params"}
+    >
+      Path Parameters
+    </h3>
+  </summary><div>
+    <ul>
+      <ParamsItem
+        className={"paramsItem"}
+        param={{"name":"total_registros","in":"path","description":"número de registros","required":true,"style":"simple","schema":{"type":"string"}}}
+      >
+        
+      </ParamsItem><ParamsItem
+        className={"paramsItem"}
+        param={{"name":"numero_pagina","in":"path","description":"número de pagina","required":true,"style":"simple","schema":{"type":"string"}}}
+      >
+        
+      </ParamsItem>
+    </ul>
+  </div>
+</details><details
+  style={{"marginBottom":"1rem"}}
+  className={"openapi-markdown__details"}
+  data-collapsed={false}
+  open={true}
+>
+  <summary
+    style={{}}
+  >
+    <h3
+      className={"openapi-markdown__details-summary-header-params"}
+    >
+      Query Parameters
+    </h3>
+  </summary><div>
+    <ul>
+      <ParamsItem
+        className={"paramsItem"}
+        param={{"name":"columna","in":"query","description":"Columna por la cual se desea ordenar, es requerida cuando el parámetro “orden_columna” esta presente y diferente de null las opciones permitidas son:\n     fecha_hora\n     num_orden\n     orden_columna","style":"form","explode":true,"schema":{"type":"string"}}}
+      >
+        
+      </ParamsItem><ParamsItem
+        className={"paramsItem"}
+        param={{"name":"orden_columna","in":"query","description":"Forma por la cual se desea ordenar una columna, es requerida cuando el parámetro “columna” esta presente y diferente de null las opciones permitidas son:\n     asc\n     desc","style":"form","explode":true,"schema":{"type":"string"}}}
+      >
+        
+      </ParamsItem><ParamsItem
+        className={"paramsItem"}
+        param={{"name":"guia","in":"query","description":"Número de guiá o rastreo","style":"form","explode":true,"schema":{"type":"string"}}}
+      >
+        
+      </ParamsItem><ParamsItem
+        className={"paramsItem"}
+        param={{"name":"fecha_inicio","in":"query","description":"Fecha en que se creo la guiá, indica la fecha inicio de búsqueda","style":"form","explode":true,"schema":{"type":"string","contentEncoding":"date"}}}
+      >
+        
+      </ParamsItem><ParamsItem
+        className={"paramsItem"}
+        param={{"name":"fecha_fin","in":"query","description":"Fecha en que se creo la guiá, indica la fecha final de búsqueda","style":"form","explode":true,"schema":{"type":"string","contentEncoding":"date"}}}
+      >
+        
+      </ParamsItem><ParamsItem
+        className={"paramsItem"}
+        param={{"name":"num_orden","in":"query","description":"Número de orden de t1envios","style":"form","explode":true,"schema":{"type":"string"}}}
+      >
+        
+      </ParamsItem><ParamsItem
+        className={"paramsItem"}
+        param={{"name":"estatus","in":"query","description":"Estatus de la guía:\n    1. Por Recolectar \n    2. Recolectado\n    3. En Transito \n    4. Entregado","style":"form","explode":true,"schema":{"type":"integer","contentEncoding":"int32"}}}
+      >
+        
+      </ParamsItem><ParamsItem
+        className={"paramsItem"}
+        param={{"name":"mensajeria","in":"query","description":"Nombre de mensajería, las opciones permitidas son:\n     DHL\n     FEDEX\n     ESTAFETA\n     UBER\n     TOOKAN\n     99MIN\n     REDPACK\n     PAQUETERIA EXPRESS \n     QUALITY","style":"form","explode":true,"schema":{"type":"string"}}}
+      >
+        
+      </ParamsItem>
+    </ul>
+  </div>
+</details><div>
+  <div>
+    <ApiTabs
+      label={undefined}
+      id={undefined}
+    >
+      <TabItem
+        label={"200"}
+        value={"200"}
+      >
+        <div>
+          
+          
+          Respuesta de petición.
+          
+          
+        </div><details
+          style={{"textAlign":"left","marginBottom":"1rem"}}
+          className={"openapi-markdown__details"}
+          data-collaposed={true}
+          open={false}
+        >
+          <summary
+            style={{}}
+          >
+            <strong>
+              Response Headers
+            </strong>
+          </summary><ul
+            style={{"marginLeft":"1rem"}}
+          >
+            
+          </ul>
+        </details><div>
+          
+        </div>
+      </TabItem>
+    </ApiTabs>
+  </div>
+</div>
+      
