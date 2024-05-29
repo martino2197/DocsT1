@@ -1,0 +1,901 @@
+---
+id: cm-v-2-product-commerce-product-by-id-commerce-get
+title: "CmV2ProductCommerceProductByIDCommerce_GET"
+description: "Regresa un listado de productos del seller"
+sidebar_label: "CmV2ProductCommerceProductByIDCommerce_GET"
+hide_title: true
+hide_table_of_contents: true
+api: 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
+sidebar_class_name: "get api-method"
+info_path: docs/T1Comercios/catalogo-homologado-t-1
+custom_edit_url: null
+---
+
+import ApiTabs from "@theme/ApiTabs";
+import DiscriminatorTabs from "@theme/DiscriminatorTabs";
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import SecuritySchemes from "@theme/ApiExplorer/SecuritySchemes";
+import MimeTabs from "@theme/MimeTabs";
+import ParamsItem from "@theme/ParamsItem";
+import ResponseSamples from "@theme/ResponseSamples";
+import SchemaItem from "@theme/SchemaItem";
+import SchemaTabs from "@theme/SchemaTabs";
+import Markdown from "@theme/Markdown";
+import Heading from "@theme/Heading";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"CmV2ProductCommerceProductByIDCommerce_GET"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"get"}
+  path={"/cm/v2/product/commerce/{IDCommerce}/product/"}
+>
+  
+</MethodEndpoint>
+
+
+
+Regresa un listado de productos del seller
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+  children={"Request"}
+>
+</Heading>
+
+<details
+  style={{"marginBottom":"1rem"}}
+  className={"openapi-markdown__details"}
+  data-collapsed={false}
+  open={true}
+>
+  <summary
+    style={{}}
+  >
+    <h3
+      className={"openapi-markdown__details-summary-header-params"}
+    >
+      Path Parameters
+    </h3>
+  </summary><div>
+    <ul>
+      <ParamsItem
+        className={"paramsItem"}
+        param={{"name":"IDCommerce","in":"path","description":"identificador del comercio o seller","required":true,"style":"simple","schema":{"type":"integer","format":"int32","example":12345}}}
+      >
+        
+      </ParamsItem>
+    </ul>
+  </div>
+</details><details
+  style={{"marginBottom":"1rem"}}
+  className={"openapi-markdown__details"}
+  data-collapsed={false}
+  open={true}
+>
+  <summary
+    style={{}}
+  >
+    <h3
+      className={"openapi-markdown__details-summary-header-params"}
+    >
+      Query Parameters
+    </h3>
+  </summary><div>
+    <ul>
+      <ParamsItem
+        className={"paramsItem"}
+        param={{"name":"page","in":"query","description":"pagina que se desea obtener","style":"form","explode":true,"schema":{"minimum":1,"type":"integer","format":"int32","default":1,"example":1}}}
+      >
+        
+      </ParamsItem><ParamsItem
+        className={"paramsItem"}
+        param={{"name":"page_size","in":"query","description":"tamaño de la página que se desea obtener","style":"form","explode":true,"schema":{"maximum":50,"minimum":1,"type":"integer","format":"int32","default":15,"example":20}}}
+      >
+        
+      </ParamsItem><ParamsItem
+        className={"paramsItem"}
+        param={{"name":"q","in":"query","description":"busquedas de full text en el producto, busca en el nombre, sku_padre y sku","style":"form","explode":true,"schema":{"type":"array","items":{"type":"string"},"example":["apple","abc","bc-123"]}}}
+      >
+        
+      </ParamsItem><ParamsItem
+        className={"paramsItem"}
+        param={{"name":"filter","in":"query","description":"id del filtr predefinido a aplicar","style":"form","explode":true,"schema":{"type":"string","example":"6399260eaa30a55748d5dcc2"}}}
+      >
+        
+      </ParamsItem>
+    </ul>
+  </div>
+</details><div>
+  <div>
+    <ApiTabs
+      label={undefined}
+      id={undefined}
+    >
+      <TabItem
+        label={"200"}
+        value={"200"}
+      >
+        <div>
+          
+          
+          En caso de exito
+          
+          
+        </div><details
+          style={{"textAlign":"left","marginBottom":"1rem"}}
+          className={"openapi-markdown__details"}
+          data-collaposed={true}
+          open={false}
+        >
+          <summary
+            style={{}}
+          >
+            <strong>
+              Response Headers
+            </strong>
+          </summary><ul
+            style={{"marginLeft":"1rem"}}
+          >
+            
+          </ul>
+        </details><div>
+          <MimeTabs
+            className={"openapi-tabs__mime"}
+            schemaType={"response"}
+          >
+            <TabItem
+              label={"application/json"}
+              value={"application/json"}
+            >
+              <SchemaTabs
+                className={"openapi-tabs__schema"}
+              >
+                <TabItem
+                  label={"Schema"}
+                  value={"Schema"}
+                >
+                  <details
+                    style={{}}
+                    className={"openapi-markdown__details response"}
+                    data-collapsed={false}
+                    open={true}
+                  >
+                    <summary
+                      style={{}}
+                      className={"openapi-markdown__details-summary-response"}
+                    >
+                      <strong>
+                        Schema
+                      </strong>
+                    </summary><div
+                      style={{"textAlign":"left","marginLeft":"1rem"}}
+                    >
+                      
+                    </div><ul
+                      style={{"marginLeft":"1rem"}}
+                    >
+                      <SchemaItem
+                        collapsible={true}
+                        className={"schemaItem"}
+                      >
+                        <details
+                          style={{}}
+                          className={"openapi-markdown__details"}
+                        >
+                          <summary
+                            style={{}}
+                          >
+                            <span
+                              className={"openapi-schema__container"}
+                            >
+                              <strong
+                                className={"openapi-schema__property"}
+                              >
+                                metadata
+                              </strong><span
+                                className={"openapi-schema__name"}
+                              >
+                                 object
+                              </span>
+                            </span>
+                          </summary><div
+                            style={{"marginLeft":"1rem"}}
+                          >
+                            <SchemaItem
+                              collapsible={false}
+                              name={"status"}
+                              required={false}
+                              schemaName={"Status (string)"}
+                              qualifierMessage={"**Possible values:** [`success`, `error`, `fail`]"}
+                              schema={{"title":"Status","enum":["success","error","fail"],"type":"string","x-enum-elements":[{"name":"success","description":""},{"name":"error","description":""},{"name":"fail","description":""}]}}
+                            >
+                              
+                            </SchemaItem><SchemaItem
+                              collapsible={false}
+                              name={"http_code"}
+                              required={false}
+                              schemaName={"int32"}
+                              qualifierMessage={undefined}
+                              schema={{"type":"integer","format":"int32","example":200}}
+                            >
+                              
+                            </SchemaItem><SchemaItem
+                              collapsible={false}
+                              name={"date_time"}
+                              required={false}
+                              schemaName={"date-time"}
+                              qualifierMessage={undefined}
+                              schema={{"type":"string","format":"date-time","example":"2019-08-27T18:18:31Z"}}
+                            >
+                              
+                            </SchemaItem><SchemaItem
+                              collapsible={false}
+                              name={"message"}
+                              required={false}
+                              schemaName={"string"}
+                              qualifierMessage={undefined}
+                              schema={{"type":"string","example":"ok"}}
+                            >
+                              
+                            </SchemaItem>
+                          </div>
+                        </details>
+                      </SchemaItem><SchemaItem
+                        collapsible={true}
+                        className={"schemaItem"}
+                      >
+                        <details
+                          style={{}}
+                          className={"openapi-markdown__details"}
+                        >
+                          <summary
+                            style={{}}
+                          >
+                            <span
+                              className={"openapi-schema__container"}
+                            >
+                              <strong
+                                className={"openapi-schema__property"}
+                              >
+                                data
+                              </strong><span
+                                className={"openapi-schema__name"}
+                              >
+                                 object[]
+                              </span>
+                            </span>
+                          </summary><div
+                            style={{"marginLeft":"1rem"}}
+                          >
+                            <li>
+                              <div
+                                style={{"fontSize":"var(--ifm-code-font-size)","opacity":"0.6","marginLeft":"-.5rem","paddingBottom":".5rem"}}
+                              >
+                                Array [
+                              </div>
+                            </li><SchemaItem
+                              collapsible={false}
+                              name={"id"}
+                              required={false}
+                              schemaName={"string"}
+                              qualifierMessage={undefined}
+                              schema={{"type":"string","description":"identificador del producto en t1-comercios","readOnly":true,"example":"abc123"}}
+                            >
+                              
+                            </SchemaItem><SchemaItem
+                              collapsible={false}
+                              name={"sku_padre"}
+                              required={false}
+                              schemaName={"string"}
+                              qualifierMessage={"**Possible values:** Value must match regular expression `/^[0-9a-zA-Z-]+$/`"}
+                              schema={{"pattern":"/^[0-9a-zA-Z-]+$/","type":"string","description":"antes conocido como sku-padre\nid del producto o publicación para el comercio, este dato es el id que tiene asignado de manera interna el comercio origen, puede ser el sku en el caso de ser un producto sin variaciones de color, talla, etc. o puede ser el EAN o simplemente un consecutivo, pero debe ser unico para el commercio y es obligatorio"}}
+                            >
+                              
+                            </SchemaItem><SchemaItem
+                              collapsible={false}
+                              name={"name"}
+                              required={false}
+                              schemaName={"string"}
+                              qualifierMessage={"**Possible values:** Value must match regular expression `/^[ a-zA-Z0-9äÄëËïÏöÖüÜáéíóúÁÉÍÓÚ ÊÎÔÛâêîôûàèìòùÀÈÌÒÙñÑ&$,\\.'\"-.:%;=#!_¡\\/?´¨`|¿*+~@()[\\\\]{]+$/`"}
+                              schema={{"pattern":"/^[ a-zA-Z0-9äÄëËïÏöÖüÜáéíóúÁÉÍÓÚ ÊÎÔÛâêîôûàèìòùÀÈÌÒÙñÑ&$,\\.'\"-.:%;=#!_¡\\/?´¨`|¿*+~@()[\\\\]{]+$/","type":"string","description":"nombre del producto"}}
+                            >
+                              
+                            </SchemaItem><SchemaItem
+                              collapsible={false}
+                              name={"shipping_method"}
+                              required={false}
+                              schemaName={"ShippingMethod (string)"}
+                              qualifierMessage={"**Possible values:** [`fullfilment`, `dropshiping`]"}
+                              schema={{"title":"ShippingMethod","enum":["fullfilment","dropshiping"],"type":"string","x-enum-elements":[{"name":"fullfilment","description":""},{"name":"dropshiping","description":""}]}}
+                            >
+                              
+                            </SchemaItem><SchemaItem
+                              collapsible={false}
+                              name={"firstPhoto"}
+                              required={false}
+                              schemaName={"string"}
+                              qualifierMessage={undefined}
+                              schema={{"type":"string","description":"url de la primer foto","readOnly":true}}
+                            >
+                              
+                            </SchemaItem><SchemaItem
+                              collapsible={true}
+                              className={"schemaItem"}
+                            >
+                              <details
+                                style={{}}
+                                className={"openapi-markdown__details"}
+                              >
+                                <summary
+                                  style={{}}
+                                >
+                                  <span
+                                    className={"openapi-schema__container"}
+                                  >
+                                    <strong
+                                      className={"openapi-schema__property"}
+                                    >
+                                      sales_channel
+                                    </strong><span
+                                      className={"openapi-schema__name"}
+                                    >
+                                       object
+                                    </span>
+                                  </span>
+                                </summary><div
+                                  style={{"marginLeft":"1rem"}}
+                                >
+                                  <SchemaItem
+                                    collapsible={true}
+                                    className={"schemaItem"}
+                                  >
+                                    <details
+                                      style={{}}
+                                      className={"openapi-markdown__details"}
+                                    >
+                                      <summary
+                                        style={{}}
+                                      >
+                                        <span
+                                          className={"openapi-schema__container"}
+                                        >
+                                          <strong
+                                            className={"openapi-schema__property"}
+                                          >
+                                            CS
+                                          </strong><span
+                                            className={"openapi-schema__name"}
+                                          >
+                                             object
+                                          </span>
+                                        </span>
+                                      </summary><div
+                                        style={{"marginLeft":"1rem"}}
+                                      >
+                                        <div
+                                          style={{"marginTop":".5rem","marginBottom":".5rem"}}
+                                        >
+                                          
+                                          
+                                          datos diferenciados por canal de venta ( portal )
+                                          
+                                          
+                                        </div><SchemaItem
+                                          collapsible={false}
+                                          name={"product_id"}
+                                          required={false}
+                                          schemaName={"string"}
+                                          qualifierMessage={undefined}
+                                          schema={{"type":"string","readOnly":true,"example":"1123"}}
+                                        >
+                                          
+                                        </SchemaItem><SchemaItem
+                                          collapsible={false}
+                                          name={"category"}
+                                          required={false}
+                                          schemaName={"string"}
+                                          qualifierMessage={undefined}
+                                          schema={{"type":"string","example":"cat-123"}}
+                                        >
+                                          
+                                        </SchemaItem><SchemaItem
+                                          collapsible={false}
+                                          name={"sale_price"}
+                                          required={false}
+                                          schemaName={"number"}
+                                          qualifierMessage={"**Possible values:** `>= 11` and `<= 999999.99`"}
+                                          schema={{"multipleOf":0.01,"maximum":999999.99,"minimum":11,"type":"number","description":"precio de oferta, precio de venta al cliente final, debe ser menor o igual al precio de lista","example":1971.19}}
+                                        >
+                                          
+                                        </SchemaItem><SchemaItem
+                                          collapsible={false}
+                                          name={"list_price"}
+                                          required={false}
+                                          schemaName={"number"}
+                                          qualifierMessage={"**Possible values:** `>= 11` and `<= 999999.99`"}
+                                          schema={{"multipleOf":0.01,"maximum":999999.99,"minimum":11,"type":"number","description":"precio de lista, si es mayor al precio de oferta se mostrara en el portal como una rebaja, la diferencia entre el precio de lista y el precio de oferta no podra ser mayor al 70% por seguridad","example":1971.19}}
+                                        >
+                                          
+                                        </SchemaItem><SchemaItem
+                                          collapsible={true}
+                                          className={"schemaItem"}
+                                        >
+                                          <details
+                                            style={{}}
+                                            className={"openapi-markdown__details"}
+                                          >
+                                            <summary
+                                              style={{}}
+                                            >
+                                              <span
+                                                className={"openapi-schema__container"}
+                                              >
+                                                <strong
+                                                  className={"openapi-schema__property"}
+                                                >
+                                                  prices_per_variant
+                                                </strong><span
+                                                  className={"openapi-schema__name"}
+                                                >
+                                                   object[]
+                                                </span>
+                                              </span>
+                                            </summary><div
+                                              style={{"marginLeft":"1rem"}}
+                                            >
+                                              <div
+                                                style={{"marginTop":".5rem","marginBottom":".5rem"}}
+                                              >
+                                                
+                                                
+                                                precios separados por sku, este campo solo se usara cuando el producto tenga precios diferentes para diferentes variantes del mismo (talla, color, tamaño, etc), cada precio indicara un arreglo de skus para los cuales aplica el precio, puede haber cualquier cantidad de precios diferentes, siempre que se cumpla con las siguientes reglas.
+                                                * todos los skus tienen un precio asignado
+                                                * cada sku tiene solo un precio asignado
+                                                * no hay precios que no tengan al menos un sku asignado
+                                                
+                                                cuando se usa este objeto los valores de los nodos sales_price y list_price generales no serán considerados, por lo que deberian viajar en nulo
+                                                
+                                                
+                                              </div><li>
+                                                <div
+                                                  style={{"fontSize":"var(--ifm-code-font-size)","opacity":"0.6","marginLeft":"-.5rem","paddingBottom":".5rem"}}
+                                                >
+                                                  Array [
+                                                </div>
+                                              </li><SchemaItem
+                                                collapsible={false}
+                                                name={"sale_price"}
+                                                required={false}
+                                                schemaName={"number"}
+                                                qualifierMessage={"**Possible values:** `>= 11` and `<= 999999.99`"}
+                                                schema={{"multipleOf":0.01,"maximum":999999.99,"minimum":11,"type":"number","description":"precio de oferta, precio de venta al cliente final, debe ser menor o igual al precio de lista","example":1971.19}}
+                                              >
+                                                
+                                              </SchemaItem><SchemaItem
+                                                collapsible={false}
+                                                name={"list_price"}
+                                                required={false}
+                                                schemaName={"number"}
+                                                qualifierMessage={"**Possible values:** `>= 11` and `<= 999999.99`"}
+                                                schema={{"multipleOf":0.01,"maximum":999999.99,"minimum":11,"type":"number","description":"precio de lista, si es mayor al precio de oferta se mostrara en el portal como una rebaja, la diferencia entre el precio de lista y el precio de oferta no podra ser mayor al 70% por seguridad","example":1971.19}}
+                                              >
+                                                
+                                              </SchemaItem><SchemaItem
+                                                collapsible={false}
+                                                name={"skus"}
+                                                required={false}
+                                                schemaName={"string[]"}
+                                                qualifierMessage={undefined}
+                                                schema={{"type":"array","description":"","items":{"type":"string"}}}
+                                              >
+                                                
+                                              </SchemaItem><li>
+                                                <div
+                                                  style={{"fontSize":"var(--ifm-code-font-size)","opacity":"0.6","marginLeft":"-.5rem"}}
+                                                >
+                                                  ]
+                                                </div>
+                                              </li>
+                                            </div>
+                                          </details>
+                                        </SchemaItem><SchemaItem
+                                          collapsible={false}
+                                          name={"url"}
+                                          required={false}
+                                          schemaName={"string"}
+                                          qualifierMessage={undefined}
+                                          schema={{"type":"string","description":"url del producto publicado en el canal de venta, este parametro es de solo lectura y solo estaŕa disponible en los productos que ya hayan sido publicados en el canl de ventas","readOnly":true,"example":"https://www.claroshop.com/producto/1265594/audifonos-de-diadema-inalambrico-mod-wb-109-gris/"}}
+                                        >
+                                          
+                                        </SchemaItem><SchemaItem
+                                          collapsible={false}
+                                          name={"status"}
+                                          required={false}
+                                          schemaName={"Status1 (string)"}
+                                          qualifierMessage={"**Possible values:** [`received`, `incomplete`, `pending_validation`, `validated`, `published`, `rejected`, `unpublished`]"}
+                                          schema={{"readOnly":true,"title":"Status1","enum":["received","incomplete","pending_validation","validated","published","rejected","unpublished"],"type":"string","description":"Estatus de la publicación en el canal de ventas\n\n* received : cuando se recibe el producto o alguna actualización del mismo, queda en este status, hasta que se valide que el producto cumple con las condiciones necesarias para poder ser revisado para su aprovacion manual o actualizado en el canal de ventas\n\n* incomplete: si el producto no cumple con algun dato necesario para su publiacion en el canal de ventas queda en este status ejemplo, hace falta una caracteristica necesaria para la categoria en el canl de ventas\n\n* pending_validation: cuando el producto es nuevo o requiere que sea aprovado algún cambio en el canal de ventas el producto queda en este status.\n\n* validated: si el producto ya está validado y listo para ser publicado al canal de ventas.\n\n* published: si el producto esta publicado y sincronizado con el canal de ventas\n\n* rejected: cuando el producto no fue aprobado para su publicacion en el canal de ventas ( para uso futuro )\n\n* unpublished: cuando el producto fue dado de baja en el canal ( para uso futuro )","example":"pending_validation","x-enum-elements":[{"name":"received","description":""},{"name":"incomplete","description":""},{"name":"pending_validation","description":""},{"name":"validated","description":""},{"name":"published","description":""},{"name":"rejected","description":""},{"name":"unpublished","description":""}]}}
+                                        >
+                                          
+                                        </SchemaItem><SchemaItem
+                                          collapsible={false}
+                                          name={"active"}
+                                          required={false}
+                                          schemaName={"boolean"}
+                                          qualifierMessage={undefined}
+                                          schema={{"type":"boolean","description":"true, para activar el producto, false para desactivarlo. este valor es independiente del status y permite al comercio detener la venta en el canal","default":true}}
+                                        >
+                                          
+                                        </SchemaItem>
+                                      </div>
+                                    </details>
+                                  </SchemaItem><SchemaItem
+                                    collapsible={true}
+                                    className={"schemaItem"}
+                                  >
+                                    <details
+                                      style={{}}
+                                      className={"openapi-markdown__details"}
+                                    >
+                                      <summary
+                                        style={{}}
+                                      >
+                                        <span
+                                          className={"openapi-schema__container"}
+                                        >
+                                          <strong
+                                            className={"openapi-schema__property"}
+                                          >
+                                            SR
+                                          </strong><span
+                                            className={"openapi-schema__name"}
+                                          >
+                                             object
+                                          </span>
+                                        </span>
+                                      </summary><div
+                                        style={{"marginLeft":"1rem"}}
+                                      >
+                                        <div
+                                          style={{"marginTop":".5rem","marginBottom":".5rem"}}
+                                        >
+                                          
+                                          
+                                          datos diferenciados por canal de venta ( portal )
+                                          
+                                          
+                                        </div><SchemaItem
+                                          collapsible={false}
+                                          name={"product_id"}
+                                          required={false}
+                                          schemaName={"string"}
+                                          qualifierMessage={undefined}
+                                          schema={{"type":"string","readOnly":true,"example":"1123"}}
+                                        >
+                                          
+                                        </SchemaItem><SchemaItem
+                                          collapsible={false}
+                                          name={"category"}
+                                          required={false}
+                                          schemaName={"string"}
+                                          qualifierMessage={undefined}
+                                          schema={{"type":"string","example":"cat-123"}}
+                                        >
+                                          
+                                        </SchemaItem><SchemaItem
+                                          collapsible={false}
+                                          name={"sale_price"}
+                                          required={false}
+                                          schemaName={"number"}
+                                          qualifierMessage={"**Possible values:** `>= 11` and `<= 999999.99`"}
+                                          schema={{"multipleOf":0.01,"maximum":999999.99,"minimum":11,"type":"number","description":"precio de oferta, precio de venta al cliente final, debe ser menor o igual al precio de lista","example":1971.19}}
+                                        >
+                                          
+                                        </SchemaItem><SchemaItem
+                                          collapsible={false}
+                                          name={"list_price"}
+                                          required={false}
+                                          schemaName={"number"}
+                                          qualifierMessage={"**Possible values:** `>= 11` and `<= 999999.99`"}
+                                          schema={{"multipleOf":0.01,"maximum":999999.99,"minimum":11,"type":"number","description":"precio de lista, si es mayor al precio de oferta se mostrara en el portal como una rebaja, la diferencia entre el precio de lista y el precio de oferta no podra ser mayor al 70% por seguridad","example":1971.19}}
+                                        >
+                                          
+                                        </SchemaItem><SchemaItem
+                                          collapsible={true}
+                                          className={"schemaItem"}
+                                        >
+                                          <details
+                                            style={{}}
+                                            className={"openapi-markdown__details"}
+                                          >
+                                            <summary
+                                              style={{}}
+                                            >
+                                              <span
+                                                className={"openapi-schema__container"}
+                                              >
+                                                <strong
+                                                  className={"openapi-schema__property"}
+                                                >
+                                                  prices_per_variant
+                                                </strong><span
+                                                  className={"openapi-schema__name"}
+                                                >
+                                                   object[]
+                                                </span>
+                                              </span>
+                                            </summary><div
+                                              style={{"marginLeft":"1rem"}}
+                                            >
+                                              <div
+                                                style={{"marginTop":".5rem","marginBottom":".5rem"}}
+                                              >
+                                                
+                                                
+                                                precios separados por sku, este campo solo se usara cuando el producto tenga precios diferentes para diferentes variantes del mismo (talla, color, tamaño, etc), cada precio indicara un arreglo de skus para los cuales aplica el precio, puede haber cualquier cantidad de precios diferentes, siempre que se cumpla con las siguientes reglas.
+                                                * todos los skus tienen un precio asignado
+                                                * cada sku tiene solo un precio asignado
+                                                * no hay precios que no tengan al menos un sku asignado
+                                                
+                                                cuando se usa este objeto los valores de los nodos sales_price y list_price generales no serán considerados, por lo que deberian viajar en nulo
+                                                
+                                                
+                                              </div><li>
+                                                <div
+                                                  style={{"fontSize":"var(--ifm-code-font-size)","opacity":"0.6","marginLeft":"-.5rem","paddingBottom":".5rem"}}
+                                                >
+                                                  Array [
+                                                </div>
+                                              </li><SchemaItem
+                                                collapsible={false}
+                                                name={"sale_price"}
+                                                required={false}
+                                                schemaName={"number"}
+                                                qualifierMessage={"**Possible values:** `>= 11` and `<= 999999.99`"}
+                                                schema={{"multipleOf":0.01,"maximum":999999.99,"minimum":11,"type":"number","description":"precio de oferta, precio de venta al cliente final, debe ser menor o igual al precio de lista","example":1971.19}}
+                                              >
+                                                
+                                              </SchemaItem><SchemaItem
+                                                collapsible={false}
+                                                name={"list_price"}
+                                                required={false}
+                                                schemaName={"number"}
+                                                qualifierMessage={"**Possible values:** `>= 11` and `<= 999999.99`"}
+                                                schema={{"multipleOf":0.01,"maximum":999999.99,"minimum":11,"type":"number","description":"precio de lista, si es mayor al precio de oferta se mostrara en el portal como una rebaja, la diferencia entre el precio de lista y el precio de oferta no podra ser mayor al 70% por seguridad","example":1971.19}}
+                                              >
+                                                
+                                              </SchemaItem><SchemaItem
+                                                collapsible={false}
+                                                name={"skus"}
+                                                required={false}
+                                                schemaName={"string[]"}
+                                                qualifierMessage={undefined}
+                                                schema={{"type":"array","description":"","items":{"type":"string"}}}
+                                              >
+                                                
+                                              </SchemaItem><li>
+                                                <div
+                                                  style={{"fontSize":"var(--ifm-code-font-size)","opacity":"0.6","marginLeft":"-.5rem"}}
+                                                >
+                                                  ]
+                                                </div>
+                                              </li>
+                                            </div>
+                                          </details>
+                                        </SchemaItem><SchemaItem
+                                          collapsible={false}
+                                          name={"url"}
+                                          required={false}
+                                          schemaName={"string"}
+                                          qualifierMessage={undefined}
+                                          schema={{"type":"string","description":"url del producto publicado en el canal de venta, este parametro es de solo lectura y solo estaŕa disponible en los productos que ya hayan sido publicados en el canl de ventas","readOnly":true,"example":"https://www.claroshop.com/producto/1265594/audifonos-de-diadema-inalambrico-mod-wb-109-gris/"}}
+                                        >
+                                          
+                                        </SchemaItem><SchemaItem
+                                          collapsible={false}
+                                          name={"status"}
+                                          required={false}
+                                          schemaName={"Status1 (string)"}
+                                          qualifierMessage={"**Possible values:** [`received`, `incomplete`, `pending_validation`, `validated`, `published`, `rejected`, `unpublished`]"}
+                                          schema={{"readOnly":true,"title":"Status1","enum":["received","incomplete","pending_validation","validated","published","rejected","unpublished"],"type":"string","description":"Estatus de la publicación en el canal de ventas\n\n* received : cuando se recibe el producto o alguna actualización del mismo, queda en este status, hasta que se valide que el producto cumple con las condiciones necesarias para poder ser revisado para su aprovacion manual o actualizado en el canal de ventas\n\n* incomplete: si el producto no cumple con algun dato necesario para su publiacion en el canal de ventas queda en este status ejemplo, hace falta una caracteristica necesaria para la categoria en el canl de ventas\n\n* pending_validation: cuando el producto es nuevo o requiere que sea aprovado algún cambio en el canal de ventas el producto queda en este status.\n\n* validated: si el producto ya está validado y listo para ser publicado al canal de ventas.\n\n* published: si el producto esta publicado y sincronizado con el canal de ventas\n\n* rejected: cuando el producto no fue aprobado para su publicacion en el canal de ventas ( para uso futuro )\n\n* unpublished: cuando el producto fue dado de baja en el canal ( para uso futuro )","example":"pending_validation","x-enum-elements":[{"name":"received","description":""},{"name":"incomplete","description":""},{"name":"pending_validation","description":""},{"name":"validated","description":""},{"name":"published","description":""},{"name":"rejected","description":""},{"name":"unpublished","description":""}]}}
+                                        >
+                                          
+                                        </SchemaItem><SchemaItem
+                                          collapsible={false}
+                                          name={"active"}
+                                          required={false}
+                                          schemaName={"boolean"}
+                                          qualifierMessage={undefined}
+                                          schema={{"type":"boolean","description":"true, para activar el producto, false para desactivarlo. este valor es independiente del status y permite al comercio detener la venta en el canal","default":true}}
+                                        >
+                                          
+                                        </SchemaItem>
+                                      </div>
+                                    </details>
+                                  </SchemaItem>
+                                </div>
+                              </details>
+                            </SchemaItem><SchemaItem
+                              collapsible={false}
+                              name={"stock"}
+                              required={false}
+                              schemaName={"int32"}
+                              qualifierMessage={undefined}
+                              schema={{"minimum":0,"type":"integer","description":"numero de existencias del producto, este valor es de solo lectura","format":"int32","default":0,"readOnly":true,"example":100}}
+                            >
+                              
+                            </SchemaItem><SchemaItem
+                              collapsible={false}
+                              name={"packing_days"}
+                              required={false}
+                              schemaName={"int32"}
+                              qualifierMessage={undefined}
+                              schema={{"minimum":0,"type":"integer","description":"número de días que tarda el comercio en surtir el pedido","format":"int32","example":1}}
+                            >
+                              
+                            </SchemaItem><SchemaItem
+                              collapsible={false}
+                              name={"has_variants"}
+                              required={false}
+                              schemaName={"boolean"}
+                              qualifierMessage={undefined}
+                              schema={{"type":"boolean","description":"indica si el producto tiene o no variaciones","readOnly":true,"example":true}}
+                            >
+                              
+                            </SchemaItem><li>
+                              <div
+                                style={{"fontSize":"var(--ifm-code-font-size)","opacity":"0.6","marginLeft":"-.5rem"}}
+                              >
+                                ]
+                              </div>
+                            </li>
+                          </div>
+                        </details>
+                      </SchemaItem><SchemaItem
+                        collapsible={true}
+                        className={"schemaItem"}
+                      >
+                        <details
+                          style={{}}
+                          className={"openapi-markdown__details"}
+                        >
+                          <summary
+                            style={{}}
+                          >
+                            <span
+                              className={"openapi-schema__container"}
+                            >
+                              <strong
+                                className={"openapi-schema__property"}
+                              >
+                                pagination
+                              </strong><span
+                                className={"openapi-schema__name"}
+                              >
+                                 object
+                              </span>
+                            </span>
+                          </summary><div
+                            style={{"marginLeft":"1rem"}}
+                          >
+                            <SchemaItem
+                              collapsible={false}
+                              name={"total_count"}
+                              required={false}
+                              schemaName={"int64"}
+                              qualifierMessage={undefined}
+                              schema={{"minimum":0,"type":"integer","format":"int64","example":300}}
+                            >
+                              
+                            </SchemaItem><SchemaItem
+                              collapsible={false}
+                              name={"page"}
+                              required={false}
+                              schemaName={"int32"}
+                              qualifierMessage={"**Possible values:** `>= 1`"}
+                              schema={{"minimum":1,"type":"integer","format":"int32","example":25}}
+                            >
+                              
+                            </SchemaItem><SchemaItem
+                              collapsible={false}
+                              name={"page_size"}
+                              required={false}
+                              schemaName={"int32"}
+                              qualifierMessage={"**Possible values:** `>= 1`"}
+                              schema={{"minimum":1,"type":"integer","format":"int32","example":50}}
+                            >
+                              
+                            </SchemaItem>
+                          </div>
+                        </details>
+                      </SchemaItem>
+                    </ul>
+                  </details>
+                </TabItem><TabItem
+                  label={"Example (from schema)"}
+                  value={"Example (from schema)"}
+                >
+                  <ResponseSamples
+                    responseExample={"{\n  \"metadata\": {\n    \"status\": \"success\",\n    \"http_code\": 200,\n    \"date_time\": \"2019-08-27T18:18:31Z\",\n    \"message\": \"ok\"\n  },\n  \"data\": [\n    {\n      \"id\": \"abc123\",\n      \"sku_padre\": \"string\",\n      \"name\": \"string\",\n      \"shipping_method\": \"fullfilment\",\n      \"firstPhoto\": \"string\",\n      \"sales_channel\": {\n        \"CS\": {\n          \"product_id\": \"1123\",\n          \"category\": \"cat-123\",\n          \"sale_price\": 1971.19,\n          \"list_price\": 1971.19,\n          \"prices_per_variant\": [\n            {\n              \"sale_price\": 1971.19,\n              \"list_price\": 1971.19,\n              \"skus\": [\n                \"string\"\n              ]\n            }\n          ],\n          \"url\": \"https://www.claroshop.com/producto/1265594/audifonos-de-diadema-inalambrico-mod-wb-109-gris/\",\n          \"status\": \"pending_validation\",\n          \"active\": true\n        },\n        \"SR\": {\n          \"product_id\": \"1123\",\n          \"category\": \"cat-123\",\n          \"sale_price\": 1971.19,\n          \"list_price\": 1971.19,\n          \"prices_per_variant\": [\n            {\n              \"sale_price\": 1971.19,\n              \"list_price\": 1971.19,\n              \"skus\": [\n                \"string\"\n              ]\n            }\n          ],\n          \"url\": \"https://www.claroshop.com/producto/1265594/audifonos-de-diadema-inalambrico-mod-wb-109-gris/\",\n          \"status\": \"pending_validation\",\n          \"active\": true\n        }\n      },\n      \"stock\": 100,\n      \"packing_days\": 1,\n      \"has_variants\": true\n    }\n  ],\n  \"pagination\": {\n    \"total_count\": 300,\n    \"page\": 25,\n    \"page_size\": 50\n  }\n}"}
+                    language={"json"}
+                  >
+                    
+                  </ResponseSamples>
+                </TabItem>
+              </SchemaTabs>
+            </TabItem>
+          </MimeTabs>
+        </div>
+      </TabItem><TabItem
+        label={"401"}
+        value={"401"}
+      >
+        <div>
+          
+          
+          Access token is missing or invalid
+          
+          
+        </div><details
+          style={{"textAlign":"left","marginBottom":"1rem"}}
+          className={"openapi-markdown__details"}
+          data-collaposed={true}
+          open={false}
+        >
+          <summary
+            style={{}}
+          >
+            <strong>
+              Response Headers
+            </strong>
+          </summary><ul
+            style={{"marginLeft":"1rem"}}
+          >
+            
+          </ul>
+        </details><div>
+          
+        </div>
+      </TabItem><TabItem
+        label={"500"}
+        value={"500"}
+      >
+        <div>
+          
+          
+          temporary server error
+          
+          
+        </div><details
+          style={{"textAlign":"left","marginBottom":"1rem"}}
+          className={"openapi-markdown__details"}
+          data-collaposed={true}
+          open={false}
+        >
+          <summary
+            style={{}}
+          >
+            <strong>
+              Response Headers
+            </strong>
+          </summary><ul
+            style={{"marginLeft":"1rem"}}
+          >
+            
+          </ul>
+        </details><div>
+          
+        </div>
+      </TabItem>
+    </ApiTabs>
+  </div>
+</div>
+      
