@@ -23,7 +23,7 @@ const FeatureList: FeatureItem[] = [
       </>
     ),
     buttonLabel: "Documentación T1Comercio",
-    route: "/docs/T1Pagos/t-1-pagos",
+    route: "/docs/T1Comercios/insomnia",
   },
   {
     title: "Tu socio de pagos todo en uno",
@@ -50,7 +50,7 @@ const FeatureList: FeatureItem[] = [
       </>
     ),
     buttonLabel: "Documentación T1Envios",
-    route: "/docs/T1Pagos/t-1-pagos",
+    route: "/docs/T1Envíos/t-1-envios",
   },
   {
     title: "La mejor solución omnicanal para tu e-commerce.",
