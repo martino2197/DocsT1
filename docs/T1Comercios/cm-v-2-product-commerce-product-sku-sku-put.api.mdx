@@ -1,0 +1,560 @@
+---
+id: cm-v-2-product-commerce-product-sku-sku-put
+title: "CmV2ProductCommerceProductSkuSKU_PUT"
+description: "modifica el objeto completo"
+sidebar_label: "CmV2ProductCommerceProductSkuSKU_PUT"
+hide_title: true
+hide_table_of_contents: true
+api: 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
+sidebar_class_name: "put api-method"
+info_path: docs/T1Comercios/catalogo-homologado-t-1
+custom_edit_url: null
+---
+
+import ApiTabs from "@theme/ApiTabs";
+import DiscriminatorTabs from "@theme/DiscriminatorTabs";
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import SecuritySchemes from "@theme/ApiExplorer/SecuritySchemes";
+import MimeTabs from "@theme/MimeTabs";
+import ParamsItem from "@theme/ParamsItem";
+import ResponseSamples from "@theme/ResponseSamples";
+import SchemaItem from "@theme/SchemaItem";
+import SchemaTabs from "@theme/SchemaTabs";
+import Markdown from "@theme/Markdown";
+import Heading from "@theme/Heading";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"CmV2ProductCommerceProductSkuSKU_PUT"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"put"}
+  path={"/cm/v2/product/commerce/{IDCommerce}/product/{IDProduct}/sku/{SKU}"}
+>
+  
+</MethodEndpoint>
+
+
+
+modifica el objeto completo
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+  children={"Request"}
+>
+</Heading>
+
+<details
+  style={{"marginBottom":"1rem"}}
+  className={"openapi-markdown__details"}
+  data-collapsed={false}
+  open={true}
+>
+  <summary
+    style={{}}
+  >
+    <h3
+      className={"openapi-markdown__details-summary-header-params"}
+    >
+      Path Parameters
+    </h3>
+  </summary><div>
+    <ul>
+      <ParamsItem
+        className={"paramsItem"}
+        param={{"name":"IDCommerce","in":"path","description":"identificador del comercio o seller","required":true,"style":"simple","schema":{"type":"integer","format":"int32","example":12345}}}
+      >
+        
+      </ParamsItem><ParamsItem
+        className={"paramsItem"}
+        param={{"name":"IDProduct","in":"path","description":"identificador del producto en t1-comercios","required":true,"style":"simple","schema":{"type":"string","example":"abc123"}}}
+      >
+        
+      </ParamsItem><ParamsItem
+        className={"paramsItem"}
+        param={{"name":"SKU","in":"path","description":"identificador unico de inventario","required":true,"style":"simple","schema":{"pattern":"/^[0-9a-zA-Z-]+$/","type":"string"}}}
+      >
+        
+      </ParamsItem>
+    </ul>
+  </div>
+</details><MimeTabs
+  className={"openapi-tabs__mime"}
+>
+  <TabItem
+    label={"application/json"}
+    value={"application/json-schema"}
+  >
+    <details
+      style={{}}
+      className={"openapi-markdown__details mime"}
+      data-collapsed={false}
+      open={true}
+    >
+      <summary
+        style={{}}
+        className={"openapi-markdown__details-summary-mime"}
+      >
+        <h3
+          className={"openapi-markdown__details-summary-header-body"}
+        >
+          Body
+        </h3><strong
+          className={"openapi-schema__required"}
+        >
+          required
+        </strong>
+      </summary><div
+        style={{"textAlign":"left","marginLeft":"1rem"}}
+      >
+        <div
+          style={{"marginTop":"1rem","marginBottom":"1rem"}}
+        >
+          
+          
+          actualiza el total de los datos del producto
+          
+          
+        </div>
+      </div><ul
+        style={{"marginLeft":"1rem"}}
+      >
+        <SchemaItem
+          collapsible={false}
+          name={"sku"}
+          required={true}
+          schemaName={"string"}
+          qualifierMessage={"**Possible values:** Value must match regular expression `/^[0-9a-zA-Z-]+$/`"}
+          schema={{"pattern":"/^[0-9a-zA-Z-]+$/","type":"string","description":"stock keeping unit o SKU, 'unidad de mantenimiento en almacén', este sku debe ser único para el comercio"}}
+        >
+          
+        </SchemaItem><SchemaItem
+          collapsible={false}
+          name={"universal_id"}
+          required={false}
+          schemaName={"string"}
+          qualifierMessage={"**Possible values:** Value must match regular expression `/^[0-9]+$/`"}
+          schema={{"pattern":"/^[0-9]+$/","type":"string","description":"identificador universal del producto\nDebería ser unico para el comercio\nEste parametro es obligatorio"}}
+        >
+          
+        </SchemaItem><SchemaItem
+          collapsible={false}
+          name={"universal_id_type"}
+          required={false}
+          schemaName={"UniversalIdType (string)"}
+          qualifierMessage={"**Possible values:** [`ean-8`, `upc-12`, `upc-8`, `gtin-14`, `isbn-13`, `issn-12`, `otro`]"}
+          schema={{"title":"UniversalIdType","enum":["ean-8","upc-12","upc-8","gtin-14","isbn-13","issn-12","otro"],"type":"string","description":"tipo de identificador universal usado","x-enum-elements":[{"name":"ean8","description":""},{"name":"upc12","description":""},{"name":"upc8","description":""},{"name":"gtin14","description":""},{"name":"isbn13","description":""},{"name":"issn12","description":""},{"name":"otro","description":""}]}}
+        >
+          
+        </SchemaItem><SchemaItem
+          collapsible={false}
+          name={"color"}
+          required={false}
+          schemaName={"string"}
+          qualifierMessage={undefined}
+          schema={{"type":"string","description":"nombre del color","nullable":true,"example":"blanco"}}
+        >
+          
+        </SchemaItem><SchemaItem
+          collapsible={false}
+          name={"size"}
+          required={false}
+          schemaName={"string"}
+          qualifierMessage={undefined}
+          schema={{"type":"string","description":"talla, puede ser una cadena arbitraria","nullable":true,"example":"XL"}}
+        >
+          
+        </SchemaItem><SchemaItem
+          collapsible={false}
+          name={"stock"}
+          required={false}
+          schemaName={"int32"}
+          qualifierMessage={undefined}
+          schema={{"minimum":0,"type":"integer","description":"cantidad total de existencias, dato sincronizado directamente a CU","format":"int32"}}
+        >
+          
+        </SchemaItem><SchemaItem
+          collapsible={false}
+          name={"status"}
+          required={false}
+          schemaName={"Status2 (string)"}
+          qualifierMessage={"**Possible values:** [`active`, `inactive`]"}
+          schema={{"title":"Status2","enum":["active","inactive"],"type":"string","description":"estatus de la variación","x-enum-elements":[{"name":"active","description":""},{"name":"inactive","description":""}]}}
+        >
+          
+        </SchemaItem>
+      </ul>
+    </details>
+  </TabItem>
+</MimeTabs><div>
+  <div>
+    <ApiTabs
+      label={undefined}
+      id={undefined}
+    >
+      <TabItem
+        label={"200"}
+        value={"200"}
+      >
+        <div>
+          
+          
+          En caso de exito
+          
+          
+        </div><details
+          style={{"textAlign":"left","marginBottom":"1rem"}}
+          className={"openapi-markdown__details"}
+          data-collaposed={true}
+          open={false}
+        >
+          <summary
+            style={{}}
+          >
+            <strong>
+              Response Headers
+            </strong>
+          </summary><ul
+            style={{"marginLeft":"1rem"}}
+          >
+            
+          </ul>
+        </details><div>
+          <MimeTabs
+            className={"openapi-tabs__mime"}
+            schemaType={"response"}
+          >
+            <TabItem
+              label={"application/json"}
+              value={"application/json"}
+            >
+              <SchemaTabs
+                className={"openapi-tabs__schema"}
+              >
+                <TabItem
+                  label={"Schema"}
+                  value={"Schema"}
+                >
+                  <details
+                    style={{}}
+                    className={"openapi-markdown__details response"}
+                    data-collapsed={false}
+                    open={true}
+                  >
+                    <summary
+                      style={{}}
+                      className={"openapi-markdown__details-summary-response"}
+                    >
+                      <strong>
+                        Schema
+                      </strong>
+                    </summary><div
+                      style={{"textAlign":"left","marginLeft":"1rem"}}
+                    >
+                      
+                    </div><ul
+                      style={{"marginLeft":"1rem"}}
+                    >
+                      <SchemaItem
+                        collapsible={true}
+                        className={"schemaItem"}
+                      >
+                        <details
+                          style={{}}
+                          className={"openapi-markdown__details"}
+                        >
+                          <summary
+                            style={{}}
+                          >
+                            <span
+                              className={"openapi-schema__container"}
+                            >
+                              <strong
+                                className={"openapi-schema__property"}
+                              >
+                                metadata
+                              </strong><span
+                                className={"openapi-schema__name"}
+                              >
+                                 object
+                              </span>
+                            </span>
+                          </summary><div
+                            style={{"marginLeft":"1rem"}}
+                          >
+                            <SchemaItem
+                              collapsible={false}
+                              name={"status"}
+                              required={false}
+                              schemaName={"Status (string)"}
+                              qualifierMessage={"**Possible values:** [`success`, `error`, `fail`]"}
+                              schema={{"title":"Status","enum":["success","error","fail"],"type":"string","x-enum-elements":[{"name":"success","description":""},{"name":"error","description":""},{"name":"fail","description":""}]}}
+                            >
+                              
+                            </SchemaItem><SchemaItem
+                              collapsible={false}
+                              name={"http_code"}
+                              required={false}
+                              schemaName={"int32"}
+                              qualifierMessage={undefined}
+                              schema={{"type":"integer","format":"int32","example":200}}
+                            >
+                              
+                            </SchemaItem><SchemaItem
+                              collapsible={false}
+                              name={"date_time"}
+                              required={false}
+                              schemaName={"date-time"}
+                              qualifierMessage={undefined}
+                              schema={{"type":"string","format":"date-time","example":"2019-08-27T18:18:31Z"}}
+                            >
+                              
+                            </SchemaItem><SchemaItem
+                              collapsible={false}
+                              name={"message"}
+                              required={false}
+                              schemaName={"string"}
+                              qualifierMessage={undefined}
+                              schema={{"type":"string","example":"ok"}}
+                            >
+                              
+                            </SchemaItem>
+                          </div>
+                        </details>
+                      </SchemaItem>
+                    </ul>
+                  </details>
+                </TabItem><TabItem
+                  label={"Example (from schema)"}
+                  value={"Example (from schema)"}
+                >
+                  <ResponseSamples
+                    responseExample={"{\n  \"metadata\": {\n    \"status\": \"success\",\n    \"http_code\": 200,\n    \"date_time\": \"2019-08-27T18:18:31Z\",\n    \"message\": \"ok\"\n  }\n}"}
+                    language={"json"}
+                  >
+                    
+                  </ResponseSamples>
+                </TabItem>
+              </SchemaTabs>
+            </TabItem>
+          </MimeTabs>
+        </div>
+      </TabItem><TabItem
+        label={"401"}
+        value={"401"}
+      >
+        <div>
+          
+          
+          Access token is missing or invalid
+          
+          
+        </div><details
+          style={{"textAlign":"left","marginBottom":"1rem"}}
+          className={"openapi-markdown__details"}
+          data-collaposed={true}
+          open={false}
+        >
+          <summary
+            style={{}}
+          >
+            <strong>
+              Response Headers
+            </strong>
+          </summary><ul
+            style={{"marginLeft":"1rem"}}
+          >
+            
+          </ul>
+        </details><div>
+          
+        </div>
+      </TabItem><TabItem
+        label={"404"}
+        value={"404"}
+      >
+        <div>
+          
+          
+          Can not find the requested object
+          
+          
+        </div><details
+          style={{"textAlign":"left","marginBottom":"1rem"}}
+          className={"openapi-markdown__details"}
+          data-collaposed={true}
+          open={false}
+        >
+          <summary
+            style={{}}
+          >
+            <strong>
+              Response Headers
+            </strong>
+          </summary><ul
+            style={{"marginLeft":"1rem"}}
+          >
+            
+          </ul>
+        </details><div>
+          <MimeTabs
+            className={"openapi-tabs__mime"}
+            schemaType={"response"}
+          >
+            <TabItem
+              label={"application/json"}
+              value={"application/json"}
+            >
+              <SchemaTabs
+                className={"openapi-tabs__schema"}
+              >
+                <TabItem
+                  label={"Schema"}
+                  value={"Schema"}
+                >
+                  <details
+                    style={{}}
+                    className={"openapi-markdown__details response"}
+                    data-collapsed={false}
+                    open={true}
+                  >
+                    <summary
+                      style={{}}
+                      className={"openapi-markdown__details-summary-response"}
+                    >
+                      <strong>
+                        Schema
+                      </strong>
+                    </summary><div
+                      style={{"textAlign":"left","marginLeft":"1rem"}}
+                    >
+                      
+                    </div><ul
+                      style={{"marginLeft":"1rem"}}
+                    >
+                      <SchemaItem
+                        collapsible={true}
+                        className={"schemaItem"}
+                      >
+                        <details
+                          style={{}}
+                          className={"openapi-markdown__details"}
+                        >
+                          <summary
+                            style={{}}
+                          >
+                            <span
+                              className={"openapi-schema__container"}
+                            >
+                              <strong
+                                className={"openapi-schema__property"}
+                              >
+                                metadata
+                              </strong><span
+                                className={"openapi-schema__name"}
+                              >
+                                 object
+                              </span>
+                            </span>
+                          </summary><div
+                            style={{"marginLeft":"1rem"}}
+                          >
+                            <SchemaItem
+                              collapsible={false}
+                              name={"status"}
+                              required={false}
+                              schemaName={"Status (string)"}
+                              qualifierMessage={"**Possible values:** [`success`, `error`, `fail`]"}
+                              schema={{"title":"Status","enum":["success","error","fail"],"type":"string","x-enum-elements":[{"name":"success","description":""},{"name":"error","description":""},{"name":"fail","description":""}]}}
+                            >
+                              
+                            </SchemaItem><SchemaItem
+                              collapsible={false}
+                              name={"http_code"}
+                              required={false}
+                              schemaName={"int32"}
+                              qualifierMessage={undefined}
+                              schema={{"type":"integer","format":"int32","example":200}}
+                            >
+                              
+                            </SchemaItem><SchemaItem
+                              collapsible={false}
+                              name={"date_time"}
+                              required={false}
+                              schemaName={"date-time"}
+                              qualifierMessage={undefined}
+                              schema={{"type":"string","format":"date-time","example":"2019-08-27T18:18:31Z"}}
+                            >
+                              
+                            </SchemaItem><SchemaItem
+                              collapsible={false}
+                              name={"message"}
+                              required={false}
+                              schemaName={"string"}
+                              qualifierMessage={undefined}
+                              schema={{"type":"string","example":"ok"}}
+                            >
+                              
+                            </SchemaItem>
+                          </div>
+                        </details>
+                      </SchemaItem>
+                    </ul>
+                  </details>
+                </TabItem><TabItem
+                  label={"Example (from schema)"}
+                  value={"Example (from schema)"}
+                >
+                  <ResponseSamples
+                    responseExample={"{\n  \"metadata\": {\n    \"status\": \"success\",\n    \"http_code\": 200,\n    \"date_time\": \"2019-08-27T18:18:31Z\",\n    \"message\": \"ok\"\n  }\n}"}
+                    language={"json"}
+                  >
+                    
+                  </ResponseSamples>
+                </TabItem>
+              </SchemaTabs>
+            </TabItem>
+          </MimeTabs>
+        </div>
+      </TabItem><TabItem
+        label={"500"}
+        value={"500"}
+      >
+        <div>
+          
+          
+          temporary server error
+          
+          
+        </div><details
+          style={{"textAlign":"left","marginBottom":"1rem"}}
+          className={"openapi-markdown__details"}
+          data-collaposed={true}
+          open={false}
+        >
+          <summary
+            style={{}}
+          >
+            <strong>
+              Response Headers
+            </strong>
+          </summary><ul
+            style={{"marginLeft":"1rem"}}
+          >
+            
+          </ul>
+        </details><div>
+          
+        </div>
+      </TabItem>
+    </ApiTabs>
+  </div>
+</div>
+      

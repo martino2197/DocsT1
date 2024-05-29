@@ -23,7 +23,7 @@ const FeatureList: FeatureItem[] = [
       </>
     ),
     buttonLabel: "Documentación T1Comercio",
-    route: "/docs/T1Comercios/insomnia",
+    route: "/docs/T1Comercios/catalogo-homologado-t-1",
   },
   {
     title: "Tu socio de pagos todo en uno",

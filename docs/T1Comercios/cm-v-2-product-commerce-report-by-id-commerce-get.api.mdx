@@ -1,0 +1,491 @@
+---
+id: cm-v-2-product-commerce-report-by-id-commerce-get
+title: "CmV2ProductCommerceReportByIDCommerce_GET"
+description: "listado de reportes del seller"
+sidebar_label: "CmV2ProductCommerceReportByIDCommerce_GET"
+hide_title: true
+hide_table_of_contents: true
+api: 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
+sidebar_class_name: "get api-method"
+info_path: docs/T1Comercios/catalogo-homologado-t-1
+custom_edit_url: null
+---
+
+import ApiTabs from "@theme/ApiTabs";
+import DiscriminatorTabs from "@theme/DiscriminatorTabs";
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import SecuritySchemes from "@theme/ApiExplorer/SecuritySchemes";
+import MimeTabs from "@theme/MimeTabs";
+import ParamsItem from "@theme/ParamsItem";
+import ResponseSamples from "@theme/ResponseSamples";
+import SchemaItem from "@theme/SchemaItem";
+import SchemaTabs from "@theme/SchemaTabs";
+import Markdown from "@theme/Markdown";
+import Heading from "@theme/Heading";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"CmV2ProductCommerceReportByIDCommerce_GET"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"get"}
+  path={"/cm/v2/product/commerce/{IDCommerce}/report"}
+>
+  
+</MethodEndpoint>
+
+
+
+listado de reportes del seller
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+  children={"Request"}
+>
+</Heading>
+
+<details
+  style={{"marginBottom":"1rem"}}
+  className={"openapi-markdown__details"}
+  data-collapsed={false}
+  open={true}
+>
+  <summary
+    style={{}}
+  >
+    <h3
+      className={"openapi-markdown__details-summary-header-params"}
+    >
+      Path Parameters
+    </h3>
+  </summary><div>
+    <ul>
+      <ParamsItem
+        className={"paramsItem"}
+        param={{"name":"IDCommerce","in":"path","description":"identificador del comercio o seller","required":true,"style":"simple","schema":{"type":"integer","format":"int32","example":12345}}}
+      >
+        
+      </ParamsItem>
+    </ul>
+  </div>
+</details><details
+  style={{"marginBottom":"1rem"}}
+  className={"openapi-markdown__details"}
+  data-collapsed={false}
+  open={true}
+>
+  <summary
+    style={{}}
+  >
+    <h3
+      className={"openapi-markdown__details-summary-header-params"}
+    >
+      Query Parameters
+    </h3>
+  </summary><div>
+    <ul>
+      <ParamsItem
+        className={"paramsItem"}
+        param={{"name":"page","in":"query","description":"pagina que se desea obtener","style":"form","explode":true,"schema":{"minimum":1,"type":"integer","format":"int32","default":1,"example":1}}}
+      >
+        
+      </ParamsItem><ParamsItem
+        className={"paramsItem"}
+        param={{"name":"page_size","in":"query","description":"tamaño de la página que se desea obtener","style":"form","explode":true,"schema":{"maximum":50,"minimum":1,"type":"integer","format":"int32","default":15,"example":20}}}
+      >
+        
+      </ParamsItem><ParamsItem
+        className={"paramsItem"}
+        param={{"name":"q","in":"query","description":"busquedas de full en nombre del archivo de los reportes","style":"form","explode":true,"schema":{"type":"string","example":"productos"}}}
+      >
+        
+      </ParamsItem>
+    </ul>
+  </div>
+</details><div>
+  <div>
+    <ApiTabs
+      label={undefined}
+      id={undefined}
+    >
+      <TabItem
+        label={"200"}
+        value={"200"}
+      >
+        <div>
+          
+          
+          En caso de exito
+          
+          
+        </div><details
+          style={{"textAlign":"left","marginBottom":"1rem"}}
+          className={"openapi-markdown__details"}
+          data-collaposed={true}
+          open={false}
+        >
+          <summary
+            style={{}}
+          >
+            <strong>
+              Response Headers
+            </strong>
+          </summary><ul
+            style={{"marginLeft":"1rem"}}
+          >
+            
+          </ul>
+        </details><div>
+          <MimeTabs
+            className={"openapi-tabs__mime"}
+            schemaType={"response"}
+          >
+            <TabItem
+              label={"application/json"}
+              value={"application/json"}
+            >
+              <SchemaTabs
+                className={"openapi-tabs__schema"}
+              >
+                <TabItem
+                  label={"Schema"}
+                  value={"Schema"}
+                >
+                  <details
+                    style={{}}
+                    className={"openapi-markdown__details response"}
+                    data-collapsed={false}
+                    open={true}
+                  >
+                    <summary
+                      style={{}}
+                      className={"openapi-markdown__details-summary-response"}
+                    >
+                      <strong>
+                        Schema
+                      </strong>
+                    </summary><div
+                      style={{"textAlign":"left","marginLeft":"1rem"}}
+                    >
+                      
+                    </div><ul
+                      style={{"marginLeft":"1rem"}}
+                    >
+                      <SchemaItem
+                        collapsible={true}
+                        className={"schemaItem"}
+                      >
+                        <details
+                          style={{}}
+                          className={"openapi-markdown__details"}
+                        >
+                          <summary
+                            style={{}}
+                          >
+                            <span
+                              className={"openapi-schema__container"}
+                            >
+                              <strong
+                                className={"openapi-schema__property"}
+                              >
+                                metadata
+                              </strong><span
+                                className={"openapi-schema__name"}
+                              >
+                                 object
+                              </span>
+                            </span>
+                          </summary><div
+                            style={{"marginLeft":"1rem"}}
+                          >
+                            <SchemaItem
+                              collapsible={false}
+                              name={"status"}
+                              required={false}
+                              schemaName={"Status (string)"}
+                              qualifierMessage={"**Possible values:** [`success`, `error`, `fail`]"}
+                              schema={{"title":"Status","enum":["success","error","fail"],"type":"string","x-enum-elements":[{"name":"success","description":""},{"name":"error","description":""},{"name":"fail","description":""}]}}
+                            >
+                              
+                            </SchemaItem><SchemaItem
+                              collapsible={false}
+                              name={"http_code"}
+                              required={false}
+                              schemaName={"int32"}
+                              qualifierMessage={undefined}
+                              schema={{"type":"integer","format":"int32","example":200}}
+                            >
+                              
+                            </SchemaItem><SchemaItem
+                              collapsible={false}
+                              name={"date_time"}
+                              required={false}
+                              schemaName={"date-time"}
+                              qualifierMessage={undefined}
+                              schema={{"type":"string","format":"date-time","example":"2019-08-27T18:18:31Z"}}
+                            >
+                              
+                            </SchemaItem><SchemaItem
+                              collapsible={false}
+                              name={"message"}
+                              required={false}
+                              schemaName={"string"}
+                              qualifierMessage={undefined}
+                              schema={{"type":"string","example":"ok"}}
+                            >
+                              
+                            </SchemaItem>
+                          </div>
+                        </details>
+                      </SchemaItem><SchemaItem
+                        collapsible={true}
+                        className={"schemaItem"}
+                      >
+                        <details
+                          style={{}}
+                          className={"openapi-markdown__details"}
+                        >
+                          <summary
+                            style={{}}
+                          >
+                            <span
+                              className={"openapi-schema__container"}
+                            >
+                              <strong
+                                className={"openapi-schema__property"}
+                              >
+                                data
+                              </strong><span
+                                className={"openapi-schema__name"}
+                              >
+                                 object[]
+                              </span>
+                            </span>
+                          </summary><div
+                            style={{"marginLeft":"1rem"}}
+                          >
+                            <li>
+                              <div
+                                style={{"fontSize":"var(--ifm-code-font-size)","opacity":"0.6","marginLeft":"-.5rem","paddingBottom":".5rem"}}
+                              >
+                                Array [
+                              </div>
+                            </li><SchemaItem
+                              collapsible={false}
+                              name={"id"}
+                              required={false}
+                              schemaName={"string"}
+                              qualifierMessage={undefined}
+                              schema={{"type":"string","example":"6399260eaa30a55748d5dcc2"}}
+                            >
+                              
+                            </SchemaItem><SchemaItem
+                              collapsible={false}
+                              name={"user"}
+                              required={false}
+                              schemaName={"string"}
+                              qualifierMessage={undefined}
+                              schema={{"type":"string","description":"usuario que generó el reporte","example":"user1.test@claroshop.com"}}
+                            >
+                              
+                            </SchemaItem><SchemaItem
+                              collapsible={false}
+                              name={"request_date"}
+                              required={false}
+                              schemaName={"date-time"}
+                              qualifierMessage={undefined}
+                              schema={{"type":"string","description":"fecha y hora de petición del reporte","format":"date-time","example":"2022-12-31T17:32:28Z"}}
+                            >
+                              
+                            </SchemaItem><SchemaItem
+                              collapsible={false}
+                              name={"creation_date"}
+                              required={false}
+                              schemaName={"date-time"}
+                              qualifierMessage={undefined}
+                              schema={{"type":"string","description":"fecha y hora efectiva de creación del reporte","format":"date-time","example":"2022-12-31T17:32:28Z"}}
+                            >
+                              
+                            </SchemaItem><SchemaItem
+                              collapsible={false}
+                              name={"file_name"}
+                              required={false}
+                              schemaName={"string"}
+                              qualifierMessage={"**Possible values:** Value must match regular expression `/^[ a-zA-Z0-9äÄëËïÏöÖüÜáéíóúÁÉÍÓÚ ÊÎÔÛâêîôûàèìòùÀÈÌÒÙñÑ&$,\\.'\"-.:%;=#!_¡\\/?´¨`|¿*+~@()[\\\\]{]+$/`"}
+                              schema={{"pattern":"/^[ a-zA-Z0-9äÄëËïÏöÖüÜáéíóúÁÉÍÓÚ ÊÎÔÛâêîôûàèìòùÀÈÌÒÙñÑ&$,\\.'\"-.:%;=#!_¡\\/?´¨`|¿*+~@()[\\\\]{]+$/","type":"string","description":"nombre del archivo"}}
+                            >
+                              
+                            </SchemaItem><SchemaItem
+                              collapsible={false}
+                              name={"download-url"}
+                              required={false}
+                              schemaName={"string"}
+                              qualifierMessage={undefined}
+                              schema={{"type":"string","description":"url para descargar el archivo","example":"http://downloads.t1.com/reportes/1234567"}}
+                            >
+                              
+                            </SchemaItem><SchemaItem
+                              collapsible={false}
+                              name={"status"}
+                              required={false}
+                              schemaName={"Status7 (string)"}
+                              qualifierMessage={"**Possible values:** [`Pendig`, `InProcess`, `Processed`, `Error`]"}
+                              schema={{"title":"Status7","enum":["Pendig","InProcess","Processed","Error"],"type":"string","description":"status de la generacion del reporte","x-enum-elements":[{"name":"Pendig","description":""},{"name":"InProcess","description":""},{"name":"Processed","description":""},{"name":"Error","description":""}]}}
+                            >
+                              
+                            </SchemaItem><li>
+                              <div
+                                style={{"fontSize":"var(--ifm-code-font-size)","opacity":"0.6","marginLeft":"-.5rem"}}
+                              >
+                                ]
+                              </div>
+                            </li>
+                          </div>
+                        </details>
+                      </SchemaItem><SchemaItem
+                        collapsible={true}
+                        className={"schemaItem"}
+                      >
+                        <details
+                          style={{}}
+                          className={"openapi-markdown__details"}
+                        >
+                          <summary
+                            style={{}}
+                          >
+                            <span
+                              className={"openapi-schema__container"}
+                            >
+                              <strong
+                                className={"openapi-schema__property"}
+                              >
+                                pagination
+                              </strong><span
+                                className={"openapi-schema__name"}
+                              >
+                                 object
+                              </span>
+                            </span>
+                          </summary><div
+                            style={{"marginLeft":"1rem"}}
+                          >
+                            <SchemaItem
+                              collapsible={false}
+                              name={"total_count"}
+                              required={false}
+                              schemaName={"int64"}
+                              qualifierMessage={undefined}
+                              schema={{"minimum":0,"type":"integer","format":"int64","example":300}}
+                            >
+                              
+                            </SchemaItem><SchemaItem
+                              collapsible={false}
+                              name={"page"}
+                              required={false}
+                              schemaName={"int32"}
+                              qualifierMessage={"**Possible values:** `>= 1`"}
+                              schema={{"minimum":1,"type":"integer","format":"int32","example":25}}
+                            >
+                              
+                            </SchemaItem><SchemaItem
+                              collapsible={false}
+                              name={"page_size"}
+                              required={false}
+                              schemaName={"int32"}
+                              qualifierMessage={"**Possible values:** `>= 1`"}
+                              schema={{"minimum":1,"type":"integer","format":"int32","example":50}}
+                            >
+                              
+                            </SchemaItem>
+                          </div>
+                        </details>
+                      </SchemaItem>
+                    </ul>
+                  </details>
+                </TabItem><TabItem
+                  label={"Example (from schema)"}
+                  value={"Example (from schema)"}
+                >
+                  <ResponseSamples
+                    responseExample={"{\n  \"metadata\": {\n    \"status\": \"success\",\n    \"http_code\": 200,\n    \"date_time\": \"2019-08-27T18:18:31Z\",\n    \"message\": \"ok\"\n  },\n  \"data\": [\n    {\n      \"id\": \"6399260eaa30a55748d5dcc2\",\n      \"user\": \"user1.test@claroshop.com\",\n      \"request_date\": \"2022-12-31T17:32:28Z\",\n      \"creation_date\": \"2022-12-31T17:32:28Z\",\n      \"file_name\": \"string\",\n      \"download-url\": \"http://downloads.t1.com/reportes/1234567\",\n      \"status\": \"Pendig\"\n    }\n  ],\n  \"pagination\": {\n    \"total_count\": 300,\n    \"page\": 25,\n    \"page_size\": 50\n  }\n}"}
+                    language={"json"}
+                  >
+                    
+                  </ResponseSamples>
+                </TabItem>
+              </SchemaTabs>
+            </TabItem>
+          </MimeTabs>
+        </div>
+      </TabItem><TabItem
+        label={"401"}
+        value={"401"}
+      >
+        <div>
+          
+          
+          Access token is missing or invalid
+          
+          
+        </div><details
+          style={{"textAlign":"left","marginBottom":"1rem"}}
+          className={"openapi-markdown__details"}
+          data-collaposed={true}
+          open={false}
+        >
+          <summary
+            style={{}}
+          >
+            <strong>
+              Response Headers
+            </strong>
+          </summary><ul
+            style={{"marginLeft":"1rem"}}
+          >
+            
+          </ul>
+        </details><div>
+          
+        </div>
+      </TabItem><TabItem
+        label={"500"}
+        value={"500"}
+      >
+        <div>
+          
+          
+          temporary server error
+          
+          
+        </div><details
+          style={{"textAlign":"left","marginBottom":"1rem"}}
+          className={"openapi-markdown__details"}
+          data-collaposed={true}
+          open={false}
+        >
+          <summary
+            style={{}}
+          >
+            <strong>
+              Response Headers
+            </strong>
+          </summary><ul
+            style={{"marginLeft":"1rem"}}
+          >
+            
+          </ul>
+        </details><div>
+          
+        </div>
+      </TabItem>
+    </ApiTabs>
+  </div>
+</div>
+      
