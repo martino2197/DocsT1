@@ -144,6 +144,20 @@ const config: Config = {
             sidebarOptions: {
               groupPathsBy: "tag", // generate a sidebar.js slice that groups operations by tag
             },
+          },
+          T1Comercios: {
+            specPath: "examples/T1Comercios/T1Comercios-apiv2.yaml", // path or URL to the OpenAPI spec
+            outputDir: "docs/T1Comercios", // output directory for generated *.mdx and sidebar.js files
+            sidebarOptions: {
+              groupPathsBy: "tag", // generate a sidebar.js slice that groups operations by tag
+            },
+          },
+          T1Envios: {
+            specPath: "examples/T1Envios/T1Envios-OpenApi31Yaml.yaml", // path or URL to the OpenAPI spec
+            outputDir: "docs/T1Envíos", // output directory for generated *.mdx and sidebar.js files
+            sidebarOptions: {
+              groupPathsBy: "tag", // generate a sidebar.js slice that groups operations by tag
+            },
           }
         }
       },

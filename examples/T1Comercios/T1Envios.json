@@ -1,0 +1,862 @@
+{
+    "openapi": "3.0.2",
+    "info": {
+        "title": "T1Envios",
+        "version": "1.0.0",
+        "description": "",
+        "termsOfService": "http://swagger.io/terms/",
+        "contact": {
+            "name": "T1Envios",
+            "url": "https://enapi.dev.t1envios.com/t1/api/",
+            "email": "apiteam@swagger.io"
+        },
+        "license": {
+            "name": "Apache 2.0",
+            "url": "https://www.apache.org/licenses/LICENSE-2.0"
+        }
+    },
+    "servers": [
+        {
+            "url": "https://enapi.dev.t1envios.com/t1/api/",
+            "description": ""
+        }
+    ],
+    "paths": {
+        "/mensajeria-tarificador": {
+            "summary": "Generar Cotización",
+            "description": "Método para la generación de la cotización.",
+            "post": {
+                "requestBody": {
+                    "description": "Pet to add to the store",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/GenerarCotizacionRequest"
+                            },
+                            "examples": {
+                                "Estructura de Request:": {
+                                    "value": {
+                                        "codigo_postal_origen": "55555",
+                                        "codigo_postal_destino": "99993",
+                                        "peso": 5,
+                                        "largo": 100,
+                                        "ancho": 5,
+                                        "alto": 90,
+                                        "dias_embarque": 1,
+                                        "seguro": false,
+                                        "valor_paquete": 1200,
+                                        "tipo_paquete": 2
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/CloneOfGenerarCotizacionResponse"
+                                },
+                                "examples": {
+                                    "Estructura de Response": {
+                                        "value": {
+                                            "success": true,
+                                            "message": "Búsqueda exitosa!",
+                                            "detail": [
+                                                {
+                                                    "id": 1,
+                                                    "clave": "DHL",
+                                                    "comercio": "149",
+                                                    "seguro": true,
+                                                    "cotizacion": {
+                                                        "success": true,
+                                                        "servicios": {
+                                                            "ECONOMY SELECT DOMESTIC": {
+                                                                "servicio": "EXPRESS DOMESTIC",
+                                                                "tipo_servicio": "Dia Siguiente",
+                                                                "costo_total": 522.07,
+                                                                "fecha_mensajeria_entrega": "2024-01-01",
+                                                                "fecha_claro_entrega": "2024-01-02",
+                                                                "dias_entrega": 1,
+                                                                "negociacion_id": 1,
+                                                                "valor_paquete": "1200",
+                                                                "moneda": "MXN",
+                                                                "peso": "1",
+                                                                "peso_volumetrico": 12,
+                                                                "peso_unidades": "KG",
+                                                                "largo": "100",
+                                                                "ancho": "20",
+                                                                "alto": "30",
+                                                                "costo_zona_extendida": 0,
+                                                                "costo_total_seguro": 0,
+                                                                "token": "WP9ESYVvmNtSQi6ztXNxwagCm.."
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            ]
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        "description": "pet response"
+                    },
+                    "default": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        },
+                        "description": "unexpected error"
+                    }
+                },
+                "operationId": "Generar_Cotización",
+                "description": "Método para la generación de la cotización."
+            }
+        },
+        "/mensajeria-tarificador/{id}": {
+            "get": {
+                "parameters": [
+                    {
+                        "examples": {
+                            "zaza": {
+                                "value": 1
+                            }
+                        },
+                        "name": "id",
+                        "description": "ID of pet to fetch",
+                        "schema": {
+                            "format": "int64",
+                            "type": "integer"
+                        },
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Pet"
+                                },
+                                "examples": {
+                                    "zaza": {
+                                        "value": {
+                                            "id": 1,
+                                            "name": "Zaza",
+                                            "tag": "cat"
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        "description": "pet response"
+                    },
+                    "default": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        },
+                        "description": "unexpected error"
+                    }
+                },
+                "operationId": "findPetById",
+                "description": "Returns a user based on a single ID, if the user does not have\naccess to the pet"
+            },
+            "delete": {
+                "parameters": [
+                    {
+                        "name": "id",
+                        "description": "ID of pet to delete",
+                        "schema": {
+                            "format": "int64",
+                            "type": "integer"
+                        },
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "pet deleted"
+                    },
+                    "default": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        },
+                        "description": "unexpected error"
+                    }
+                },
+                "operationId": "deletePet",
+                "description": "deletes a single pet based on the ID supplied"
+            },
+            "parameters": [
+                {
+                    "name": "id",
+                    "description": "Pet identifier",
+                    "schema": {
+                        "type": "integer"
+                    },
+                    "in": "path",
+                    "required": true
+                }
+            ]
+        }
+    },
+    "components": {
+        "schemas": {
+            "Pet": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/NewPet"
+                    },
+                    {
+                        "required": [
+                            "id"
+                        ],
+                        "properties": {
+                            "id": {
+                                "format": "int64",
+                                "type": "integer"
+                            }
+                        }
+                    }
+                ]
+            },
+            "NewPet": {
+                "required": [
+                    "name"
+                ],
+                "properties": {
+                    "name": {
+                        "type": "string"
+                    },
+                    "tag": {
+                        "type": "string"
+                    }
+                }
+            },
+            "Error": {
+                "required": [
+                    "code",
+                    "message"
+                ],
+                "properties": {
+                    "code": {
+                        "format": "int32",
+                        "type": "integer"
+                    },
+                    "message": {
+                        "type": "string"
+                    }
+                }
+            },
+            "GenerarCotizacionRequest": {
+                "title": "Root Type for GenerarCotizacion",
+                "description": "Request para la generación de la cotización.",
+                "type": "object",
+                "properties": {
+                    "Datos": {
+                        "type": "object",
+                        "properties": {
+                            "type": {
+                                "type": "string"
+                            },
+                            "properties": {
+                                "type": "object",
+                                "properties": {
+                                    "codigo_postal_origen": {
+                                        "type": "object",
+                                        "properties": {
+                                            "type": {
+                                                "type": "string"
+                                            },
+                                            "description": {
+                                                "type": "string"
+                                            },
+                                            "required": {
+                                                "type": "boolean"
+                                            }
+                                        }
+                                    },
+                                    "codigo_postal_destino": {
+                                        "type": "object",
+                                        "properties": {
+                                            "type": {
+                                                "type": "string"
+                                            },
+                                            "description": {
+                                                "type": "string"
+                                            },
+                                            "required": {
+                                                "type": "boolean"
+                                            }
+                                        }
+                                    },
+                                    "peso": {
+                                        "type": "object",
+                                        "properties": {
+                                            "type": {
+                                                "type": "string"
+                                            },
+                                            "description": {
+                                                "type": "string"
+                                            },
+                                            "required": {
+                                                "type": "boolean"
+                                            }
+                                        }
+                                    },
+                                    "largo": {
+                                        "type": "object",
+                                        "properties": {
+                                            "type": {
+                                                "type": "string"
+                                            },
+                                            "description": {
+                                                "type": "string"
+                                            },
+                                            "required": {
+                                                "type": "boolean"
+                                            }
+                                        }
+                                    },
+                                    "ancho": {
+                                        "type": "object",
+                                        "properties": {
+                                            "type": {
+                                                "type": "string"
+                                            },
+                                            "description": {
+                                                "type": "string"
+                                            },
+                                            "required": {
+                                                "type": "boolean"
+                                            }
+                                        }
+                                    },
+                                    "alto": {
+                                        "type": "object",
+                                        "properties": {
+                                            "type": {
+                                                "type": "string"
+                                            },
+                                            "description": {
+                                                "type": "string"
+                                            },
+                                            "required": {
+                                                "type": "boolean"
+                                            }
+                                        }
+                                    },
+                                    "dias_embarque": {
+                                        "type": "object",
+                                        "properties": {
+                                            "type": {
+                                                "type": "string"
+                                            },
+                                            "description": {
+                                                "type": "string"
+                                            },
+                                            "required": {
+                                                "type": "boolean"
+                                            }
+                                        }
+                                    },
+                                    "seguro": {
+                                        "type": "object",
+                                        "properties": {
+                                            "type": {
+                                                "type": "string"
+                                            },
+                                            "description": {
+                                                "type": "string"
+                                            },
+                                            "required": {
+                                                "type": "boolean"
+                                            }
+                                        }
+                                    },
+                                    "valor_paquete": {
+                                        "type": "object",
+                                        "properties": {
+                                            "type": {
+                                                "type": "string"
+                                            },
+                                            "description": {
+                                                "type": "string"
+                                            },
+                                            "required": {
+                                                "type": "boolean"
+                                            }
+                                        }
+                                    },
+                                    "tipo_paquete": {
+                                        "type": "object",
+                                        "properties": {
+                                            "type": {
+                                                "type": "string"
+                                            },
+                                            "description": {
+                                                "type": "string"
+                                            },
+                                            "required": {
+                                                "type": "boolean"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "API T1Envios": {
+                        "type": "object",
+                        "properties": {
+                            "type": {
+                                "type": "string"
+                            },
+                            "properties": {
+                                "type": "object",
+                                "properties": {
+                                    "comercio_id": {
+                                        "type": "object",
+                                        "properties": {
+                                            "type": {
+                                                "type": "string"
+                                            },
+                                            "description": {
+                                                "type": "string"
+                                            },
+                                            "required": {
+                                                "type": "boolean"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "example": {
+                    "Datos": {
+                        "type": "object",
+                        "properties": {
+                            "codigo_postal_origen": {
+                                "type": "string",
+                                "description": "Código postal de la dirección origen",
+                                "required": true
+                            },
+                            "codigo_postal_destino": {
+                                "type": "string",
+                                "description": "Código postal de la dirección destino",
+                                "required": true
+                            },
+                            "peso": {
+                                "type": "integer",
+                                "description": "Peso de paquete en kilogramos",
+                                "required": true
+                            },
+                            "largo": {
+                                "type": "integer",
+                                "description": "Largo de paquete en centímetros",
+                                "required": true
+                            },
+                            "ancho": {
+                                "type": "integer",
+                                "description": "Ancho de paquete en centímetros",
+                                "required": true
+                            },
+                            "alto": {
+                                "type": "integer",
+                                "description": "Alto de paquete en centímetros",
+                                "required": true
+                            },
+                            "dias_embarque": {
+                                "type": "integer",
+                                "description": "Días de embarque",
+                                "required": true
+                            },
+                            "seguro": {
+                                "type": "boolean",
+                                "description": "Determina si el paquete tiene seguro. True para asegurar paquete, False para caso contrario. Es requerido si el campo \"valor_paquete\" es true",
+                                "required": false
+                            },
+                            "valor_paquete": {
+                                "type": "number",
+                                "description": "Valor de factura del paquete",
+                                "required": false
+                            },
+                            "tipo_paquete": {
+                                "type": "integer",
+                                "description": "Indica si es paquete o sobre, 1 para sobre y 2 para paquete",
+                                "required": true
+                            }
+                        }
+                    },
+                    "API T1Envios": {
+                        "type": "object",
+                        "properties": {
+                            "comercio_id": {
+                                "type": "string",
+                                "description": "Identificador único de tienda",
+                                "required": true
+                            }
+                        }
+                    }
+                }
+            },
+            "CloneOfGenerarCotizacionResponse": {
+                "title": "Root Type for GenerarCotizacion",
+                "description": "Respuesta de petición de cotización JSON.",
+                "type": "object",
+                "properties": {
+                    "Datos": {
+                        "type": "object",
+                        "properties": {
+                            "type": {
+                                "type": "string"
+                            },
+                            "properties": {
+                                "type": "object",
+                                "properties": {
+                                    "codigo_postal_origen": {
+                                        "type": "object",
+                                        "properties": {
+                                            "type": {
+                                                "type": "string"
+                                            },
+                                            "description": {
+                                                "type": "string"
+                                            },
+                                            "required": {
+                                                "type": "boolean"
+                                            }
+                                        }
+                                    },
+                                    "codigo_postal_destino": {
+                                        "type": "object",
+                                        "properties": {
+                                            "type": {
+                                                "type": "string"
+                                            },
+                                            "description": {
+                                                "type": "string"
+                                            },
+                                            "required": {
+                                                "type": "boolean"
+                                            }
+                                        }
+                                    },
+                                    "peso": {
+                                        "type": "object",
+                                        "properties": {
+                                            "type": {
+                                                "type": "string"
+                                            },
+                                            "description": {
+                                                "type": "string"
+                                            },
+                                            "required": {
+                                                "type": "boolean"
+                                            }
+                                        }
+                                    },
+                                    "largo": {
+                                        "type": "object",
+                                        "properties": {
+                                            "type": {
+                                                "type": "string"
+                                            },
+                                            "description": {
+                                                "type": "string"
+                                            },
+                                            "required": {
+                                                "type": "boolean"
+                                            }
+                                        }
+                                    },
+                                    "ancho": {
+                                        "type": "object",
+                                        "properties": {
+                                            "type": {
+                                                "type": "string"
+                                            },
+                                            "description": {
+                                                "type": "string"
+                                            },
+                                            "required": {
+                                                "type": "boolean"
+                                            }
+                                        }
+                                    },
+                                    "alto": {
+                                        "type": "object",
+                                        "properties": {
+                                            "type": {
+                                                "type": "string"
+                                            },
+                                            "description": {
+                                                "type": "string"
+                                            },
+                                            "required": {
+                                                "type": "boolean"
+                                            }
+                                        }
+                                    },
+                                    "dias_embarque": {
+                                        "type": "object",
+                                        "properties": {
+                                            "type": {
+                                                "type": "string"
+                                            },
+                                            "description": {
+                                                "type": "string"
+                                            },
+                                            "required": {
+                                                "type": "boolean"
+                                            }
+                                        }
+                                    },
+                                    "seguro": {
+                                        "type": "object",
+                                        "properties": {
+                                            "type": {
+                                                "type": "string"
+                                            },
+                                            "description": {
+                                                "type": "string"
+                                            },
+                                            "required": {
+                                                "type": "boolean"
+                                            }
+                                        }
+                                    },
+                                    "valor_paquete": {
+                                        "type": "object",
+                                        "properties": {
+                                            "type": {
+                                                "type": "string"
+                                            },
+                                            "description": {
+                                                "type": "string"
+                                            },
+                                            "required": {
+                                                "type": "boolean"
+                                            }
+                                        }
+                                    },
+                                    "tipo_paquete": {
+                                        "type": "object",
+                                        "properties": {
+                                            "type": {
+                                                "type": "string"
+                                            },
+                                            "description": {
+                                                "type": "string"
+                                            },
+                                            "required": {
+                                                "type": "boolean"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "API T1Envios": {
+                        "type": "object",
+                        "properties": {
+                            "type": {
+                                "type": "string"
+                            },
+                            "properties": {
+                                "type": "object",
+                                "properties": {
+                                    "comercio_id": {
+                                        "type": "object",
+                                        "properties": {
+                                            "type": {
+                                                "type": "string"
+                                            },
+                                            "description": {
+                                                "type": "string"
+                                            },
+                                            "required": {
+                                                "type": "boolean"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "example": {
+                    "success": {
+                        "type": "boolean",
+                        "description": "Indica si la búsqueda fue exitosa o no."
+                    },
+                    "message": {
+                        "type": "string",
+                        "description": "Mensaje arrojado cuando se obtiene la respuesta de la cotización."
+                    },
+                    "detail": {
+                        "type": "array",
+                        "description": "Contiene un arreglo de las cotizaciones de las mensajerías configuradas.",
+                        "items": {
+                            "type": "object",
+                            "properties": {
+                                "id": {
+                                    "type": "integer",
+                                    "description": "Index."
+                                },
+                                "clave": {
+                                    "type": "string",
+                                    "description": "Clave de Mensajería."
+                                },
+                                "comercio": {
+                                    "type": "string",
+                                    "description": "Id de comercio en API T1Envios."
+                                },
+                                "comercio_clave": {
+                                    "type": "string",
+                                    "description": "Clave de comercio."
+                                },
+                                "paquete": {
+                                    "type": "string",
+                                    "description": "Paquete con el que cuenta actualmente el comercio."
+                                },
+                                "seguro": {
+                                    "type": "boolean",
+                                    "description": "Indica si tiene seguro. True si tiene seguro, en caso contrario, false."
+                                },
+                                "cotizacion": {
+                                    "type": "object",
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean",
+                                            "description": "Indica si la cotización fue exitosa o no."
+                                        },
+                                        "servicios": {
+                                            "type": "object",
+                                            "description": "Información detallada sobre los servicios de cotización.",
+                                            "properties": {
+                                                "Nombre de servicio": {
+                                                    "type": "object",
+                                                    "properties": {
+                                                        "servicio": {
+                                                            "type": "string",
+                                                            "description": "Nombre del servicio."
+                                                        },
+                                                        "tipo_servicio": {
+                                                            "type": "string",
+                                                            "description": "Tipo de servicio."
+                                                        },
+                                                        "costo_mensajeria": {
+                                                            "type": "number",
+                                                            "description": "Costo de la mensajería."
+                                                        },
+                                                        "costo_total": {
+                                                            "type": "number",
+                                                            "description": "Costo total."
+                                                        },
+                                                        "fecha_mensajeria_entrega": {
+                                                            "type": "string",
+                                                            "description": "Fecha de entrega de la mensajería."
+                                                        },
+                                                        "fecha_claro_entrega": {
+                                                            "type": "string",
+                                                            "description": "Fecha clara de entrega."
+                                                        },
+                                                        "dias_entrega": {
+                                                            "type": "integer",
+                                                            "description": "Días de entrega."
+                                                        },
+                                                        "negociacion_id": {
+                                                            "type": "integer",
+                                                            "description": "ID de la negociación."
+                                                        },
+                                                        "porcentaje_negociacion": {
+                                                            "type": "number",
+                                                            "description": "Porcentaje de la negociación."
+                                                        },
+                                                        "costo_negociacion": {
+                                                            "type": "number",
+                                                            "description": "Costo de la negociación."
+                                                        },
+                                                        "porcentaje_seguro": {
+                                                            "type": "number",
+                                                            "description": "Porcentaje del seguro."
+                                                        },
+                                                        "valor_paquete": {
+                                                            "type": "string",
+                                                            "description": "Valor del paquete."
+                                                        },
+                                                        "moneda": {
+                                                            "type": "string",
+                                                            "description": "Moneda."
+                                                        },
+                                                        "peso": {
+                                                            "type": "string",
+                                                            "description": "Peso."
+                                                        },
+                                                        "peso_volumetrico": {
+                                                            "type": "number",
+                                                            "description": "Peso volumétrico."
+                                                        },
+                                                        "peso_unidades": {
+                                                            "type": "string",
+                                                            "description": "Unidades de peso."
+                                                        },
+                                                        "largo": {
+                                                            "type": "string",
+                                                            "description": "Largo."
+                                                        },
+                                                        "ancho": {
+                                                            "type": "string",
+                                                            "description": "Ancho."
+                                                        },
+                                                        "alto": {
+                                                            "type": "string",
+                                                            "description": "Alto."
+                                                        },
+                                                        "costo_zona_extendida": {
+                                                            "type": "number",
+                                                            "description": "Costo de zona extendida."
+                                                        },
+                                                        "costo_total_seguro": {
+                                                            "type": "number",
+                                                            "description": "Costo total del seguro."
+                                                        },
+                                                        "token": {
+                                                            "type": "string",
+                                                            "description": "Token de cotización necesario para generar la guía del paquete."
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

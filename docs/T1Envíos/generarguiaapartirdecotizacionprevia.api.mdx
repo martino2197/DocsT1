@@ -1,0 +1,542 @@
+---
+id: generarguiaapartirdecotizacionprevia
+title: "Generar guía a partir de cotización previa"
+description: "Método para la generación de una guía a partir de una cotización."
+sidebar_label: "Generar guía a partir de cotización previa"
+hide_title: true
+hide_table_of_contents: true
+api: eJztWs1uHDcSfhWCwAIOMB5prJ9M+hTHI3kdWLEgK8ECkiCUumtGlLvJNsmWNRrMJW+yRx9yymGBXOeB8gqLIvu/W5rRbnaRANZJQ7KKxWL9fFXsBbcwMzw44y+P3/CLAY/QhFqkVijJA360+mxVpFgKGlgMbIYSNYRi9atkEbJMAptlq1+AAS2xQhejobLi3i8c8gFXKWognm8iHvDXjot2lODpIqxRpBpvBfABp20TtKhJwgWXkCAPuFUfUL7KlyvJB1yQrCnYa94+AB9wjR8zoTHigdUZDrix85jYGJGkMfIBN+E1JsCDBbfz1M1YLeSML5cXnhqN/U5Fc1rR4R4qaVFamoM0jUXojrl1Y2jBosYb4vjd1B3DCusEyNXwOhPw8thpYYLVsY6dEk789o1jnOWbikjxAZcqudJ4qbSYIekCUoxjESlTDWECIq5+hhDHNQKZJahVbVrFSgqoBizGOFWytgSNhaj2O8mkCEUqakMap6hRhgJqguSyRmiskKohbDXmpa1+e3Gr37m8tQW5wNVIKXGNqxe5GqhkrsbqQhejF4PCLNTVDYZ0Fakme7YCDV1sdRkdC2pb43cab5HlY4UXxazk4H6l8DFDi+zZEdwF7MXe/ld82b7mtTv94JaTN2pMBFlowXBv2/HrmEnHuF+tfo3ETLFUGQsxsYqBRUJj6CVvM97xjBvGtlbOA1rdEJN4NCx0LY9XtLrDo2nW6xW2+o3Wd0VpesN6Yfz6JpO2B63lcorx6jNRNLQsZMDGXskNB1yvZbe8KVPHZ9dyOSoomox6PH0tq5OKps9Gx6O6zRee+ASj9yRgQQtVOFLb7jdm+7IgeZxzM25tbvl1jpXxb8yntP42n1acfIoHdERqRdiNvaCHVyc2P8EZuvrvuMTm+vc+0SNhNzM8wTV6+PVllad6SI/Z5U7iIZm+1BiqmGKzqvvflVIxguzqVGfIjCC+WMA6zUoeFN/DDGSkmMF82uE/gmzuFgVKvJTKiqkIYcNNJwTlEiGBdi64MZS3guBlnRkab3ZRH/sHba5YnaNTA7GIIE9caAWlVRiwVBFKnUIWW5oIG2Ro2I+nh8/Hw3P5E8RKo2EpyWzJ/4Nz+fvP/2KZnY79f1dgcH+XL5dtWY49XjbMiFkmKLIZlqA0cIN69QsYhjGLQc8US1b/vBOJqnZhRsngXJ7Lyd/f+l0awZ7NWTMlsZtMWjAB291lIWgILWo0Dcrc6GqkrBh6hLiehNmcNfLpIwTVZs0A1CE5l4cHk4N/dDcbNPd66MQsYDt7jwtRcmJrVdDmRpDxDqhC8LVHDeWthXEdVB7wCdyKqA+dB/x49VnjfRumBzwikssUNd5/GyqtUQ1DlbTxe8DfApkRzJXugPmAv9juIvqAHzrL7oH2AR+Pdnb3dnb3Oii/HjGPVp/vRKj6kD/5IYQQh208Xc5Xka2GI7rJnn+PJjO9NULA32YSOqVCwG+IpE9Z1ZJJpuFeKtMtJFrKqoZfa5A3YPrqioDvfz3e39vdedEtMQL+XkmlobfWqE32poe6lqr6pDfWTyE2uLxYDhZfLPaLxf6VLPaibJ8cYSTg1Kf3ThtlWQ/FC7pUnYU20y61Fw2SYMFvIc6wVZF/sfwvlv+ns3z6a/cl3YBJlTTeyl9sb3dbMidoUrJ2Z/kpWlFi3VZj1iPr79+/+4G6r9cIkeuhLpb/VcPyRClLTjpVOu9dVu3KEV/XJzNZGKIxG9QJb2QkwqJIuFr9Zj5mGAGbZsjwTlhlgCkm1dBdCETvZDwvlZigMTDDDUo2D8dZoozV5CtVvaOuXHlDu+u6xjuN7eWAx8orcIM2QnLlKgEWKUnVCbU9IBb3ivYpL5O7WsKCiNfewcQte53fvJITfAvUTF57EzJLLpWONmnUvIlQ+rIsUpoJaVFLV9TOaKMnkpeGGWG9GiJ2UxFvcGevao1SRhKwZ8eTQ1cGpyL8cJmlm4jknEeEH1iW+n6LtnCZKm2xxza7tR2pvWw45tbRrhZqGuY7ey7ieIXx8f7o6/E3493xDi9Ozf92PDl8PhruDodk0uVJ+Gjnm9H2Dm+J6Azdwb0/pVwXXY39h2GrIXkZPfwjTunmnCw+5xORe2qNoYUkz1SVe3Lr31Eq5/qfK6Pvlv4qulj+YfjMJ7UGQPv/HGCZJ9oIU40hWEq1LgHTjvZa0VMkPW64h0Z7zQO+lSft52QHz4sQJWBr0XpzXNKzIerb4mUy0zEP+LW1qQm2tlBCKoYR3g7tiLpbyhDA2bKjLUjFVt8b5S1oAVdege7ZkRR7Uj09Hnj9tsFtGeLaELacaOHUcryFSytGLUxaEbRxaTnTxaXV7i1UWk70QNFyrheItk9aga9ypg97tvTQM9HGnG1N9JF0UGdXF30itCFnjzZ6JvshZzndCzO9W/X1aP1Ms7FavnfTQ/rU96ZztHE6OnD222ezZIgQOiCZP8zXVj/RIdz1uNgiLELyrfkEsxnqoW+gk5v5bUfD7eG2S/fK2ARkbfMckfZ8j1CDbKz8tKBxnEWFiv+wTx5yHGHxzm6lMQgXJ51aFnm4OeMPhBs+4EH7I4eLAb+mWBWc8cWC+s4/6ni5pOGPGeo5D84uqjDiYlIkDP1fBb0Hj/zsJC9FvmIPCZ4Pgpy7aOXiOBnBB5z3fJFBiS+vOpwofpVHb/a5yyMVl558UlC8DENM7aNrL2rB/Pjd+1M+4Ff5txqJiohGwydyI/jEA37Oz7n7HIU4uGzlxhc8BjnLfA7yfOnv32GlgRc=
+sidebar_class_name: "post api-method"
+info_path: docs/T1Envíos/t-1-envios
+custom_edit_url: null
+---
+
+import ApiTabs from "@theme/ApiTabs";
+import DiscriminatorTabs from "@theme/DiscriminatorTabs";
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import SecuritySchemes from "@theme/ApiExplorer/SecuritySchemes";
+import MimeTabs from "@theme/MimeTabs";
+import ParamsItem from "@theme/ParamsItem";
+import ResponseSamples from "@theme/ResponseSamples";
+import SchemaItem from "@theme/SchemaItem";
+import SchemaTabs from "@theme/SchemaTabs";
+import Markdown from "@theme/Markdown";
+import Heading from "@theme/Heading";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Generar guía a partir de cotización previa"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"post"}
+  path={"/generar-guia-mensajeria/{tokenCotizacion}"}
+>
+  
+</MethodEndpoint>
+
+
+
+Método para la generación de una guía a partir de una cotización.
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+  children={"Request"}
+>
+</Heading>
+
+<details
+  style={{"marginBottom":"1rem"}}
+  className={"openapi-markdown__details"}
+  data-collapsed={false}
+  open={true}
+>
+  <summary
+    style={{}}
+  >
+    <h3
+      className={"openapi-markdown__details-summary-header-params"}
+    >
+      Path Parameters
+    </h3>
+  </summary><div>
+    <ul>
+      <ParamsItem
+        className={"paramsItem"}
+        param={{"name":"tokenCotizacion","in":"path","description":"","required":true,"style":"simple","schema":{"type":"string"}}}
+      >
+        
+      </ParamsItem>
+    </ul>
+  </div>
+</details><MimeTabs
+  className={"openapi-tabs__mime"}
+>
+  <TabItem
+    label={"application/json"}
+    value={"application/json-schema"}
+  >
+    <details
+      style={{}}
+      className={"openapi-markdown__details mime"}
+      data-collapsed={false}
+      open={true}
+    >
+      <summary
+        style={{}}
+        className={"openapi-markdown__details-summary-mime"}
+      >
+        <h3
+          className={"openapi-markdown__details-summary-header-body"}
+        >
+          Body
+        </h3><strong
+          className={"openapi-schema__required"}
+        >
+          required
+        </strong>
+      </summary><div
+        style={{"textAlign":"left","marginLeft":"1rem"}}
+      >
+        
+      </div><ul
+        style={{"marginLeft":"1rem"}}
+      >
+        <SchemaItem
+          collapsible={false}
+          name={"contenido"}
+          required={true}
+          schemaName={"string"}
+          qualifierMessage={undefined}
+          schema={{"type":"string","description":"Breve descripción del contenido del paquete (Max: 256)"}}
+        >
+          
+        </SchemaItem><SchemaItem
+          collapsible={false}
+          name={"nombre_origen"}
+          required={true}
+          schemaName={"string"}
+          qualifierMessage={undefined}
+          schema={{"type":"string","description":"Nombre de remitente (Max: 50)"}}
+        >
+          
+        </SchemaItem><SchemaItem
+          collapsible={false}
+          name={"apellidos_origen"}
+          required={true}
+          schemaName={""}
+          qualifierMessage={undefined}
+          schema={{"description":"Código postal de la dirección remitente (Max: 30)"}}
+        >
+          
+        </SchemaItem><SchemaItem
+          collapsible={false}
+          name={"email_origen"}
+          required={true}
+          schemaName={"string"}
+          qualifierMessage={undefined}
+          schema={{"type":"string","description":"Email de remitente"}}
+        >
+          
+        </SchemaItem><SchemaItem
+          collapsible={false}
+          name={"calle_origen"}
+          required={true}
+          schemaName={"string"}
+          qualifierMessage={undefined}
+          schema={{"type":"string","description":"Calle de remitente"}}
+        >
+          
+        </SchemaItem><SchemaItem
+          collapsible={false}
+          name={"numero_origen"}
+          required={true}
+          schemaName={"string"}
+          qualifierMessage={undefined}
+          schema={{"type":"string","description":"Número de remitente"}}
+        >
+          
+        </SchemaItem><SchemaItem
+          collapsible={false}
+          name={"colonia_origen"}
+          required={true}
+          schemaName={"string"}
+          qualifierMessage={undefined}
+          schema={{"type":"string","description":"Colonia remitente"}}
+        >
+          
+        </SchemaItem><SchemaItem
+          collapsible={false}
+          name={"telefono_origen"}
+          required={true}
+          schemaName={"string"}
+          qualifierMessage={undefined}
+          schema={{"type":"string","description":"Teléfono remitente (Min: 8)"}}
+        >
+          
+        </SchemaItem><SchemaItem
+          collapsible={false}
+          name={"estado_origen"}
+          required={true}
+          schemaName={"string"}
+          qualifierMessage={undefined}
+          schema={{"type":"string","description":"Estado remitente"}}
+        >
+          
+        </SchemaItem><SchemaItem
+          collapsible={false}
+          name={"municipio_origen"}
+          required={true}
+          schemaName={"string"}
+          qualifierMessage={undefined}
+          schema={{"type":"string","description":"Municipio remitente"}}
+        >
+          
+        </SchemaItem><SchemaItem
+          collapsible={false}
+          name={"referencias_origen"}
+          required={true}
+          schemaName={"string"}
+          qualifierMessage={undefined}
+          schema={{"type":"string","description":"Referencias de remitente (Max: 81)"}}
+        >
+          
+        </SchemaItem><SchemaItem
+          collapsible={false}
+          name={"nombre_destino"}
+          required={true}
+          schemaName={"string"}
+          qualifierMessage={undefined}
+          schema={{"type":"string","description":"Nombre de destinatario (Max: 20)"}}
+        >
+          
+        </SchemaItem><SchemaItem
+          collapsible={false}
+          name={"apellidos_destino"}
+          required={true}
+          schemaName={"string"}
+          qualifierMessage={undefined}
+          schema={{"type":"string","description":"Apellidos de destinatario (Max: 20)"}}
+        >
+          
+        </SchemaItem><SchemaItem
+          collapsible={false}
+          name={"email_destino"}
+          required={true}
+          schemaName={"string"}
+          qualifierMessage={undefined}
+          schema={{"type":"string","description":"Email de destinatario"}}
+        >
+          
+        </SchemaItem><SchemaItem
+          collapsible={false}
+          name={"calle_destino"}
+          required={true}
+          schemaName={"string"}
+          qualifierMessage={undefined}
+          schema={{"type":"string","description":"Calle de destinatario"}}
+        >
+          
+        </SchemaItem><SchemaItem
+          collapsible={false}
+          name={"numero_destino"}
+          required={true}
+          schemaName={"string"}
+          qualifierMessage={undefined}
+          schema={{"type":"string","description":"Número de destinatario"}}
+        >
+          
+        </SchemaItem><SchemaItem
+          collapsible={false}
+          name={"colonia_destino"}
+          required={true}
+          schemaName={"string"}
+          qualifierMessage={undefined}
+          schema={{"type":"string","description":"Colonia de destinatario"}}
+        >
+          
+        </SchemaItem><SchemaItem
+          collapsible={false}
+          name={"telefono_destino"}
+          required={true}
+          schemaName={"string"}
+          qualifierMessage={undefined}
+          schema={{"type":"string","description":"Teléfono de destinatario (Min: 8)"}}
+        >
+          
+        </SchemaItem><SchemaItem
+          collapsible={false}
+          name={"estado_destino"}
+          required={true}
+          schemaName={"string"}
+          qualifierMessage={undefined}
+          schema={{"type":"string","description":"Estado de destinatario"}}
+        >
+          
+        </SchemaItem><SchemaItem
+          collapsible={false}
+          name={"municipio_destino"}
+          required={true}
+          schemaName={"string"}
+          qualifierMessage={undefined}
+          schema={{"type":"string","description":"Municipio de destinatario"}}
+        >
+          
+        </SchemaItem><SchemaItem
+          collapsible={false}
+          name={"referencias_destino"}
+          required={true}
+          schemaName={"string"}
+          qualifierMessage={undefined}
+          schema={{"type":"string","description":"Referencias de destinatario (Max: 81)"}}
+        >
+          
+        </SchemaItem><SchemaItem
+          collapsible={false}
+          name={"generar_recoleccion"}
+          required={false}
+          schemaName={"boolean"}
+          qualifierMessage={undefined}
+          schema={{"type":"boolean","description":"True si desea generar recolección cuando se genera la guía"}}
+        >
+          
+        </SchemaItem><SchemaItem
+          collapsible={false}
+          name={"tiene_notificacion"}
+          required={false}
+          schemaName={"boolean"}
+          qualifierMessage={undefined}
+          schema={{"type":"boolean","description":"Determina si la guía enviara notificaciones"}}
+        >
+          
+        </SchemaItem><SchemaItem
+          collapsible={false}
+          name={"codificacion"}
+          required={false}
+          schemaName={"string"}
+          qualifierMessage={undefined}
+          schema={{"type":"string","description":"Codificación de salida de la etiqueta, por default la codificación es UTF-8.\nValores permitidos:\n utf8\n base64"}}
+        >
+          
+        </SchemaItem>
+      </ul>
+    </details>
+  </TabItem>
+</MimeTabs><div>
+  <div>
+    <ApiTabs
+      label={undefined}
+      id={undefined}
+    >
+      <TabItem
+        label={"200"}
+        value={"200"}
+      >
+        <div>
+          
+          
+          Respuesta de petición de generación de guía JSON.
+          
+          
+        </div><details
+          style={{"textAlign":"left","marginBottom":"1rem"}}
+          className={"openapi-markdown__details"}
+          data-collaposed={true}
+          open={false}
+        >
+          <summary
+            style={{}}
+          >
+            <strong>
+              Response Headers
+            </strong>
+          </summary><ul
+            style={{"marginLeft":"1rem"}}
+          >
+            
+          </ul>
+        </details><div>
+          <MimeTabs
+            className={"openapi-tabs__mime"}
+            schemaType={"response"}
+          >
+            <TabItem
+              label={"application/json"}
+              value={"application/json"}
+            >
+              <SchemaTabs
+                className={"openapi-tabs__schema"}
+              >
+                <TabItem
+                  label={"Schema"}
+                  value={"Schema"}
+                >
+                  <details
+                    style={{}}
+                    className={"openapi-markdown__details response"}
+                    data-collapsed={false}
+                    open={true}
+                  >
+                    <summary
+                      style={{}}
+                      className={"openapi-markdown__details-summary-response"}
+                    >
+                      <strong>
+                        Schema
+                      </strong>
+                    </summary><div
+                      style={{"textAlign":"left","marginLeft":"1rem"}}
+                    >
+                      
+                    </div><ul
+                      style={{"marginLeft":"1rem"}}
+                    >
+                      <SchemaItem
+                        collapsible={false}
+                        name={"success"}
+                        required={false}
+                        schemaName={"boolean"}
+                        qualifierMessage={undefined}
+                        schema={{"type":"boolean","description":"Indica si la búsqueda fue exitosa o no.","readOnly":true}}
+                      >
+                        
+                      </SchemaItem><SchemaItem
+                        collapsible={false}
+                        name={"message"}
+                        required={false}
+                        schemaName={"string"}
+                        qualifierMessage={undefined}
+                        schema={{"type":"string","description":"Mensaje mostrado cuando se obtiene la respuesta de una cotización."}}
+                      >
+                        
+                      </SchemaItem><SchemaItem
+                        collapsible={false}
+                        name={"location"}
+                        required={false}
+                        schemaName={"string"}
+                        qualifierMessage={undefined}
+                        schema={{"type":"string","description":"Ambiente donde se realizo la petición"}}
+                      >
+                        
+                      </SchemaItem><SchemaItem
+                        collapsible={true}
+                        className={"schemaItem"}
+                      >
+                        <details
+                          style={{}}
+                          className={"openapi-markdown__details"}
+                        >
+                          <summary
+                            style={{}}
+                          >
+                            <span
+                              className={"openapi-schema__container"}
+                            >
+                              <strong
+                                className={"openapi-schema__property"}
+                              >
+                                detail
+                              </strong><span
+                                className={"openapi-schema__name"}
+                              >
+                                 object
+                              </span>
+                            </span>
+                          </summary><div
+                            style={{"marginLeft":"1rem"}}
+                          >
+                            <div
+                              style={{"marginTop":".5rem","marginBottom":".5rem"}}
+                            >
+                              
+                              
+                              Detalle de respuesta
+                              
+                              
+                            </div><SchemaItem
+                              collapsible={false}
+                              name={"num_orden"}
+                              required={false}
+                              schemaName={"string"}
+                              qualifierMessage={undefined}
+                              schema={{"type":"string","description":"Identificador interno"}}
+                            >
+                              
+                            </SchemaItem><SchemaItem
+                              collapsible={false}
+                              name={"guia"}
+                              required={false}
+                              schemaName={"string"}
+                              qualifierMessage={undefined}
+                              schema={{"type":"string","description":"Identificador de guía de mensajería"}}
+                            >
+                              
+                            </SchemaItem><SchemaItem
+                              collapsible={false}
+                              name={"file"}
+                              required={false}
+                              schemaName={"string"}
+                              qualifierMessage={undefined}
+                              schema={{"type":"string","description":"Contenido de guia (PDF)"}}
+                            >
+                              
+                            </SchemaItem><SchemaItem
+                              collapsible={false}
+                              name={"pick_up"}
+                              required={false}
+                              schemaName={"string"}
+                              qualifierMessage={undefined}
+                              schema={{"type":"string","description":"Id de pick up"}}
+                            >
+                              
+                            </SchemaItem><SchemaItem
+                              collapsible={false}
+                              name={"carta_porte"}
+                              required={false}
+                              schemaName={"boolean"}
+                              qualifierMessage={undefined}
+                              schema={{"type":"boolean"}}
+                            >
+                              
+                            </SchemaItem>
+                          </div>
+                        </details>
+                      </SchemaItem>
+                    </ul>
+                  </details>
+                </TabItem><TabItem
+                  label={"Example (from schema)"}
+                  value={"Example (from schema)"}
+                >
+                  <ResponseSamples
+                    responseExample={"{\n  \"success\": true,\n  \"message\": \"string\",\n  \"location\": \"string\",\n  \"detail\": {\n    \"num_orden\": \"string\",\n    \"guia\": \"string\",\n    \"file\": \"string\",\n    \"pick_up\": \"string\",\n    \"carta_porte\": true\n  }\n}"}
+                    language={"json"}
+                  >
+                    
+                  </ResponseSamples>
+                </TabItem><TabItem
+                  label={"Estructura de Response"}
+                  value={"Estructura de Response"}
+                >
+                  <ResponseSamples
+                    responseExample={"{\n  \"success\": true,\n  \"message\": \"Guia generada correctamente\",\n  \"location\": \"test\",\n  \"detail\": {\n    \"num_orden\": \"3532\"\n  }\n}"}
+                    language={"json"}
+                  >
+                    
+                  </ResponseSamples>
+                </TabItem>
+              </SchemaTabs>
+            </TabItem>
+          </MimeTabs>
+        </div>
+      </TabItem>
+    </ApiTabs>
+  </div>
+</div>
+      
