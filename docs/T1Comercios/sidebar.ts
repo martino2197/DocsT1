@@ -7,6 +7,11 @@ const sidebar: SidebarsConfig = {
       id: "T1Comercios/documentacion-api-v-2-t-1-comercios",
     },
     {
+      type: 'category',
+      label: 'Autenticación',
+      items: require("./sidebarAutenticacion.ts"),
+    },
+    {
       type: "category",
       label: "Productos",
       items: [
@@ -59,11 +64,6 @@ const sidebar: SidebarsConfig = {
           className: "api-method get",
         },
       ],
-    },
-    {
-      type: 'category',
-      label: 'Autenticación',
-      items: require("./sidebarAutenticacion.ts"),
     },
     {
       type: 'category',
