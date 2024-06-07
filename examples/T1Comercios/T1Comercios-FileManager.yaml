@@ -10,7 +10,7 @@ paths:
    
    post:
       tags:
-        - Subir Imganes.
+        - Subir Imagenes
       parameters:
        - name: BucketName
          description: "Bucket donde se almacenara la imagen, la nomenclatura es : products_IDTIENDA"

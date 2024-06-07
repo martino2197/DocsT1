@@ -1,0 +1,399 @@
+---
+id: upload-file
+title: "Carga de archivo"
+description: "Endpoint para cargar archivos a la plataforma T1."
+sidebar_label: "Carga de archivo"
+hide_title: true
+hide_table_of_contents: true
+api: eJytVk1v4zYQ/SvEnFqAlq3E3XR182bTwoekwSZBD4ZhjMWxzUQSGZJyNzH034uh/Ll20rSoL5bE4fDNmzczXEHAuYdsBHf1VDsxLOdYkU9gLMGiw5ICOV5fQYUlQQZf6vyJwg2/SFDkc6dt0KbaLgllKkXCk8CixJwqdCgKFLrEOVWSHytTUpUXGGqHgrzIhHVG1Xnwk+HX++HVzdcBSNDs02JYgARHz7V2pCALriYJPl9QiZCtILxYhuWD09UcmkZukWIdFsbpV4zw1v4WhIrcv/Aogb5jaYsYO6EjJ1YrzHPyfhLME1VNA00z/pGLq0pZo6sgmEWRo5ujE+jyhV4aLyIhtsCAM+NKFPdpAhKMJRfBDhVkUNvCoPpNF7RGSz58MeqFIf4IPjdVoCrwUlkXQVt0ocuuOwpDDOooPDN9pDyABOv43KDJ8+qMzztBQsQZIIOprtC9HOV+0IYmNrFCI6OvNhfH/g5335hy6kgoKjYcHfA+jNIRisSfCwx+YK046531O71+J72IZHqRpkn/U5KeT3qf87Nzlavk0c4ZRalLak//JxT32hpxPby+ehNI1HD30VL0bJ1eYviA42GldI7Ca7Hzy7qPDpSRrUioEDl6w2G2tUKen9elYaRQNOW6csLr0joSMyw8JQcA4ydo4o9V462pfJvZs16P/w6R3dVRybO6EBtjOJATWlvoPKqy++h5z8e1VFLAjf7et/QBQ+1PlLOEkrzH+QmSGwmLEOwkN2p/VVeB5hT1pzDQJOjTAtwKmq060Spy9jHA68ztGU6NKQir/WzEZDQSzF8VuWPuH3yNThvxXFMsGrPrkpzUt9uQD8bRJO390k8naPUkpByt16/7gVZ1OY2NbhvorDAY2LJ2xQk0rtiXfVvGypxCsvVYO30AjPPhs263JKWNT2yBr7jUNslN2Q1pN71ILz59/vU8PW8LWtGmnLmae/30Agv0adr/lJ5vqnhdxG0znKg3yu1UMg8r/zDYzcqpiN+lfr8BbH6s0bAw3LOt8VErPLQy6HID7C7TJO2udmOzAQme3HIzV2M2ttTZHK1OHBWEnpLdiOjkBTrDTAIPG13NWvHpEHHxmBAPkSQxuB2KjhheD36/urm6O+7Ut8OPDaVLPhEkMNJ2a5r0kl7sfMaHEmMzWA/bS3bG7WrXNg+OXe2ayn+ajeuUBPoeurZAXe0JuaV71M4uCUw4SMj2bipjCQtOTTaC1WqKnh5c0TT8+bkm9wLZaCxhiU7jlOkcrUBpz89qXcXvRPPTt/Uw/ln8zxegkzGvP2LFM3iJRc1vIOGJXg5vZ82YO2R73eGIWoPLFnfnnt3sHJy6NfBVqt00yHOyYc/8aCqwJrdVcPvH3T1ImK4vK2Vs0LFGo1+5e8xG46Zp/gZPApgz
+sidebar_class_name: "post api-method"
+info_path: docs/T1Comercios/file-upload-api-imagenes
+custom_edit_url: null
+---
+
+import ApiTabs from "@theme/ApiTabs";
+import DiscriminatorTabs from "@theme/DiscriminatorTabs";
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import SecuritySchemes from "@theme/ApiExplorer/SecuritySchemes";
+import MimeTabs from "@theme/MimeTabs";
+import ParamsItem from "@theme/ParamsItem";
+import ResponseSamples from "@theme/ResponseSamples";
+import SchemaItem from "@theme/SchemaItem";
+import SchemaTabs from "@theme/SchemaTabs";
+import Markdown from "@theme/Markdown";
+import Heading from "@theme/Heading";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Carga de archivo"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"post"}
+  path={"/file/v1.1/{BucketName}"}
+>
+  
+</MethodEndpoint>
+
+
+
+Endpoint para cargar archivos a la plataforma T1.
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+  children={"Request"}
+>
+</Heading>
+
+<details
+  style={{"marginBottom":"1rem"}}
+  className={"openapi-markdown__details"}
+  data-collapsed={false}
+  open={true}
+>
+  <summary
+    style={{}}
+  >
+    <h3
+      className={"openapi-markdown__details-summary-header-params"}
+    >
+      Path Parameters
+    </h3>
+  </summary><div>
+    <ul>
+      <ParamsItem
+        className={"paramsItem"}
+        param={{"name":"BucketName","description":"Bucket donde se almacenara la imagen, la nomenclatura es : products_IDTIENDA","in":"path","required":true,"schema":{"type":"string"}}}
+      >
+        
+      </ParamsItem>
+    </ul>
+  </div>
+</details><details
+  style={{"marginBottom":"1rem"}}
+  className={"openapi-markdown__details"}
+  data-collapsed={false}
+  open={true}
+>
+  <summary
+    style={{}}
+  >
+    <h3
+      className={"openapi-markdown__details-summary-header-params"}
+    >
+      Header Parameters
+    </h3>
+  </summary><div>
+    <ul>
+      <ParamsItem
+        className={"paramsItem"}
+        param={{"name":"authorization","in":"header","required":true,"schema":{"type":"string","example":"Bearer {{access_token}}"}}}
+      >
+        
+      </ParamsItem>
+    </ul>
+  </div>
+</details><MimeTabs
+  className={"openapi-tabs__mime"}
+>
+  <TabItem
+    label={"multipart/form-data"}
+    value={"multipart/form-data-schema"}
+  >
+    <details
+      style={{}}
+      className={"openapi-markdown__details mime"}
+      data-collapsed={false}
+      open={true}
+    >
+      <summary
+        style={{}}
+        className={"openapi-markdown__details-summary-mime"}
+      >
+        <h3
+          className={"openapi-markdown__details-summary-header-body"}
+        >
+          Body
+        </h3><strong
+          className={"openapi-schema__required"}
+        >
+          required
+        </strong>
+      </summary><div
+        style={{"textAlign":"left","marginLeft":"1rem"}}
+      >
+        
+      </div><ul
+        style={{"marginLeft":"1rem"}}
+      >
+        <SchemaItem
+          collapsible={false}
+          name={"file"}
+          required={false}
+          schemaName={"binary"}
+          qualifierMessage={undefined}
+          schema={{"type":"string","format":"binary","description":"Archivo a cargar"}}
+        >
+          
+        </SchemaItem><SchemaItem
+          collapsible={false}
+          name={"filename"}
+          required={false}
+          schemaName={"string"}
+          qualifierMessage={undefined}
+          schema={{"type":"string","description":"Nombre del archivo","example":"Imagen de WhatsApp 2024-04-17 a las 11.46.13_09c23dcd.jpg"}}
+        >
+          
+        </SchemaItem><SchemaItem
+          collapsible={false}
+          name={"mimetype"}
+          required={false}
+          schemaName={"string"}
+          qualifierMessage={undefined}
+          schema={{"type":"string","description":"Tipo MIME del archivo","example":"image/jpeg"}}
+        >
+          
+        </SchemaItem><SchemaItem
+          collapsible={false}
+          name={"private"}
+          required={false}
+          schemaName={"string"}
+          qualifierMessage={undefined}
+          schema={{"type":"string","description":"Indica si el archivo es privado, para el caso de imagenes de producto, debe ser simpre false.","example":"false"}}
+        >
+          
+        </SchemaItem>
+      </ul>
+    </details>
+  </TabItem>
+</MimeTabs><div>
+  <div>
+    <ApiTabs
+      label={undefined}
+      id={undefined}
+    >
+      <TabItem
+        label={"200"}
+        value={"200"}
+      >
+        <div>
+          
+          
+          Successful response
+          
+          
+        </div><div>
+          <MimeTabs
+            className={"openapi-tabs__mime"}
+            schemaType={"response"}
+          >
+            <TabItem
+              label={"application/json"}
+              value={"application/json"}
+            >
+              <SchemaTabs
+                className={"openapi-tabs__schema"}
+              >
+                <TabItem
+                  label={"Schema"}
+                  value={"Schema"}
+                >
+                  <details
+                    style={{}}
+                    className={"openapi-markdown__details response"}
+                    data-collapsed={false}
+                    open={true}
+                  >
+                    <summary
+                      style={{}}
+                      className={"openapi-markdown__details-summary-response"}
+                    >
+                      <strong>
+                        Schema
+                      </strong>
+                    </summary><div
+                      style={{"textAlign":"left","marginLeft":"1rem"}}
+                    >
+                      
+                    </div><ul
+                      style={{"marginLeft":"1rem"}}
+                    >
+                      <SchemaItem
+                        collapsible={true}
+                        className={"schemaItem"}
+                      >
+                        <details
+                          style={{}}
+                          className={"openapi-markdown__details"}
+                        >
+                          <summary
+                            style={{}}
+                          >
+                            <span
+                              className={"openapi-schema__container"}
+                            >
+                              <strong
+                                className={"openapi-schema__property"}
+                              >
+                                metadata
+                              </strong><span
+                                className={"openapi-schema__name"}
+                              >
+                                 object
+                              </span>
+                            </span>
+                          </summary><div
+                            style={{"marginLeft":"1rem"}}
+                          >
+                            <SchemaItem
+                              collapsible={false}
+                              name={"status"}
+                              required={false}
+                              schemaName={"string"}
+                              qualifierMessage={undefined}
+                              schema={{"type":"string"}}
+                            >
+                              
+                            </SchemaItem><SchemaItem
+                              collapsible={false}
+                              name={"message"}
+                              required={false}
+                              schemaName={"string"}
+                              qualifierMessage={undefined}
+                              schema={{"type":"string"}}
+                            >
+                              
+                            </SchemaItem><SchemaItem
+                              collapsible={false}
+                              name={"http_code"}
+                              required={false}
+                              schemaName={"integer"}
+                              qualifierMessage={undefined}
+                              schema={{"type":"integer"}}
+                            >
+                              
+                            </SchemaItem><SchemaItem
+                              collapsible={false}
+                              name={"date_time"}
+                              required={false}
+                              schemaName={"date-time"}
+                              qualifierMessage={undefined}
+                              schema={{"type":"string","format":"date-time"}}
+                            >
+                              
+                            </SchemaItem>
+                          </div>
+                        </details>
+                      </SchemaItem><SchemaItem
+                        collapsible={true}
+                        className={"schemaItem"}
+                      >
+                        <details
+                          style={{}}
+                          className={"openapi-markdown__details"}
+                        >
+                          <summary
+                            style={{}}
+                          >
+                            <span
+                              className={"openapi-schema__container"}
+                            >
+                              <strong
+                                className={"openapi-schema__property"}
+                              >
+                                data
+                              </strong><span
+                                className={"openapi-schema__name"}
+                              >
+                                 object
+                              </span>
+                            </span>
+                          </summary><div
+                            style={{"marginLeft":"1rem"}}
+                          >
+                            <SchemaItem
+                              collapsible={false}
+                              name={"privado"}
+                              required={false}
+                              schemaName={"boolean"}
+                              qualifierMessage={undefined}
+                              schema={{"type":"boolean","example":false}}
+                            >
+                              
+                            </SchemaItem><SchemaItem
+                              collapsible={false}
+                              name={"owner"}
+                              required={false}
+                              schemaName={"string"}
+                              qualifierMessage={undefined}
+                              schema={{"description":"Usuario que cargo la imagen.","type":"string","example":"store_10541_api_t1"}}
+                            >
+                              
+                            </SchemaItem><SchemaItem
+                              collapsible={false}
+                              name={"size"}
+                              required={false}
+                              schemaName={"float"}
+                              qualifierMessage={undefined}
+                              schema={{"type":"number","format":"float"}}
+                            >
+                              
+                            </SchemaItem><SchemaItem
+                              collapsible={false}
+                              name={"url"}
+                              required={false}
+                              schemaName={"uri"}
+                              qualifierMessage={undefined}
+                              schema={{"description":"Url del archivo cargado.","type":"string","format":"uri","example":"https://medios.plazavip.com/t1/1717698313ImagendeWhatsApp20240417alas11461309c23dcdjpg"}}
+                            >
+                              
+                            </SchemaItem><SchemaItem
+                              collapsible={false}
+                              name={"upload_date"}
+                              required={false}
+                              schemaName={"date-time"}
+                              qualifierMessage={undefined}
+                              schema={{"type":"string","format":"date-time"}}
+                            >
+                              
+                            </SchemaItem><SchemaItem
+                              collapsible={false}
+                              name={"mimetype"}
+                              required={false}
+                              schemaName={"string"}
+                              qualifierMessage={undefined}
+                              schema={{"description":"mimetype del archivo cargado","type":"string","example":"image/jpeg"}}
+                            >
+                              
+                            </SchemaItem>
+                          </div>
+                        </details>
+                      </SchemaItem>
+                    </ul>
+                  </details>
+                </TabItem><TabItem
+                  label={"Example (from schema)"}
+                  value={"Example (from schema)"}
+                >
+                  <ResponseSamples
+                    responseExample={"{\n  \"metadata\": {\n    \"status\": \"string\",\n    \"message\": \"string\",\n    \"http_code\": 0,\n    \"date_time\": \"2024-06-07T18:23:40.803Z\"\n  },\n  \"data\": {\n    \"privado\": false,\n    \"owner\": \"store_10541_api_t1\",\n    \"size\": 0,\n    \"url\": \"https://medios.plazavip.com/t1/1717698313ImagendeWhatsApp20240417alas11461309c23dcdjpg\",\n    \"upload_date\": \"2024-06-07T18:23:40.803Z\",\n    \"mimetype\": \"image/jpeg\"\n  }\n}"}
+                    language={"json"}
+                  >
+                    
+                  </ResponseSamples>
+                </TabItem>
+              </SchemaTabs>
+            </TabItem>
+          </MimeTabs>
+        </div>
+      </TabItem>
+    </ApiTabs>
+  </div>
+</div>
+      
