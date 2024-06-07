@@ -1,0 +1,109 @@
+openapi: 3.0.3
+info:
+  title: Claro Authentication API
+  description: API for authenticating users with Claro platform.
+  version: 1.0.0
+servers:
+  - url: https://loginclaro.com
+    description: Claro Authentication Server
+paths:
+  /auth/realms/plataforma-claro/protocol/openid-connect/token:
+    post:
+      summary: Obtain access token
+      description: |
+        This endpoint allows you to obtain an access token by providing the necessary credentials.
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                client_id:
+                  description: "ID del cliente para el Single Sign-On (SSO). El valor predeterminado es 'integradores'."
+                  type: string
+                  default: integradores
+                  example: integradores
+                grant_type:
+                  description: "Método utilizado para solicitar el token de acceso. El valor predeterminado es 'password'."
+                  type: string
+                  default: password
+                  example: password
+                username:
+                  description: "Nombre de usuario de la API, proporcionado por T1Comercios."
+                  type: string
+                  example: "store_204787_Integracion_T1"
+                password:
+                  description: "Contraseña del usuario para la API, proporcionada por T1Comercios."
+                  type: string
+                  example: 170amN123
+              required:
+                - client_id
+                - grant_type
+                - username
+                - password
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  access_token:
+                    type: string
+                    description: The access token issued by the authentication server.
+                    example: eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICI3M2ZiUk1KbmVSQmU4el9zRXNQZTcyRjdBZFVrNnlDZ0VnN2VwWDM3RWJvIn0
+                  expires_in:
+                    type: integer
+                    description: The lifetime in seconds of the access token.
+                    example: 3600
+                  refresh_expires_in:
+                    type: integer
+                    description: The lifetime in seconds of the refresh token.
+                    example: 1314000
+                  refresh_token:
+                    type: string
+                    description: The refresh token that can be used to obtain a new access token.
+                    example: eyJhbGciOiJIUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJlMzAzZWJlMy03NGNkLTQxN2EtOWQyMC05YjQzMmY0YjQwMGEif
+                  token_type:
+                    type: string
+                    description: The type of token issued.
+                    example: bearer
+                  not-before-policy:
+                    type: integer
+                    description: The not-before policy.
+                    example: 1615933740
+                  session_state:
+                    type: string
+                    description: The session state.
+                    example: 9330a815-5e71-418a-9086-81f34df577ee
+                  scope:
+                    type: string
+                    description: The scope of the access token.
+                    example: profile email
+        '400':
+          description: Bad request
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: invalid_grant
+                  error_description:
+                    type: string
+                    example: Invalid user credentials
+        '500':
+          description: Internal server error
+      security:
+        - cookieAuth: []
+components:
+  securitySchemes:
+    cookieAuth:
+      type: apiKey
+      in: cookie
+      name: Cookie

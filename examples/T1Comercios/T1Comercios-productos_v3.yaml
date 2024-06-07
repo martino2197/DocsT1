@@ -1,0 +1,1929 @@
+openapi: 3.1.0
+info:
+  title: DOCUMENTACIÓN API V2 T1COMERCIOS
+  description: Documentación oficial de la nueva API V2 de T1COMERCIOS
+  contact: {}
+  version: '2.0.0'
+  x-codegen-settings:
+    Nullify404: false
+    GenerateAsyncCode: true
+    UseMethodPrefix: false
+    UseModelPostfix: false
+    UseControllerPrefix: true
+    UseEnumPostfix: true
+    CollectParameters: false
+    UseConstructorsForConfig: false
+    UseCommonSDKLibrary: false
+    iOSUseAppInfoPlist: false
+    AndroidUseAppManifest: false
+    BodySerialization: 0
+    EnableAdditionalModelProperties: false
+    PreserveParameterOrder: true
+    AppendContentHeaders: true
+    iOSGenerateCoreData: false
+    GenerateInterfaces: false
+    NodeHttpClient: NODE_REQUEST
+    ValidateRequiredParameters: false
+    JavaUsePropertiesConfig: false
+    Timeout: 0
+    StoreTimezoneInformation: false
+    EnablePHPComposerVersionString: false
+    EnableLogging: false
+    ArraySerialization: Indexed
+    ModelSerializationScheme: Json
+    UseExceptionPrefix: true
+    RunscopeEnabled: false
+    AndroidHttpClient: ANDROID_OK
+    ObjCHttpClient: UNIREST
+    CSharpHttpClient: UNIREST
+    PHPHttpClient: UNIREST
+    JavaHttpClient: JAVA_OK
+    ParameterArrayFormat: ParamArrayWithIndex
+    SecurityProtocols:
+    - Ssl3
+    - Tls
+    GenerateTravisConfig: false
+    GenerateCircleConfig: false
+    GenerateAppveyorConfig: false
+    GenerateJenkinsConfig: false
+    EnableHttpCache: false
+    Retries: 0
+    RetryInterval: 1
+    GenerateAdvancedDocs: true
+    UnderscoreNumbers: true
+    UseSingletonPattern: true
+    DisableLinting: false
+    ApplyCustomizations: []
+    SortResources: false
+    AllowSkippingSSLCertVerification: false
+    DoNotSplitWords: []
+    EnableGlobalUserAgent: true
+    ReturnCompleteHttpResponse: false
+    GenerateModels: true
+    GenerateExceptions: true
+    IgnoreIfNullJson: false
+    DisableDocs: false
+    LiftParameterDescriptionFromCustomType: false
+    ThrowForHttpErrorStatusCodes: true
+    ResponseMapping:
+      Type: Simple
+    ForceKeywordArgsInRuby: false
+    SymbolizeHashKeysInRuby: false
+    UsageExampleEndpoint:
+      Description: ''
+      EndpointGroupName: ''
+      EndpointName: ''
+    IsLatestVersion: false
+    EnableImmutableModels: false
+    GenerateEnums: true
+    BackoffFactor: 2
+    StatusCodesToRetry:
+    - 408
+    - 413
+    - 429
+    - 500
+    - 502
+    - 503
+    - 504
+    - 521
+    - 522
+    - 524
+    RequestMethodsToRetry:
+    - GET
+    - PUT
+    UserConfigurableRetries: true
+    UseEndpointMethodName: false
+    EncodeTemplateParameters: true
+    GenerateExamplesForOptionalFields: false
+    MultitargetDotnetVersions: false
+    BackoffMax: 0
+    RetryOnTimeout: true
+    EnableCookies: false
+    EnableJsonPassThroughForAny: false
+    PascalCaseEnumForCSharp: false
+    PascalCaseEnumForTypeScript: false
+    DisableMultipleAuth: false
+    AddSingleAuthDeprecatedCode: true
+    EnableExperimentalTypeCombinatorGeneration: false
+    ErrorTemplates: {}
+    UseSecuritySchemeNameForSingleAuth: false
+  x-server-configuration:
+    default-environment: production
+    default-server: default
+    environments:
+    - name: production
+      description: alpha dev
+      servers:
+      - name: default
+        url: https://pcapi-alpha.dev.plataforma-claro.com
+    - name: environment2
+      description: preoductivo release
+      servers:
+      - name: default
+        url: https://pcapi.release.plataforma-claro.com
+    parameters: []
+  x-image-uri: ''
+jsonSchemaDialect: https://json-schema.org/draft/2020-12/schema
+servers:
+- url: https://pcapi-alpha.dev.plataforma-claro.com
+  description: alpha dev
+  variables: {}
+- url: https://pcapi.release.plataforma-claro.com
+  description: preoductivo release
+  variables: {}
+paths:
+  /cm/v2/product/commerce/{IDCommerce}/product:
+    post:
+      tags:
+      - PRODUCTOS.
+      summary: CmV2ProductCommerceProductByIDCommerce_POST
+      description: Creación de productos en T1Comercios.
+      operationId: CmV2ProductCommerceProductByIDCommerce_POST
+      parameters:
+      - name: IDCommerce
+        in: path
+        description: Identificador único del comercio o seller.
+        required: true
+        style: simple
+        schema:
+          type: integer
+          contentEncoding: int32
+          examples:
+          - 10541
+      requestBody:
+        description: Body principal para el alta de un producto sin variación
+        content:
+          application/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/schema_full_product'
+              - description: Body principal para el alta de un producto sin variación
+              contentMediaType: application/json
+        required: true
+      responses:
+        '200':
+          description: En caso de éxito
+          headers: {}
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProductAcepted'
+        '409':
+          description: En caso de no cumplir con una regla de negocio
+          headers: {}
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/product_error_4091'
+      deprecated: false
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+        ErrorTemplates: {}
+        SkipAdditionalHeaders: false
+      x-unitTests: []
+    get:
+      tags:
+      - PRODUCTOS.
+      summary: CmV2ProductCommerceProductByIDCommerce_GET
+      description: Listado de productos creadas por una tienda en T1comercios. Este listado regresa la información basica de un producto en  T1COMERCIOS  y su estatus en los canales de venta CS, SEARS  y SANBORNS.
+      operationId: CmV2ProductCommerceProductByIDCommerce_GET
+      parameters:
+      - name: IDCommerce
+        in: path
+        description: Identificador único del comercio o seller.
+        required: true
+        style: simple
+        schema:
+          type: integer
+          contentEncoding: int32
+          examples:
+          - 10541
+      - name: q
+        in: query
+        description: Búsquedas de full text en el producto, busca en el nombre, sku_padre y sku variaciones.
+        style: form
+        explode: true
+        schema:
+          type: array
+          items:
+            type: string
+          examples:
+          - - Celular T1COMERCIOS
+            - SKU_P_01
+      - name: order_precio
+        in: query
+        description: Ordenamiento de resultados por precios, toma el precio más alto de todos los canales de venta.
+        style: form
+        explode: true
+        schema:
+          allOf:
+          - $ref: '#/components/schemas/order_precio'
+          - description: Ordenamiento de resultados por precios, toma el precio más alto de todos los canales de venta.
+            examples:
+            - ASC
+      - name: order_name
+        in: query
+        description: Ordenamiento de resultados por nombre.
+        style: form
+        explode: true
+        schema:
+          allOf:
+          - $ref: '#/components/schemas/order_name'
+          - description: Ordenamiento de resultados por nombre.
+            examples:
+            - ASC
+      - name: order_fecha_creacion
+        in: query
+        description: Ordenamiento por fecha de creación.
+        style: form
+        explode: true
+        schema:
+          allOf:
+          - $ref: '#/components/schemas/order_fecha_creacion'
+          - description: Ordenamiento por fecha de creación.
+            examples:
+            - ASC
+      - name: filter_marketplace
+        in: query
+        description: Filtro de productos activos para el canal de venta seleccionado.
+        style: form
+        explode: true
+        schema:
+          allOf:
+          - $ref: '#/components/schemas/filter_marketplace'
+          - description: Filtro de productos activos para el canal de venta seleccionado.
+      - name: filter_dropshipping
+        in: query
+        description: Filtros para productos con la modailidad de entrega FULFILLMENT
+        style: form
+        explode: true
+        schema:
+          type: boolean
+          examples:
+          - true
+      - name: filter_fulfillment
+        in: query
+        description: Filtros para productos con la modailidad de entrega FULFILLMENT
+        style: form
+        explode: true
+        schema:
+          type: boolean
+          examples:
+          - true
+      - name: page
+        in: query
+        description: No, de página que se desea obtener
+        style: form
+        explode: true
+        schema:
+          minimum: 1
+          type: integer
+          contentEncoding: int32
+          default: 1
+          examples:
+          - 1
+      - name: page_size
+        in: query
+        description: Tamaño de la página que se desea obtener
+        style: form
+        explode: true
+        schema:
+          maximum: 50
+          minimum: 1
+          type: integer
+          contentEncoding: int32
+          default: 15
+          examples:
+          - 20
+      responses:
+        '200':
+          description: Respuesta del listado de productos de un comercio.
+          headers: {}
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/response_product_list'
+      deprecated: false
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+        ErrorTemplates: {}
+        SkipAdditionalHeaders: false
+      x-unitTests:
+      - request:
+          method: GET
+          uri: /cm/v2/product/commerce/10541/product?q=%5B%22Celular%20T1COMERCIOS%22%2C%22SKU_P_01%22%5D&order_precio=ASC&order_name=ASC&order_fecha_creacion=ASC&filter_dropshipping=true&filter_fulfillment=true&page=1&page_size=15
+        expectedResponse:
+          x-allowExtraHeaders: true
+          x-bodyMatchMode: NONE
+          x-arrayOrderedMatching: false
+          x-arrayCheckCount: false
+          x-matchResponseSchema: true
+          statusCode: '200'
+          headers:
+            Content-Type: application/json
+        x-testShouldPass: true
+        x-testEnabled: true
+        x-testName: Test CmV2ProductCommerceProductByIDCommerce_GET
+        x-testDescription: Listado de productos creadas por una tienda en T1comercios. Este listado regresa la información basica de un producto en  T1COMERCIOS  y su estatus en los canales de venta CS, SEARS  y SANBORNS.
+    parameters: []
+  /cm/v2/product/commerce/{IDCommerce}/product/{IDProduct}:
+    patch:
+      tags:
+      - PRODUCTOS.
+      summary: CmV2ProductCommerceProductByIDCommerce_PATCH
+      description: Actualiza los datos del producto, implementa JSON Merge Patch como se describe en el rfc7386
+      operationId: CmV2ProductCommerceProductByIDCommerce_PATCH
+      parameters:
+      - name: IDCommerce
+        in: path
+        description: Identificador único del comercio o seller.
+        required: true
+        style: simple
+        schema:
+          type: integer
+          contentEncoding: int32
+          examples:
+          - 10541
+      - name: IDProduct
+        in: path
+        description: Identificador único del producto.
+        required: true
+        style: simple
+        schema:
+          type: integer
+          contentEncoding: int32
+      requestBody:
+        description: Solo se deben mandar los parametros a modificar.
+        content:
+          application/merge-patch+json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/schema_full_product'
+              - description: Solo se deben mandar los parametros a modificar.
+              contentMediaType: application/merge-patch+json
+        required: true
+      responses:
+        '200':
+          description: En caso de que el producto se actualizo correctamente
+          headers: {}
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/patch_product_acepted'
+        '404':
+          description: En caso de que el producto no exista
+          headers: {}
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/basic_response_4041'
+        '409':
+          description: En caso de no cumplir con una regla de negocio
+          headers: {}
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/product_error_4091'
+      deprecated: false
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+        ErrorTemplates: {}
+        SkipAdditionalHeaders: false
+      x-unitTests: []
+    get:
+      tags:
+      - PRODUCTOS.
+      summary: CmV2ProductCommerceProductByIDCommerce_GET
+      description: 'Obtiene información de una publicación en especifico. '
+      operationId: GetCmV2ProductCommerceProductByIDCommerce_GET
+      parameters:
+      - name: IDCommerce
+        in: path
+        description: Identificador único del comercio o seller.
+        required: true
+        style: simple
+        schema:
+          type: integer
+          contentEncoding: int32
+          examples:
+          - 10541
+      - name: IDProduct
+        in: path
+        description: Identificador único del producto.
+        required: true
+        style: simple
+        schema:
+          type: integer
+          contentEncoding: int32
+      responses:
+        '200':
+          description: En caso de éxito
+          headers: {}
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProductAcepted'
+      deprecated: false
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+        ErrorTemplates: {}
+        SkipAdditionalHeaders: false
+      x-unitTests: []
+    delete:
+      tags:
+      - PRODUCTOS.
+      summary: CmV2ProductCommerceProductByIDCommerce_DELETE
+      description: >
+        Eliminación del producto en T1comercios.
+
+        Al eliminar el producto, se inactiva de todos los canales de venta.
+      operationId: CmV2ProductCommerceProductByIDCommerce_DELETE
+      parameters:
+      - name: IDCommerce
+        in: path
+        description: Identificador único del comercio o seller.
+        required: true
+        style: simple
+        schema:
+          type: integer
+          contentEncoding: int32
+          examples:
+          - 10541
+      - name: IDProduct
+        in: path
+        description: Identificador único del producto.
+        required: true
+        style: simple
+        schema:
+          type: integer
+          contentEncoding: int32
+      responses:
+        '200':
+          description: En caso de éxito
+          headers: {}
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/basic_response_200'
+        '404':
+          description: En caso de que el producto no exista
+          headers: {}
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/basic_response_4041'
+      deprecated: false
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+        ErrorTemplates: {}
+        SkipAdditionalHeaders: false
+      x-unitTests: []
+    parameters: []
+  /cm/v2/product/commerce/{IDCommerce}/pause/:
+    post:
+      tags:
+      - PRODUCTOS.
+      summary: CmV2ProductCommercePauseByIDCommerce_POST
+      description: Pausa la publicación en los canales de venta indicados.
+      operationId: CmV2ProductCommercePauseByIDCommerce_POST
+      parameters:
+      - name: IDCommerce
+        in: path
+        description: Identificador único del comercio o seller.
+        required: true
+        style: simple
+        schema:
+          type: integer
+          contentEncoding: int32
+          examples:
+          - 10541
+      requestBody:
+        description: Solo mandar los canales de venta donde se quiere realizar la operación.
+        content:
+          application/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/schema_active_inactive'
+              - description: Solo mandar los canales de venta donde se quiere realizar la operación.
+              contentMediaType: application/json
+        required: true
+      responses:
+        '200':
+          description: En caso de éxito
+          headers: {}
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/basic_response_200'
+        '404':
+          description: En caso de que el producto no exista
+          headers: {}
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/basic_response_4041'
+      deprecated: false
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+        ErrorTemplates: {}
+        SkipAdditionalHeaders: false
+      x-unitTests: []
+    parameters: []
+  /cm/v2/product/commerce/{IDCommerce}/active/:
+    post:
+      tags:
+      - PRODUCTOS.
+      summary: CmV2ProductCommerceActiveByIDCommerce_POST
+      description: Activa la publicación en los canales de venta indicados.
+      operationId: CmV2ProductCommerceActiveByIDCommerce_POST
+      parameters:
+      - name: IDCommerce
+        in: path
+        description: Identificador único del comercio o seller.
+        required: true
+        style: simple
+        schema:
+          type: integer
+          contentEncoding: int32
+          examples:
+          - 10541
+      requestBody:
+        description: Solo mandar los canales de venta donde se quiere realizar la operación.
+        content:
+          application/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/schema_active_inactive'
+              - description: Solo mandar los canales de venta donde se quiere realizar la operación.
+              contentMediaType: application/json
+        required: true
+      responses:
+        '200':
+          description: En caso de éxito
+          headers: {}
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/basic_response_200'
+        '404':
+          description: En caso de que el producto no exista
+          headers: {}
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/basic_response_4041'
+      deprecated: false
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+        ErrorTemplates: {}
+        SkipAdditionalHeaders: false
+      x-unitTests: []
+    parameters: []
+  /cm/v2/product/commerce/{IDCommerce}/product/{IDProduct}/sku:
+    get:
+      tags:
+      - PRODUCTOS.
+      summary: CmV2ProductCommerceProductSku_GET
+      description: Obtiene los datos de los SKUS ( Variaciones ) de un producto.
+      operationId: CmV2ProductCommerceProductSku_GET
+      parameters:
+      - name: IDCommerce
+        in: path
+        description: Identificador único del comercio o seller.
+        required: true
+        style: simple
+        schema:
+          type: integer
+          contentEncoding: int32
+          examples:
+          - 10541
+      - name: IDProduct
+        in: path
+        description: Identificador único del producto.
+        required: true
+        style: simple
+        schema:
+          type: integer
+          contentEncoding: int32
+      responses:
+        '200':
+          description: Respuesta con el listado de SKUS de un produdcto
+          headers: {}
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/response_skus'
+        '404':
+          description: En caso de que el producto no exista
+          headers: {}
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/basic_response_4041'
+      deprecated: false
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+        ErrorTemplates: {}
+        SkipAdditionalHeaders: false
+      x-unitTests: []
+    parameters: []
+components:
+  schemas:
+    schema_full_product:
+      title: schema_full_product
+      required:
+      - sku_padre
+      - name
+      - category_t1comercios
+      - category_name_t1comercios
+      - brand
+      - description
+      - packing_days
+      - volumetry
+      - photo
+      - video
+      - bullets
+      - warranty
+      - invoice
+      - sales_channel
+      - sku
+      type: object
+      properties:
+        sku_padre:
+          pattern: /^[0-9a-zA-Z-]+$/
+          type: string
+          description: Indetificador único externo. El valor de este campo NO se puede repetir dentro de todo la tienda. Ni como SKU PADRE o como SKU VARIACION.
+        name:
+          pattern: /^[0-9a-zA-Z-]+$/
+          type: string
+          description: Título principal  de la publicación.
+        category_t1comercios:
+          type: integer
+          description: ID Categoría de T1Comercios. Este producto debe existir dentro del catalógo de T1Comercios.
+          contentEncoding: int32
+          examples:
+          - 11769
+        category_name_t1comercios:
+          type: string
+          description: Texto del nombre de la categoría T1Comercios.
+          examples:
+          - Cajas
+        brand:
+          type: string
+          description: Marca de la publicación.
+          examples:
+          - cuvo
+        description:
+          type: string
+          description: Descripción  de la publicación.
+          examples:
+          - Descripción de la publicación. Producto de prueba.
+        packing_days:
+          minimum: 0
+          type: integer
+          description: Número de días en que el comercio tarda en embarcar el producto.
+          contentEncoding: int32
+          examples:
+          - 1
+        volumetry:
+          type: array
+          items:
+            $ref: '#/components/schemas/Volumetry'
+          description: Arreglo de medidas volumetricas.
+        photo:
+          type: array
+          items:
+            $ref: '#/components/schemas/Photo'
+          description: Array de fotos de la publicación. Una publicación puede tener máximo 10 imagenes.
+        video:
+          type: array
+          items:
+            $ref: '#/components/schemas/Video'
+          description: Listado de videos, actualmente solo se permiten videos de youtube.
+        bullets:
+          maxItems: 10
+          type: array
+          items:
+            maxLength: 500
+            type: string
+          description: Arreglo de strings que describen el producto, estos se pintaran a manera de listado en los portales de claroshop, SEARS y Sanborns. Se permiten 7 bullets por producto.
+          examples:
+          - - 100% Algodón
+            - Tejido hecho a mano
+        warranty:
+          allOf:
+          - $ref: '#/components/schemas/Warranty'
+          - description: Objeto de inidica los tipos  garantías que ofrece el vendedor en la publicación.
+        invoice:
+          allOf:
+          - $ref: '#/components/schemas/Invoice'
+          - description: Arreglo que indica los códigos del tipo de mercancia. Para el cumplimiento de la ley "Carta Porte".
+        sales_channel:
+          allOf:
+          - $ref: '#/components/schemas/SalesChannel'
+          - description: Objecto que indica los canales de venta en los cuales se va a comercializar la publicación.
+        sku:
+          type: array
+          items:
+            $ref: '#/components/schemas/Sku'
+          description: Schema qe define el array de ojectos "Variaciones."
+      description: Schema básico de un producto, este schema es para cualquer tipo de producto, con o sin variación.
+    schema_active_inactive:
+      title: schema_active_inactive
+      type: object
+      properties:
+        ids:
+          type: array
+          items:
+            type: string
+          description: ID's Productos en los que aplicará la operación
+        salesChannels:
+          type: array
+          items:
+            type: string
+          description: Canales de venta en donde se aplicarán los cambios.
+      description: Objeto con IDS y canales de de venta en los que se aplicará la operación
+    Metadata:
+      title: Metadata
+      type: object
+      properties:
+        status:
+          allOf:
+          - $ref: '#/components/schemas/Status1'
+          - {}
+        http_code:
+          type: integer
+          contentEncoding: int32
+          examples:
+          - 200
+        date_time:
+          type: string
+          contentEncoding: date-time
+          examples:
+          - 2019-08-27T18:18:31Z
+        message:
+          type: string
+          examples:
+          - ok
+    ProductErrors404-Productonoencontrado:
+      title: ProductErrors404-Productonoencontrado
+      type: object
+      properties:
+        status:
+          type: string
+          default: fail
+        http_code:
+          type: integer
+          contentEncoding: int32
+          examples:
+          - 404
+        date_time:
+          type: string
+          contentEncoding: date-time
+          examples:
+          - 2019-08-27T18:18:31Z
+        message:
+          type: string
+          default: object not found
+          examples:
+          - object not found
+    ProductError409-Productoenconflicto:
+      title: ProductError409-Productoenconflicto
+      type: object
+      properties:
+        status:
+          allOf:
+          - $ref: '#/components/schemas/Status1'
+          - {}
+        http_code:
+          type: integer
+          contentEncoding: int32
+          examples:
+          - 409
+        date_time:
+          type: string
+          contentEncoding: date-time
+          examples:
+          - 2019-08-27T18:18:31Z
+    paginationMetadata:
+      title: paginationMetadata
+      type: object
+      properties:
+        total_count:
+          minimum: 0
+          type: integer
+          contentEncoding: int64
+          examples:
+          - 300
+        page:
+          minimum: 1
+          type: integer
+          contentEncoding: int32
+          examples:
+          - 25
+        page_size:
+          minimum: 1
+          type: integer
+          contentEncoding: int32
+          examples:
+          - 50
+    basic_response_200:
+      title: basic_response_200
+      type: object
+      properties:
+        metadata:
+          allOf:
+          - $ref: '#/components/schemas/Metadata'
+          - {}
+    basic_response_4041:
+      title: basic_response_4041
+      type: object
+      properties:
+        metadata:
+          allOf:
+          - $ref: '#/components/schemas/ProductErrors404-Productonoencontrado'
+          - {}
+    CS:
+      title: CS
+      type: object
+      properties:
+        category:
+          type: string
+          description: IDCategoría del canal de venta Claroshop.
+          examples:
+          - '22080'
+        category_name:
+          type: string
+          description: Nombre de la Categoría del canal de venta Claroshop.com
+          examples:
+          - Aceites, Salsas, Vinagres y Aderezos
+        list_price:
+          type: integer
+          description: Precio del lista de la publicación para el canal Claroshop.
+          contentEncoding: int32
+          examples:
+          - 100
+        sales_price:
+          type: integer
+          description: Precio en que el producto se venderá, antes conocido como Precio Oferta. **El precio oferta no puede ser menor al 71% del valor del nodo, "list_price"**.
+          contentEncoding: int32
+          examples:
+          - 90
+        active:
+          type: boolean
+          description: EStatus del producto en el canal de venta.
+          examples:
+          - true
+      description: Objecto que define la configuración del venta del canal Claroshop.com
+    CS1:
+      title: CS1
+      type: object
+      properties:
+        product_id:
+          type: string
+          description: Número de publicación en el canal de venta
+          examples:
+          - '17633415'
+        category:
+          type: string
+          description: Id de la Categoría de la publicación dentro del canal de venta
+          examples:
+          - '22080'
+        category_name:
+          type: string
+          description: Texto del título de la Categoría de la publicación dentro del canal de venta
+          examples:
+          - Aceites
+        list_price:
+          type: integer
+          description: Precio base de la publicación para el canal de venta
+          contentEncoding: int32
+          examples:
+          - 999
+        sale_price:
+          type: integer
+          description: Precio Oferta de la publicación para el canal de venta. ( Precio final de la publicación)
+          contentEncoding: int32
+          examples:
+          - 699
+        url:
+          type: string
+          description: URL de la publicación en el canal de venta
+          examples:
+          - https://www.claroshop.com/producto/17633415/producto-validacion/
+        active:
+          type: boolean
+          description: Bandera que indica si el producto esta activo para el canal de venta
+          examples:
+          - true
+        status:
+          type: string
+          description: "Estatus de la publicación en el canal de ventas\n       \n* received : Cuando se recibe el producto o alguna actualización del mismo, queda en este status, hasta que se valide que el producto cumple con las condiciones necesarias para poder ser revisado para su aprovacion manual o actualizado en el canal de ventas\n\n* incomplete: si el producto no cumple con algun dato necesario para su publiacion en el canal de ventas queda en este status ejemplo, hace falta una caracteristica necesaria para la categoria en el canl de ventas\n\n* pending_validation: cuando el producto es nuevo o requiere que sea aprovado algún cambio en el canal de ventas el producto queda en este status.\n\n* validated: si el producto ya está validado y listo para ser publicado al canal de ventas.\n\n* published: si el producto esta publicado y sincronizado con el canal de ventas\n\n* rejected: cuando el producto no fue aprobado para su publicacion en el canal de ventas ( para uso futuro )\n\n* unpublished: cuando el producto fue dado de baja en el canal ( para uso futuro )"
+          examples:
+          - published
+        prices_per_variant:
+          type: array
+          items:
+            $ref: '#/components/schemas/PricesPerVariant'
+          description: >-
+            Precios separados por sku, este campo solo se usara cuando el producto tenga precios diferentes para diferentes variantes del mismo (talla, color, tamaño, etc), cada precio indicara un arreglo de skus para los cuales aplica el precio, puede haber cualquier cantidad de precios diferentes, siempre que se cumpla con las siguientes reglas.
+
+            * todos los skus tienen un precio asignado
+
+            * cada sku tiene solo un precio asignado
+
+            * no hay precios que no tengan al menos un sku asignado
+
+
+            Cuando se usa este objeto los valores de los nodos sales_price y list_price generales no serán considerados, por lo que deberian viajar en nulo.
+      description: Objecto que ibtiene la información de cada canal de venta
+    Cs2:
+      title: Cs2
+      type: object
+      properties:
+        list_price:
+          type: integer
+          description: Precio Lista en el canal de venta.
+          contentEncoding: int32
+          examples:
+          - 999
+        sale_price:
+          type: integer
+          description: Precio Oferta en el canal de venta.
+          contentEncoding: int32
+          examples:
+          - 799
+      description: Objeto con los precios del SKU en el canal de venta, actualmente regresa los precios del sku principal en el canal de venta
+    Data:
+      title: Data
+      type: object
+      properties:
+        id:
+          type: string
+          examples:
+          - 66444ec564296966e96270a2
+      description: IDProducto interno de T1COMERCIOS, con este ID se realizarán las operaciones / modificaciones hacía la publicación
+    Data1:
+      title: Data1
+      type: object
+      properties:
+        error_code:
+          allOf:
+          - $ref: '#/components/schemas/ErrorCode'
+          - description: Codigo de error en caso de que el producto no compla con una validación interna
+            examples:
+            - ERR-001
+        message:
+          allOf:
+          - $ref: '#/components/schemas/Message'
+          - description: Descripción del error, al momento de crear la publicación.
+    ErrorCode:
+      title: ErrorCode
+      enum:
+      - ERR-001
+      - ERR-002
+      - ERR-003
+      - ERR-004
+      - ERR-005
+      - ERR-006
+      - ERR-007
+      - ERR-008
+      - ERR-009
+      - ERR-010
+      - ERR-011
+      - ERR-012
+      - ERR-013
+      - ERR-014
+      - ERR-015
+      - ERR-016
+      - ERR-017
+      - ERR-018
+      - ERR-019
+      - ERR-020
+      - ERR-021
+      type: string
+      description: Codigo de error en caso de que el producto no compla con una validación interna
+      examples:
+      - ERR-001
+      x-enum-elements:
+      - name: ERR001
+        description: ''
+      - name: ERR002
+        description: ''
+      - name: ERR003
+        description: ''
+      - name: ERR004
+        description: ''
+      - name: ERR005
+        description: ''
+      - name: ERR006
+        description: ''
+      - name: ERR007
+        description: ''
+      - name: ERR008
+        description: ''
+      - name: ERR009
+        description: ''
+      - name: ERR010
+        description: ''
+      - name: ERR011
+        description: ''
+      - name: ERR012
+        description: ''
+      - name: ERR013
+        description: ''
+      - name: ERR014
+        description: ''
+      - name: ERR015
+        description: ''
+      - name: ERR016
+        description: ''
+      - name: ERR017
+        description: ''
+      - name: ERR018
+        description: ''
+      - name: ERR019
+        description: ''
+      - name: ERR020
+        description: ''
+      - name: ERR021
+        description: ''
+    filter_marketplace:
+      title: filter_marketplace
+      enum:
+      - CS
+      - SR
+      - SN
+      type: string
+      x-enum-elements:
+      - name: CS
+        description: ''
+      - name: SR
+        description: ''
+      - name: SN
+        description: ''
+    Invoice:
+      title: Invoice
+      type: object
+      properties:
+        sat-code:
+          type: string
+          description: ID  del catalógo de SAT.
+          examples:
+          - '53111500'
+        sat-measure-unit:
+          type: string
+          description: Texto del valor del código SAT.
+          examples:
+          - Botas
+        iva:
+          type: boolean
+          description: Nodo que indica si el producto grava o no grava IVA.
+          examples:
+          - false
+      description: Arreglo que indica los códigos del tipo de mercancia. Para el cumplimiento de la ley "Carta Porte".
+    Manufacturer:
+      title: Manufacturer
+      type: object
+      properties:
+        quantity:
+          type: integer
+          contentEncoding: int32
+          examples:
+          - 10
+        measure:
+          allOf:
+          - $ref: '#/components/schemas/Measure1'
+          - {}
+      description: Garantía de fábrica que ofrece la publicación.
+    Measure:
+      title: Measure
+      enum:
+      - days
+      - months
+      - years
+      type: string
+      x-enum-elements:
+      - name: days
+        description: ''
+      - name: months
+        description: ''
+      - name: years
+        description: ''
+    Measure1:
+      title: Measure1
+      enum:
+      - days
+      - months
+      type: string
+      x-enum-elements:
+      - name: days
+        description: ''
+      - name: months
+        description: ''
+    Message:
+      title: Message
+      enum:
+      - sku - Ya encuentra registrados en el sistema
+      - ean - Ya encuentra registrados en el sistema
+      - picture - El producto debe incluir almenos una imagen.
+      - sku_padre - Ya encuentra registrados en el sistema
+      - category_t1 - Debe enviar una categoria t1 valida
+      - brand- El producto debe tener una marca
+      - stock - Se debe considerar stock al crear el producto
+      - invoice - Se deben llenar los datos del objeto invoice
+      - description - El producto debe contener una descripcion
+      - sales_channel/estatus - Cada item dentro de sku debe contener status
+      - sales_channel/active - La propiedad active dentro del objeto sales channel es necesaria
+      - Volumetry - La volumetria es necesaria, ademas los valores deven ser > 0
+      - packing_days - Dias de embarque necesario
+      - warranty- El atributo garantía es necesario
+      - prices - Existe conflicto entre el precio base y precio oferta
+      - SKU_PADRE -  NO se puede editar.
+      - EAN - NO se puede editar.
+      - list_price - El precio base no debe ser menor al 70% del valor actual.
+      - sales_price - El precio oferta no debe ser menor al 70% del valor actual.
+      - volumetry -  Producto FF,  No se puede modificar los datos de voluemtría.
+      - stock - Producto FF,No se puede modificar el stock.
+      type: string
+      description: Descripción del error, al momento de crear la publicación.
+      x-enum-elements:
+      - name: Enum_sku  Ya encuentra registrados en el sistema
+        description: ''
+      - name: Enum_ean  Ya encuentra registrados en el sistema
+        description: ''
+      - name: Enum_picture  El producto debe incluir almenos una imagen
+        description: ''
+      - name: Enum_sku_padre  Ya encuentra registrados en el sistema
+        description: ''
+      - name: Enum_category_t1  Debe enviar una categoria t1 valida
+        description: ''
+      - name: Enum_brand El producto debe tener una marca
+        description: ''
+      - name: Enum_stock  Se debe considerar stock al crear el producto
+        description: ''
+      - name: Enum_invoice  Se deben llenar los datos del objeto invoice
+        description: ''
+      - name: Enum_description  El producto debe contener una descripcion
+        description: ''
+      - name: Enum_sales_channelestatus  Cada item dentro de sku debe contener status
+        description: ''
+      - name: Enum_sales_channelactive  La propiedad active dentro del objeto sales channel es necesaria
+        description: ''
+      - name: Enum_Volumetry  La volumetria es necesaria ademas los valores deven ser  0
+        description: ''
+      - name: Enum_packing_days  Dias de embarque necesario
+        description: ''
+      - name: Enum_warranty El atributo garanta es necesario
+        description: ''
+      - name: Enum_prices  Existe conflicto entre el precio base y precio oferta
+        description: ''
+      - name: Enum_SKU_PADRE   NO se puede editar
+        description: ''
+      - name: Enum_EAN  NO se puede editar
+        description: ''
+      - name: Enum_list_price  El precio base no debe ser menor al 70 del valor actual
+        description: ''
+      - name: Enum_sales_price  El precio oferta no debe ser menor al 70 del valor actual
+        description: ''
+      - name: Enum_volumetry   Producto FF  No se puede modificar los datos de voluemtra
+        description: ''
+      - name: Enum_stock  Producto FFNo se puede modificar el stock
+        description: ''
+    order_fecha_creacion:
+      title: order_fecha_creacion
+      enum:
+      - DESC
+      - ASC
+      type: string
+      examples:
+      - ASC
+      x-enum-elements:
+      - name: DESC
+        description: ''
+      - name: ASC
+        description: ''
+    order_name:
+      title: order_name
+      enum:
+      - DESC
+      - ASC
+      type: string
+      examples:
+      - ASC
+      x-enum-elements:
+      - name: DESC
+        description: ''
+      - name: ASC
+        description: ''
+    order_precio:
+      title: order_precio
+      enum:
+      - DESC
+      - ASC
+      type: string
+      examples:
+      - ASC
+      x-enum-elements:
+      - name: DESC
+        description: ''
+      - name: ASC
+        description: ''
+    patch_product_acepted:
+      title: patch_product_acepted
+      type: object
+      properties:
+        metadata:
+          allOf:
+          - $ref: '#/components/schemas/Metadata'
+          - {}
+        data:
+          allOf:
+          - $ref: '#/components/schemas/schema_full_product'
+          - description: Schema básico de un producto, este schema es para cualquer tipo de producto, con o sin variación.
+    Photo:
+      title: Photo
+      required:
+      - url
+      - order
+      type: object
+      properties:
+        url:
+          type: string
+          description: Url de la imagen que se cargo en el método FileManager.
+          examples:
+          - https://medios.plazavip.com/t1/1715047030ImagendeWhatsApp20240417alas11461309c23dcdjpg
+        order:
+          type: integer
+          description: Orden en que se mostrará la imagen dentro de la plataforma y en los canales de venta.
+          contentEncoding: int32
+          examples:
+          - 1
+      description: Objecto que define una imagen asociada a la publicación.
+    Photo1:
+      title: Photo1
+      type: object
+      properties:
+        order:
+          type: string
+          description: Orden de la ímagen.
+          examples:
+          - '1'
+        url:
+          type: string
+          description: URL de la imagen del SKU
+          examples:
+          - https://resources.claroshop.com/medios-plazavip/t1/1715953442images
+    PricesPerVariant:
+      title: PricesPerVariant
+      type: object
+      properties:
+        sale_price:
+          multipleOf: 0.01
+          maximum: 999999.99
+          minimum: 11
+          type: number
+          description: precio de oferta, precio de venta al cliente final, debe ser menor o igual al precio de lista
+          examples:
+          - 1971.19
+        list_price:
+          multipleOf: 0.01
+          maximum: 999999.99
+          minimum: 11
+          type: number
+          description: precio de lista, si es mayor al precio de oferta se mostrara en el portal como una rebaja, la diferencia entre el precio de lista y el precio de oferta no podra ser mayor al 70% por seguridad
+          examples:
+          - 1971.19
+        skus:
+          type: array
+          items:
+            type: string
+          description: ''
+    product_error_4091:
+      title: product_error_4091
+      type: object
+      properties:
+        metadata:
+          allOf:
+          - $ref: '#/components/schemas/ProductError409-Productoenconflicto'
+          - {}
+        data:
+          allOf:
+          - $ref: '#/components/schemas/Data1'
+          - {}
+    ProductAcepted:
+      title: ProductAcepted
+      type: object
+      properties:
+        metadata:
+          allOf:
+          - $ref: '#/components/schemas/Metadata'
+          - {}
+        data:
+          allOf:
+          - $ref: '#/components/schemas/Data'
+          - description: IDProducto interno de T1COMERCIOS, con este ID se realizarán las operaciones / modificaciones hacía la publicación
+    response_product_list:
+      title: response_product_list
+      type: object
+      properties:
+        metadata:
+          allOf:
+          - $ref: '#/components/schemas/Metadata'
+          - {}
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/schema_product_list'
+          description: Schema del listado de productos.
+        pagination:
+          allOf:
+          - $ref: '#/components/schemas/paginationMetadata'
+          - {}
+    response_skus:
+      title: response_skus
+      type: object
+      properties:
+        metadata:
+          allOf:
+          - $ref: '#/components/schemas/Metadata'
+          - {}
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/schema_skus_list'
+          description: Array de objetos SKUS.
+        pagination:
+          allOf:
+          - $ref: '#/components/schemas/paginationMetadata'
+          - {}
+    SalesChanel:
+      title: SalesChanel
+      type: object
+      properties:
+        cs:
+          allOf:
+          - $ref: '#/components/schemas/Cs2'
+          - description: Objeto con los precios del SKU en el canal de venta, actualmente regresa los precios del sku principal en el canal de venta
+        sr:
+          allOf:
+          - $ref: '#/components/schemas/Sr1'
+          - description: Objeto con los precios del SKU en el canal de venta, actualmente regresa los precios del sku principal en el canal de venta
+        sn:
+          allOf:
+          - $ref: '#/components/schemas/Sn1'
+          - description: Objeto con los precios del SKU en el canal de venta, actualmente regresa los precios del sku principal en el canal de venta
+      description: Objeto  de objetos que indica los precios por canal de venta
+    SalesChannel:
+      title: SalesChannel
+      type: object
+      properties:
+        CS:
+          allOf:
+          - $ref: '#/components/schemas/CS'
+          - description: Objecto que define la configuración del venta del canal Claroshop.com
+        SR:
+          allOf:
+          - $ref: '#/components/schemas/SR'
+          - description: Objecto que define la configuración del venta del canal Claroshop.com
+        SN:
+          allOf:
+          - $ref: '#/components/schemas/SN'
+          - description: Objecto que define la configuración del venta del canal Claroshop.com
+      description: Objecto que indica los canales de venta en los cuales se va a comercializar la publicación.
+    SalesChannel1:
+      title: SalesChannel1
+      type: object
+      properties:
+        CS:
+          allOf:
+          - $ref: '#/components/schemas/CS1'
+          - description: Objecto que ibtiene la información de cada canal de venta
+      description: Objecto con información de los canales de venta
+    schema_product_list:
+      title: schema_product_list
+      type: object
+      properties:
+        id:
+          type: string
+          description: IDPRODUCTO, identificador unico por publicación en T1Comercios
+          examples:
+          - 664513f364296966e9627198
+        sku_padre:
+          type: string
+          description: Indetificador externo principal de la publicación
+          examples:
+          - SKUP_01
+        name:
+          type: string
+          description: Titulo de la publicación
+          examples:
+          - Producto de prueba T1Comercios
+        shipping_method:
+          allOf:
+          - $ref: '#/components/schemas/ShippingMethod'
+          - description: Método de envío de la publicación
+            examples:
+            - Dropshipping
+        firstPhoto:
+          type: string
+          description: URL de la imagen  principal de la publicación
+          examples:
+          - https://resources.claroshop.com/medios-plazavip/t1/1715047030ImagendeWhatsApp20240417alas11461309c23dcdjpg
+        sales_channel:
+          allOf:
+          - $ref: '#/components/schemas/SalesChannel1'
+          - description: Objecto con información de los canales de venta
+      description: Objecto que define un producto en el listado.
+    schema_sku_con_variacione:
+      title: schema_sku_con_variacione
+      required:
+      - sku
+      - stock
+      - universal_id_type
+      - universal_id
+      type: object
+      properties:
+        sku:
+          pattern: /^[0-9a-zA-Z-]+$/
+          type: string
+          description: Unidad de mantenimiento en almacén', valor único para el comercio.
+        stock:
+          type: integer
+          description: Stock de la variacion.
+          contentEncoding: int32
+          examples:
+          - 2
+        universal_id_type:
+          allOf:
+          - $ref: '#/components/schemas/UniversalIdType'
+          - description: tipo de identificador universal usado
+        universal_id:
+          pattern: /^[0-9]+$/
+          type: string
+          description: Identificador universal del producto, valor único para el comercio.
+        color:
+          type:
+          - string
+          - 'null'
+          description: Nombre del color de la variación.
+          examples:
+          - blanco
+        size:
+          type:
+          - string
+          - 'null'
+          description: Nombre de la talla de la variación.
+          examples:
+          - XL
+      description: Objeto que define una variación.
+    schema_sku_sin_variacione:
+      title: schema_sku_sin_variacione
+      required:
+      - sku
+      - stock
+      - universal_id_type
+      - universal_id
+      - status
+      type: object
+      properties:
+        sku:
+          pattern: /^[0-9a-zA-Z-]+$/
+          type: string
+          description: Unidad de mantenimiento en almacén', valor único para el comercio.
+        stock:
+          type: integer
+          description: Stock de la variacion.
+          contentEncoding: int32
+          examples:
+          - 2
+        universal_id_type:
+          allOf:
+          - $ref: '#/components/schemas/UniversalIdType'
+          - description: tipo de identificador universal usado
+        universal_id:
+          pattern: /^[0-9]+$/
+          type: string
+          description: Identificador universal del producto, valor único para el comercio.
+        status:
+          allOf:
+          - $ref: '#/components/schemas/Status'
+          - description: Estatus de la variación.
+            examples:
+            - active
+      description: Objeto que define una variación.
+    schema_skus_list:
+      title: schema_skus_list
+      type: object
+      properties:
+        sku:
+          type: string
+          description: SKU de la variación
+          examples:
+          - SKU_V_01
+        name:
+          type: string
+          description: Título del producto.
+          examples:
+          - Variación 1 del producto
+        variation_name:
+          description: 'Título de la variación : Talla +  Color'
+        universal_id:
+          description: Valor del campo Universal_id
+          examples:
+          - 10000000000171
+        universal_id_type:
+          allOf:
+          - $ref: '#/components/schemas/UniversalIdType3'
+          - description: Tipo de Unversal ID
+            examples:
+            - EAN
+        variation:
+          type: array
+          items:
+            $ref: '#/components/schemas/Variation'
+          description: ''
+        stock:
+          type: integer
+          description: Stock de la variación
+          contentEncoding: int32
+          examples:
+          - 100
+        status:
+          type: string
+          description: Estatus de la variación, por el momento, simpre regresa 'active'
+          examples:
+          - active
+        fulfillment:
+          type: boolean
+          description: Indica si la variación es FF
+          examples:
+          - false
+        sales_chanel:
+          allOf:
+          - $ref: '#/components/schemas/SalesChanel'
+          - description: Objeto  de objetos que indica los precios por canal de venta
+        photo:
+          type: array
+          items:
+            $ref: '#/components/schemas/Photo1'
+          description: Array de objectos con las imagenes del sku
+      description: Objeto que define el SKU , (variación) del producto
+    Seller:
+      title: Seller
+      type: object
+      properties:
+        quantity:
+          type: integer
+          contentEncoding: int32
+          examples:
+          - 10
+        measure:
+          allOf:
+          - $ref: '#/components/schemas/Measure'
+          - {}
+      description: Garantía que proporciona el vendedor.
+    ShippingMethod:
+      title: ShippingMethod
+      enum:
+      - Dropshipping
+      - fulfillment
+      type: string
+      description: Método de envío de la publicación
+      examples:
+      - Dropshipping
+      x-enum-elements:
+      - name: Dropshipping
+        description: ''
+      - name: fulfillment
+        description: ''
+    Sku:
+      title: Sku
+      type: object
+      properties:
+        sku:
+          pattern: /^[0-9a-zA-Z-]+$/
+          type: string
+          description: Unidad de mantenimiento en almacén', valor único para el comercio.
+        stock:
+          type: integer
+          description: Stock de la variacion.
+          contentEncoding: int32
+          examples:
+          - 2
+        universal_id_type:
+          allOf:
+          - $ref: '#/components/schemas/UniversalIdType'
+          - description: tipo de identificador universal usado
+        universal_id:
+          pattern: /^[0-9]+$/
+          type: string
+          description: Identificador universal del producto, valor único para el comercio.
+        color:
+          type:
+          - string
+          - 'null'
+          description: Nombre del color de la variación.
+          examples:
+          - blanco
+        size:
+          type:
+          - string
+          - 'null'
+          description: Nombre de la talla de la variación.
+          examples:
+          - XL
+      description: Objeto que define una variación.
+    SN:
+      title: SN
+      type: object
+      properties:
+        category:
+          type: string
+          description: IDCategoría del canal de venta sanborns.com.mx.
+          examples:
+          - '22080'
+        category_name:
+          type: string
+          description: Nombre de la Categoría del canal de venta sanborns.com.mx
+          examples:
+          - Aceites, Salsas, Vinagres y Aderezos
+        list_price:
+          type: integer
+          description: Precio del lista de la publicación para el canal sanborns.com.mx
+          contentEncoding: int32
+          examples:
+          - 100
+        sales_price:
+          type: integer
+          description: Precio en que el producto se venderá, antes conocido como Precio Oferta. **El precio oferta no puede ser menor al 71% del valor del nodo, "list_price"**.
+          contentEncoding: int32
+          examples:
+          - 90
+        active:
+          type: boolean
+          description: EStatus del producto en el canal de venta.
+          examples:
+          - true
+      description: Objecto que define la configuración del venta del canal Claroshop.com
+    Sn1:
+      title: Sn1
+      type: object
+      properties:
+        list_price:
+          type: integer
+          description: Precio Lista en el canal de venta.
+          contentEncoding: int32
+          examples:
+          - 999
+        sale_price:
+          type: integer
+          description: Precio Oferta en el canal de venta.
+          contentEncoding: int32
+          examples:
+          - 799
+      description: Objeto con los precios del SKU en el canal de venta, actualmente regresa los precios del sku principal en el canal de venta
+    SR:
+      title: SR
+      type: object
+      properties:
+        category:
+          type: string
+          description: IDCategoría del canal de venta Claroshop.
+          examples:
+          - '22080'
+        category_name:
+          type: string
+          description: Nombre de la Categoría del canal de venta SEARS.com.mx
+          examples:
+          - Aceites, Salsas, Vinagres y Aderezos
+        list_price:
+          type: integer
+          description: Precio del lista de la publicación para el canal SEARS.com.mx
+          contentEncoding: int32
+          examples:
+          - 100
+        sales_price:
+          type: integer
+          description: Precio en que el producto se venderá, antes conocido como Precio Oferta. **El precio oferta no puede ser menor al 71% del valor del nodo, "list_price"**.
+          contentEncoding: int32
+          examples:
+          - 90
+        active:
+          type: boolean
+          description: EStatus del producto en el canal de venta.
+          examples:
+          - true
+      description: Objecto que define la configuración del venta del canal Claroshop.com
+    Sr1:
+      title: Sr1
+      type: object
+      properties:
+        list_price:
+          type: integer
+          description: Precio Lista en el canal de venta.
+          contentEncoding: int32
+          examples:
+          - 999
+        sale_price:
+          type: integer
+          description: Precio Oferta en el canal de venta.
+          contentEncoding: int32
+          examples:
+          - 799
+      description: Objeto con los precios del SKU en el canal de venta, actualmente regresa los precios del sku principal en el canal de venta
+    Status:
+      title: Status
+      enum:
+      - active
+      - inactiv
+      type: string
+      description: Estatus de la variación.
+      examples:
+      - active
+      x-enum-elements:
+      - name: active
+        description: ''
+      - name: inactiv
+        description: ''
+    Status1:
+      title: Status1
+      enum:
+      - success
+      - error
+      - fail
+      type: string
+      x-enum-elements:
+      - name: success
+        description: ''
+      - name: error
+        description: ''
+      - name: fail
+        description: ''
+    UniversalIdType:
+      title: UniversalIdType
+      enum:
+      - ean-8
+      - upc-12
+      - upc-8
+      - gtin-14
+      - isbn-13
+      - issn-12
+      - otro
+      type: string
+      description: tipo de identificador universal usado
+      x-enum-elements:
+      - name: ean8
+        description: ''
+      - name: upc12
+        description: ''
+      - name: upc8
+        description: ''
+      - name: gtin14
+        description: ''
+      - name: isbn13
+        description: ''
+      - name: issn12
+        description: ''
+      - name: otro
+        description: ''
+    UniversalIdType3:
+      title: UniversalIdType3
+      enum:
+      - EAN
+      - ean-8
+      - upc-12
+      - upc-8
+      - gtin-14
+      - isbn-13
+      - issn-12
+      - otro
+      type: string
+      description: Tipo de Unversal ID
+      examples:
+      - EAN
+      x-enum-elements:
+      - name: EAN
+        description: ''
+      - name: ean8
+        description: ''
+      - name: upc12
+        description: ''
+      - name: upc8
+        description: ''
+      - name: gtin14
+        description: ''
+      - name: isbn13
+        description: ''
+      - name: issn12
+        description: ''
+      - name: otro
+        description: ''
+    Variation:
+      title: Variation
+      type: object
+      properties:
+        variationName:
+          type: string
+          description: Nombre de la variación
+          examples:
+          - talla
+        variation_value:
+          type: string
+          description: Valor del tipo de variación
+          examples:
+          - EG
+      description: Array de objectos que definen los tipos de variaciones
+    Video:
+      title: Video
+      required:
+      - order
+      - skus
+      type: object
+      properties:
+        order:
+          type: integer
+          description: Siempre envíar el valor "1".
+          contentEncoding: int32
+          examples:
+          - 1
+        skus:
+          type: array
+          items:
+            type: string
+          description: Array de SKUS que le pertenecen al objeto.Para producto Sin Vairación, envíar array vacío.
+      description: Array de videos de un producto. En caso de que el producto no tenga videos, envíar el objeto vacio.
+    Volumetry:
+      title: Volumetry
+      required:
+      - higth
+      - width
+      - deep
+      - weight
+      type: object
+      properties:
+        higth:
+          type: integer
+          description: Alto del paquete
+          contentEncoding: int32
+          examples:
+          - 20
+        width:
+          type: integer
+          description: Ancho del paquete
+          contentEncoding: int32
+          examples:
+          - 20
+        deep:
+          type: integer
+          description: Profundo del paquete
+          contentEncoding: int32
+          examples:
+          - 20
+        weight:
+          type: integer
+          description: Peso del paquete
+          contentEncoding: int32
+          examples:
+          - 20
+      description: Medidas de volumetria de un paquete
+    Warranty:
+      title: Warranty
+      type: object
+      properties:
+        seller:
+          allOf:
+          - $ref: '#/components/schemas/Seller'
+          - description: Garantía que proporciona el vendedor.
+        manufacturer:
+          allOf:
+          - $ref: '#/components/schemas/Manufacturer'
+          - description: Garantía de fábrica que ofrece la publicación.
+      description: Objeto de inidica los tipos  garantías que ofrece el vendedor en la publicación.
+tags:
+- name: PRODUCTOS.
+  description: ''
