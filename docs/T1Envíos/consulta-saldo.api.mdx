@@ -1,0 +1,362 @@
+---
+id: consulta-saldo
+title: "Consulta Saldo"
+description: "Método para consultar saldo."
+sidebar_label: "Consulta Saldo"
+hide_title: true
+hide_table_of_contents: true
+api: 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
+sidebar_class_name: "get api-method"
+info_path: docs/T1Envíos/t-1-envios
+custom_edit_url: null
+---
+
+import ApiTabs from "@theme/ApiTabs";
+import DiscriminatorTabs from "@theme/DiscriminatorTabs";
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import SecuritySchemes from "@theme/ApiExplorer/SecuritySchemes";
+import MimeTabs from "@theme/MimeTabs";
+import ParamsItem from "@theme/ParamsItem";
+import ResponseSamples from "@theme/ResponseSamples";
+import SchemaItem from "@theme/SchemaItem";
+import SchemaTabs from "@theme/SchemaTabs";
+import Markdown from "@theme/Markdown";
+import Heading from "@theme/Heading";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Consulta Saldo"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"get"}
+  path={"/sl/comercio/{clave}"}
+>
+  
+</MethodEndpoint>
+
+
+
+Método para consultar saldo.
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+  children={"Request"}
+>
+</Heading>
+
+<details
+  style={{"marginBottom":"1rem"}}
+  className={"openapi-markdown__details"}
+  data-collapsed={false}
+  open={true}
+>
+  <summary
+    style={{}}
+  >
+    <h3
+      className={"openapi-markdown__details-summary-header-params"}
+    >
+      Path Parameters
+    </h3>
+  </summary><div>
+    <ul>
+      <ParamsItem
+        className={"paramsItem"}
+        param={{"name":"clave","in":"path","description":"","required":true,"style":"simple","schema":{"type":"string"}}}
+      >
+        
+      </ParamsItem>
+    </ul>
+  </div>
+</details><div>
+  <div>
+    <ApiTabs
+      label={undefined}
+      id={undefined}
+    >
+      <TabItem
+        label={"200"}
+        value={"200"}
+      >
+        <div>
+          
+          
+          Respuesta de petición consulta saldo.
+          
+          
+        </div><details
+          style={{"textAlign":"left","marginBottom":"1rem"}}
+          className={"openapi-markdown__details"}
+          data-collaposed={true}
+          open={false}
+        >
+          <summary
+            style={{}}
+          >
+            <strong>
+              Response Headers
+            </strong>
+          </summary><ul
+            style={{"marginLeft":"1rem"}}
+          >
+            
+          </ul>
+        </details><div>
+          <MimeTabs
+            className={"openapi-tabs__mime"}
+            schemaType={"response"}
+          >
+            <TabItem
+              label={"application/json"}
+              value={"application/json"}
+            >
+              <SchemaTabs
+                className={"openapi-tabs__schema"}
+              >
+                <TabItem
+                  label={"Schema"}
+                  value={"Schema"}
+                >
+                  <details
+                    style={{}}
+                    className={"openapi-markdown__details response"}
+                    data-collapsed={false}
+                    open={true}
+                  >
+                    <summary
+                      style={{}}
+                      className={"openapi-markdown__details-summary-response"}
+                    >
+                      <strong>
+                        Schema
+                      </strong>
+                    </summary><div
+                      style={{"textAlign":"left","marginLeft":"1rem"}}
+                    >
+                      
+                    </div><ul
+                      style={{"marginLeft":"1rem"}}
+                    >
+                      <SchemaItem
+                        collapsible={false}
+                        name={"success"}
+                        required={false}
+                        schemaName={"boolean"}
+                        qualifierMessage={undefined}
+                        schema={{"type":"boolean","description":"true | false"}}
+                      >
+                        
+                      </SchemaItem><SchemaItem
+                        collapsible={false}
+                        name={"message"}
+                        required={false}
+                        schemaName={"string"}
+                        qualifierMessage={undefined}
+                        schema={{"type":"string","description":"Mensaje de respuesta"}}
+                      >
+                        
+                      </SchemaItem><SchemaItem
+                        collapsible={true}
+                        className={"schemaItem"}
+                      >
+                        <details
+                          style={{}}
+                          className={"openapi-markdown__details"}
+                        >
+                          <summary
+                            style={{}}
+                          >
+                            <span
+                              className={"openapi-schema__container"}
+                            >
+                              <strong
+                                className={"openapi-schema__property"}
+                              >
+                                detail
+                              </strong><span
+                                className={"openapi-schema__name"}
+                              >
+                                 object
+                              </span>
+                            </span>
+                          </summary><div
+                            style={{"marginLeft":"1rem"}}
+                          >
+                            <div
+                              style={{"marginTop":".5rem","marginBottom":".5rem"}}
+                            >
+                              
+                              
+                              detalle de monto actual
+                              
+                              
+                            </div><SchemaItem
+                              collapsible={false}
+                              name={"monto_actual"}
+                              required={false}
+                              schemaName={"string"}
+                              qualifierMessage={undefined}
+                              schema={{"type":"string"}}
+                            >
+                              
+                            </SchemaItem>
+                          </div>
+                        </details>
+                      </SchemaItem>
+                    </ul>
+                  </details>
+                </TabItem><TabItem
+                  label={"Example (from schema)"}
+                  value={"Example (from schema)"}
+                >
+                  <ResponseSamples
+                    responseExample={"{\n  \"success\": true,\n  \"message\": \"string\",\n  \"detail\": {\n    \"monto_actual\": \"string\"\n  }\n}"}
+                    language={"json"}
+                  >
+                    
+                  </ResponseSamples>
+                </TabItem><TabItem
+                  label={"Respuesta de petición consulta saldo"}
+                  value={"Respuesta de petición consulta saldo"}
+                >
+                  <ResponseSamples
+                    responseExample={"{\n  \"success\": true,\n  \"message\": \"Búsqueda exitosa!\",\n  \"detail\": {\n    \"monto_actual\": \"5000\"\n  }\n}"}
+                    language={"json"}
+                  >
+                    
+                  </ResponseSamples>
+                </TabItem>
+              </SchemaTabs>
+            </TabItem>
+          </MimeTabs>
+        </div>
+      </TabItem><TabItem
+        label={"400"}
+        value={"400"}
+      >
+        <div>
+          
+          
+          Posibles errores
+          
+          
+        </div><details
+          style={{"textAlign":"left","marginBottom":"1rem"}}
+          className={"openapi-markdown__details"}
+          data-collaposed={true}
+          open={false}
+        >
+          <summary
+            style={{}}
+          >
+            <strong>
+              Response Headers
+            </strong>
+          </summary><ul
+            style={{"marginLeft":"1rem"}}
+          >
+            
+          </ul>
+        </details><div>
+          <MimeTabs
+            className={"openapi-tabs__mime"}
+            schemaType={"response"}
+          >
+            <TabItem
+              label={"application/json"}
+              value={"application/json"}
+            >
+              <SchemaTabs
+                className={"openapi-tabs__schema"}
+              >
+                <TabItem
+                  label={"Schema"}
+                  value={"Schema"}
+                >
+                  <details
+                    style={{}}
+                    className={"openapi-markdown__details response"}
+                    data-collapsed={false}
+                    open={true}
+                  >
+                    <summary
+                      style={{}}
+                      className={"openapi-markdown__details-summary-response"}
+                    >
+                      <strong>
+                        Schema
+                      </strong>
+                    </summary><div
+                      style={{"textAlign":"left","marginLeft":"1rem"}}
+                    >
+                      
+                    </div><ul
+                      style={{"marginLeft":"1rem"}}
+                    >
+                      <SchemaItem
+                        collapsible={false}
+                        name={"success"}
+                        required={false}
+                        schemaName={"boolean"}
+                        qualifierMessage={undefined}
+                        schema={{"type":"boolean"}}
+                      >
+                        
+                      </SchemaItem><SchemaItem
+                        collapsible={false}
+                        name={"message"}
+                        required={false}
+                        schemaName={"string"}
+                        qualifierMessage={undefined}
+                        schema={{"type":"string"}}
+                      >
+                        
+                      </SchemaItem><SchemaItem
+                        collapsible={false}
+                        name={"error"}
+                        required={false}
+                        schemaName={"string"}
+                        qualifierMessage={undefined}
+                        schema={{"type":"string"}}
+                      >
+                        
+                      </SchemaItem>
+                    </ul>
+                  </details>
+                </TabItem><TabItem
+                  label={"Example (from schema)"}
+                  value={"Example (from schema)"}
+                >
+                  <ResponseSamples
+                    responseExample={"{\n  \"success\": true,\n  \"message\": \"string\",\n  \"error\": \"string\"\n}"}
+                    language={"json"}
+                  >
+                    
+                  </ResponseSamples>
+                </TabItem><TabItem
+                  label={"Posibles errores"}
+                  value={"Posibles errores"}
+                >
+                  <ResponseSamples
+                    responseExample={"{\n  \"success\": false,\n  \"message\": \"Error al procesar petición\",\n  \"error\": \"No existe en recurso con id: x\"\n}"}
+                    language={"json"}
+                  >
+                    
+                  </ResponseSamples>
+                </TabItem>
+              </SchemaTabs>
+            </TabItem>
+          </MimeTabs>
+        </div>
+      </TabItem>
+    </ApiTabs>
+  </div>
+</div>
+      

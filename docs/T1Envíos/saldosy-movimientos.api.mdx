@@ -1,0 +1,514 @@
+---
+id: saldosy-movimientos
+title: "Saldos y Movimientos"
+description: "Método que consulta los saldos y cobro de guiás."
+sidebar_label: "Saldos y Movimientos"
+hide_title: true
+hide_table_of_contents: true
+api: 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
+sidebar_class_name: "get api-method"
+info_path: docs/T1Envíos/t-1-envios
+custom_edit_url: null
+---
+
+import ApiTabs from "@theme/ApiTabs";
+import DiscriminatorTabs from "@theme/DiscriminatorTabs";
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import SecuritySchemes from "@theme/ApiExplorer/SecuritySchemes";
+import MimeTabs from "@theme/MimeTabs";
+import ParamsItem from "@theme/ParamsItem";
+import ResponseSamples from "@theme/ResponseSamples";
+import SchemaItem from "@theme/SchemaItem";
+import SchemaTabs from "@theme/SchemaTabs";
+import Markdown from "@theme/Markdown";
+import Heading from "@theme/Heading";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Saldos y Movimientos"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"get"}
+  path={"/sl-mov/comercio/{clave}/items/10/pag/{numeroPagina}"}
+>
+  
+</MethodEndpoint>
+
+
+
+Método que consulta los saldos y cobro de guiás.
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+  children={"Request"}
+>
+</Heading>
+
+<details
+  style={{"marginBottom":"1rem"}}
+  className={"openapi-markdown__details"}
+  data-collapsed={false}
+  open={true}
+>
+  <summary
+    style={{}}
+  >
+    <h3
+      className={"openapi-markdown__details-summary-header-params"}
+    >
+      Path Parameters
+    </h3>
+  </summary><div>
+    <ul>
+      <ParamsItem
+        className={"paramsItem"}
+        param={{"name":"clave","in":"path","description":"","required":true,"style":"simple","schema":{"type":"string"}}}
+      >
+        
+      </ParamsItem><ParamsItem
+        className={"paramsItem"}
+        param={{"name":"numeroPagina","in":"path","description":"","required":true,"style":"simple","schema":{"type":"string"}}}
+      >
+        
+      </ParamsItem>
+    </ul>
+  </div>
+</details><details
+  style={{"marginBottom":"1rem"}}
+  className={"openapi-markdown__details"}
+  data-collapsed={false}
+  open={true}
+>
+  <summary
+    style={{}}
+  >
+    <h3
+      className={"openapi-markdown__details-summary-header-params"}
+    >
+      Query Parameters
+    </h3>
+  </summary><div>
+    <ul>
+      <ParamsItem
+        className={"paramsItem"}
+        param={{"name":"columna","in":"query","description":"Columna por la cual se desea ordenar, es requerida cuando el parámetro “orden_columna” esta presente y diferente de null las opciones permitidas son:\n    -fecha\n    -tipo","style":"form","explode":true,"schema":{"type":"string"}}}
+      >
+        
+      </ParamsItem><ParamsItem
+        className={"paramsItem"}
+        param={{"name":"orden_columna","in":"query","description":"Forma por la cual se desea ordenar una columna, es requerida cuando el parámetro “columna” esta presente y diferente de null las opciones permitidas son:\n    -asc\n    -desc","style":"form","explode":true,"schema":{"type":"string"}}}
+      >
+        
+      </ParamsItem><ParamsItem
+        className={"paramsItem"}
+        param={{"name":"folio","in":"query","description":"Número de folio","style":"form","explode":true,"schema":{"type":"string"}}}
+      >
+        
+      </ParamsItem><ParamsItem
+        className={"paramsItem"}
+        param={{"name":"fecha_inicio","in":"query","description":"Fecha en que se creo el movimiento","style":"form","explode":true,"schema":{"type":"string","contentEncoding":"date"}}}
+      >
+        
+      </ParamsItem><ParamsItem
+        className={"paramsItem"}
+        param={{"name":"fecha_fin","in":"query","description":"Indica la fecha final de búsqueda","style":"form","explode":true,"schema":{"type":"string","contentEncoding":"date"}}}
+      >
+        
+      </ParamsItem><ParamsItem
+        className={"paramsItem"}
+        param={{"name":"tipo","in":"query","description":"Indica el tipo de registros que serán filtrados, los valore aceptados son:\n    -saldos\n    -guias","style":"form","explode":true,"schema":{"type":"string"}}}
+      >
+        
+      </ParamsItem>
+    </ul>
+  </div>
+</details><div>
+  <div>
+    <ApiTabs
+      label={undefined}
+      id={undefined}
+    >
+      <TabItem
+        label={"200"}
+        value={"200"}
+      >
+        <div>
+          
+          
+          Método que consulta los saldos y cobro de guiás.
+          
+          
+        </div><details
+          style={{"textAlign":"left","marginBottom":"1rem"}}
+          className={"openapi-markdown__details"}
+          data-collaposed={true}
+          open={false}
+        >
+          <summary
+            style={{}}
+          >
+            <strong>
+              Response Headers
+            </strong>
+          </summary><ul
+            style={{"marginLeft":"1rem"}}
+          >
+            
+          </ul>
+        </details><div>
+          <MimeTabs
+            className={"openapi-tabs__mime"}
+            schemaType={"response"}
+          >
+            <TabItem
+              label={"application/json"}
+              value={"application/json"}
+            >
+              <SchemaTabs
+                className={"openapi-tabs__schema"}
+              >
+                <TabItem
+                  label={"Schema"}
+                  value={"Schema"}
+                >
+                  <details
+                    style={{}}
+                    className={"openapi-markdown__details response"}
+                    data-collapsed={false}
+                    open={true}
+                  >
+                    <summary
+                      style={{}}
+                      className={"openapi-markdown__details-summary-response"}
+                    >
+                      <strong>
+                        Schema
+                      </strong>
+                    </summary><div
+                      style={{"textAlign":"left","marginLeft":"1rem"}}
+                    >
+                      
+                    </div><ul
+                      style={{"marginLeft":"1rem"}}
+                    >
+                      <SchemaItem
+                        collapsible={false}
+                        name={"success"}
+                        required={false}
+                        schemaName={"boolean"}
+                        qualifierMessage={undefined}
+                        schema={{"type":"boolean","description":"true | false"}}
+                      >
+                        
+                      </SchemaItem><SchemaItem
+                        collapsible={false}
+                        name={"message"}
+                        required={false}
+                        schemaName={"string"}
+                        qualifierMessage={undefined}
+                        schema={{"type":"string","description":"Mensaje arrojado de resultado de la petición"}}
+                      >
+                        
+                      </SchemaItem><SchemaItem
+                        collapsible={true}
+                        className={"schemaItem"}
+                      >
+                        <details
+                          style={{}}
+                          className={"openapi-markdown__details"}
+                        >
+                          <summary
+                            style={{}}
+                          >
+                            <span
+                              className={"openapi-schema__container"}
+                            >
+                              <strong
+                                className={"openapi-schema__property"}
+                              >
+                                detail
+                              </strong><span
+                                className={"openapi-schema__name"}
+                              >
+                                 object
+                              </span>
+                            </span>
+                          </summary><div
+                            style={{"marginLeft":"1rem"}}
+                          >
+                            <div
+                              style={{"marginTop":".5rem","marginBottom":".5rem"}}
+                            >
+                              
+                              
+                              Array con información requerida.
+                              
+                              
+                            </div><SchemaItem
+                              collapsible={true}
+                              className={"schemaItem"}
+                            >
+                              <details
+                                style={{}}
+                                className={"openapi-markdown__details"}
+                              >
+                                <summary
+                                  style={{}}
+                                >
+                                  <span
+                                    className={"openapi-schema__container"}
+                                  >
+                                    <strong
+                                      className={"openapi-schema__property"}
+                                    >
+                                      data
+                                    </strong><span
+                                      className={"openapi-schema__name"}
+                                    >
+                                       object[]
+                                    </span>
+                                  </span>
+                                </summary><div
+                                  style={{"marginLeft":"1rem"}}
+                                >
+                                  <li>
+                                    <div
+                                      style={{"fontSize":"var(--ifm-code-font-size)","opacity":"0.6","marginLeft":"-.5rem","paddingBottom":".5rem"}}
+                                    >
+                                      Array [
+                                    </div>
+                                  </li><SchemaItem
+                                    collapsible={false}
+                                    name={"folio"}
+                                    required={false}
+                                    schemaName={"string"}
+                                    qualifierMessage={undefined}
+                                    schema={{"type":"string","description":"identificador del movimiento(saldo/guia)"}}
+                                  >
+                                    
+                                  </SchemaItem><SchemaItem
+                                    collapsible={false}
+                                    name={"fecha"}
+                                    required={false}
+                                    schemaName={"string"}
+                                    qualifierMessage={undefined}
+                                    schema={{"type":"string","description":"fecha y hora en que en que se registro el movimiento en t1envios","contentEncoding":"date-time"}}
+                                  >
+                                    
+                                  </SchemaItem><SchemaItem
+                                    collapsible={false}
+                                    name={"tipo"}
+                                    required={false}
+                                    schemaName={"string"}
+                                    qualifierMessage={undefined}
+                                    schema={{"type":"string","description":"tipo de movimiento (saldo/guia)"}}
+                                  >
+                                    
+                                  </SchemaItem><SchemaItem
+                                    collapsible={false}
+                                    name={"subtotal"}
+                                    required={false}
+                                    schemaName={"string"}
+                                    qualifierMessage={undefined}
+                                    schema={{"type":"string","description":"sub total"}}
+                                  >
+                                    
+                                  </SchemaItem><SchemaItem
+                                    collapsible={false}
+                                    name={"total"}
+                                    required={false}
+                                    schemaName={"string"}
+                                    qualifierMessage={undefined}
+                                    schema={{"type":"string","description":"precio total"}}
+                                  >
+                                    
+                                  </SchemaItem><li>
+                                    <div
+                                      style={{"fontSize":"var(--ifm-code-font-size)","opacity":"0.6","marginLeft":"-.5rem"}}
+                                    >
+                                      ]
+                                    </div>
+                                  </li>
+                                </div>
+                              </details>
+                            </SchemaItem>
+                          </div>
+                        </details>
+                      </SchemaItem>
+                    </ul>
+                  </details>
+                </TabItem><TabItem
+                  label={"Example (from schema)"}
+                  value={"Example (from schema)"}
+                >
+                  <ResponseSamples
+                    responseExample={"{\n  \"success\": true,\n  \"message\": \"string\",\n  \"detail\": {\n    \"data\": [\n      {\n        \"folio\": \"string\",\n        \"fecha\": \"string\",\n        \"tipo\": \"string\",\n        \"subtotal\": \"string\",\n        \"total\": \"string\"\n      }\n    ]\n  }\n}"}
+                    language={"json"}
+                  >
+                    
+                  </ResponseSamples>
+                </TabItem>
+              </SchemaTabs>
+            </TabItem>
+          </MimeTabs>
+        </div>
+      </TabItem><TabItem
+        label={"400"}
+        value={"400"}
+      >
+        <div>
+          
+          
+          Posibles errores por falta de algún campo requerido.
+          
+          
+        </div><details
+          style={{"textAlign":"left","marginBottom":"1rem"}}
+          className={"openapi-markdown__details"}
+          data-collaposed={true}
+          open={false}
+        >
+          <summary
+            style={{}}
+          >
+            <strong>
+              Response Headers
+            </strong>
+          </summary><ul
+            style={{"marginLeft":"1rem"}}
+          >
+            
+          </ul>
+        </details><div>
+          <MimeTabs
+            className={"openapi-tabs__mime"}
+            schemaType={"response"}
+          >
+            <TabItem
+              label={"application/json"}
+              value={"application/json"}
+            >
+              <SchemaTabs
+                className={"openapi-tabs__schema"}
+              >
+                <TabItem
+                  label={"Schema"}
+                  value={"Schema"}
+                >
+                  <details
+                    style={{}}
+                    className={"openapi-markdown__details response"}
+                    data-collapsed={false}
+                    open={true}
+                  >
+                    <summary
+                      style={{}}
+                      className={"openapi-markdown__details-summary-response"}
+                    >
+                      <strong>
+                        Schema
+                      </strong>
+                    </summary><div
+                      style={{"textAlign":"left","marginLeft":"1rem"}}
+                    >
+                      
+                    </div><ul
+                      style={{"marginLeft":"1rem"}}
+                    >
+                      <SchemaItem
+                        collapsible={false}
+                        name={"success"}
+                        required={false}
+                        schemaName={"boolean"}
+                        qualifierMessage={undefined}
+                        schema={{"type":"boolean"}}
+                      >
+                        
+                      </SchemaItem><SchemaItem
+                        collapsible={false}
+                        name={"message"}
+                        required={false}
+                        schemaName={"string"}
+                        qualifierMessage={undefined}
+                        schema={{"type":"string"}}
+                      >
+                        
+                      </SchemaItem><SchemaItem
+                        collapsible={true}
+                        className={"schemaItem"}
+                      >
+                        <details
+                          style={{}}
+                          className={"openapi-markdown__details"}
+                        >
+                          <summary
+                            style={{}}
+                          >
+                            <span
+                              className={"openapi-schema__container"}
+                            >
+                              <strong
+                                className={"openapi-schema__property"}
+                              >
+                                error
+                              </strong><span
+                                className={"openapi-schema__name"}
+                              >
+                                 object
+                              </span>
+                            </span>
+                          </summary><div
+                            style={{"marginLeft":"1rem"}}
+                          >
+                            <SchemaItem
+                              collapsible={false}
+                              name={"orden_columna"}
+                              required={false}
+                              schemaName={"string[]"}
+                              qualifierMessage={undefined}
+                              schema={{"type":"array","description":"","items":{"type":"string"}}}
+                            >
+                              
+                            </SchemaItem>
+                          </div>
+                        </details>
+                      </SchemaItem>
+                    </ul>
+                  </details>
+                </TabItem><TabItem
+                  label={"Example (from schema)"}
+                  value={"Example (from schema)"}
+                >
+                  <ResponseSamples
+                    responseExample={"{\n  \"success\": true,\n  \"message\": \"string\",\n  \"error\": {\n    \"orden_columna\": [\n      \"string\"\n    ]\n  }\n}"}
+                    language={"json"}
+                  >
+                    
+                  </ResponseSamples>
+                </TabItem><TabItem
+                  label={"Error"}
+                  value={"Error"}
+                >
+                  <ResponseSamples
+                    responseExample={"{\n  \"success\": false,\n  \"message\": \"The given data was invalid.\",\n  \"error\": {\n    \"orden_columna\": [\n      \"El campo orden columna es obligatorio cuando columna está presente.\"\n    ]\n  }\n}"}
+                    language={"json"}
+                  >
+                    
+                  </ResponseSamples>
+                </TabItem>
+              </SchemaTabs>
+            </TabItem>
+          </MimeTabs>
+        </div>
+      </TabItem>
+    </ApiTabs>
+  </div>
+</div>
+      

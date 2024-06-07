@@ -1,19 +1,157 @@
 openapi: 3.1.0
 info:
   title: T1Envios
-  description: ''
+  description: >-
+    Es un servicio creado para poder cotizar y generar guías.
+
+
+
+    Requests API
+
+    Las peticiones requieren por seguridad Autenticarse por el esquema de autenticación Bearer, por lo que previamente se requiere obtener un access_token, el cual regresara un token de autenticación.
+
+
+    Headers
+
+    Todas las peticiones deben llevar los siguientes Headers :
+
+    {
+        Accept: "application/json",
+        Authorization: "Bearer {token}"
+    }
   contact:
     name: T1Envios
-    url: https://enapi.dev.t1envios.com/t1/api/
-    email: apiteam@swagger.io
+    url: https://enapi.t1envios.com/t1/pgs
   version: '1.0.0'
+  x-codegen-settings:
+    Nullify404: false
+    GenerateAsyncCode: true
+    UseMethodPrefix: false
+    UseModelPostfix: false
+    UseControllerPrefix: true
+    UseEnumPostfix: true
+    CollectParameters: false
+    UseConstructorsForConfig: false
+    UseCommonSDKLibrary: false
+    iOSUseAppInfoPlist: false
+    AndroidUseAppManifest: false
+    BodySerialization: 0
+    EnableAdditionalModelProperties: false
+    PreserveParameterOrder: true
+    AppendContentHeaders: true
+    iOSGenerateCoreData: false
+    GenerateInterfaces: false
+    NodeHttpClient: NODE_REQUEST
+    ValidateRequiredParameters: false
+    JavaUsePropertiesConfig: false
+    Timeout: 0
+    StoreTimezoneInformation: false
+    EnablePHPComposerVersionString: false
+    EnableLogging: false
+    ArraySerialization: Indexed
+    ModelSerializationScheme: Json
+    UseExceptionPrefix: true
+    RunscopeEnabled: false
+    AndroidHttpClient: ANDROID_OK
+    ObjCHttpClient: UNIREST
+    CSharpHttpClient: UNIREST
+    PHPHttpClient: UNIREST
+    JavaHttpClient: JAVA_OK
+    ParameterArrayFormat: ParamArrayWithIndex
+    SecurityProtocols:
+    - Ssl3
+    - Tls
+    GenerateTravisConfig: false
+    GenerateCircleConfig: false
+    GenerateAppveyorConfig: false
+    GenerateJenkinsConfig: false
+    EnableHttpCache: false
+    Retries: 0
+    RetryInterval: 1
+    GenerateAdvancedDocs: true
+    UnderscoreNumbers: true
+    UseSingletonPattern: true
+    DisableLinting: false
+    ApplyCustomizations: []
+    SortResources: false
+    AllowSkippingSSLCertVerification: false
+    DoNotSplitWords: []
+    EnableGlobalUserAgent: true
+    ReturnCompleteHttpResponse: false
+    GenerateModels: true
+    GenerateExceptions: true
+    IgnoreIfNullJson: false
+    DisableDocs: false
+    LiftParameterDescriptionFromCustomType: false
+    ThrowForHttpErrorStatusCodes: true
+    ResponseMapping:
+      Type: Simple
+    ForceKeywordArgsInRuby: false
+    SymbolizeHashKeysInRuby: false
+    UsageExampleEndpoint:
+      Description: ''
+      EndpointGroupName: ''
+      EndpointName: ''
+    IsLatestVersion: false
+    EnableImmutableModels: false
+    GenerateEnums: true
+    BackoffFactor: 2
+    StatusCodesToRetry:
+    - 408
+    - 413
+    - 429
+    - 500
+    - 502
+    - 503
+    - 504
+    - 521
+    - 522
+    - 524
+    RequestMethodsToRetry:
+    - GET
+    - PUT
+    UserConfigurableRetries: true
+    UseEndpointMethodName: false
+    EncodeTemplateParameters: true
+    GenerateExamplesForOptionalFields: false
+    MultitargetDotnetVersions: false
+    BackoffMax: 0
+    RetryOnTimeout: true
+    EnableCookies: false
+    EnableJsonPassThroughForAny: false
+    PascalCaseEnumForCSharp: false
+    PascalCaseEnumForTypeScript: false
+    DisableMultipleAuth: false
+    AddSingleAuthDeprecatedCode: true
+    EnableExperimentalTypeCombinatorGeneration: false
+    ErrorTemplates: {}
+    UseSecuritySchemeNameForSingleAuth: false
+  x-server-configuration:
+    default-environment: production
+    default-server: default
+    environments:
+    - name: production
+      description: ''
+      servers:
+      - name: default
+        url: https://enapi.t1envios.com/t1/pgs
+    - name: environment2
+      description: ''
+      servers:
+      - name: default
+        url: https://pcapi.plataforma-claro.com
+    parameters: []
+  x-image-uri: ''
 jsonSchemaDialect: https://json-schema.org/draft/2020-12/schema
 servers:
-- url: https://enapi.dev.t1envios.com/t1/api/
+- url: https://enapi.t1envios.com/t1/pgs
+  description: ''
+  variables: {}
+- url: https://pcapi.plataforma-claro.com
   description: ''
   variables: {}
 paths:
-  /mensajeria-tarificador:
+  /mensajeria-cotizador:
     post:
       tags:
       - API
@@ -29,11 +167,37 @@ paths:
               allOf:
               - $ref: '#/components/schemas/RootTypeforGenerarCotizacion'
               - description: Pet to add to the store
+                examples:
+                - codigo_postal_origen: '55555'
+                  codigo_postal_destino: '99993'
+                  peso: 10
+                  largo: 65
+                  ancho: 20
+                  alto: 30
+                  dias_embarque: 1
+                  seguro: true
+                  valor_paquete: 1200
+                  tipo_paquete: 2
+                  comercio_id: clave
               contentMediaType: application/json
+            examples:
+              'Estructura de Request:':
+                value:
+                  codigo_postal_origen: '55555'
+                  codigo_postal_destino: '99993'
+                  peso: 10
+                  largo: 65
+                  ancho: 20
+                  alto: 30
+                  dias_embarque: 1
+                  seguro: true
+                  valor_paquete: 1200
+                  tipo_paquete: 2
+                  comercio_id: clave
         required: true
       responses:
         '200':
-          description: pet response
+          description: Respuesta de petición de cotización JSON.
           headers: {}
           content:
             application/json:
@@ -48,19 +212,27 @@ paths:
                     - id: 1
                       clave: DHL
                       comercio: '149'
-                      seguro: true
+                      comercio_clave: '126545'
+                      paquete: White
+                      seguro: false
                       cotizacion:
                         success: true
                         servicios:
                           ECONOMY SELECT DOMESTIC:
                             servicio: EXPRESS DOMESTIC
                             tipo_servicio: Dia Siguiente
-                            costo_total: 522.07
-                            fecha_mensajeria_entrega: 2024-01-01
-                            fecha_claro_entrega: 2024-01-02
+                            costo_mensajeria: 336
+                            costo_total: 496
+                            fecha_mensajeria_entrega: 2022-04-01
+                            fecha_claro_entrega: 2022-04-02
                             dias_entrega: 1
                             negociacion_id: 1
-                            valor_paquete: '1200'
+                            porcentaje_negociacion: 0
+                            costo_negociacion: '5.0'
+                            porcentaje_seguro: '1.0'
+                            costo_seguro: 0
+                            costo_zona_extendida: 155
+                            valor_paquete: '500'
                             moneda: MXN
                             peso: '1'
                             peso_volumetrico: 12
@@ -68,9 +240,7 @@ paths:
                             largo: '100'
                             ancho: '20'
                             alto: '30'
-                            costo_zona_extendida: 0
-                            costo_total_seguro: 0
-                            token: WP9ESYVvmNtSQi6ztXNxwagCm..
+                            token: 'WP9ES YVvmNtSQi6ztXNxwagCm.. '
                 contentMediaType: application/json
               examples:
                 Estructura de Response:
@@ -81,19 +251,27 @@ paths:
                     - id: 1
                       clave: DHL
                       comercio: '149'
-                      seguro: true
+                      comercio_clave: '126545'
+                      paquete: White
+                      seguro: false
                       cotizacion:
                         success: true
                         servicios:
                           ECONOMY SELECT DOMESTIC:
                             servicio: EXPRESS DOMESTIC
                             tipo_servicio: Dia Siguiente
-                            costo_total: 522.07
-                            fecha_mensajeria_entrega: 2024-01-01
-                            fecha_claro_entrega: 2024-01-02
+                            costo_mensajeria: 336
+                            costo_total: 496
+                            fecha_mensajeria_entrega: 2022-04-01
+                            fecha_claro_entrega: 2022-04-02
                             dias_entrega: 1
                             negociacion_id: 1
-                            valor_paquete: '1200'
+                            porcentaje_negociacion: 0
+                            costo_negociacion: '5.0'
+                            porcentaje_seguro: '1.0'
+                            costo_seguro: 0
+                            costo_zona_extendida: 155
+                            valor_paquete: '500'
                             moneda: MXN
                             peso: '1'
                             peso_volumetrico: 12
@@ -101,9 +279,61 @@ paths:
                             largo: '100'
                             ancho: '20'
                             alto: '30'
-                            costo_zona_extendida: 0
-                            costo_total_seguro: 0
-                            token: WP9ESYVvmNtSQi6ztXNxwagCm..
+                            token: 'WP9ES YVvmNtSQi6ztXNxwagCm.. '
+        '400':
+          description: Posibles errores por falta de algún campo requerido.
+          headers: {}
+          content:
+            application/json:
+              schema:
+                allOf:
+                - $ref: '#/components/schemas/RootTypeforGenerarCotizacionError'
+                - description: Posibles errores por falta de algún campo requerido.
+                  examples:
+                  - message: Datos Incorrectos.
+                    errors:
+                      codigo_postal_origen:
+                      - El campo codigo postal origen es obligatorio.
+                      codigo_postal_destino:
+                      - El campo codigo postal destino es obligatorio.
+                      peso:
+                      - El campo peso es obligatorio.
+                      largo:
+                      - El campo largo es obligatorio.
+                      ancho:
+                      - El campo ancho es obligatorio.
+                      alto:
+                      - El campo alto es obligatorio.
+                      dias_embarque:
+                      - El campo dias embarque es obligatorio.
+                      seguro:
+                      - El campo seguro es obligatorio.
+                      tipo_paquete:
+                      - El campo tipo paquete es obligatorio.
+                contentMediaType: application/json
+              examples:
+                Error:
+                  value:
+                    message: Datos Incorrectos.
+                    errors:
+                      codigo_postal_origen:
+                      - El campo codigo postal origen es obligatorio.
+                      codigo_postal_destino:
+                      - El campo codigo postal destino es obligatorio.
+                      peso:
+                      - El campo peso es obligatorio.
+                      largo:
+                      - El campo largo es obligatorio.
+                      ancho:
+                      - El campo ancho es obligatorio.
+                      alto:
+                      - El campo alto es obligatorio.
+                      dias_embarque:
+                      - El campo dias embarque es obligatorio.
+                      seguro:
+                      - El campo seguro es obligatorio.
+                      tipo_paquete:
+                      - El campo tipo paquete es obligatorio.
         default:
           description: unexpected error
           headers: {}
@@ -112,6 +342,34 @@ paths:
               schema:
                 $ref: '#/components/schemas/Error'
       deprecated: false
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+        ErrorTemplates: {}
+        SkipAdditionalHeaders: false
+      x-unitTests:
+      - request:
+          method: POST
+          uri: /mensajeria-cotizador
+          headers:
+            Content-Type: application/json
+          body: '{"codigo_postal_origen":"55555","codigo_postal_destino":"99993","peso":10,"largo":65,"ancho":20,"alto":30,"dias_embarque":1,"seguro":true,"valor_paquete":1200,"tipo_paquete":2,"comercio_id":"clave"}'
+        expectedResponse:
+          x-allowExtraHeaders: true
+          x-bodyMatchMode: KEYS
+          x-arrayOrderedMatching: false
+          x-arrayCheckCount: false
+          x-matchResponseSchema: true
+          statusCode: '200'
+          headers:
+            Content-Type: application/json
+          body: '{"success":true,"message":"Búsqueda exitosa!","detail":[{"id":1,"clave":"DHL","comercio":"149","comercio_clave":"126545","paquete":"White","seguro":false,"cotizacion":{"success":true,"servicios":{"ECONOMY SELECT DOMESTIC":{"servicio":"EXPRESS DOMESTIC","tipo_servicio":"Dia Siguiente","costo_mensajeria":336,"costo_total":496,"fecha_mensajeria_entrega":"2022-04-01","fecha_claro_entrega":"2022-04-02","dias_entrega":1,"negociacion_id":1,"porcentaje_negociacion":0,"costo_negociacion":"5.0","porcentaje_seguro":"1.0","costo_seguro":0,"costo_zona_extendida":155,"valor_paquete":"500","moneda":"MXN","peso":"1","peso_volumetrico":12,"peso_unidades":"KG","largo":"100","ancho":"20","alto":"30","token":"WP9ES YVvmNtSQi6ztXNxwagCm.. "}}}}]}'
+        x-testShouldPass: true
+        x-testEnabled: true
+        x-testName: Test Generar cotización
+        x-testDescription: Método para la generación de la cotización.
     parameters: []
   /generar-guia-mensajeria/{tokenCotizacion}:
     post:
@@ -135,55 +393,8 @@ paths:
             schema:
               allOf:
               - $ref: '#/components/schemas/GenerarGuiaAPartirDeCotizacionPreviaRequest'
-              - examples:
-                - contenido: Breve descripción del contenido
-                  nombre_origen: David
-                  apellidos_origen: Pérez
-                  email_origen: david_perez@correo.com
-                  calle_origen: Lago mayor
-                  numero_origen: '20'
-                  colonia_origen: Flores
-                  telefono_origen: '81345345'
-                  estado_origen: Estado de México
-                  municipio_origen: Coacalco
-                  referencias_origen: Referencia remitente
-                  nombre_destino: Jesus
-                  apellidos_destino: Luna
-                  email_destino: jesus@correo.com
-                  calle_destino: Duraznos
-                  numero_destino: '20'
-                  colonia_destino: Granjas
-                  telefono_destino: '67865432'
-                  estado_destino: Sonora
-                  municipio_destino: Sonora
-                  referencias_destino: Referencia destino
-                  generar_recoleccion: false
+              - {}
               contentMediaType: application/json
-            examples:
-              Estructura de Request:
-                value:
-                  contenido: Breve descripción del contenido
-                  nombre_origen: David
-                  apellidos_origen: Pérez
-                  email_origen: david_perez@correo.com
-                  calle_origen: Lago mayor
-                  numero_origen: '20'
-                  colonia_origen: Flores
-                  telefono_origen: '81345345'
-                  estado_origen: Estado de México
-                  municipio_origen: Coacalco
-                  referencias_origen: Referencia remitente
-                  nombre_destino: Jesus
-                  apellidos_destino: Luna
-                  email_destino: jesus@correo.com
-                  calle_destino: Duraznos
-                  numero_destino: '20'
-                  colonia_destino: Granjas
-                  telefono_destino: '67865432'
-                  estado_destino: Sonora
-                  municipio_destino: Sonora
-                  referencias_destino: Referencia destino
-                  generar_recoleccion: false
         required: true
       responses:
         '200':
@@ -201,6 +412,9 @@ paths:
                     location: test
                     detail:
                       num_orden: '3532'
+                      guia: '8617898483'
+                      file: '%PDF-1.4...'
+                      pick_up: '139103'
                 contentMediaType: application/json
               examples:
                 Estructura de Response:
@@ -210,62 +424,38 @@ paths:
                     location: test
                     detail:
                       num_orden: '3532'
-      deprecated: false
-    parameters: []
-  /generar-guia:
-    post:
-      tags:
-      - API
-      summary: Generar guía sin cotización
-      description: Método para la generación de una guía sin una cotización.
-      operationId: Generarguíasincotización
-      parameters: []
-      requestBody:
-        description: 'Estructura de Request:'
-        content:
-          application/json:
-            schema:
-              allOf:
-              - $ref: '#/components/schemas/RootTypeforGenerarGuiaSinCotizacion'
-              - description: 'Estructura de Request:'
-              contentMediaType: application/json
-        required: true
-      responses:
-        '200':
-          description: Respuesta de petición de generación de guía JSON
+                      guia: '8617898483'
+                      file: '%PDF-1.4...'
+                      pick_up: '139103'
+        '400':
+          description: Posibles errores debido a que no existe la cotización.
           headers: {}
           content:
             application/json:
               schema:
                 allOf:
-                - $ref: '#/components/schemas/RootTypeforGenerarGuiaSinCotizacionResponse'
-                - description: Respuesta de petición de generación de guía JSON.
+                - $ref: '#/components/schemas/RootTypeforGenerarGuiaAPartirDeCotizacionPreviaError'
+                - description: Posibles errores debido a que no existe la cotización.
                   examples:
-                  - success: true
-                    message: Guía generada correctamente
-                    location: location
-                    detail:
-                      num_orden: '1243'
-                      guia: '8617898483'
-                      file: '%PDF-1.4...'
-                      pick_up: '139103'
-                      carta_porte: true
+                  - success: false
+                    message: No existe una cotización con el token proporcionado
                 contentMediaType: application/json
               examples:
-                Estructura de Response:
+                Error:
                   value:
-                    success: true
-                    message: Guía generada correctamente
-                    location: location
-                    detail:
-                      num_orden: '1243'
-                      guia: '8617898483'
-                      file: '%PDF-1.4...'
-                      pick_up: '139103'
-                      carta_porte: true
+                    success: false
+                    message: No existe una cotización con el token proporcionado
       deprecated: false
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+        ErrorTemplates: {}
+        SkipAdditionalHeaders: false
+      x-unitTests: []
     parameters: []
-  /guias/registros/{total_registros}/pag/{numero_pagina}:
+  /guias/comercio/{clave}/registros/{total_registros}/pag/{numero_pagina}:
     get:
       tags:
       - API
@@ -273,27 +463,30 @@ paths:
       description: Método para consultar guiás generadas el cual recibe el número de registros que desea consultar y el número de pagina.
       operationId: Consultarguías
       parameters:
-      - name: total_registros
+      - name: clave
         in: path
         description: número de registros
         required: true
         style: simple
         schema:
           type: string
-      - name: numero_pagina
+      - name: total_registros
         in: path
         description: número de pagina
         required: true
         style: simple
         schema:
           type: string
+      - name: numero_pagina
+        in: path
+        description: ''
+        required: true
+        style: simple
+        schema:
+          type: string
       - name: columna
         in: query
-        description: >-
-          Columna por la cual se desea ordenar, es requerida cuando el parámetro “orden_columna” esta presente y diferente de null las opciones permitidas son:
-               fecha_hora
-               num_orden
-               orden_columna
+        description: "Columna por la cual se desea ordenar, es requerida cuando el parámetro “orden_columna” esta presente y diferente de null las opciones permitidas son:\n    -fecha_hora\n    -num_orden\n    -nombre_cliente \n    -orden_columna"
         style: form
         explode: true
         schema:
@@ -302,8 +495,8 @@ paths:
         in: query
         description: >-
           Forma por la cual se desea ordenar una columna, es requerida cuando el parámetro “columna” esta presente y diferente de null las opciones permitidas son:
-               asc
-               desc
+              -asc
+              -desc
         style: form
         explode: true
         schema:
@@ -348,7 +541,7 @@ paths:
           contentEncoding: int32
       - name: mensajeria
         in: query
-        description: "Nombre de mensajería, las opciones permitidas son:\n     DHL\n     FEDEX\n     ESTAFETA\n     UBER\n     TOOKAN\n     99MIN\n     REDPACK\n     PAQUETERIA EXPRESS \n     QUALITY"
+        description: "Nombre de mensajería, las opciones permitidas son:\n    -DHL\n    -FEDEX\n    -ESTAFETA\n    -UBER\n    -TOOKAN\n    -99MIN\n    -REDPACK\n    -PAQUETERIA EXPRESS \n    -QUALITY"
         style: form
         explode: true
         schema:
@@ -357,8 +550,433 @@ paths:
         '200':
           description: Respuesta de petición.
           headers: {}
-          content: {}
+          content:
+            application/json:
+              schema:
+                allOf:
+                - $ref: '#/components/schemas/RootTypeforConsultarGuiasResponse'
+                - description: Respuesta de petición.
+                contentMediaType: application/json
+        '400':
+          description: Posibles errores.
+          headers: {}
+          content:
+            application/json:
+              schema:
+                allOf:
+                - $ref: '#/components/schemas/RootTypeforConsultarGuiasError'
+                - description: Posibles errores.
+                  examples:
+                  - success: false
+                    message: The given data was invalid
+                    error:
+                      columna:
+                      - El campo columna es inválido
+                      orden_columna:
+                      - El campo orden columna es obligatorio cuando columna está presente.
+                contentMediaType: application/json
+              examples:
+                Posibles errores:
+                  value:
+                    success: false
+                    message: The given data was invalid
+                    error:
+                      columna:
+                      - El campo columna es inválido
+                      orden_columna:
+                      - El campo orden columna es obligatorio cuando columna está presente.
       deprecated: false
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+        ErrorTemplates: {}
+        SkipAdditionalHeaders: false
+      x-unitTests: []
+    parameters: []
+  /sl/comercio/{clave}:
+    get:
+      tags:
+      - API
+      summary: Consulta Saldo
+      description: Método para consultar saldo.
+      operationId: ConsultaSaldo
+      parameters:
+      - name: clave
+        in: path
+        description: ''
+        required: true
+        style: simple
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Respuesta de petición consulta saldo.
+          headers: {}
+          content:
+            application/json:
+              schema:
+                allOf:
+                - $ref: '#/components/schemas/RootTypeforConsultaSaldoResponse'
+                - description: Respuesta de petición consulta saldo.
+                  examples:
+                  - success: true
+                    message: Búsqueda exitosa!
+                    detail:
+                      monto_actual: '5000'
+                contentMediaType: application/json
+              examples:
+                Respuesta de petición consulta saldo:
+                  value:
+                    success: true
+                    message: Búsqueda exitosa!
+                    detail:
+                      monto_actual: '5000'
+        '400':
+          description: Posibles errores
+          headers: {}
+          content:
+            application/json:
+              schema:
+                allOf:
+                - $ref: '#/components/schemas/RootTypeforConsultaSaldoError'
+                - description: Posibles errores
+                  examples:
+                  - success: false
+                    message: Error al procesar petición
+                    error: 'No existe en recurso con id: x'
+                contentMediaType: application/json
+              examples:
+                Posibles errores:
+                  value:
+                    success: false
+                    message: Error al procesar petición
+                    error: 'No existe en recurso con id: x'
+      deprecated: false
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+        ErrorTemplates: {}
+        SkipAdditionalHeaders: false
+      x-unitTests: []
+    parameters: []
+  /webhook/estado-guia/{guia}:
+    get:
+      tags:
+      - API
+      summary: Consulta de estado de guía
+      description: Método para consultar el estado de una guía.
+      operationId: Consultadeestadodeguía
+      parameters:
+      - name: guia
+        in: path
+        description: ''
+        required: true
+        style: simple
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Respuesta de una petición del estado actual de guía en formato JSON. (La url final puede cambiar)
+          headers: {}
+          content:
+            application/json:
+              schema:
+                allOf:
+                - $ref: '#/components/schemas/RootTypeforConsultaEstadoGuiaResponse'
+                - description: Respuesta de una petición del estado actual de guía en formato JSON. (La url final puede cambiar)
+                  examples:
+                  - success: true
+                    message: Petición exitosa!
+                    detail:
+                      id_seller: '1'
+                      codigo: '4'
+                      descripcion: Producto entregado
+                      familia_interna: '0'
+                      familia_generica: ''
+                      guia: '0122445'
+                      fecha: 2021-08-18T10:00:39.178463435
+                      recibe: Jhon Snow
+                contentMediaType: application/json
+              examples:
+                'Estructura de Response:':
+                  value:
+                    success: true
+                    message: Petición exitosa!
+                    detail:
+                      id_seller: '1'
+                      codigo: '4'
+                      descripcion: Producto entregado
+                      familia_interna: '0'
+                      familia_generica: ''
+                      guia: '0122445'
+                      fecha: 2021-08-18T10:00:39.178463435
+                      recibe: Jhon Snow
+        '400':
+          description: Posibles errores debido a que no se pudo realizar la consulta.
+          headers: {}
+          content:
+            application/json:
+              schema:
+                allOf:
+                - $ref: '#/components/schemas/RootTypeforConsultaEstadoGuiaError'
+                - description: Posibles errores debido a que no se pudo realizar la consulta.
+                  examples:
+                  - success: false
+                    message: Error al pocesar petición
+                    error: La guia numero_guia no existe
+                contentMediaType: application/json
+              examples:
+                Posibles errores debido a que no se pudo realizar la consulta.:
+                  value:
+                    success: false
+                    message: Error al pocesar petición
+                    error: La guia numero_guia no existe
+      deprecated: false
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+        ErrorTemplates: {}
+        SkipAdditionalHeaders: false
+      x-unitTests: []
+    parameters: []
+  /sl-mov/comercio/{clave}/items/10/pag/{numeroPagina}:
+    get:
+      tags:
+      - API
+      summary: Saldos y Movimientos
+      description: Método que consulta los saldos y cobro de guiás.
+      operationId: SaldosyMovimientos
+      parameters:
+      - name: clave
+        in: path
+        description: ''
+        required: true
+        style: simple
+        schema:
+          type: string
+      - name: numeroPagina
+        in: path
+        description: ''
+        required: true
+        style: simple
+        schema:
+          type: string
+      - name: columna
+        in: query
+        description: >-
+          Columna por la cual se desea ordenar, es requerida cuando el parámetro “orden_columna” esta presente y diferente de null las opciones permitidas son:
+              -fecha
+              -tipo
+        style: form
+        explode: true
+        schema:
+          type: string
+      - name: orden_columna
+        in: query
+        description: >-
+          Forma por la cual se desea ordenar una columna, es requerida cuando el parámetro “columna” esta presente y diferente de null las opciones permitidas son:
+              -asc
+              -desc
+        style: form
+        explode: true
+        schema:
+          type: string
+      - name: folio
+        in: query
+        description: Número de folio
+        style: form
+        explode: true
+        schema:
+          type: string
+      - name: fecha_inicio
+        in: query
+        description: Fecha en que se creo el movimiento
+        style: form
+        explode: true
+        schema:
+          type: string
+          contentEncoding: date
+      - name: fecha_fin
+        in: query
+        description: Indica la fecha final de búsqueda
+        style: form
+        explode: true
+        schema:
+          type: string
+          contentEncoding: date
+      - name: tipo
+        in: query
+        description: >-
+          Indica el tipo de registros que serán filtrados, los valore aceptados son:
+              -saldos
+              -guias
+        style: form
+        explode: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Método que consulta los saldos y cobro de guiás.
+          headers: {}
+          content:
+            application/json:
+              schema:
+                allOf:
+                - $ref: '#/components/schemas/RootTypeforSaldosYMovimientosResponse'
+                - description: Respuesta de petición.
+                contentMediaType: application/json
+        '400':
+          description: Posibles errores por falta de algún campo requerido.
+          headers: {}
+          content:
+            application/json:
+              schema:
+                allOf:
+                - $ref: '#/components/schemas/RootTypeforSaldosYMovimientosError'
+                - description: Posibles errores por falta de algún campo requerido.
+                  examples:
+                  - success: false
+                    message: The given data was invalid.
+                    error:
+                      orden_columna:
+                      - El campo orden columna es obligatorio cuando columna está presente.
+                contentMediaType: application/json
+              examples:
+                Error:
+                  value:
+                    success: false
+                    message: The given data was invalid.
+                    error:
+                      orden_columna:
+                      - El campo orden columna es obligatorio cuando columna está presente.
+      deprecated: false
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+        ErrorTemplates: {}
+        SkipAdditionalHeaders: false
+      x-unitTests: []
+    parameters: []
+  /auth/realms/claroshop-sapi-sa-cv/proto col/openid-connect/token:
+    post:
+      tags:
+      - API
+      summary: Obtener un Access token
+      description: Método para iniciar sesión en el API y obtener un token de acceso. Utilizar https://pcapi.plataforma-claro.com/auth/realms/claroshop-sapi-sa-cv/protocol/openid-connect/token
+      operationId: ObtenerunAccesstoken
+      parameters:
+      - name: Content-Type
+        in: header
+        description: ''
+        required: true
+        style: simple
+        schema:
+          const: application/x-www-form-urlencoded
+          type: string
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            encoding: {}
+            schema:
+              type: object
+              properties:
+                grant_type:
+                  description: password
+                client_id:
+                  description: t1envios
+                secret_id:
+                  description: d1d661be-8487-4660-bc19-540dbb12fb05
+                username:
+                  description: Correo con que se registro en la pagina
+                password:
+                  description: Contraseña que registro en la pagina
+              contentMediaType: application/x-www-form-urlencoded
+        required: false
+      responses:
+        '200':
+          description: Respuesta de petición de cotización JSON.
+          headers: {}
+          content:
+            application/json:
+              schema:
+                allOf:
+                - $ref: '#/components/schemas/RootTypeforObtenerAccessTokenResponse'
+                - description: Respuesta de petición de cotización JSON.
+                  examples:
+                  - access_token: eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6IC..
+                    expires_in: 1800
+                    refresh_expires_in: 7776000
+                    refresh_token: eyJhbGciOiJIUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICI3..
+                    token_type: bearer
+                    not-before-policy: 1627348134
+                    session_state: 92167821-edd8-4b3b-9338-277afe04e8a2
+                    scope: email profile
+                contentMediaType: application/json
+              examples:
+                Respuesta de petición de cotización JSON.:
+                  value:
+                    access_token: eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6IC..
+                    expires_in: 1800
+                    refresh_expires_in: 7776000
+                    refresh_token: eyJhbGciOiJIUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICI3..
+                    token_type: bearer
+                    not-before-policy: 1627348134
+                    session_state: 92167821-edd8-4b3b-9338-277afe04e8a2
+                    scope: email profile
+        '400':
+          description: Posibles errores por falta de algún campo requerido.
+          headers: {}
+          content:
+            application/json:
+              schema:
+                allOf:
+                - $ref: '#/components/schemas/RootTypeforObtenerAccessTokenError'
+                - description: Posibles errores por falta de algún campo requerido.
+                  examples:
+                  - error: invalid_request
+                    error_description: 'Missing form parameter: grant_type'
+                contentMediaType: application/json
+              examples:
+                Posibles errores por falta de algún campo requerido.:
+                  value:
+                    error: invalid_request
+                    error_description: 'Missing form parameter: grant_type'
+      deprecated: false
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+        ErrorTemplates: {}
+        SkipAdditionalHeaders: false
+      x-unitTests:
+      - request:
+          method: POST
+          uri: /auth/realms/claroshop-sapi-sa-cv/proto col/openid-connect/token
+          headers:
+            Content-Type: application/x-www-form-urlencoded
+        expectedResponse:
+          x-allowExtraHeaders: true
+          x-bodyMatchMode: KEYS
+          x-arrayOrderedMatching: false
+          x-arrayCheckCount: false
+          x-matchResponseSchema: true
+          statusCode: '200'
+          headers:
+            Content-Type: application/json
+          body: '{"access_token":"eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6IC..","expires_in":1800,"refresh_expires_in":7776000,"refresh_token":"eyJhbGciOiJIUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICI3..","token_type":"bearer","not-before-policy":1627348134,"session_state":"92167821-edd8-4b3b-9338-277afe04e8a2","scope":"email profile"}'
+        x-testShouldPass: true
+        x-testEnabled: true
+        x-testName: Test Obtener un Access token
+        x-testDescription: Método para iniciar sesión en el API y obtener un token de acceso.
     parameters: []
 components:
   schemas:
@@ -386,7 +1004,7 @@ components:
       - dias_embarque
       - seguro
       - tipo_paquete
-      - productos
+      - comercio_id
       type: object
       properties:
         codigo_postal_origen:
@@ -394,7 +1012,7 @@ components:
           description: Código postal de la dirección origen
         codigo_postal_destino:
           type: string
-          description: Código postal de la dirección destino
+          description: Código postal de la dirección destino.
         peso:
           type: integer
           description: Peso de paquete en kilogramos
@@ -417,31 +1035,33 @@ components:
           contentEncoding: int32
         seguro:
           type: boolean
-          description: Determina si el paquete tiene seguro. True para asegurar paquete, False para caso contrario.
+          description: Determina si el paquete tiene seguro. True para asegurar paquete, False para caso contrario
         valor_paquete:
           type: integer
           description: Es requerido si el campo "seguro" es true. Valor de factura del paquete
           contentEncoding: int32
         tipo_paquete:
+          maximum: 2
+          minimum: 1
           type: integer
           description: Indica si es paquete o sobre, 1 para sobre y 2 para paquete
           contentEncoding: int32
-        productos:
-          allOf:
-          - $ref: '#/components/schemas/Producto'
-          - description: >-
-              Array de productos que contiene el paquete el cual es opcional, en caso de no enviar esta información se tomara como 1 pieza.
-
-              Por disposición del SAT solo será opcional hasta el 1 de septiembre de 2023, a partir de esa fecha este atributo sera obligatorio.
-            examples:
-            - descripcion_sat: 'Zapatos para mujer '
-              codigo_sat: '53111602'
-              peso: 2
-              largo: 35
-              ancho: 20
-              alto: 10
-              precio: 820.5
+        comercio_id:
+          type: string
+          description: Identificador único de tienda
       description: Request para la generación de la cotización.
+      examples:
+      - codigo_postal_origen: '55555'
+        codigo_postal_destino: '99993'
+        peso: 10
+        largo: 65
+        ancho: 20
+        alto: 30
+        dias_embarque: 1
+        seguro: true
+        valor_paquete: 1200
+        tipo_paquete: 2
+        comercio_id: clave
     RootTypeforGenerarCotizacion1:
       title: RootTypeforGenerarCotizacion1
       type: object
@@ -465,7 +1085,6 @@ components:
               guia: '8617898483'
               file: '%PDF-1.4...'
               pick_up: '139103'
-              carta_porte: true
       description: Respuesta de petición de generación de guía JSON.
       examples:
       - success: true
@@ -476,7 +1095,6 @@ components:
           guia: '8617898483'
           file: '%PDF-1.4...'
           pick_up: '139103'
-          carta_porte: true
     Producto:
       title: Producto
       required:
@@ -550,15 +1168,21 @@ components:
       - estado_destino
       - municipio_destino
       - referencias_destino
+      - generar_recoleccion
+      - tiene_notificacion
+      - origen_guia
+      - comercio_id
       type: object
       properties:
         contenido:
+          maxLength: 25
           type: string
           description: 'Breve descripción del contenido del paquete (Max: 256)'
         nombre_origen:
           type: string
           description: 'Nombre de remitente (Max: 50)'
         apellidos_origen:
+          type: string
           description: 'Código postal de la dirección remitente (Max: 30)'
         email_origen:
           type: string
@@ -620,16 +1244,14 @@ components:
         tiene_notificacion:
           type: boolean
           description: Determina si la guía enviara notificaciones
-        codificacion:
+        origen_guia:
           type: string
           description: >-
-            Codificación de salida de la etiqueta, por default la codificación es UTF-8.
-
-            Valores permitidos:
-
-             utf8
-
-             base64
+            Origen desde donde se genera la guía, los valores permitidos son:
+             -t1envios
+        comercio_id:
+          type: string
+          description: Clave de comercio proporcionada
       description: >-
         Para las siguientes mensajerías el largo máximo permitido son:
 
@@ -650,29 +1272,6 @@ components:
          calle_origen, numero_origen y colonia_origen juntas : 35 caracteres
 
          calle_destino, numero_ destino y colonia_ destino juntas : 35 caracteres
-      examples:
-      - contenido: Breve descripción del contenido
-        nombre_origen: David
-        apellidos_origen: Pérez
-        email_origen: david_perez@correo.com
-        calle_origen: Lago mayor
-        numero_origen: '20'
-        colonia_origen: Flores
-        telefono_origen: '81345345'
-        estado_origen: Estado de México
-        municipio_origen: Coacalco
-        referencias_origen: Referencia remitente
-        nombre_destino: Jesus
-        apellidos_destino: Luna
-        email_destino: jesus@correo.com
-        calle_destino: Duraznos
-        numero_destino: '20'
-        colonia_destino: Granjas
-        telefono_destino: '67865432'
-        estado_destino: Sonora
-        municipio_destino: Sonora
-        referencias_destino: Referencia destino
-        generar_recoleccion: false
     RootTypeforDetailGeneracionDeLaGuia:
       title: RootTypeforDetailGeneracionDeLaGuia
       type: object
@@ -689,15 +1288,12 @@ components:
         pick_up:
           type: string
           description: Id de pick up
-        carta_porte:
-          type: boolean
       description: Detalle de respuesta
       examples:
       - num_orden: '3532'
         guia: '8617898483'
         file: '%PDF-1.4...'
         pick_up: '139103'
-        carta_porte: true
     RootTypeforGenerarCotizacion2:
       title: RootTypeforGenerarCotizacion2
       type: object
@@ -720,19 +1316,27 @@ components:
         - id: 1
           clave: DHL
           comercio: '149'
-          seguro: true
+          comercio_clave: '126545'
+          paquete: White
+          seguro: false
           cotizacion:
             success: true
             servicios:
               ECONOMY SELECT DOMESTIC:
                 servicio: EXPRESS DOMESTIC
                 tipo_servicio: Dia Siguiente
-                costo_total: 522.07
-                fecha_mensajeria_entrega: 2021-01-01
-                fecha_claro_entrega: 2021-01-02
+                costo_mensajeria: 336
+                costo_total: 496
+                fecha_mensajeria_entrega: 2022-04-01
+                fecha_claro_entrega: 2022-04-02
                 dias_entrega: 1
                 negociacion_id: 1
-                valor_paquete: '1200'
+                porcentaje_negociacion: 0
+                costo_negociacion: '5.0'
+                porcentaje_seguro: '1.0'
+                costo_seguro: 0
+                costo_zona_extendida: 155
+                valor_paquete: '500'
                 moneda: MXN
                 peso: '1'
                 peso_volumetrico: 12
@@ -740,347 +1344,7 @@ components:
                 largo: '100'
                 ancho: '20'
                 alto: '30'
-                costo_zona_extendida: 0
-                costo_total_seguro: 0
-                token: WP9ESYVvmNtSQi6ztXNxwagCm..
-    RootTypeforGenerarGuiaSinCotizacion:
-      title: RootTypeforGenerarGuiaSinCotizacion
-      required:
-      - contenido
-      - mensajeria
-      - datos_origen
-      - datos_destino
-      type: object
-      properties:
-        contenido:
-          allOf:
-          - $ref: '#/components/schemas/RootTypeforGenerarGuiaSinCotizacion_Contenido'
-          - description: Detalles del contenido
-        mensajeria:
-          allOf:
-          - $ref: '#/components/schemas/RootTypeforGenerarGuiaSinCotizacion_Mensajeria'
-          - description: Datos de la mensajería
-            examples:
-            - mensajeria: FEDEX
-              tipo_servicio: STANDARD_OVERNIGHT
-              generar_recoleccion: true
-              dias_embarque: 2
-        datos_origen:
-          allOf:
-          - $ref: '#/components/schemas/RootTypeforGenerarGuiaSinCotizacion_Datos_Origen'
-          - description: Datos de remitente
-            examples:
-            - codigo_postal: '78000'
-              nombre: Pablo
-              apellidos: Origen
-              email: pablo@gmail.com
-              calle: calle origen
-              numero: '23'
-              colonia: colonia_origen
-              telefono: '245678345'
-              estado: estado
-              municipio: municipio
-              referencias: referencia origen
-        datos_destino:
-          allOf:
-          - $ref: '#/components/schemas/RootTypeforGenerarGuiaSinCotizacion_Datos_Destino'
-          - description: Referencias de destinatario
-            examples:
-            - codigo_postal: '56000'
-              nombre: Jose
-              apellidos: destino
-              email: jose@gmail.com
-              calle: calle destino
-              numero: '23'
-              colonia: colonia destino
-              telefono: '245678345'
-              estado: estado
-              municipio: municipio
-              referencias: referencia destino
-      description: Json de datos para armar la petición.
-    RootTypeforGenerarGuiaSinCotizacion_Contenido:
-      title: RootTypeforGenerarGuiaSinCotizacion_Contenido
-      required:
-      - descripcion
-      - tipo_paquete
-      - peso
-      - largo
-      - ancho
-      - alto
-      - seguro
-      - valor_paquete
-      - productos
-      type: object
-      properties:
-        descripcion:
-          maxLength: 25
-          type: string
-          description: Breve descripción del contenido del paquete (Max:25)
-        tipo_paquete:
-          maximum: 2
-          minimum: 1
-          type: integer
-          description: Indica si es paquete o sobre, 1 para sobre y 2 para paquete. Integer 1 o 2.
-          contentEncoding: int32
-        peso:
-          type: integer
-          description: Peso total de paquete en kilogramos
-          contentEncoding: int32
-        largo:
-          type: integer
-          description: Largo total de paquete en centímetros
-          contentEncoding: int32
-        ancho:
-          type: integer
-          description: Ancho total de paquete en centímetros
-          contentEncoding: int32
-        alto:
-          type: integer
-          description: Alto total de paquete en centímetros
-          contentEncoding: int32
-        seguro:
-          type: boolean
-          description: Determina si el paquete tiene seguro. True para asegurar paquete, False para caso contrario.
-        valor_paquete:
-          type: number
-          description: Valor de factura del paquete
-        tiene_notificacion:
-          type: boolean
-          description: Determina si la guía enviara notificaciones
-        productos:
-          type: array
-          items:
-            $ref: '#/components/schemas/Producto'
-          description: >-
-            Array de productos que contiene el paquete
-
-            Por disposición del SAT solo será opcional hasta el 1 de septiembre de 2023, a partir de esa fecha este atributo sera obligatorio.
-          examples:
-          - - descripcion_sat: Zapatos para mujer
-              codigo_sat: '53111602'
-              peso: 2
-              largo: 35
-              ancho: 20
-              alto: 10
-              precio: 820.5
-            - descripcion_sat: Relojes digitales
-              codigo_sat: '46171628'
-              peso: 1
-              largo: 30
-              ancho: 10
-              alto: 20
-              precio: 1000
-        pedido:
-          description: Número de identificación interno de cada comercio
-        codificacion:
-          type: string
-          description: >-
-            Codificación de salida de la etiqueta, por default la codificación es UTF-8. Valores permitidos:
-
-             utf8
-
-             base64
-      description: Detalles del contenido
-    RootTypeforGenerarGuiaSinCotizacion_Mensajeria:
-      title: RootTypeforGenerarGuiaSinCotizacion_Mensajeria
-      required:
-      - mensajeria
-      - tipo_servicio
-      - dias_embarque
-      type: object
-      properties:
-        mensajeria:
-          type: string
-          description: >-
-            Nombre de la mensajería Valores permitidos:
-
-             FEDEX
-
-             DHL
-
-             BIGSMART  IVOY
-
-             99MIN
-
-             REDPACK  QUALITY
-
-             EXPRESS
-        tipo_servicio:
-          type: string
-          description: "Tipo de servicio que ofrece la paquetearía Valores permitidos según la mensajería:\n    \n     FEDEX:\n        ◦ FEDEX_EXPRESS_SAVER\n        ◦ STANDARD_OVERNIGHT\n    \n     DHL:\n        ◦ ECONOMY SELECT DOMESTIC\n        ◦ EXPRESS DOMESTIC\n        \n     BIGSMART:\n        ◦ order\n        \n     IVOY:\n        ◦ SAME_DAY\n        ◦ ON_DEMAND\n        ◦ NEXT_DAY \n    \n     99MIN:\n        ◦ SAMEDAY \n        \n     REDPACK:\n        ◦ ECOEXPRESS \n        \n     QUALITY:\n        ◦ NEXT_DAY \n    \n     EXPRESS:\n        ◦ NEXT_DAY"
-        generar_recoleccion:
-          type: boolean
-          description: True si desea generar recolección cuando se genera la guía.
-        dias_embarque:
-          type: integer
-          description: Días de embarque
-          contentEncoding: int32
-      description: Datos de la mensajería
-      examples:
-      - mensajeria: FEDEX
-        tipo_servicio: STANDARD_OVERNIGHT
-        generar_recoleccion: true
-        dias_embarque: 2
-    RootTypeforGenerarGuiaSinCotizacion_Datos_Origen:
-      title: RootTypeforGenerarGuiaSinCotizacion_Datos_Origen
-      required:
-      - codigo_postal
-      - nombre
-      - apellidos
-      - email
-      - calle
-      - numero
-      - colonia
-      - telefono
-      - estado
-      - municipio
-      - referencias
-      type: object
-      properties:
-        codigo_postal:
-          type: string
-          description: Código postal de la dirección origen
-        nombre:
-          type: string
-          description: Nombre de remitente
-        apellidos:
-          type: string
-          description: Apellidos de remitente
-        email:
-          type: string
-          description: Email de remitente
-        calle:
-          type: string
-          description: Calle de remitente
-        numero:
-          type: string
-          description: Número de remitente
-        colonia:
-          type: string
-          description: Colonia remitente
-        telefono:
-          minLength: 8
-          type: string
-          description: Teléfono remitente
-        estado:
-          type: string
-          description: Estado remitente
-        municipio:
-          type: string
-          description: Municipio remitente
-        referencias:
-          type: string
-          description: Referencias de remitente
-      description: Datos de remitente
-      examples:
-      - codigo_postal: '78000'
-        nombre: Pablo
-        apellidos: Origen
-        email: pablo@gmail.com
-        calle: calle origen
-        numero: '23'
-        colonia: colonia_origen
-        telefono: '245678345'
-        estado: estado
-        municipio: municipio
-        referencias: referencia origen
-    RootTypeforGenerarGuiaSinCotizacion_Datos_Destino:
-      title: RootTypeforGenerarGuiaSinCotizacion_Datos_Destino
-      required:
-      - codigo_postal
-      - nombre
-      - apellidos
-      - email
-      - calle
-      - numero
-      - colonia
-      - telefono
-      - estado
-      - municipio
-      - referencias
-      type: object
-      properties:
-        codigo_postal:
-          type: string
-          description: Código postal de la dirección del destinatario
-        nombre:
-          type: string
-          description: Nombre de destinatario
-        apellidos:
-          type: string
-          description: Código postal de la dirección destinatario
-        email:
-          type: string
-          description: Email de destinatario
-        calle:
-          type: string
-          description: Calle de destinatario
-        numero:
-          type: string
-          description: Número de destinatario
-        colonia:
-          type: string
-          description: Colonia destinatario
-        telefono:
-          minLength: 8
-          type: string
-          description: Teléfono destinatario
-        estado:
-          type: string
-          description: Estado destinatario
-        municipio:
-          type: string
-          description: Municipio destinatario
-        referencias:
-          type: string
-          description: Referencias de destinatario
-      description: Referencias de destinatario
-      examples:
-      - codigo_postal: '56000'
-        nombre: Jose
-        apellidos: destino
-        email: jose@gmail.com
-        calle: calle destino
-        numero: '23'
-        colonia: colonia destino
-        telefono: '245678345'
-        estado: estado
-        municipio: municipio
-        referencias: referencia destino
-    RootTypeforGenerarGuiaSinCotizacionResponse:
-      title: RootTypeforGenerarGuiaSinCotizacionResponse
-      type: object
-      properties:
-        success:
-          type: boolean
-          description: true | false
-        message:
-          type: string
-          description: Mensaje mostrado cuando se obtiene la respuesta de una cotización
-        location:
-          type: string
-          description: Ambiente donde se realizo la petición
-        detail:
-          allOf:
-          - $ref: '#/components/schemas/RootTypeforDetailGeneracionDeLaGuia'
-          - description: Detalle de respuesta
-            examples:
-            - num_orden: '3532'
-              guia: '8617898483'
-              file: '%PDF-1.4...'
-              pick_up: '139103'
-              carta_porte: true
-      description: Respuesta de petición de generación de guía JSON.
-      examples:
-      - success: true
-        message: Guía generada correctamente
-        location: location
-        detail:
-          num_orden: '1243'
-          guia: '8617898483'
-          file: '%PDF-1.4...'
-          pick_up: '139103'
-          carta_porte: true
+                token: 'WP9ES YVvmNtSQi6ztXNxwagCm.. '
     RootTypeforConsultarGuiasResponse:
       title: RootTypeforConsultarGuiasResponse
       type: object
@@ -1107,8 +1371,6 @@ components:
         num_orden:
           type: integer
           contentEncoding: int32
-        pedido_comercio:
-          type: string
         mensajeria:
           type: string
         guia:
@@ -1120,26 +1382,412 @@ components:
         estatus_generico:
           type: string
           description: Estatus interno de T1envios
-        nombre_recibe:
-          type: string
-        nombre_destino:
-          type: string
-        apellido_destino:
-          type: string
-        correo_destino:
-          type: string
-        direccion_destino:
-          type: string
-        telefono_destino:
-          type: string
         notificaciones:
           type: integer
           contentEncoding: int32
-        link_rastreo:
-          type: string
-        g_ret:
+        nombre_cliente:
           type: string
       description: Guiá encontrada
+    RootTypeforGenerarCotizacionError:
+      title: RootTypeforGenerarCotizacionError
+      type: object
+      properties:
+        message:
+          type: string
+        errors:
+          allOf:
+          - $ref: '#/components/schemas/Errors'
+          - {}
+      description: Posibles errores por falta de algún campo requerido.
+      examples:
+      - message: Datos Incorrectos.
+        errors:
+          codigo_postal_origen:
+          - El campo codigo postal origen es obligatorio.
+          codigo_postal_destino:
+          - El campo codigo postal destino es obligatorio.
+          peso:
+          - El campo peso es obligatorio.
+          largo:
+          - El campo largo es obligatorio.
+          ancho:
+          - El campo ancho es obligatorio.
+          alto:
+          - El campo alto es obligatorio.
+          dias_embarque:
+          - El campo dias embarque es obligatorio.
+          seguro:
+          - El campo seguro es obligatorio.
+          tipo_paquete:
+          - El campo tipo paquete es obligatorio.
+    RootTypeforGenerarGuiaAPartirDeCotizacionPreviaError:
+      title: RootTypeforGenerarGuiaAPartirDeCotizacionPreviaError
+      type: object
+      properties:
+        success:
+          type: boolean
+        message:
+          type: string
+      description: Posibles errores debido a que no existe la cotización.
+      examples:
+      - success: false
+        message: No existe una cotización con el token proporcionado
+    RootTypeforConsultaSaldoResponse:
+      title: RootTypeforConsultaSaldoResponse
+      type: object
+      properties:
+        success:
+          type: boolean
+          description: true | false
+        message:
+          type: string
+          description: Mensaje de respuesta
+        detail:
+          allOf:
+          - $ref: '#/components/schemas/Detail'
+          - description: detalle de monto actual
+      description: Respuesta de petición consulta saldo.
+      examples:
+      - success: true
+        message: Búsqueda exitosa!
+        detail:
+          monto_actual: '5000'
+    RootTypeforConsultaSaldoError:
+      title: RootTypeforConsultaSaldoError
+      type: object
+      properties:
+        success:
+          type: boolean
+        message:
+          type: string
+        error:
+          type: string
+      description: Posibles errores
+      examples:
+      - success: false
+        message: Error al procesar petición
+        error: 'No existe en recurso con id: x'
+    RootTypeforConsultaEstadoGuiaResponse:
+      title: RootTypeforConsultaEstadoGuiaResponse
+      type: object
+      properties:
+        success:
+          type: boolean
+          description: true | false
+        message:
+          type: string
+          description: Mensaje mostrado cuando se obtiene la respuesta de la consulta
+        detail:
+          allOf:
+          - $ref: '#/components/schemas/RootTypeforConsultaEstadoGuiaResponseDetail'
+          - description: Cotización dependiendo de los tipos de servicios
+            examples:
+            - id_seller: '1'
+              codigo: '4'
+              descripcion: Producto entregado
+              familia_interna: '0'
+              familia_generica: ''
+              guia: '0122445'
+              fecha: 2021-08-18T10:00:39.178463435
+              recibe: Jhon Snow
+      description: Respuesta de una petición del estado actual de guía en formato JSON. (La url final puede cambiar)
+      examples:
+      - success: true
+        message: Petición exitosa!
+        detail:
+          id_seller: '1'
+          codigo: '4'
+          descripcion: Producto entregado
+          familia_interna: '0'
+          familia_generica: ''
+          guia: '0122445'
+          fecha: 2021-08-18T10:00:39.178463435
+          recibe: Jhon Snow
+    RootTypeforConsultaEstadoGuiaResponseDetail:
+      title: RootTypeforConsultaEstadoGuiaResponseDetail
+      type: object
+      properties:
+        id_seller:
+          type: string
+          description: Identificador del seller
+        codigo:
+          type: string
+          description: Código de estado de la guía
+        descripcion:
+          type: string
+          description: Descripción del código de estado de la guía
+        familia_interna:
+          type: string
+          description: Identificador de la familia interna (si aplica)
+        familia_externa:
+          type: string
+          description: Identificador de la familia externa(si aplica)
+        guia:
+          type: string
+          description: Número de guía
+        fecha:
+          type: string
+          description: Fecha del evento
+        recibe:
+          type: string
+          description: Nombre de la persona quien recibe (si aplica)
+      description: Cotización dependiendo de los tipos de servicios
+      examples:
+      - id_seller: '1'
+        codigo: '4'
+        descripcion: Producto entregado
+        familia_interna: '0'
+        familia_generica: ''
+        guia: '0122445'
+        fecha: 2021-08-18T10:00:39.178463435
+        recibe: Jhon Snow
+    RootTypeforConsultaEstadoGuiaError:
+      title: RootTypeforConsultaEstadoGuiaError
+      type: object
+      properties:
+        success:
+          type: boolean
+        message:
+          type: string
+        error:
+          type: string
+      description: Posibles errores debido a que no se pudo realizar la consulta.
+      examples:
+      - success: false
+        message: Error al pocesar petición
+        error: La guia numero_guia no existe
+    RootTypeforConsultarGuiasError:
+      title: RootTypeforConsultarGuiasError
+      type: object
+      properties:
+        success:
+          type: boolean
+        message:
+          type: string
+        error:
+          allOf:
+          - $ref: '#/components/schemas/Error1'
+          - {}
+      description: Posibles errores.
+      examples:
+      - success: false
+        message: The given data was invalid
+        error:
+          columna:
+          - El campo columna es inválido
+          orden_columna:
+          - El campo orden columna es obligatorio cuando columna está presente.
+    RootTypeforSaldosYMovimientosResponse:
+      title: RootTypeforSaldosYMovimientosResponse
+      type: object
+      properties:
+        success:
+          type: boolean
+          description: true | false
+        message:
+          type: string
+          description: Mensaje arrojado de resultado de la petición
+        detail:
+          allOf:
+          - $ref: '#/components/schemas/RootTypeforSaldosYMovimientosResponse_Detail'
+          - description: Array con información requerida.
+      description: Respuesta de petición.
+    RootTypeforSaldosYMovimientosResponse_Detail:
+      title: RootTypeforSaldosYMovimientosResponse_Detail
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/RootTypeforSaldosYMovimientosResponse_Detail_Data'
+          description: ''
+      description: Array con información requerida.
+    RootTypeforSaldosYMovimientosResponse_Detail_Data:
+      title: RootTypeforSaldosYMovimientosResponse_Detail_Data
+      type: object
+      properties:
+        folio:
+          type: string
+          description: identificador del movimiento(saldo/guia)
+        fecha:
+          type: string
+          description: fecha y hora en que en que se registro el movimiento en t1envios
+          contentEncoding: date-time
+        tipo:
+          type: string
+          description: tipo de movimiento (saldo/guia)
+        subtotal:
+          type: string
+          description: sub total
+        total:
+          type: string
+          description: precio total
+    RootTypeforSaldosYMovimientosError:
+      title: RootTypeforSaldosYMovimientosError
+      type: object
+      properties:
+        success:
+          type: boolean
+        message:
+          type: string
+        error:
+          allOf:
+          - $ref: '#/components/schemas/Error2'
+          - {}
+      description: Posibles errores por falta de algún campo requerido.
+      examples:
+      - success: false
+        message: The given data was invalid.
+        error:
+          orden_columna:
+          - El campo orden columna es obligatorio cuando columna está presente.
+    RootTypeforObtenerAccessTokenResponse:
+      title: RootTypeforObtenerAccessTokenResponse
+      type: object
+      properties:
+        access_token:
+          type: string
+          description: Contiene el JWT Token de acceso
+        expires_in:
+          type: integer
+          description: Tiempo de vida en segundos del access_token.
+          contentEncoding: int32
+        refresh_expires_in:
+          type: integer
+          description: Tiempo de vida en segundos del token de actualización
+          contentEncoding: int32
+        refresh_token:
+          type: string
+          description: El token de actualización, que se puede usar para obtener nuevos tokens de acceso utilizando la misma concesión de autorización
+        token_type:
+          type: string
+          description: Tipo de token “bearer”
+        not-before-policy:
+          type: integer
+          description: Políticas de revocación no antes por dominio, aplicación y usuario
+          contentEncoding: int32
+        session_state:
+          type: string
+          description: String que representa el estado de inicio de sesión del usuario
+        scope:
+          type: string
+          description: scopes otorgados
+      description: Respuesta de petición de cotización JSON.
+      examples:
+      - access_token: eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6IC..
+        expires_in: 1800
+        refresh_expires_in: 7776000
+        refresh_token: eyJhbGciOiJIUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICI3..
+        token_type: bearer
+        not-before-policy: 1627348134
+        session_state: 92167821-edd8-4b3b-9338-277afe04e8a2
+        scope: email profile
+    RootTypeforObtenerAccessTokenError:
+      title: RootTypeforObtenerAccessTokenError
+      type: object
+      properties:
+        error:
+          type: string
+        error_description:
+          type: string
+      description: Posibles errores por falta de algún campo requerido.
+      examples:
+      - error: invalid_request
+        error_description: 'Missing form parameter: grant_type'
+    ObtenerAccessTokenRequest:
+      title: ObtenerAccessTokenRequest
+      type: object
+      properties:
+        grant_type:
+          description: password
+        client_id:
+          description: t1envios
+        secret_id:
+          description: d1d661be-8487-4660-bc19-540dbb12fb05
+        username:
+          description: Correo con que se registro en la pagina
+        password:
+          description: Contraseña que registro en la pagina
+      description: 'Estructura de Request:'
+    Detail:
+      title: Detail
+      type: object
+      properties:
+        monto_actual:
+          type: string
+      description: detalle de monto actual
+    Error1:
+      title: Error1
+      type: object
+      properties:
+        columna:
+          type: array
+          items:
+            type: string
+          description: ''
+        orden_columna:
+          type: array
+          items:
+            type: string
+          description: ''
+    Error2:
+      title: Error2
+      type: object
+      properties:
+        orden_columna:
+          type: array
+          items:
+            type: string
+          description: ''
+    Errors:
+      title: Errors
+      type: object
+      properties:
+        codigo_postal_origen:
+          type: array
+          items:
+            type: string
+          description: ''
+        codigo_postal_destino:
+          type: array
+          items:
+            type: string
+          description: ''
+        peso:
+          type: array
+          items:
+            type: string
+          description: ''
+        largo:
+          type: array
+          items:
+            type: string
+          description: ''
+        ancho:
+          type: array
+          items:
+            type: string
+          description: ''
+        alto:
+          type: array
+          items:
+            type: string
+          description: ''
+        dias_embarque:
+          type: array
+          items:
+            type: string
+          description: ''
+        seguro:
+          type: array
+          items:
+            type: string
+          description: ''
+        tipo_paquete:
+          type: array
+          items:
+            type: string
+          description: ''
 tags:
 - name: API
   description: ''
