@@ -1,0 +1,97 @@
+openapi: 3.0.1
+info:
+  title: File Upload API - IMAGENES
+  description: API para cargar archivos a la plataforma Claro
+  version: 1.0.0
+servers:
+  - url: https://pcapi.release.plataforma-claro.com
+paths:
+  /file/v1.1/{BucketName}:
+   
+   post:
+      tags:
+        - Subir Imganes.
+      parameters:
+       - name: BucketName
+         description: "Bucket donde se almacenara la imagen, la nomenclatura es : products_IDTIENDA"
+         in: path
+         required: true
+         schema:
+          type: string
+       - name: authorization
+         in: header
+         required: true
+         schema:
+          type: string
+          example: Bearer {{access_token}}
+      summary: Carga de archivo
+      description: Endpoint para cargar archivos a la plataforma T1.
+      operationId: uploadFile
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                file:
+                  type: string
+                  format: binary
+                  description: Archivo a cargar
+                filename:
+                  type: string
+                  description: Nombre del archivo
+                  example: Imagen de WhatsApp 2024-04-17 a las 11.46.13_09c23dcd.jpg
+                mimetype:
+                  type: string
+                  description: Tipo MIME del archivo
+                  example: image/jpeg
+                private:
+                  type: string
+                  description: Indica si el archivo es privado, para el caso de imagenes de producto, debe ser simpre false. 
+                  example: "false"
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  metadata:
+                    type: object
+                    properties:
+                      status:
+                        type: string
+                      message:
+                        type: string
+                      http_code:
+                        type: integer
+                      date_time:
+                        type: string
+                        format: date-time
+                  data:
+                    type: object
+                    properties:
+                      privado:
+                        type: boolean
+                        example: false
+                      owner:
+                        description: Usuario que cargo la imagen. 
+                        type: string
+                        example: store_10541_api_t1
+                      size:
+                        type: number
+                        format: float
+                      url:
+                        description: Url del archivo cargado. 
+                        type: string
+                        format: uri
+                        example: https://medios.plazavip.com/t1/1717698313ImagendeWhatsApp20240417alas11461309c23dcdjpg
+                      upload_date:
+                        type: string
+                        format: date-time
+                      mimetype:
+                        description: mimetype del archivo cargado
+                        type: string
+                        example: "image/jpeg"

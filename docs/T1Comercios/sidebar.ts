@@ -13,13 +13,13 @@ const sidebar: SidebarsConfig = {
         {
           type: "doc",
           id: "T1Comercios/cm-v-2-product-commerce-product-by-id-commerce-post",
-          label: "CmV2ProductCommerceProductByIDCommerce_POST",
+          label: "Creación de productos",
           className: "api-method post",
         },
         {
           type: "doc",
           id: "T1Comercios/cm-v-2-product-commerce-product-by-id-commerce-get",
-          label: "CmV2ProductCommerceProductByIDCommerce_GET",
+          label: "Listado de productos",
           className: "api-method get",
         },
         {
@@ -31,31 +31,31 @@ const sidebar: SidebarsConfig = {
         {
           type: "doc",
           id: "T1Comercios/get-cm-v-2-product-commerce-product-by-id-commerce-get",
-          label: "CmV2ProductCommerceProductByIDCommerce_GET",
+          label: "Obtiene información",
           className: "api-method get",
         },
         {
           type: "doc",
           id: "T1Comercios/cm-v-2-product-commerce-product-by-id-commerce-delete",
-          label: "CmV2ProductCommerceProductByIDCommerce_DELETE",
+          label: "Eliminación del producto",
           className: "api-method delete",
         },
         {
           type: "doc",
           id: "T1Comercios/cm-v-2-product-commerce-pause-by-id-commerce-post",
-          label: "CmV2ProductCommercePauseByIDCommerce_POST",
+          label: "Pausa la publicación",
           className: "api-method post",
         },
         {
           type: "doc",
           id: "T1Comercios/cm-v-2-product-commerce-active-by-id-commerce-post",
-          label: "CmV2ProductCommerceActiveByIDCommerce_POST",
+          label: "Activa la publicación",
           className: "api-method post",
         },
         {
           type: "doc",
           id: "T1Comercios/cm-v-2-product-commerce-product-sku-get",
-          label: "CmV2ProductCommerceProductSku_GET",
+          label: "Obtiene los datos de los SKUS",
           className: "api-method get",
         },
       ],
