@@ -65,6 +65,11 @@ const sidebar: SidebarsConfig = {
       label: 'Autenticación',
       items: require("./sidebarAutenticacion.ts"),
     },
+    {
+      type: 'category',
+      label: 'File Manager',
+      items: require("./sidebarFileManager.ts"),
+    },
   ],
 };
 
