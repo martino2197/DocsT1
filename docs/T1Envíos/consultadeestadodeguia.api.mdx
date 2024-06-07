@@ -1,0 +1,425 @@
+---
+id: consultadeestadodeguia
+title: "Consulta de estado de guía"
+description: "Método para consultar el estado de una guía."
+sidebar_label: "Consulta de estado de guía"
+hide_title: true
+hide_table_of_contents: true
+api: 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
+sidebar_class_name: "get api-method"
+info_path: docs/T1Envíos/t-1-envios
+custom_edit_url: null
+---
+
+import ApiTabs from "@theme/ApiTabs";
+import DiscriminatorTabs from "@theme/DiscriminatorTabs";
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import SecuritySchemes from "@theme/ApiExplorer/SecuritySchemes";
+import MimeTabs from "@theme/MimeTabs";
+import ParamsItem from "@theme/ParamsItem";
+import ResponseSamples from "@theme/ResponseSamples";
+import SchemaItem from "@theme/SchemaItem";
+import SchemaTabs from "@theme/SchemaTabs";
+import Markdown from "@theme/Markdown";
+import Heading from "@theme/Heading";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Consulta de estado de guía"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"get"}
+  path={"/webhook/estado-guia/{guia}"}
+>
+  
+</MethodEndpoint>
+
+
+
+Método para consultar el estado de una guía.
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+  children={"Request"}
+>
+</Heading>
+
+<details
+  style={{"marginBottom":"1rem"}}
+  className={"openapi-markdown__details"}
+  data-collapsed={false}
+  open={true}
+>
+  <summary
+    style={{}}
+  >
+    <h3
+      className={"openapi-markdown__details-summary-header-params"}
+    >
+      Path Parameters
+    </h3>
+  </summary><div>
+    <ul>
+      <ParamsItem
+        className={"paramsItem"}
+        param={{"name":"guia","in":"path","description":"","required":true,"style":"simple","schema":{"type":"string"}}}
+      >
+        
+      </ParamsItem>
+    </ul>
+  </div>
+</details><div>
+  <div>
+    <ApiTabs
+      label={undefined}
+      id={undefined}
+    >
+      <TabItem
+        label={"200"}
+        value={"200"}
+      >
+        <div>
+          
+          
+          Respuesta de una petición del estado actual de guía en formato JSON. (La url final puede cambiar)
+          
+          
+        </div><details
+          style={{"textAlign":"left","marginBottom":"1rem"}}
+          className={"openapi-markdown__details"}
+          data-collaposed={true}
+          open={false}
+        >
+          <summary
+            style={{}}
+          >
+            <strong>
+              Response Headers
+            </strong>
+          </summary><ul
+            style={{"marginLeft":"1rem"}}
+          >
+            
+          </ul>
+        </details><div>
+          <MimeTabs
+            className={"openapi-tabs__mime"}
+            schemaType={"response"}
+          >
+            <TabItem
+              label={"application/json"}
+              value={"application/json"}
+            >
+              <SchemaTabs
+                className={"openapi-tabs__schema"}
+              >
+                <TabItem
+                  label={"Schema"}
+                  value={"Schema"}
+                >
+                  <details
+                    style={{}}
+                    className={"openapi-markdown__details response"}
+                    data-collapsed={false}
+                    open={true}
+                  >
+                    <summary
+                      style={{}}
+                      className={"openapi-markdown__details-summary-response"}
+                    >
+                      <strong>
+                        Schema
+                      </strong>
+                    </summary><div
+                      style={{"textAlign":"left","marginLeft":"1rem"}}
+                    >
+                      
+                    </div><ul
+                      style={{"marginLeft":"1rem"}}
+                    >
+                      <SchemaItem
+                        collapsible={false}
+                        name={"success"}
+                        required={false}
+                        schemaName={"boolean"}
+                        qualifierMessage={undefined}
+                        schema={{"type":"boolean","description":"true | false"}}
+                      >
+                        
+                      </SchemaItem><SchemaItem
+                        collapsible={false}
+                        name={"message"}
+                        required={false}
+                        schemaName={"string"}
+                        qualifierMessage={undefined}
+                        schema={{"type":"string","description":"Mensaje mostrado cuando se obtiene la respuesta de la consulta"}}
+                      >
+                        
+                      </SchemaItem><SchemaItem
+                        collapsible={true}
+                        className={"schemaItem"}
+                      >
+                        <details
+                          style={{}}
+                          className={"openapi-markdown__details"}
+                        >
+                          <summary
+                            style={{}}
+                          >
+                            <span
+                              className={"openapi-schema__container"}
+                            >
+                              <strong
+                                className={"openapi-schema__property"}
+                              >
+                                detail
+                              </strong><span
+                                className={"openapi-schema__name"}
+                              >
+                                 object
+                              </span>
+                            </span>
+                          </summary><div
+                            style={{"marginLeft":"1rem"}}
+                          >
+                            <div
+                              style={{"marginTop":".5rem","marginBottom":".5rem"}}
+                            >
+                              
+                              
+                              Cotización dependiendo de los tipos de servicios
+                              
+                              
+                            </div><SchemaItem
+                              collapsible={false}
+                              name={"id_seller"}
+                              required={false}
+                              schemaName={"string"}
+                              qualifierMessage={undefined}
+                              schema={{"type":"string","description":"Identificador del seller"}}
+                            >
+                              
+                            </SchemaItem><SchemaItem
+                              collapsible={false}
+                              name={"codigo"}
+                              required={false}
+                              schemaName={"string"}
+                              qualifierMessage={undefined}
+                              schema={{"type":"string","description":"Código de estado de la guía"}}
+                            >
+                              
+                            </SchemaItem><SchemaItem
+                              collapsible={false}
+                              name={"descripcion"}
+                              required={false}
+                              schemaName={"string"}
+                              qualifierMessage={undefined}
+                              schema={{"type":"string","description":"Descripción del código de estado de la guía"}}
+                            >
+                              
+                            </SchemaItem><SchemaItem
+                              collapsible={false}
+                              name={"familia_interna"}
+                              required={false}
+                              schemaName={"string"}
+                              qualifierMessage={undefined}
+                              schema={{"type":"string","description":"Identificador de la familia interna (si aplica)"}}
+                            >
+                              
+                            </SchemaItem><SchemaItem
+                              collapsible={false}
+                              name={"familia_externa"}
+                              required={false}
+                              schemaName={"string"}
+                              qualifierMessage={undefined}
+                              schema={{"type":"string","description":"Identificador de la familia externa(si aplica)"}}
+                            >
+                              
+                            </SchemaItem><SchemaItem
+                              collapsible={false}
+                              name={"guia"}
+                              required={false}
+                              schemaName={"string"}
+                              qualifierMessage={undefined}
+                              schema={{"type":"string","description":"Número de guía"}}
+                            >
+                              
+                            </SchemaItem><SchemaItem
+                              collapsible={false}
+                              name={"fecha"}
+                              required={false}
+                              schemaName={"string"}
+                              qualifierMessage={undefined}
+                              schema={{"type":"string","description":"Fecha del evento"}}
+                            >
+                              
+                            </SchemaItem><SchemaItem
+                              collapsible={false}
+                              name={"recibe"}
+                              required={false}
+                              schemaName={"string"}
+                              qualifierMessage={undefined}
+                              schema={{"type":"string","description":"Nombre de la persona quien recibe (si aplica)"}}
+                            >
+                              
+                            </SchemaItem>
+                          </div>
+                        </details>
+                      </SchemaItem>
+                    </ul>
+                  </details>
+                </TabItem><TabItem
+                  label={"Example (from schema)"}
+                  value={"Example (from schema)"}
+                >
+                  <ResponseSamples
+                    responseExample={"{\n  \"success\": true,\n  \"message\": \"string\",\n  \"detail\": {\n    \"id_seller\": \"string\",\n    \"codigo\": \"string\",\n    \"descripcion\": \"string\",\n    \"familia_interna\": \"string\",\n    \"familia_externa\": \"string\",\n    \"guia\": \"string\",\n    \"fecha\": \"string\",\n    \"recibe\": \"string\"\n  }\n}"}
+                    language={"json"}
+                  >
+                    
+                  </ResponseSamples>
+                </TabItem><TabItem
+                  label={"Estructura de Response:"}
+                  value={"Estructura de Response:"}
+                >
+                  <ResponseSamples
+                    responseExample={"{\n  \"success\": true,\n  \"message\": \"Petición exitosa!\",\n  \"detail\": {\n    \"id_seller\": \"1\",\n    \"codigo\": \"4\",\n    \"descripcion\": \"Producto entregado\",\n    \"familia_interna\": \"0\",\n    \"familia_generica\": \"\",\n    \"guia\": \"0122445\",\n    \"fecha\": \"2021-08-18T10:00:39.178463435\",\n    \"recibe\": \"Jhon Snow\"\n  }\n}"}
+                    language={"json"}
+                  >
+                    
+                  </ResponseSamples>
+                </TabItem>
+              </SchemaTabs>
+            </TabItem>
+          </MimeTabs>
+        </div>
+      </TabItem><TabItem
+        label={"400"}
+        value={"400"}
+      >
+        <div>
+          
+          
+          Posibles errores debido a que no se pudo realizar la consulta.
+          
+          
+        </div><details
+          style={{"textAlign":"left","marginBottom":"1rem"}}
+          className={"openapi-markdown__details"}
+          data-collaposed={true}
+          open={false}
+        >
+          <summary
+            style={{}}
+          >
+            <strong>
+              Response Headers
+            </strong>
+          </summary><ul
+            style={{"marginLeft":"1rem"}}
+          >
+            
+          </ul>
+        </details><div>
+          <MimeTabs
+            className={"openapi-tabs__mime"}
+            schemaType={"response"}
+          >
+            <TabItem
+              label={"application/json"}
+              value={"application/json"}
+            >
+              <SchemaTabs
+                className={"openapi-tabs__schema"}
+              >
+                <TabItem
+                  label={"Schema"}
+                  value={"Schema"}
+                >
+                  <details
+                    style={{}}
+                    className={"openapi-markdown__details response"}
+                    data-collapsed={false}
+                    open={true}
+                  >
+                    <summary
+                      style={{}}
+                      className={"openapi-markdown__details-summary-response"}
+                    >
+                      <strong>
+                        Schema
+                      </strong>
+                    </summary><div
+                      style={{"textAlign":"left","marginLeft":"1rem"}}
+                    >
+                      
+                    </div><ul
+                      style={{"marginLeft":"1rem"}}
+                    >
+                      <SchemaItem
+                        collapsible={false}
+                        name={"success"}
+                        required={false}
+                        schemaName={"boolean"}
+                        qualifierMessage={undefined}
+                        schema={{"type":"boolean"}}
+                      >
+                        
+                      </SchemaItem><SchemaItem
+                        collapsible={false}
+                        name={"message"}
+                        required={false}
+                        schemaName={"string"}
+                        qualifierMessage={undefined}
+                        schema={{"type":"string"}}
+                      >
+                        
+                      </SchemaItem><SchemaItem
+                        collapsible={false}
+                        name={"error"}
+                        required={false}
+                        schemaName={"string"}
+                        qualifierMessage={undefined}
+                        schema={{"type":"string"}}
+                      >
+                        
+                      </SchemaItem>
+                    </ul>
+                  </details>
+                </TabItem><TabItem
+                  label={"Example (from schema)"}
+                  value={"Example (from schema)"}
+                >
+                  <ResponseSamples
+                    responseExample={"{\n  \"success\": true,\n  \"message\": \"string\",\n  \"error\": \"string\"\n}"}
+                    language={"json"}
+                  >
+                    
+                  </ResponseSamples>
+                </TabItem><TabItem
+                  label={"Posibles errores debido a que no se pudo realizar la consulta."}
+                  value={"Posibles errores debido a que no se pudo realizar la consulta."}
+                >
+                  <ResponseSamples
+                    responseExample={"{\n  \"success\": false,\n  \"message\": \"Error al pocesar petición\",\n  \"error\": \"La guia numero_guia no existe\"\n}"}
+                    language={"json"}
+                  >
+                    
+                  </ResponseSamples>
+                </TabItem>
+              </SchemaTabs>
+            </TabItem>
+          </MimeTabs>
+        </div>
+      </TabItem>
+    </ApiTabs>
+  </div>
+</div>
+      

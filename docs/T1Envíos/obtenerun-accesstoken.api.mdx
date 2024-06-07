@@ -1,0 +1,438 @@
+---
+id: obtenerun-accesstoken
+title: "Obtener un Access token"
+description: "Método para iniciar sesión en el API y obtener un token de acceso. Utilizar https://pcapi.plataforma-claro.com/auth/realms/claroshop-sapi-sa-cv/protocol/openid-connect/token"
+sidebar_label: "Obtener un Access token"
+hide_title: true
+hide_table_of_contents: true
+api: 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
+sidebar_class_name: "post api-method"
+info_path: docs/T1Envíos/t-1-envios
+custom_edit_url: null
+---
+
+import ApiTabs from "@theme/ApiTabs";
+import DiscriminatorTabs from "@theme/DiscriminatorTabs";
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import SecuritySchemes from "@theme/ApiExplorer/SecuritySchemes";
+import MimeTabs from "@theme/MimeTabs";
+import ParamsItem from "@theme/ParamsItem";
+import ResponseSamples from "@theme/ResponseSamples";
+import SchemaItem from "@theme/SchemaItem";
+import SchemaTabs from "@theme/SchemaTabs";
+import Markdown from "@theme/Markdown";
+import Heading from "@theme/Heading";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Obtener un Access token"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"post"}
+  path={"/auth/realms/claroshop-sapi-sa-cv/proto col/openid-connect/token"}
+>
+  
+</MethodEndpoint>
+
+
+
+Método para iniciar sesión en el API y obtener un token de acceso. Utilizar https://pcapi.plataforma-claro.com/auth/realms/claroshop-sapi-sa-cv/protocol/openid-connect/token
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+  children={"Request"}
+>
+</Heading>
+
+<details
+  style={{"marginBottom":"1rem"}}
+  className={"openapi-markdown__details"}
+  data-collapsed={false}
+  open={true}
+>
+  <summary
+    style={{}}
+  >
+    <h3
+      className={"openapi-markdown__details-summary-header-params"}
+    >
+      Header Parameters
+    </h3>
+  </summary><div>
+    <ul>
+      <ParamsItem
+        className={"paramsItem"}
+        param={{"name":"Content-Type","in":"header","description":"","required":true,"style":"simple","schema":{"const":"application/x-www-form-urlencoded","type":"string"}}}
+      >
+        
+      </ParamsItem>
+    </ul>
+  </div>
+</details><MimeTabs
+  className={"openapi-tabs__mime"}
+>
+  <TabItem
+    label={"application/x-www-form-urlencoded"}
+    value={"application/x-www-form-urlencoded-schema"}
+  >
+    <details
+      style={{}}
+      className={"openapi-markdown__details mime"}
+      data-collapsed={false}
+      open={true}
+    >
+      <summary
+        style={{}}
+        className={"openapi-markdown__details-summary-mime"}
+      >
+        <h3
+          className={"openapi-markdown__details-summary-header-body"}
+        >
+          Body
+        </h3>
+      </summary><div
+        style={{"textAlign":"left","marginLeft":"1rem"}}
+      >
+        
+      </div><ul
+        style={{"marginLeft":"1rem"}}
+      >
+        <SchemaItem
+          collapsible={false}
+          name={"grant_type"}
+          required={false}
+          schemaName={""}
+          qualifierMessage={undefined}
+          schema={{"description":"password"}}
+        >
+          
+        </SchemaItem><SchemaItem
+          collapsible={false}
+          name={"client_id"}
+          required={false}
+          schemaName={""}
+          qualifierMessage={undefined}
+          schema={{"description":"t1envios"}}
+        >
+          
+        </SchemaItem><SchemaItem
+          collapsible={false}
+          name={"secret_id"}
+          required={false}
+          schemaName={""}
+          qualifierMessage={undefined}
+          schema={{"description":"d1d661be-8487-4660-bc19-540dbb12fb05"}}
+        >
+          
+        </SchemaItem><SchemaItem
+          collapsible={false}
+          name={"username"}
+          required={false}
+          schemaName={""}
+          qualifierMessage={undefined}
+          schema={{"description":"Correo con que se registro en la pagina"}}
+        >
+          
+        </SchemaItem><SchemaItem
+          collapsible={false}
+          name={"password"}
+          required={false}
+          schemaName={""}
+          qualifierMessage={undefined}
+          schema={{"description":"Contraseña que registro en la pagina"}}
+        >
+          
+        </SchemaItem>
+      </ul>
+    </details>
+  </TabItem>
+</MimeTabs><div>
+  <div>
+    <ApiTabs
+      label={undefined}
+      id={undefined}
+    >
+      <TabItem
+        label={"200"}
+        value={"200"}
+      >
+        <div>
+          
+          
+          Respuesta de petición de cotización JSON.
+          
+          
+        </div><details
+          style={{"textAlign":"left","marginBottom":"1rem"}}
+          className={"openapi-markdown__details"}
+          data-collaposed={true}
+          open={false}
+        >
+          <summary
+            style={{}}
+          >
+            <strong>
+              Response Headers
+            </strong>
+          </summary><ul
+            style={{"marginLeft":"1rem"}}
+          >
+            
+          </ul>
+        </details><div>
+          <MimeTabs
+            className={"openapi-tabs__mime"}
+            schemaType={"response"}
+          >
+            <TabItem
+              label={"application/json"}
+              value={"application/json"}
+            >
+              <SchemaTabs
+                className={"openapi-tabs__schema"}
+              >
+                <TabItem
+                  label={"Schema"}
+                  value={"Schema"}
+                >
+                  <details
+                    style={{}}
+                    className={"openapi-markdown__details response"}
+                    data-collapsed={false}
+                    open={true}
+                  >
+                    <summary
+                      style={{}}
+                      className={"openapi-markdown__details-summary-response"}
+                    >
+                      <strong>
+                        Schema
+                      </strong>
+                    </summary><div
+                      style={{"textAlign":"left","marginLeft":"1rem"}}
+                    >
+                      
+                    </div><ul
+                      style={{"marginLeft":"1rem"}}
+                    >
+                      <SchemaItem
+                        collapsible={false}
+                        name={"access_token"}
+                        required={false}
+                        schemaName={"string"}
+                        qualifierMessage={undefined}
+                        schema={{"type":"string","description":"Contiene el JWT Token de acceso"}}
+                      >
+                        
+                      </SchemaItem><SchemaItem
+                        collapsible={false}
+                        name={"expires_in"}
+                        required={false}
+                        schemaName={"integer"}
+                        qualifierMessage={undefined}
+                        schema={{"type":"integer","description":"Tiempo de vida en segundos del access_token.","contentEncoding":"int32"}}
+                      >
+                        
+                      </SchemaItem><SchemaItem
+                        collapsible={false}
+                        name={"refresh_expires_in"}
+                        required={false}
+                        schemaName={"integer"}
+                        qualifierMessage={undefined}
+                        schema={{"type":"integer","description":"Tiempo de vida en segundos del token de actualización","contentEncoding":"int32"}}
+                      >
+                        
+                      </SchemaItem><SchemaItem
+                        collapsible={false}
+                        name={"refresh_token"}
+                        required={false}
+                        schemaName={"string"}
+                        qualifierMessage={undefined}
+                        schema={{"type":"string","description":"El token de actualización, que se puede usar para obtener nuevos tokens de acceso utilizando la misma concesión de autorización"}}
+                      >
+                        
+                      </SchemaItem><SchemaItem
+                        collapsible={false}
+                        name={"token_type"}
+                        required={false}
+                        schemaName={"string"}
+                        qualifierMessage={undefined}
+                        schema={{"type":"string","description":"Tipo de token “bearer”"}}
+                      >
+                        
+                      </SchemaItem><SchemaItem
+                        collapsible={false}
+                        name={"not-before-policy"}
+                        required={false}
+                        schemaName={"integer"}
+                        qualifierMessage={undefined}
+                        schema={{"type":"integer","description":"Políticas de revocación no antes por dominio, aplicación y usuario","contentEncoding":"int32"}}
+                      >
+                        
+                      </SchemaItem><SchemaItem
+                        collapsible={false}
+                        name={"session_state"}
+                        required={false}
+                        schemaName={"string"}
+                        qualifierMessage={undefined}
+                        schema={{"type":"string","description":"String que representa el estado de inicio de sesión del usuario"}}
+                      >
+                        
+                      </SchemaItem><SchemaItem
+                        collapsible={false}
+                        name={"scope"}
+                        required={false}
+                        schemaName={"string"}
+                        qualifierMessage={undefined}
+                        schema={{"type":"string","description":"scopes otorgados"}}
+                      >
+                        
+                      </SchemaItem>
+                    </ul>
+                  </details>
+                </TabItem><TabItem
+                  label={"Example (from schema)"}
+                  value={"Example (from schema)"}
+                >
+                  <ResponseSamples
+                    responseExample={"{\n  \"access_token\": \"string\",\n  \"expires_in\": 0,\n  \"refresh_expires_in\": 0,\n  \"refresh_token\": \"string\",\n  \"token_type\": \"string\",\n  \"not-before-policy\": 0,\n  \"session_state\": \"string\",\n  \"scope\": \"string\"\n}"}
+                    language={"json"}
+                  >
+                    
+                  </ResponseSamples>
+                </TabItem><TabItem
+                  label={"Respuesta de petición de cotización JSON."}
+                  value={"Respuesta de petición de cotización JSON."}
+                >
+                  <ResponseSamples
+                    responseExample={"{\n  \"access_token\": \"eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6IC..\",\n  \"expires_in\": 1800,\n  \"refresh_expires_in\": 7776000,\n  \"refresh_token\": \"eyJhbGciOiJIUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICI3..\",\n  \"token_type\": \"bearer\",\n  \"not-before-policy\": 1627348134,\n  \"session_state\": \"92167821-edd8-4b3b-9338-277afe04e8a2\",\n  \"scope\": \"email profile\"\n}"}
+                    language={"json"}
+                  >
+                    
+                  </ResponseSamples>
+                </TabItem>
+              </SchemaTabs>
+            </TabItem>
+          </MimeTabs>
+        </div>
+      </TabItem><TabItem
+        label={"400"}
+        value={"400"}
+      >
+        <div>
+          
+          
+          Posibles errores por falta de algún campo requerido.
+          
+          
+        </div><details
+          style={{"textAlign":"left","marginBottom":"1rem"}}
+          className={"openapi-markdown__details"}
+          data-collaposed={true}
+          open={false}
+        >
+          <summary
+            style={{}}
+          >
+            <strong>
+              Response Headers
+            </strong>
+          </summary><ul
+            style={{"marginLeft":"1rem"}}
+          >
+            
+          </ul>
+        </details><div>
+          <MimeTabs
+            className={"openapi-tabs__mime"}
+            schemaType={"response"}
+          >
+            <TabItem
+              label={"application/json"}
+              value={"application/json"}
+            >
+              <SchemaTabs
+                className={"openapi-tabs__schema"}
+              >
+                <TabItem
+                  label={"Schema"}
+                  value={"Schema"}
+                >
+                  <details
+                    style={{}}
+                    className={"openapi-markdown__details response"}
+                    data-collapsed={false}
+                    open={true}
+                  >
+                    <summary
+                      style={{}}
+                      className={"openapi-markdown__details-summary-response"}
+                    >
+                      <strong>
+                        Schema
+                      </strong>
+                    </summary><div
+                      style={{"textAlign":"left","marginLeft":"1rem"}}
+                    >
+                      
+                    </div><ul
+                      style={{"marginLeft":"1rem"}}
+                    >
+                      <SchemaItem
+                        collapsible={false}
+                        name={"error"}
+                        required={false}
+                        schemaName={"string"}
+                        qualifierMessage={undefined}
+                        schema={{"type":"string"}}
+                      >
+                        
+                      </SchemaItem><SchemaItem
+                        collapsible={false}
+                        name={"error_description"}
+                        required={false}
+                        schemaName={"string"}
+                        qualifierMessage={undefined}
+                        schema={{"type":"string"}}
+                      >
+                        
+                      </SchemaItem>
+                    </ul>
+                  </details>
+                </TabItem><TabItem
+                  label={"Example (from schema)"}
+                  value={"Example (from schema)"}
+                >
+                  <ResponseSamples
+                    responseExample={"{\n  \"error\": \"string\",\n  \"error_description\": \"string\"\n}"}
+                    language={"json"}
+                  >
+                    
+                  </ResponseSamples>
+                </TabItem><TabItem
+                  label={"Posibles errores por falta de algún campo requerido."}
+                  value={"Posibles errores por falta de algún campo requerido."}
+                >
+                  <ResponseSamples
+                    responseExample={"{\n  \"error\": \"invalid_request\",\n  \"error_description\": \"Missing form parameter: grant_type\"\n}"}
+                    language={"json"}
+                  >
+                    
+                  </ResponseSamples>
+                </TabItem>
+              </SchemaTabs>
+            </TabItem>
+          </MimeTabs>
+        </div>
+      </TabItem>
+    </ApiTabs>
+  </div>
+</div>
+      
