@@ -75,6 +75,11 @@ const sidebar: SidebarsConfig = {
       label: 'Catálogos',
       items: require("./sidebarCatalogosCategorias.ts"),
     },
+    {
+      type: 'category',
+      label: 'Pedidos',
+      items: require("./sidebarPedidos.ts"),
+    },
   ],
 };
 

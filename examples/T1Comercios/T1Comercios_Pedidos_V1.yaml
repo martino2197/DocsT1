@@ -1,0 +1,517 @@
+openapi: 3.0.0
+info:
+  title: Pedidos
+  version: 1.0.0
+
+servers:
+  - description: SwaggerHub API Auto Mocking
+    url: https://virtserver.swaggerhub.com/pcarrilloj/productosT1/1.0.0
+  - description: alpha dev
+    url: https://pcapi-alpha.dev.plataforma-claro.com
+  - description: Preproducción
+    url: https://pcapi.release.plataforma-claro.com
+
+paths: 
+  /kidal/v1/Ordersfull/seller/{IDSELLER}:
+    get:
+      tags: 
+        - Pedidos
+      summary: Listado de pedidos de un comercio.
+      description: Retorna el listado de pedidos de un comercio. 
+      operationId: getOrdersFull
+      parameters:
+        - $ref: '#/components/parameters/IDSELLER'
+        - $ref: '#/components/parameters/filter-status-family'
+        - $ref: '#/components/parameters/filter-date-range-end'
+        - $ref: '#/components/parameters/filter-date-range-begin'
+        - $ref: '#/components/parameters/filter-status'
+        - $ref: '#/components/parameters/pageSize'
+        - $ref: '#/components/parameters/page'
+        - $ref: '#/components/parameters/filter-orderId'
+      responses:
+        '200':
+          $ref: '#/components/responses/basic_200'
+      security:
+        - bearerAuth: []
+components: 
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+  parameters:
+    IDSELLER:
+      name: IDSELLER
+      in: path
+      required: true
+      description: ID del vendedor
+      schema:
+        type: string
+    filter-status-family:
+      name: filter-status-family
+      in: query
+      required: false
+      description: Filtrar por familia de estado
+      schema:
+        type: array
+        items:
+          type: string
+        example: [listo_para_enviar]
+    filter-date-range-end:
+      name: filter-date-range-end
+      in: query
+      required: false
+      description: Fecha de fin del rango
+      schema:
+        type: string
+        format: date
+        example: 2023-01-01
+    filter-date-range-begin:
+      name: filter-date-range-begin
+      in: query
+      required: false
+      description: Fecha de inicio del rango
+      schema:
+        type: string
+        format: date
+        example: 2023-01-31
+    filter-status:
+      name: filter-status
+      in: query
+      required: false
+      description: Filtrar por estado
+      schema:
+        type: string
+        enum:
+        - por enviar
+        - por recolectar
+        - En camino
+        - Entregado
+        - Facturado 
+        - cancelado por vendedor
+        - cancelado por cliente
+        example: por recolectar
+    pageSize:
+      name: pageSize
+      in: query
+      required: false
+      description: Tamaño de la página
+      schema:
+        type: integer
+        example: 10
+    page:
+      name: page
+      in: query
+      required: false
+      description: Número de la página
+      schema:
+        type: integer
+        example: 19
+    filter-orderId:
+      name: filter-orderId
+      in: query
+      required: false
+      description: Filtrar por ID de orden
+      schema:
+        type: string
+        example: 83649424
+  responses:
+    basic_200: 
+      description: Respuesta exitosa
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Response'
+  schemas:
+    Response:
+      type: object
+      description: Estructura de respuesta exitosa
+      properties:
+        metadata:
+          type: object
+          description: Metadatos sobre la respuesta
+          properties:
+            status:
+              type: string
+              description: Estado de la respuesta
+              example: success
+            message:
+              type: string
+              description: Mensaje de la respuesta
+              example: OK
+            http_code:
+              type: integer
+              description: Código de estado HTTP
+              example: 200
+            date_time:
+              type: string
+              format: date-time
+              description: Fecha y hora de la respuesta
+              example: 2024-06-08T05:35:59.515+00:00
+        data:
+          type: array
+          description: Lista de pedidos
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+                description: Identificador único del pedido
+                example: f976e8e4cae393af65251a81805ad3de
+              orderid:
+                type: string
+                description: ID de la orden en el marketPlace
+                example: 83783474
+              marketplace:
+                type: string
+                description: Identificador del marketPlace
+                enum:
+                  - CS
+                  - SR
+                  - SN
+                example: SR
+              sellerID:
+                type: string
+                description: ID del vendedor
+                example: 10541
+              external_id:
+                type: string
+                description: ID externo
+                nullable: true
+                example: null
+              purchase_date:
+                type: string
+                format: date-time
+                description: Fecha y hora de compra
+                example: 2024-05-24T12:09:48.000+00:00
+              authorization_date:
+                type: string
+                format: date-time
+                description: Fecha y hora de autorización
+                example: 2024-05-24T12:17:18.000+00:00
+              paymentData:
+                type: object
+                description: Datos de pago, información no disponible por API para 3ros.
+                properties:
+                  status:
+                    type: string
+                    description: Estado del pago, información no disponible por API para 3ros.
+                    nullable: true
+                    example: null
+                  plan:
+                    type: string
+                    description: Plan de pago, información no disponible por API para 3ros.
+                    nullable: true
+                    example: null
+                  paymentMetod:
+                    type: string
+                    description: Método de pago, información no disponible por API para 3ros.
+                    nullable: true
+                    example: null
+                  paymentDueDate:
+                    type: string
+                    format: date
+                    description: Fecha de vencimiento del pago, información no disponible por API para 3ros.
+                    nullable: true
+                    example: null
+                  paymentReference:
+                    type: string
+                    description: Referencia de pago, información no disponible por API para 3ros.
+                    nullable: true
+                    example: null
+                  bank:
+                    type: string
+                    description: Nombre del banco, información no disponible por API para 3ros.
+                    example: ""
+                  binCard:
+                    type: string
+                    description: Número de identificación bancaria (BIN) de la tarjeta, información no disponible por API para 3ros.
+                    nullable: true
+                    example: null
+                  cardLastDigits:
+                    type: string
+                    description: Últimos dígitos de la tarjeta, información no disponible por API para 3ros.
+                    nullable: true
+                    example: null
+                  cardType:
+                    type: string
+                    description: Tipo de tarjeta (e.g., Visa, MasterCard), información no disponible por API para 3ros.
+                    nullable: true
+                    example: null
+                  bankAffiliation:
+                    type: string
+                    description: Afiliación bancaria, información no disponible por API para 3ros.
+                    example: ""
+                  paymentNoInstallments:
+                    type: integer
+                    description: Número de cuotas, información no disponible por API para 3ros.
+                    example: 1
+                  paymentInstallments:
+                    type: string
+                    description: Cuotas de pago, información no disponible por API para 3ros.
+                    nullable: true
+                    example: null
+                  subtotal:
+                    type: number
+                    format: float
+                    description: Subtotal
+                    example: 350.0
+                  discount:
+                    type: string
+                    description: Descuento aplicado, información no disponible por API para 3ros.
+                    nullable: true
+                    example: null
+                  couponAmount:
+                    type: string
+                    description: Monto del cupón aplicado, información no disponible por API para 3ros.
+                    nullable: true
+                    example: null
+                  shippingCosts:
+                    type: number
+                    format: float
+                    description: Costos de envío
+                    example: 82.0
+                  total:
+                    type: number
+                    format: float
+                    description: Total
+                    example: 432.0
+                  commissions:
+                    type: string
+                    description: Comisiones aplicadas, información no disponible por API para 3ros.
+                    nullable: true
+                    example: null
+              shippingAddress:
+                type: object
+                description: Dirección de envío
+                properties:
+                  zipCode:
+                    type: string
+                    description: Código postal
+                    example: 15670
+                  city:
+                    type: string
+                    description: Ciudad
+                    example: Venustiano Carranza
+                  phoneNumber:
+                    type: string
+                    description: Número de teléfono
+                    example: 5579797979
+                  notes:
+                    type: string
+                    description: Notas sobre la dirección
+                    example: ""
+                  outdoorNumber:
+                    type: string
+                    description: Número exterior
+                    example: 13
+                  interiorNumber:
+                    type: string
+                    description: Número interior
+                    example: "INT 1"
+                  borough:
+                    type: string
+                    description: Delegación
+                    example: Venustiano Carranza
+                  betweenStreets:
+                    type: string
+                    description: Entre calles
+                    example: Calle 1 y Calle 2
+                  suburb:
+                    type: string
+                    description: Colonia
+                    example: Adolfo López Mateos
+                  stateCode:
+                    type: string
+                    description: Código del estado
+                    nullable: true
+                    example: null
+                  state:
+                    type: string
+                    description: Estado
+                    example: Ciudad de México
+                  street:
+                    type: string
+                    description: Calle
+                    example: Calle Entrega
+                  addressee:
+                    type: string
+                    description: Destinatario
+                    example: Jaime Fulanito
+              clientData:
+                type: object
+                description: Datos del cliente
+                properties:
+                  id:
+                    type: string
+                    description: ID del cliente
+                    example: 1106754
+                  fullname:
+                    type: string
+                    description: Nombre completo del cliente
+                    example: Jaime Flulainito
+                  email:
+                    type: string
+                    description: Correo electrónico del cliente
+                    example: correo_cliente@hotmail.com
+              orderedProductsList:
+                type: array
+                description: Lista de productos ordenados
+                items:
+                  type: object
+                  properties:
+                    colocationId:
+                      type: string
+                      description: ID de colocación, (Partida)
+                      example: 12491524
+                    idProduct:
+                      type: string
+                      description: ID de la publicación en el marketPlace
+                      example: 2948290
+                    name:
+                      type: string
+                      description: Nombre del producto
+                      example: Producto de prueba Mongo
+                    sku:
+                      type: string
+                      description: SKU del producto
+                      example: SKUP_V1
+                    universal_id:
+                      type: string
+                      description: ID universal
+                      nullable: true
+                      example: null
+                    saleDiscount:
+                      type: number
+                      format: float
+                      description: Descuento de venta
+                      example: 0.0
+                    totalSale:
+                      type: number
+                      format: float
+                      description: Venta total
+                      example: 350.0
+                    colocationStatus:
+                      type: object
+                      description: Estado de la partida.
+                      properties:
+                        id:
+                          type: string
+                          description: ID del estado
+                          enum:
+                           - "1"
+                           - "2"
+                           - "3"
+                           - "4"
+                           - "5"
+                           - "6"
+                           - "7"
+                          example: 5
+                        name:
+                          type: string
+                          description: Nombre del estado
+                           - por enviar
+                           - por recolectar
+                           - En camino
+                           - Entregado
+                           - Facturado 
+                           - cancelado por cliente
+                           - cancelado por vendedor
+                           
+                          example: facturado
+                        reasonID:
+                          type: string
+                          description: ID de la razón
+                          nullable: true
+                          example: null
+                        reasonName:
+                          type: string
+                          description: Nombre de la razón
+                          nullable: true
+                          example: null
+                    deliveryTrackId:
+                      type: string
+                      description: ID de seguimiento de entrega, ( Número de guía)
+                      example: 258746698885
+                    deliveryCarrierId:
+                      type: string
+                      description: ID del transportista
+                      example: 13
+                    deliveryCarrierName:
+                      type: string
+                      description: Nombre del transportista
+                      example: Manual
+                    deliveryType:
+                      type: string
+                      description: Tipo de entrega
+                      enum: 
+                        - dropshipping
+                        - fulfillment
+                      example: dropshipping
+                    productType:
+                      type: string
+                      description: Tipo de producto
+                      example: physicals
+                    dimensions:
+                      type: array
+                      description: Dimensiones del producto
+                      items:
+                        type: object
+                        properties:
+                          height:
+                            type: number
+                            format: float
+                            description: Altura del producto
+                            example: 1
+                          width:
+                            type: number
+                            format: float
+                            description: Ancho del producto
+                            example: 1
+                          depth:
+                            type: number
+                            format: float
+                            description: Profundidad del producto
+                            example: 1
+                          weight:
+                            type: number
+                            format: float
+                            description: Peso del producto
+                            example: 1
+                    idFulfillment:
+                      type: string
+                      description: ID Fulfillment
+                      example: 0
+                    imageLinkThumbnail:
+                      type: string
+                      description: Enlace a la imagen en miniatura del producto
+                      example: https://resources.claroshop.com/medios-plazavip/t1/1715320187ImagendeWhatsApp20240417alas11461309c23dcdjpg
+                    clickAndCollect:
+                      type: string
+                      description: Información de click and collect
+                      nullable: true
+                      example: null
+                    statusInvoice:
+                      type: string
+                      description: Estado de la factura
+                      example: invoiced
+        pagination:
+          type: object
+          description: Información de paginación
+          properties:
+            total_registros:
+              type: integer
+              description: Número total de registros
+              example: 51
+            total_count:
+              type: integer
+              description: Número total de elementos en la página actual
+              example: 2
+            page:
+              type: integer
+              description: Número de la página actual
+              example: 1
+            page_size:
+              type: integer
+              description: Tamaño de la página
+              example: 2
