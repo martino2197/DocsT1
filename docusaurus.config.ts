@@ -73,11 +73,11 @@ const config: Config = {
           label: 'Docs',
         },
         {to: '/blog', label: 'Blog', position: 'left'},
-        {
-          href: 'https://github.com/facebook/docusaurus',
-          label: 'GitHub',
-          position: 'right',
-        },
+        // {
+        //   href: 'https://github.com/facebook/docusaurus',
+        //   label: 'GitHub',
+        //   position: 'right',
+        // },
       ],
     },
     footer: {
@@ -87,8 +87,16 @@ const config: Config = {
           title: 'Docs',
           items: [
             {
-              label: 'Tutorial',
-              to: '/docs/intro',
+              label: 'T1Pagos',
+              to: '/docs/T1Pagos/t-1-pagos',
+            },
+            {
+              label: 'T1Comercios',
+              to: '/docs/T1Comercios/documentacion-api-v-2-t-1-comercios',
+            },
+            {
+              label: 'T1Envíos',
+              to: '/docs/T1Envíos/t-1-envios',
             },
           ],
         },
@@ -96,16 +104,20 @@ const config: Config = {
           title: 'Community',
           items: [
             {
-              label: 'Stack Overflow',
-              href: 'https://stackoverflow.com/questions/tagged/docusaurus',
-            },
-            {
-              label: 'Discord',
-              href: 'https://discordapp.com/invite/docusaurus',
+              label: 'Facebook',
+              href: 'https://www.facebook.com/t1paginas',
             },
             {
               label: 'Twitter',
-              href: 'https://twitter.com/docusaurus',
+              href: 'https://x.com/t1paginas',
+            },
+            {
+              label: 'Instagram',
+              href: 'https://www.instagram.com/t1paginas/',
+            },
+            {
+              label: 'Linkedin',
+              href: 'https://www.linkedin.com/company/t1paginas/',
             },
           ],
         },
@@ -116,14 +128,14 @@ const config: Config = {
               label: 'Blog',
               to: '/blog',
             },
-            {
-              label: 'GitHub',
-              href: 'https://github.com/facebook/docusaurus',
-            },
+            // {
+            //   label: 'GitHub',
+            //   href: 'https://github.com/facebook/docusaurus',
+            // },
           ],
         },
       ],
-      copyright: `Copyright © ${new Date().getFullYear()} My Project, Inc. Built with Docusaurus.`,
+      copyright: `Copyright © ${new Date().getFullYear()} CLAROSHOP.COM, S.A. DE C.V. & CLARO PAGOS, S.A. DE C.V.`,
     },
     prism: {
       theme: prismThemes.github,
