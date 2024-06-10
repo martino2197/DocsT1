@@ -12,6 +12,12 @@ const sidebar: SidebarsConfig = {
       items: [
         {
           type: "doc",
+          id: "T1Envíos/obtenerun-accesstoken",
+          label: "Obtener un Access token",
+          className: "api-method post",
+        },
+        {
+          type: "doc",
           id: "T1Envíos/generarcotizacion",
           label: "Generar cotización",
           className: "api-method post",
@@ -45,12 +51,6 @@ const sidebar: SidebarsConfig = {
           id: "T1Envíos/saldosy-movimientos",
           label: "Saldos y Movimientos",
           className: "api-method get",
-        },
-        {
-          type: "doc",
-          id: "T1Envíos/obtenerun-accesstoken",
-          label: "Obtener un Access token",
-          className: "api-method post",
         },
       ],
     },
