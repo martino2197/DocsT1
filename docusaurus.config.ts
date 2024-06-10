@@ -146,7 +146,7 @@ const config: Config = {
             },
           },
           T1Comercios: {
-            specPath: "examples/T1Comercios/T1Comercios-FileManager.yaml", // path or URL to the OpenAPI spec
+            specPath: "examples/T1Comercios/T1Comercios_Catalogos_Categorias.yaml", // path or URL to the OpenAPI spec
             outputDir: "docs/T1Comercios", // output directory for generated *.mdx and sidebar.js files
             sidebarOptions: {
               groupPathsBy: "tag", // generate a sidebar.js slice that groups operations by tag
