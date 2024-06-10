@@ -70,6 +70,11 @@ const sidebar: SidebarsConfig = {
       label: 'File Manager',
       items: require("./sidebarFileManager.ts"),
     },
+    {
+      type: 'category',
+      label: 'Catálogos',
+      items: require("./sidebarCatalogosCategorias.ts"),
+    },
   ],
 };
 
