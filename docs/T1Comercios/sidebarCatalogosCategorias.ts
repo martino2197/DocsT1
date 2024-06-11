@@ -36,7 +36,7 @@ const sidebar: SidebarsConfig = {
         },
         {
           type: "doc",
-          id: "T1Comercios/obtiene-coincidencias-de-una-categoria-t-1-con-los-canales-de-ventas",
+          id: "T1Comercios/getmatches",
           label: "Obtiene coincidencias de una categoría t1 con los canales de ventas.",
           className: "api-method get",
         },

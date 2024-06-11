@@ -1,0 +1,3717 @@
+openapi: 3.0.0
+info:
+  title: Catálogos y Categorías
+  version: 1.0.0
+  
+  description: |
+    La API de Catálogos y Categorías proporciona funcionalidades para consultar y administrar información relacionada con marcas y categorías de productos en T1Comercios.
+
+    Esta API ofrece las siguientes funcionalidades:
+
+    - Consulta de Marcas: Permite obtener información sobre todas las marcas oficiales disponibles en el sistema.
+  
+    - Consulta de Categorías: Permite obtener información detallada sobre las categorías de productos en un catálogo específico.
+  
+    - Consulta de Coincidencias: Permite identificar coincidencias entre categorías y canales de ventas, incluyendo un match con el catálogo SAT para cumplir con la carta porte.
+
+    Esta API es útil para integrar y gestionar eficientemente la información de productos y categorías en un entorno de ventas multicanal. Asegúrate de proporcionar las credenciales adecuadas y cumplir con los requisitos de autorización para acceder a las funcionalidades ofrecidas.
+
+servers:
+  # Added by API Auto Mocking Plugin
+  #- description: SwaggerHub API Auto Mocking
+   # url: https://virtserver.swaggerhub.com/pcarrilloj/productosT1/1.0.0
+  - description: alpha dev
+    url: https://pcapi-alpha.dev.plataforma-claro.com
+  - description: Preproducción
+    url: https://pcapi.release.plataforma-claro.com
+
+paths:
+  /api-resource/api/v1/brands:
+    get:
+      tags:
+        - Marcas
+      summary: Catálogo  todas las marcas oficiales.
+      description: |
+        Este endpoint devuelve el listado completo de todas las marcas oficiales disponibles en el sistema.
+        Las marcas oficiales representan las marcas asociadas y reconocidas por la plataforma.
+      operationId: getBrands
+      
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  metadata:
+                    type: object
+                    properties:
+                      status:
+                        type: string
+                        example: success
+                      message:
+                        type: string
+                        example: OK
+                      date:
+                        type: string
+                        format: date-time
+                        example: 2024-05-21T04:34:26.573+00:00
+                      http_code:
+                        type: integer
+                        example: 200
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                          example: 1
+                        name:
+                          type: string
+                          example: APPLE
+      security:
+      - bearerAuth: []
+
+  /cm/v2/sales_channel/{IDSalesChannel}/category/:
+    get:
+      tags:
+        - Categorías
+      summary: "Retorna el árbol de categorías por canal de venta."
+      description:  |
+        Este endpoint devuelve el árbol completo de categorías asociadas a un canal de venta específico.
+        Proporciona un listado detallado de las categorías disponibles dentro del canal seleccionado.
+
+        El parámetro IDSalesChannel puede tener los siguientes valores:
+        - t1: T1 Comercios
+        - CS: ClaroShop
+        - SR: Sears
+        - SN: Sanborns
+      operationId: getCategoriesBySalesChannel
+      parameters:
+        - $ref: '#/components/parameters/IDSalesChannel'
+      responses:
+        '200':
+          $ref: '#/components/responses/CategoryListSuccess'
+        '404':
+          $ref: '#/components/responses/CategoryListNotFound'
+    
+  /cm/v2/sales_channel/{IDSalesChannel}/category/{IDCategory}:
+    get:
+      tags:
+        - Categorías
+      summary: Rerorna información de la categoría seleccionada.
+      description: |
+         El response proporciona información detallada de la categoría seleccionada, incluyendo atributos y variaciones que definen los productos asociados a la categoría.
+
+         - Atributos:
+         Los atributos son características únicas y específicas de la categoría que definen los productos dentro de la misma. Estos atributos se encuentran dentro del nodo "property" en el objeto "data". Cada atributo tiene un ID único, nombre, longitud máxima y mínima, requisito de obligatoriedad, tipo de atributo y una lista de posibles valores permitidos.
+
+          Ejemplo de atributo:
+          - ID: 10176
+          - Nombre: Altura de la Bota
+         - Longitud Máxima: 500
+         - Longitud Mínima: 1
+         - Requerido: false
+         - Tipo: list
+         - Valores Permitidos: tobillo
+
+         - Variaciones:
+         Las variaciones representan las diferentes versiones o opciones que pueden tener los productos dentro de la categoría. Por ejemplo, las variaciones podrían ser la talla, el color, el material, etc. Cada variación tiene su propio conjunto de atributos que definen las características específicas de esa variación. En este ejemplo, se incluye una variación de "Talla" con un único valor de "Extra Grande".
+
+          Este response proporciona una visión detallada de la estructura y características de la categoría, incluyendo los atributos que definen los productos y las opciones de variación disponibles.
+
+      operationId: getCategoriesBySalesChannelbyID
+      parameters:
+        - $ref: '#/components/parameters/IDSalesChannel'
+        - $ref: '#/components/parameters/IDCategory'
+      
+      responses:
+        '200':
+          $ref: '#/components/responses/CategorySuccess'
+        '404':
+          $ref: '#/components/responses/CategoryNotFound'
+  
+  /cm/v2/sales_channel/category/{category_id}/matches:
+    get:
+      tags:
+        - Categorías
+      summary: Obtiene coincidencias de una categoría t1 con los canales de ventas.
+      description: |
+        Este endpoint permite obtener coincidencias de una categoría T1 con los canales de ventas disponibles, incluyendo un match con el catálogo SAT para cumplir con la carta porte. 
+
+        Al enviar una solicitud a este endpoint con el ID de la categoría, se obtendrán las coincidencias de esa categoría con los diferentes canales de ventas, incluyendo detalles del match con el catálogo SAT.
+
+        Las coincidencias representan la correspondencia entre una categoría específica y los canales de ventas asociados, lo cual es útil para identificar dónde se pueden vender los productos de esa categoría y cumplir con los requisitos de la carta porte.
+
+        Nota: Es importante proporcionar el ID correcto de la categoría para obtener las coincidencias precisas con los canales de ventas, incluyendo el match con el catálogo SAT.
+
+      operationId: getmatches
+      parameters:
+        - name: category_id
+          in: path
+          required: true
+          description: ID de la categoría T1 de último nivel.
+          schema:
+            type: integer
+          example: 11769
+      responses:
+        200:
+          $ref: '#/components/responses/MatchSuccess'
+        404:
+          $ref: '#/components/responses/CategoryNotFound'
+     
+    
+security:
+  - bearerAuth: []
+
+
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+  
+      
+  schemas:
+    BasicMetadata:
+      title: Metadata
+      type: object
+      properties:
+          status:
+            type: string
+            default: success
+            enum:
+              - success
+              - error
+              - fail
+          http_code:
+            type: integer
+            example: 200
+          date_time:
+            type: string
+            format: date-time
+            example: '2019-08-27T18:18:31Z'
+          message:
+            type: string
+            example: "ok"
+    PaginationMetadata:
+      title: paginationMetadata
+      type: object
+      properties:
+        total_count:
+          type: integer
+          format: int64
+          minimum: 0
+          example: 300
+        page:
+          type: integer
+          format: int32
+          minimum: 1
+          example: 25
+        page_size:
+          type: integer
+          format: int32
+          minimum: 1
+          example: 50
+    
+    Categorydata:
+      description: Espeficicaciones de una categoría. 
+      type: object
+      properties:
+        name:
+          description: Nombre de la categoría.
+          type: string
+          example: botas
+        parent_id:
+          description: Id de la categoría Padre.
+          type: string
+          example: 9111
+        id_descendant:
+          description: Id de la categoría solicitada.
+          type: string
+          example: "9032"
+        chill:
+          description: Categoría hija, si el valor es null , la categoría es fnial. 
+          type: string
+          example: null
+        property:
+          description: Arrary de especificaciones de la categiría. 
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                description: ID del atributo
+                type: integer
+                example: 10176
+              name:
+                description: Nombre del atributo. 
+                type: string
+                example: "Altura de la Bota"
+              maxLength:
+                description: Longitud máxima del atributo
+                type: integer
+                example: 500
+              minLength:
+                description: Longitud mínima del atributo
+                type: integer
+                example: 1
+              required:
+                description: Indica si el atributo es obligario.
+                type: boolean
+                example: false
+              type:
+                description: Indica el tipo dato que es el atributo. 
+                example: list
+                enum:
+                  - string
+                  - number
+                  - integer
+                  - boolean
+                  - list
+              values:
+                description: Lista de valores del atributo, en caso de ser de tipo "List"
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      description: ID del atributo
+                      type: string
+                      example: 1
+                    name: 
+                      description: Títutlo de item del listado. 
+                      type: string
+                      example: tobillo
+        variations:
+            description: | 
+              Varaciones que pueden registrarse en la categoría. No todas las categorías puden tener variaciones. Si esta objecto responde vacio  o null, la categoría no permite variaciones. 
+            
+            type: array
+            items:
+              type: object
+              properties:
+                titulo: 
+                  description: Titulo de la variación.
+                  type: string
+                  example: Ingresa la talla
+                padre:
+                  description: Indica si la variación es una variación principal. 
+                  type: boolean
+                  example: true
+                id_variation:
+                  description: Id interno dentro de catálogo de variaciones
+                  type: integer
+                  example: 15
+                name:
+                  description: Nombre de la variación
+                  type: string
+                  example: talla
+                internal_name:
+                  description: Descripcion de la variación. 
+                  type: string
+                  example: talla
+                type:
+                  description: Tipo de dato de la variación. 
+                  type: string
+                  example: list
+                  enum:
+                    - string
+                    - number
+                    - integer
+                    - boolean
+                    - list
+                maxLength:
+                  description: Longitud máxima del atributo
+                  type: integer
+                  example: 500
+                minLength:
+                  description: Longitud mínima del atributo
+                  type: integer
+                  example: 1
+                required:
+                  description: Indica si el atributo es obligario.
+                  type: boolean
+                  example: false
+                defines_picture:
+                  description: Indica si para la variación seleccionada , se debe agregar una imagen.
+                  type: boolean
+                  example: false
+                defines_volumetria:
+                  description: Indica si para la variación seleccionada , se debe agregar la voulentría de la variación.
+                  type: boolean
+                  example: false
+                defines_precio:
+                  description: Indica si para la variación seleccionada ,se debe agregar un precio.
+                  type: boolean
+                  example: false
+                values:
+                  description: Lista de valores del atributo, en caso de ser de tipo "List"
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      id:
+                        description: ID del atributo
+                        type: string
+                        example: 1
+                      name: 
+                        description: Títutlo de item del listado. 
+                        type: string
+                        example: Extra Grande
+          
+           
+                  
+    CategoryList:
+      title: Lista de categorias
+      type: array
+      items:
+        $ref: '#/components/schemas/CategoryRef'
+      example:
+        [{
+          "id": 20307,
+          "name": "Artefactos para el Hogar",
+          "parent_id": null,
+          "childs": [
+            {
+              "id": 20281,
+              "name": "Electrodomésticos y Línea Blanca",
+              "parent_id": 20307,
+              "childs": [
+                {
+                  "id": 21828,
+                  "name": "Hogar y Jardín",
+                  "parent_id": 20281,
+                  "childs": [null]
+                }
+              ]
+            },
+          ]
+        }]
+    
+    CategoryRef:
+      title: Categoría.
+      type: object
+      properties:
+        id:
+          type: string
+          example: 1234
+        name:
+          type: string
+          example: "Hogar y Jardín"
+        parent_id:
+          type: string
+          example: 123
+        childs:
+            $ref: '#/components/schemas/CategoryList'
+    
+    matchData:
+      title: Responses de un match de categoría. 
+      type: array
+      items:
+        type: object
+        properties:
+          channel:
+            description: Canal de venta de la categoría. 
+            type: string
+            enum: 
+              - CS
+              - SR
+              - SN
+            example: CS
+          id_cat:
+            description: Id categoría del canal de venta.
+            type: string
+            example: 22080
+          icon:
+            description: URL del icono de la categoría del canal.
+            example: https://resources.claroshop.com/medios-plazavip/dev_quarkus_s32/1687886659marketplacecs
+          properties:
+            description: Atributos de la categoría en el canal de venta. 
+            type: array
+            items:
+                description: Id del atributo de la categoría. 
+                type: string
+            example: []
+          breadcrumbs:
+            description: BreadCrumb de la categoría en el canal de venta. 
+            type: array
+            items:
+              type: object
+              properties:
+                id: 
+                  description: Id de la categoría en el canal de venta. 
+                  type: string
+                  example: 21988
+                name:
+                  description: Nombre de la categoría del canal de venta. 
+                  type: string
+                  example: Súpermercado
+                lavel: 
+                  description:  Nivel de la cateogoría en el canal de venta. 
+                  type: integer
+                  example: 3
+            
+    CatalogoSAT:
+      description: |
+        El catálogo sat es para cumplir con la ley "Carta Porte", por este motivo, cada categoría debe tener asociada una código SAT que debe ser agregado cuando se crea un producto. 
+      type: object
+      properties:
+        id_cat_t1:
+          type: string
+          description: ID de la categoría en el catálogo SAT
+          example: 11769
+        catalogo:
+          type: string
+          description: Nombre del catálogo SAT
+          example: "SAT"
+        codigo_sat:
+          type: string
+          description: Código SAT del producto
+          example: 40142012
+        name:
+          type: string
+          description: Nombre del producto en el catálogo SAT
+          example: "Manguera para alimentos y bebidas"
+      
+      
+            
+            
+        
+  
+  parameters:
+    IDSalesChannel:
+      name: IDSalesChannel
+      in: path
+      description: Identificador del canal (portal de venta)
+      required: true
+      schema:
+        type: string
+        enum:
+          - CS
+          - SR
+          - SN
+          - t1
+        example: t1
+    
+    IDCategory:
+      name: IDCategory
+      in: path
+      description: Indetificador de la categoría. 
+      required: true
+      schema:
+        type: string
+        example: 9032
+    
+  responses:
+    MatchSuccess:
+     description: "En caso de exito"
+     content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              metadata:
+                $ref: '#/components/schemas/BasicMetadata'
+              data:
+                $ref: '#/components/schemas/matchData'
+              catalogo_sat:
+                    $ref: '#/components/schemas/CatalogoSAT'
+    
+    
+    CategoryListNotFound:
+      description: Not Found response
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              exception:
+                type: string
+                example: NotFoundException
+              mensaje:
+                type: string
+                example: NOT_FOUND
+              detalle:
+                type: string
+                example: No se encontró ningún canal
+              code:
+                type: integer
+                example: 404
+      
+    CategoryNotFound:
+      description: Not Found response
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              exception:
+                type: string
+                example: NotFoundException
+              mensaje:
+                type: string
+                example: NOT_FOUND
+              detalle:
+                type: string
+                example: No se encontro ninguna categoria asociada
+              code:
+                type: integer
+                example: 404
+    
+    CategorySuccess:
+      description: "En caso de exito"
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              metadata:
+                $ref: '#/components/schemas/BasicMetadata'
+              data:
+                $ref: '#/components/schemas/Categorydata'
+    
+    CategoryListSuccess:
+      description: "En caso de exito"
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              metadata:
+                $ref: '#/components/schemas/BasicMetadata'
+              data:
+                $ref: '#/components/schemas/CategoryList'
+              pagination:
+                $ref: '#/components/schemas/PaginationMetadata'
+            example:
+              metadata:
+                status: success
+                message: ok
+                http_code: 200
+                date_time: '2023-01-25T18:13:49.641+00:00'
+              data:
+                - id: 21951
+                  name: Bebidas
+                  parent_id: null
+                  childs:
+                    - id: 21954
+                      name: Cervezas
+                      parent_id: 21951
+                      childs:
+                        - id: 21969
+                          name: Nacionales
+                          parent_id: 21954
+                          childs: []
+                          property:
+                            - id: 3456
+                              name: Instrucciones de Cuidado y Limpieza
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                            - id: 3457
+                              name: material
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                        - id: 21970
+                          name: Internacionales
+                          parent_id: 21954
+                          childs: []
+                          property:
+                            - id: 3456
+                              name: Instrucciones de Cuidado y Limpieza
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                            - id: 3457
+                              name: material
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                    - id: 21952
+                      name: Licores
+                      parent_id: 21951
+                      childs:
+                        - id: 21955
+                          name: Whiskies
+                          parent_id: 21952
+                          childs: []
+                          property:
+                            - id: 3456
+                              name: Instrucciones de Cuidado y Limpieza
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                            - id: 3457
+                              name: material
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                        - id: 21956
+                          name: Tequilas
+                          parent_id: 21952
+                          childs: []
+                          property:
+                            - id: 3456
+                              name: Instrucciones de Cuidado y Limpieza
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                            - id: 3457
+                              name: material
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                        - id: 21957
+                          name: Licores
+                          parent_id: 21952
+                          childs: []
+                          property:
+                            - id: 3456
+                              name: Instrucciones de Cuidado y Limpieza
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                            - id: 3457
+                              name: material
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                        - id: 21958
+                          name: Rones
+                          parent_id: 21952
+                          childs: []
+                          property:
+                            - id: 3456
+                              name: Instrucciones de Cuidado y Limpieza
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                            - id: 3457
+                              name: material
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                        - id: 21959
+                          name: Vodkas
+                          parent_id: 21952
+                          childs: []
+                          property:
+                            - id: 3456
+                              name: Instrucciones de Cuidado y Limpieza
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                            - id: 3457
+                              name: material
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                        - id: 21960
+                          name: Brandies
+                          parent_id: 21952
+                          childs: []
+                          property:
+                            - id: 3456
+                              name: Instrucciones de Cuidado y Limpieza
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                            - id: 3457
+                              name: material
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                        - id: 21961
+                          name: Mezcales
+                          parent_id: 21952
+                          childs: []
+                          property:
+                            - id: 3456
+                              name: Instrucciones de Cuidado y Limpieza
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                            - id: 3457
+                              name: material
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                        - id: 21962
+                          name: Ginebras
+                          parent_id: 21952
+                          childs: []
+                          property:
+                            - id: 3456
+                              name: Instrucciones de Cuidado y Limpieza
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                            - id: 3457
+                              name: material
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                        - id: 21963
+                          name: Cognacs
+                          parent_id: 21952
+                          childs: []
+                          property:
+                            - id: 3456
+                              name: Instrucciones de Cuidado y Limpieza
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                            - id: 3457
+                              name: material
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                        - id: 21964
+                          name: Otros
+                          parent_id: 21952
+                          childs: []
+                          property:
+                            - id: 3456
+                              name: Instrucciones de Cuidado y Limpieza
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                            - id: 3457
+                              name: material
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                        - id: 21977
+                          name: Accesorios de vinatería
+                          parent_id: 21952
+                          childs: []
+                          property:
+                            - id: 3456
+                              name: Instrucciones de Cuidado y Limpieza
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                            - id: 3457
+                              name: material
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                    - id: 21953
+                      name: Vinos y Espumosos
+                      parent_id: 21951
+                      childs:
+                        - id: 21965
+                          name: Vinos
+                          parent_id: 21953
+                          childs: []
+                          property:
+                            - id: 3456
+                              name: Instrucciones de Cuidado y Limpieza
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                            - id: 3457
+                              name: material
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                        - id: 21966
+                          name: Vinos Espumosos
+                          parent_id: 21953
+                          childs: []
+                          property:
+                            - id: 3456
+                              name: Instrucciones de Cuidado y Limpieza
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                            - id: 3457
+                              name: material
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                        - id: 21967
+                          name: Sidras
+                          parent_id: 21953
+                          childs: []
+                          property:
+                            - id: 3456
+                              name: Instrucciones de Cuidado y Limpieza
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                            - id: 3457
+                              name: material
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                        - id: 21968
+                          name: Champagnes
+                          parent_id: 21953
+                          childs: []
+                          property:
+                            - id: 3456
+                              name: Instrucciones de Cuidado y Limpieza
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                            - id: 3457
+                              name: material
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                - id: 21988
+                  name: Súpermercado
+                  parent_id: null
+                  childs:
+                    - id: 21989
+                      name: Frutas y Verduras
+                      parent_id: 21988
+                      childs:
+                        - id: 21997
+                          name: Frutas
+                          parent_id: 21989
+                          childs: []
+                          property:
+                            - id: 3456
+                              name: Instrucciones de Cuidado y Limpieza
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                            - id: 3457
+                              name: material
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                        - id: 21998
+                          name: Verduras
+                          parent_id: 21989
+                          childs: []
+                          property:
+                            - id: 3456
+                              name: Instrucciones de Cuidado y Limpieza
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                            - id: 3457
+                              name: material
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                    - id: 22069
+                      name: Carnes y Pescados
+                      parent_id: 21988
+                      childs:
+                        - id: 21999
+                          name: Carnes
+                          parent_id: 22069
+                          childs: []
+                          property:
+                            - id: 3456
+                              name: Instrucciones de Cuidado y Limpieza
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                            - id: 3457
+                              name: material
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                        - id: 22000
+                          name: Pescados y Marisco
+                          parent_id: 22069
+                          childs: []
+                          property:
+                            - id: 3456
+                              name: Instrucciones de Cuidado y Limpieza
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                            - id: 3457
+                              name: material
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                        - id: 22001
+                          name: Proteína Vegana
+                          parent_id: 22069
+                          childs: []
+                          property:
+                            - id: 3456
+                              name: Instrucciones de Cuidado y Limpieza
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                            - id: 3457
+                              name: material
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                    - id: 21990
+                      name: Despensa
+                      parent_id: 21988
+                      childs:
+                        - id: 22002
+                          name: Aceites de cocina
+                          parent_id: 21990
+                          childs: []
+                          property:
+                            - id: 3456
+                              name: Instrucciones de Cuidado y Limpieza
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                            - id: 3457
+                              name: material
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                        - id: 22003
+                          name: Aderezos y vinagres
+                          parent_id: 21990
+                          childs: []
+                          property:
+                            - id: 3456
+                              name: Instrucciones de Cuidado y Limpieza
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                            - id: 3457
+                              name: material
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                        - id: 22004
+                          name: Alimento infantil
+                          parent_id: 21990
+                          childs: []
+                          property:
+                            - id: 3456
+                              name: Instrucciones de Cuidado y Limpieza
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                            - id: 3457
+                              name: material
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                        - id: 22005
+                          name: Azúcar y sustitutos
+                          parent_id: 21990
+                          childs: []
+                          property:
+                            - id: 3456
+                              name: Instrucciones de Cuidado y Limpieza
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                            - id: 3457
+                              name: material
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                        - id: 22006
+                          name: Café y Té
+                          parent_id: 21990
+                          childs: []
+                          property:
+                            - id: 3456
+                              name: Instrucciones de Cuidado y Limpieza
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                            - id: 3457
+                              name: material
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                        - id: 22007
+                          name: Cereales  Barras
+                          parent_id: 21990
+                          childs: []
+                          property:
+                            - id: 3456
+                              name: Instrucciones de Cuidado y Limpieza
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                            - id: 3457
+                              name: material
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                        - id: 22008
+                          name: Chocolates y Atoles
+                          parent_id: 21990
+                          childs: []
+                          property:
+                            - id: 3456
+                              name: Instrucciones de Cuidado y Limpieza
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                            - id: 3457
+                              name: material
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                        - id: 22009
+                          name: Enlatados y Conservas
+                          parent_id: 21990
+                          childs: []
+                          property:
+                            - id: 3456
+                              name: Instrucciones de Cuidado y Limpieza
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                            - id: 3457
+                              name: material
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                        - id: 22010
+                          name: Galletas
+                          parent_id: 21990
+                          childs: []
+                          property:
+                            - id: 3456
+                              name: Instrucciones de Cuidado y Limpieza
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                            - id: 3457
+                              name: material
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                        - id: 22011
+                          name: Granos y Semillas
+                          parent_id: 21990
+                          childs: []
+                          property:
+                            - id: 3456
+                              name: Instrucciones de Cuidado y Limpieza
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                            - id: 3457
+                              name: material
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                        - id: 22012
+                          name: Harinas
+                          parent_id: 21990
+                          childs: []
+                          property:
+                            - id: 3456
+                              name: Instrucciones de Cuidado y Limpieza
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                            - id: 3457
+                              name: material
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                        - id: 22013
+                          name: Leches
+                          parent_id: 21990
+                          childs: []
+                          property:
+                            - id: 3456
+                              name: Instrucciones de Cuidado y Limpieza
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                            - id: 3457
+                              name: material
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                        - id: 22014
+                          name: Miel y Untable
+                          parent_id: 21990
+                          childs: []
+                          property:
+                            - id: 3456
+                              name: Instrucciones de Cuidado y Limpieza
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                            - id: 3457
+                              name: material
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                        - id: 22015
+                          name: Pan y Tortillas
+                          parent_id: 21990
+                          childs: []
+                          property:
+                            - id: 3456
+                              name: Instrucciones de Cuidado y Limpieza
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                            - id: 3457
+                              name: material
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                        - id: 22017
+                          name: Pastas
+                          parent_id: 21990
+                          childs: []
+                          property:
+                            - id: 3456
+                              name: Instrucciones de Cuidado y Limpieza
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                            - id: 3457
+                              name: material
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                        - id: 22016
+                          name: Postres
+                          parent_id: 21990
+                          childs: []
+                          property:
+                            - id: 3456
+                              name: Instrucciones de Cuidado y Limpieza
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                            - id: 3457
+                              name: material
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                        - id: 22018
+                          name: Productos de Temporada
+                          parent_id: 21990
+                          childs: []
+                          property:
+                            - id: 3456
+                              name: Instrucciones de Cuidado y Limpieza
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                            - id: 3457
+                              name: material
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                        - id: 22019
+                          name: Instantáneos
+                          parent_id: 21990
+                          childs: []
+                          property:
+                            - id: 3456
+                              name: Instrucciones de Cuidado y Limpieza
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                            - id: 3457
+                              name: material
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                        - id: 22020
+                          name: Arroz y Frijol
+                          parent_id: 21990
+                          childs: []
+                          property:
+                            - id: 3456
+                              name: Instrucciones de Cuidado y Limpieza
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                            - id: 3457
+                              name: material
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                        - id: 22021
+                          name: Bebidas vegetales
+                          parent_id: 21990
+                          childs: []
+                          property:
+                            - id: 3456
+                              name: Instrucciones de Cuidado y Limpieza
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                            - id: 3457
+                              name: material
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                        - id: 22022
+                          name: Botanas
+                          parent_id: 21990
+                          childs: []
+                          property:
+                            - id: 3456
+                              name: Instrucciones de Cuidado y Limpieza
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                            - id: 3457
+                              name: material
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                        - id: 22023
+                          name: Especias y Condimentos
+                          parent_id: 21990
+                          childs: []
+                          property:
+                            - id: 3456
+                              name: Instrucciones de Cuidado y Limpieza
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                            - id: 3457
+                              name: material
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                        - id: 22024
+                          name: Repostería
+                          parent_id: 21990
+                          childs: []
+                          property:
+                            - id: 3456
+                              name: Instrucciones de Cuidado y Limpieza
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                            - id: 3457
+                              name: material
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                        - id: 22025
+                          name: Salsas y Chiles secos
+                          parent_id: 21990
+                          childs: []
+                          property:
+                            - id: 3456
+                              name: Instrucciones de Cuidado y Limpieza
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                            - id: 3457
+                              name: material
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                        - id: 22026
+                          name: dulces y Chocolates
+                          parent_id: 21990
+                          childs: []
+                          property:
+                            - id: 3456
+                              name: Instrucciones de Cuidado y Limpieza
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                            - id: 3457
+                              name: material
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                    - id: 21991
+                      name: Higiene Personal y Belleza
+                      parent_id: 21988
+                      childs:
+                        - id: 22027
+                          name: Cuidado Facial
+                          parent_id: 21991
+                          childs: []
+                          property:
+                            - id: 3456
+                              name: Instrucciones de Cuidado y Limpieza
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                            - id: 3457
+                              name: material
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                        - id: 22028
+                          name: Cuidado Infantil
+                          parent_id: 21991
+                          childs: []
+                          property:
+                            - id: 3456
+                              name: Instrucciones de Cuidado y Limpieza
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                            - id: 3457
+                              name: material
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                        - id: 22029
+                          name: Cuidado Corporal
+                          parent_id: 21991
+                          childs: []
+                          property:
+                            - id: 3456
+                              name: Instrucciones de Cuidado y Limpieza
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                            - id: 3457
+                              name: material
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                        - id: 22030
+                          name: Cuidado para el cabello
+                          parent_id: 21991
+                          childs: []
+                          property:
+                            - id: 3456
+                              name: Instrucciones de Cuidado y Limpieza
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                            - id: 3457
+                              name: material
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                        - id: 22031
+                          name: Cuidado Femenino
+                          parent_id: 21991
+                          childs: []
+                          property:
+                            - id: 3456
+                              name: Instrucciones de Cuidado y Limpieza
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                            - id: 3457
+                              name: material
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                        - id: 22032
+                          name: Higiene Bucal
+                          parent_id: 21991
+                          childs: []
+                          property:
+                            - id: 3456
+                              name: Instrucciones de Cuidado y Limpieza
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                            - id: 3457
+                              name: material
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                        - id: 22033
+                          name: Afeitado
+                          parent_id: 21991
+                          childs: []
+                          property:
+                            - id: 3456
+                              name: Instrucciones de Cuidado y Limpieza
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                            - id: 3457
+                              name: material
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                        - id: 22034
+                          name: Depilado
+                          parent_id: 21991
+                          childs: []
+                          property:
+                            - id: 3456
+                              name: Instrucciones de Cuidado y Limpieza
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                            - id: 3457
+                              name: material
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                    - id: 21992
+                      name: Hogar y Limpieza
+                      parent_id: 21988
+                      childs:
+                        - id: 22035
+                          name: Desechables
+                          parent_id: 21992
+                          childs: []
+                          property:
+                            - id: 3456
+                              name: Instrucciones de Cuidado y Limpieza
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                            - id: 3457
+                              name: material
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                        - id: 22036
+                          name: Lavandería
+                          parent_id: 21992
+                          childs: []
+                          property:
+                            - id: 3456
+                              name: Instrucciones de Cuidado y Limpieza
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                            - id: 3457
+                              name: material
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                        - id: 22037
+                          name: Limpieza
+                          parent_id: 21992
+                          childs: []
+                          property:
+                            - id: 3456
+                              name: Instrucciones de Cuidado y Limpieza
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                            - id: 3457
+                              name: material
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                        - id: 22038
+                          name: Cuidado de Calzado
+                          parent_id: 21992
+                          childs: []
+                          property:
+                            - id: 3456
+                              name: Instrucciones de Cuidado y Limpieza
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                            - id: 3457
+                              name: material
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                        - id: 22039
+                          name: Jardín
+                          parent_id: 21992
+                          childs: []
+                          property:
+                            - id: 3456
+                              name: Instrucciones de Cuidado y Limpieza
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                            - id: 3457
+                              name: material
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                        - id: 22040
+                          name: Otros
+                          parent_id: 21992
+                          childs: []
+                          property:
+                            - id: 3456
+                              name: Instrucciones de Cuidado y Limpieza
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                            - id: 3457
+                              name: material
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                    - id: 21993
+                      name: Bebidas
+                      parent_id: 21988
+                      childs:
+                        - id: 22041
+                          name: Agua
+                          parent_id: 21993
+                          childs: []
+                          property:
+                            - id: 3456
+                              name: Instrucciones de Cuidado y Limpieza
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                            - id: 3457
+                              name: material
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                        - id: 22042
+                          name: Café y té preparado
+                          parent_id: 21993
+                          childs: []
+                          property:
+                            - id: 3456
+                              name: Instrucciones de Cuidado y Limpieza
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                            - id: 3457
+                              name: material
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                        - id: 22043
+                          name: Energetizantes
+                          parent_id: 21993
+                          childs: []
+                          property:
+                            - id: 3456
+                              name: Instrucciones de Cuidado y Limpieza
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                            - id: 3457
+                              name: material
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                        - id: 22044
+                          name: Jugos
+                          parent_id: 21993
+                          childs: []
+                          property:
+                            - id: 3456
+                              name: Instrucciones de Cuidado y Limpieza
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                            - id: 3457
+                              name: material
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                        - id: 22045
+                          name: Refrescos
+                          parent_id: 21993
+                          childs: []
+                          property:
+                            - id: 3456
+                              name: Instrucciones de Cuidado y Limpieza
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                            - id: 3457
+                              name: material
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                        - id: 22046
+                          name: Saborizante de agua
+                          parent_id: 21993
+                          childs: []
+                          property:
+                            - id: 3456
+                              name: Instrucciones de Cuidado y Limpieza
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                            - id: 3457
+                              name: material
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                    - id: 21994
+                      name: Del Congelador
+                      parent_id: 21988
+                      childs:
+                        - id: 22047
+                          name: Carnes
+                          parent_id: 21994
+                          childs: []
+                          property:
+                            - id: 3456
+                              name: Instrucciones de Cuidado y Limpieza
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                            - id: 3457
+                              name: material
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                        - id: 22048
+                          name: Frutas y verduras
+                          parent_id: 21994
+                          childs: []
+                          property:
+                            - id: 3456
+                              name: Instrucciones de Cuidado y Limpieza
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                            - id: 3457
+                              name: material
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                        - id: 22049
+                          name: Helados y postres
+                          parent_id: 21994
+                          childs: []
+                          property:
+                            - id: 3456
+                              name: Instrucciones de Cuidado y Limpieza
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                            - id: 3457
+                              name: material
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                        - id: 22050
+                          name: Pizzas y Hamburguesas
+                          parent_id: 21994
+                          childs: []
+                          property:
+                            - id: 3456
+                              name: Instrucciones de Cuidado y Limpieza
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                            - id: 3457
+                              name: material
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                        - id: 22051
+                          name: Mariscos y pescado
+                          parent_id: 21994
+                          childs: []
+                          property:
+                            - id: 3456
+                              name: Instrucciones de Cuidado y Limpieza
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                            - id: 3457
+                              name: material
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                        - id: 22052
+                          name: Comida preparada
+                          parent_id: 21994
+                          childs: []
+                          property:
+                            - id: 3456
+                              name: Instrucciones de Cuidado y Limpieza
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                            - id: 3457
+                              name: material
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                    - id: 21995
+                      name: Del Refrigerador
+                      parent_id: 21988
+                      childs:
+                        - id: 22053
+                          name: Gelatinas
+                          parent_id: 21995
+                          childs: []
+                          property:
+                            - id: 3456
+                              name: Instrucciones de Cuidado y Limpieza
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                            - id: 3457
+                              name: material
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                        - id: 22054
+                          name: Huevo
+                          parent_id: 21995
+                          childs: []
+                          property:
+                            - id: 3456
+                              name: Instrucciones de Cuidado y Limpieza
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                            - id: 3457
+                              name: material
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                        - id: 22055
+                          name: Mantequilla
+                          parent_id: 21995
+                          childs: []
+                          property:
+                            - id: 3456
+                              name: Instrucciones de Cuidado y Limpieza
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                            - id: 3457
+                              name: material
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                        - id: 22056
+                          name: Embutidos
+                          parent_id: 21995
+                          childs: []
+                          property:
+                            - id: 3456
+                              name: Instrucciones de Cuidado y Limpieza
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                            - id: 3457
+                              name: material
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                        - id: 22057
+                          name: Queso
+                          parent_id: 21995
+                          childs: []
+                          property:
+                            - id: 3456
+                              name: Instrucciones de Cuidado y Limpieza
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                            - id: 3457
+                              name: material
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                        - id: 22058
+                          name: Premium
+                          parent_id: 21995
+                          childs: []
+                          property:
+                            - id: 3456
+                              name: Instrucciones de Cuidado y Limpieza
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                            - id: 3457
+                              name: material
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                        - id: 22059
+                          name: Crema
+                          parent_id: 21995
+                          childs: []
+                          property:
+                            - id: 3456
+                              name: Instrucciones de Cuidado y Limpieza
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                            - id: 3457
+                              name: material
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                        - id: 22060
+                          name: Yogurt
+                          parent_id: 21995
+                          childs: []
+                          property:
+                            - id: 3456
+                              name: Instrucciones de Cuidado y Limpieza
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                            - id: 3457
+                              name: material
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                        - id: 22061
+                          name: Para comer
+                          parent_id: 21995
+                          childs: []
+                          property:
+                            - id: 3456
+                              name: Instrucciones de Cuidado y Limpieza
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                            - id: 3457
+                              name: material
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                    - id: 21996
+                      name: Orgánicos
+                      parent_id: 21988
+                      childs:
+                        - id: 22062
+                          name: Higiene Personal y Belleza
+                          parent_id: 21996
+                          childs: []
+                          property:
+                            - id: 3456
+                              name: Instrucciones de Cuidado y Limpieza
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                            - id: 3457
+                              name: material
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                        - id: 22063
+                          name: Refrigerador
+                          parent_id: 21996
+                          childs: []
+                          property:
+                            - id: 3456
+                              name: Instrucciones de Cuidado y Limpieza
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                            - id: 3457
+                              name: material
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                        - id: 22070
+                          name: Congelados
+                          parent_id: 21996
+                          childs: []
+                          property:
+                            - id: 3456
+                              name: Instrucciones de Cuidado y Limpieza
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                            - id: 3457
+                              name: material
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                        - id: 22064
+                          name: Despensa
+                          parent_id: 21996
+                          childs: []
+                          property:
+                            - id: 3456
+                              name: Instrucciones de Cuidado y Limpieza
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                            - id: 3457
+                              name: material
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                        - id: 22065
+                          name: Frutas y verduras
+                          parent_id: 21996
+                          childs: []
+                          property:
+                            - id: 3456
+                              name: Instrucciones de Cuidado y Limpieza
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                            - id: 3457
+                              name: material
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                        - id: 22066
+                          name: Bebidas
+                          parent_id: 21996
+                          childs: []
+                          property:
+                            - id: 3456
+                              name: Instrucciones de Cuidado y Limpieza
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                            - id: 3457
+                              name: material
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                        - id: 22067
+                          name: Granos y Semillas
+                          parent_id: 21996
+                          childs: []
+                          property:
+                            - id: 3456
+                              name: Instrucciones de Cuidado y Limpieza
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                            - id: 3457
+                              name: material
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                        - id: 22068
+                          name: Proteínas
+                          parent_id: 21996
+                          childs: []
+                          property:
+                            - id: 3456
+                              name: Instrucciones de Cuidado y Limpieza
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                            - id: 3457
+                              name: material
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                    - id: 22071
+                      name: Vinos y Licores
+                      parent_id: 21988
+                      childs:
+                        - id: 22072
+                          name: Cerveza
+                          parent_id: 22071
+                          childs: []
+                          property:
+                            - id: 3456
+                              name: Instrucciones de Cuidado y Limpieza
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                            - id: 3457
+                              name: material
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                        - id: 22073
+                          name: Destilados
+                          parent_id: 22071
+                          childs: []
+                          property:
+                            - id: 3456
+                              name: Instrucciones de Cuidado y Limpieza
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                            - id: 3457
+                              name: material
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                        - id: 22074
+                          name: Vino Blanco
+                          parent_id: 22071
+                          childs: []
+                          property:
+                            - id: 3456
+                              name: Instrucciones de Cuidado y Limpieza
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                            - id: 3457
+                              name: material
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                        - id: 22075
+                          name: Vino Tinto
+                          parent_id: 22071
+                          childs: []
+                          property:
+                            - id: 3456
+                              name: Instrucciones de Cuidado y Limpieza
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                            - id: 3457
+                              name: material
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                        - id: 22076
+                          name: Vino Rosado y Espumoso
+                          parent_id: 22071
+                          childs: []
+                          property:
+                            - id: 3456
+                              name: Instrucciones de Cuidado y Limpieza
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                            - id: 3457
+                              name: material
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                    - id: 22077
+                      name: Gourmet
+                      parent_id: 21988
+                      childs:
+                        - id: 22079
+                          name: Carnes frías, embutidos y quesos
+                          parent_id: 22077
+                          childs: []
+                          property:
+                            - id: 3456
+                              name: Instrucciones de Cuidado y Limpieza
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                            - id: 3457
+                              name: material
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                        - id: 22080
+                          name: Aceites, Salsas, Vinagres y Aderezos
+                          parent_id: 22077
+                          childs: []
+                          property:
+                            - id: 3456
+                              name: Instrucciones de Cuidado y Limpieza
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                            - id: 3457
+                              name: material
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                        - id: 22081
+                          name: Condimentos y Legumbres
+                          parent_id: 22077
+                          childs: []
+                          property:
+                            - id: 3456
+                              name: Instrucciones de Cuidado y Limpieza
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                            - id: 3457
+                              name: material
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                        - id: 22082
+                          name: Pan, galletas y untables
+                          parent_id: 22077
+                          childs: []
+                          property:
+                            - id: 3456
+                              name: Instrucciones de Cuidado y Limpieza
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                            - id: 3457
+                              name: material
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                        - id: 22083
+                          name: Bebidas
+                          parent_id: 22077
+                          childs: []
+                          property:
+                            - id: 3456
+                              name: Instrucciones de Cuidado y Limpieza
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                            - id: 3457
+                              name: material
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                        - id: 22084
+                          name: Productos Light
+                          parent_id: 22077
+                          childs: []
+                          property:
+                            - id: 3456
+                              name: Instrucciones de Cuidado y Limpieza
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                            - id: 3457
+                              name: material
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                        - id: 22085
+                          name: Té y Café
+                          parent_id: 22077
+                          childs: []
+                          property:
+                            - id: 3456
+                              name: Instrucciones de Cuidado y Limpieza
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                            - id: 3457
+                              name: material
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                        - id: 22086
+                          name: Pasta y arroz
+                          parent_id: 22077
+                          childs: []
+                          property:
+                            - id: 3456
+                              name: Instrucciones de Cuidado y Limpieza
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                            - id: 3457
+                              name: material
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                        - id: 22087
+                          name: Dulces y Chocolates
+                          parent_id: 22077
+                          childs: []
+                          property:
+                            - id: 3456
+                              name: Instrucciones de Cuidado y Limpieza
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                            - id: 3457
+                              name: material
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                        - id: 22088
+                          name: De temporada
+                          parent_id: 22077
+                          childs: []
+                          property:
+                            - id: 3456
+                              name: Instrucciones de Cuidado y Limpieza
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                            - id: 3457
+                              name: material
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                        - id: 22089
+                          name: Accesorios
+                          parent_id: 22077
+                          childs: []
+                          property:
+                            - id: 3456
+                              name: Instrucciones de Cuidado y Limpieza
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                            - id: 3457
+                              name: material
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                        - id: 22090
+                          name: Botanas
+                          parent_id: 22077
+                          childs: []
+                          property:
+                            - id: 3456
+                              name: Instrucciones de Cuidado y Limpieza
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                            - id: 3457
+                              name: material
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                    - id: 22078
+                      name: Dulces
+                      parent_id: 21988
+                      childs:
+                        - id: 22091
+                          name: Chocolates
+                          parent_id: 22078
+                          childs: []
+                          property:
+                            - id: 3456
+                              name: Instrucciones de Cuidado y Limpieza
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                            - id: 3457
+                              name: material
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                        - id: 22092
+                          name: Línea Sanborns
+                          parent_id: 22078
+                          childs: []
+                          property:
+                            - id: 3456
+                              name: Instrucciones de Cuidado y Limpieza
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                            - id: 3457
+                              name: material
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                        - id: 22093
+                          name: Dulces
+                          parent_id: 22078
+                          childs: []
+                          property:
+                            - id: 3456
+                              name: Instrucciones de Cuidado y Limpieza
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                            - id: 3457
+                              name: material
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                        - id: 22094
+                          name: Galletas
+                          parent_id: 22078
+                          childs: []
+                          property:
+                            - id: 3456
+                              name: Instrucciones de Cuidado y Limpieza
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                            - id: 3457
+                              name: material
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                        - id: 22095
+                          name: Botanas
+                          parent_id: 22078
+                          childs: []
+                          property:
+                            - id: 3456
+                              name: Instrucciones de Cuidado y Limpieza
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                            - id: 3457
+                              name: material
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                        - id: 22096
+                          name: Otros
+                          parent_id: 22078
+                          childs: []
+                          property:
+                            - id: 3456
+                              name: Instrucciones de Cuidado y Limpieza
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                            - id: 3457
+                              name: material
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                - id: 22097
+                  name: Farmacia
+                  parent_id: null
+                  childs:
+                    - id: 22098
+                      name: Medicamentos
+                      parent_id: 22097
+                      childs:
+                        - id: 22104
+                          name: Gripe y Tos
+                          parent_id: 22098
+                          childs: []
+                          property:
+                            - id: 3456
+                              name: Instrucciones de Cuidado y Limpieza
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                            - id: 3457
+                              name: material
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                        - id: 22105
+                          name: Analgésicos
+                          parent_id: 22098
+                          childs: []
+                          property:
+                            - id: 3456
+                              name: Instrucciones de Cuidado y Limpieza
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                            - id: 3457
+                              name: material
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                        - id: 22106
+                          name: Estomacales
+                          parent_id: 22098
+                          childs: []
+                          property:
+                            - id: 3456
+                              name: Instrucciones de Cuidado y Limpieza
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                            - id: 3457
+                              name: material
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                        - id: 22107
+                          name: Oftálmicos
+                          parent_id: 22098
+                          childs: []
+                          property:
+                            - id: 3456
+                              name: Instrucciones de Cuidado y Limpieza
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                            - id: 3457
+                              name: material
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                        - id: 22108
+                          name: Antimicóticos
+                          parent_id: 22098
+                          childs: []
+                          property:
+                            - id: 3456
+                              name: Instrucciones de Cuidado y Limpieza
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                            - id: 3457
+                              name: material
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                        - id: 22109
+                          name: Respiratorios
+                          parent_id: 22098
+                          childs: []
+                          property:
+                            - id: 3456
+                              name: Instrucciones de Cuidado y Limpieza
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                            - id: 3457
+                              name: material
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                        - id: 22110
+                          name: Naturistas y Herbolarios
+                          parent_id: 22098
+                          childs: []
+                          property:
+                            - id: 3456
+                              name: Instrucciones de Cuidado y Limpieza
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                            - id: 3457
+                              name: material
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                        - id: 22111
+                          name: Medicamentos Patentes y Genéricos
+                          parent_id: 22098
+                          childs: []
+                          property:
+                            - id: 3456
+                              name: Instrucciones de Cuidado y Limpieza
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                            - id: 3457
+                              name: material
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                        - id: 22112
+                          name: Material de curación
+                          parent_id: 22098
+                          childs: []
+                          property:
+                            - id: 3456
+                              name: Instrucciones de Cuidado y Limpieza
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                            - id: 3457
+                              name: material
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                    - id: 22099
+                      name: Equipo Médico
+                      parent_id: 22097
+                      childs:
+                        - id: 22113
+                          name: Baumanómetros
+                          parent_id: 22099
+                          childs: []
+                          property:
+                            - id: 3456
+                              name: Instrucciones de Cuidado y Limpieza
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                            - id: 3457
+                              name: material
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                        - id: 22166
+                          name: Muebles médicos
+                          parent_id: 22099
+                          childs: []
+                          property:
+                            - id: 3456
+                              name: Instrucciones de Cuidado y Limpieza
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                            - id: 3457
+                              name: material
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                        - id: 22114
+                          name: Termómetros
+                          parent_id: 22099
+                          childs: []
+                          property:
+                            - id: 3456
+                              name: Instrucciones de Cuidado y Limpieza
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                            - id: 3457
+                              name: material
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                        - id: 22167
+                          name: Movilidad
+                          parent_id: 22099
+                          childs: []
+                          property:
+                            - id: 3456
+                              name: Instrucciones de Cuidado y Limpieza
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                            - id: 3457
+                              name: material
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                        - id: 22168
+                          name: Oxigenoterapia
+                          parent_id: 22099
+                          childs: []
+                          property:
+                            - id: 3456
+                              name: Instrucciones de Cuidado y Limpieza
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                            - id: 3457
+                              name: material
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                        - id: 22115
+                          name: Glucómetros, Tiras y Lancetas
+                          parent_id: 22099
+                          childs: []
+                          property:
+                            - id: 3456
+                              name: Instrucciones de Cuidado y Limpieza
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                            - id: 3457
+                              name: material
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                        - id: 22116
+                          name: Básculas
+                          parent_id: 22099
+                          childs: []
+                          property:
+                            - id: 3456
+                              name: Instrucciones de Cuidado y Limpieza
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                            - id: 3457
+                              name: material
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                        - id: 22169
+                          name: Protección y Rehabilitación
+                          parent_id: 22099
+                          childs: []
+                          property:
+                            - id: 3456
+                              name: Instrucciones de Cuidado y Limpieza
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                            - id: 3457
+                              name: material
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                        - id: 22117
+                          name: Oxímetros
+                          parent_id: 22099
+                          childs: []
+                          property:
+                            - id: 3456
+                              name: Instrucciones de Cuidado y Limpieza
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                            - id: 3457
+                              name: material
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                        - id: 22170
+                          name: Purificadores de Aire
+                          parent_id: 22099
+                          childs: []
+                          property:
+                            - id: 3456
+                              name: Instrucciones de Cuidado y Limpieza
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                            - id: 3457
+                              name: material
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                        - id: 22118
+                          name: Humidificadores
+                          parent_id: 22099
+                          childs: []
+                          property:
+                            - id: 3456
+                              name: Instrucciones de Cuidado y Limpieza
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                            - id: 3457
+                              name: material
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                        - id: 22119
+                          name: Deshumidificadores
+                          parent_id: 22099
+                          childs: []
+                          property:
+                            - id: 3456
+                              name: Instrucciones de Cuidado y Limpieza
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                            - id: 3457
+                              name: material
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                        - id: 22120
+                          name: Nebulizadores
+                          parent_id: 22099
+                          childs: []
+                          property:
+                            - id: 3456
+                              name: Instrucciones de Cuidado y Limpieza
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                            - id: 3457
+                              name: material
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                    - id: 22100
+                      name: Nutrición y Suplementos
+                      parent_id: 22097
+                      childs:
+                        - id: 22121
+                          name: Vitaminas y Omegas
+                          parent_id: 22100
+                          childs: []
+                          property:
+                            - id: 3456
+                              name: Instrucciones de Cuidado y Limpieza
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                            - id: 3457
+                              name: material
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                        - id: 22122
+                          name: Barras y bebidas
+                          parent_id: 22100
+                          childs: []
+                          property:
+                            - id: 3456
+                              name: Instrucciones de Cuidado y Limpieza
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                            - id: 3457
+                              name: material
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                        - id: 22123
+                          name: Suplementos
+                          parent_id: 22100
+                          childs: []
+                          property:
+                            - id: 3456
+                              name: Instrucciones de Cuidado y Limpieza
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                            - id: 3457
+                              name: material
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                        - id: 22124
+                          name: Endulzantes
+                          parent_id: 22100
+                          childs: []
+                          property:
+                            - id: 3456
+                              name: Instrucciones de Cuidado y Limpieza
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                            - id: 3457
+                              name: material
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                    - id: 22101
+                      name: Bebés
+                      parent_id: 22097
+                      childs:
+                        - id: 22125
+                          name: Leches / Formulas
+                          parent_id: 22101
+                          childs: []
+                          property:
+                            - id: 3456
+                              name: Instrucciones de Cuidado y Limpieza
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                            - id: 3457
+                              name: material
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                        - id: 22126
+                          name: Limpieza
+                          parent_id: 22101
+                          childs: []
+                          property:
+                            - id: 3456
+                              name: Instrucciones de Cuidado y Limpieza
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                            - id: 3457
+                              name: material
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                        - id: 22127
+                          name: Pañales
+                          parent_id: 22101
+                          childs: []
+                          property:
+                            - id: 3456
+                              name: Instrucciones de Cuidado y Limpieza
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                            - id: 3457
+                              name: material
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                        - id: 22128
+                          name: Higiene
+                          parent_id: 22101
+                          childs: []
+                          property:
+                            - id: 3456
+                              name: Instrucciones de Cuidado y Limpieza
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                            - id: 3457
+                              name: material
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                        - id: 22129
+                          name: DermoPediatria
+                          parent_id: 22101
+                          childs: []
+                          property:
+                            - id: 3456
+                              name: Instrucciones de Cuidado y Limpieza
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                            - id: 3457
+                              name: material
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                        - id: 22130
+                          name: Biberones
+                          parent_id: 22101
+                          childs: []
+                          property:
+                            - id: 3456
+                              name: Instrucciones de Cuidado y Limpieza
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                            - id: 3457
+                              name: material
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                        - id: 22131
+                          name: Chupones y Tetinas
+                          parent_id: 22101
+                          childs: []
+                          property:
+                            - id: 3456
+                              name: Instrucciones de Cuidado y Limpieza
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                            - id: 3457
+                              name: material
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                        - id: 22132
+                          name: Calentadores y Esterilizadores
+                          parent_id: 22101
+                          childs: []
+                          property:
+                            - id: 3456
+                              name: Instrucciones de Cuidado y Limpieza
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                            - id: 3457
+                              name: material
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                        - id: 22133
+                          name: Alimentación
+                          parent_id: 22101
+                          childs: []
+                          property:
+                            - id: 3456
+                              name: Instrucciones de Cuidado y Limpieza
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                            - id: 3457
+                              name: material
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                        - id: 22134
+                          name: Descanso
+                          parent_id: 22101
+                          childs: []
+                          property:
+                            - id: 3456
+                              name: Instrucciones de Cuidado y Limpieza
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                            - id: 3457
+                              name: material
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                        - id: 22135
+                          name: Lactancia Materna
+                          parent_id: 22101
+                          childs: []
+                          property:
+                            - id: 3456
+                              name: Instrucciones de Cuidado y Limpieza
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                            - id: 3457
+                              name: material
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                        - id: 22136
+                          name: Accesorios
+                          parent_id: 22101
+                          childs: []
+                          property:
+                            - id: 3456
+                              name: Instrucciones de Cuidado y Limpieza
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                            - id: 3457
+                              name: material
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                    - id: 22102
+                      name: Dermatológicos
+                      parent_id: 22097
+                      childs:
+                        - id: 22137
+                          name: Solares
+                          parent_id: 22102
+                          childs: []
+                          property:
+                            - id: 3456
+                              name: Instrucciones de Cuidado y Limpieza
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                            - id: 3457
+                              name: material
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                        - id: 22138
+                          name: Rostro
+                          parent_id: 22102
+                          childs: []
+                          property:
+                            - id: 3456
+                              name: Instrucciones de Cuidado y Limpieza
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                            - id: 3457
+                              name: material
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                        - id: 22139
+                          name: Cuerpo
+                          parent_id: 22102
+                          childs: []
+                          property:
+                            - id: 3456
+                              name: Instrucciones de Cuidado y Limpieza
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                            - id: 3457
+                              name: material
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                        - id: 22140
+                          name: Maquillaje
+                          parent_id: 22102
+                          childs: []
+                          property:
+                            - id: 3456
+                              name: Instrucciones de Cuidado y Limpieza
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                            - id: 3457
+                              name: material
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                        - id: 22141
+                          name: Capilares
+                          parent_id: 22102
+                          childs: []
+                          property:
+                            - id: 3456
+                              name: Instrucciones de Cuidado y Limpieza
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                            - id: 3457
+                              name: material
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                        - id: 22142
+                          name: Él
+                          parent_id: 22102
+                          childs: []
+                          property:
+                            - id: 3456
+                              name: Instrucciones de Cuidado y Limpieza
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                            - id: 3457
+                              name: material
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                        - id: 22143
+                          name: Maternidad
+                          parent_id: 22102
+                          childs: []
+                          property:
+                            - id: 3456
+                              name: Instrucciones de Cuidado y Limpieza
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                            - id: 3457
+                              name: material
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                    - id: 22103
+                      name: Óptica
+                      parent_id: 22097
+                      childs:
+                        - id: 22144
+                          name: Lentes de Armazón
+                          parent_id: 22103
+                          childs: []
+                          property:
+                            - id: 3456
+                              name: Instrucciones de Cuidado y Limpieza
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                            - id: 3457
+                              name: material
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                        - id: 22145
+                          name: Lentes de Contacto
+                          parent_id: 22103
+                          childs: []
+                          property:
+                            - id: 3456
+                              name: Instrucciones de Cuidado y Limpieza
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                            - id: 3457
+                              name: material
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                    - id: 22146
+                      name: Cubrebocas
+                      parent_id: 22097
+                      childs:
+                        - id: 22149
+                          name: Dos capas
+                          parent_id: 22146
+                          childs: []
+                          property:
+                            - id: 3456
+                              name: Instrucciones de Cuidado y Limpieza
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                            - id: 3457
+                              name: material
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                        - id: 22150
+                          name: Tres capas
+                          parent_id: 22146
+                          childs: []
+                          property:
+                            - id: 3456
+                              name: Instrucciones de Cuidado y Limpieza
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                            - id: 3457
+                              name: material
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                        - id: 22151
+                          name: N95
+                          parent_id: 22146
+                          childs: []
+                          property:
+                            - id: 3456
+                              name: Instrucciones de Cuidado y Limpieza
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                            - id: 3457
+                              name: material
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                        - id: 22152
+                          name: KN95
+                          parent_id: 22146
+                          childs: []
+                          property:
+                            - id: 3456
+                              name: Instrucciones de Cuidado y Limpieza
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                            - id: 3457
+                              name: material
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                        - id: 22153
+                          name: Tela
+                          parent_id: 22146
+                          childs: []
+                          property:
+                            - id: 3456
+                              name: Instrucciones de Cuidado y Limpieza
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                            - id: 3457
+                              name: material
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                        - id: 22154
+                          name: Infantil
+                          parent_id: 22146
+                          childs: []
+                          property:
+                            - id: 3456
+                              name: Instrucciones de Cuidado y Limpieza
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                            - id: 3457
+                              name: material
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                        - id: 22155
+                          name: Paquetes
+                          parent_id: 22146
+                          childs: []
+                          property:
+                            - id: 3456
+                              name: Instrucciones de Cuidado y Limpieza
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                            - id: 3457
+                              name: material
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                    - id: 22147
+                      name: Protección médica
+                      parent_id: 22097
+                      childs:
+                        - id: 22156
+                          name: Caretas
+                          parent_id: 22147
+                          childs: []
+                          property:
+                            - id: 3456
+                              name: Instrucciones de Cuidado y Limpieza
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                            - id: 3457
+                              name: material
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                        - id: 22157
+                          name: Gafas
+                          parent_id: 22147
+                          childs: []
+                          property:
+                            - id: 3456
+                              name: Instrucciones de Cuidado y Limpieza
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                            - id: 3457
+                              name: material
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                        - id: 22158
+                          name: Guantes desechables
+                          parent_id: 22147
+                          childs: []
+                          property:
+                            - id: 3456
+                              name: Instrucciones de Cuidado y Limpieza
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                            - id: 3457
+                              name: material
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                        - id: 22159
+                          name: Tapete desinfectante
+                          parent_id: 22147
+                          childs: []
+                          property:
+                            - id: 3456
+                              name: Instrucciones de Cuidado y Limpieza
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                            - id: 3457
+                              name: material
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                        - id: 22160
+                          name: Gel desinfectante
+                          parent_id: 22147
+                          childs: []
+                          property:
+                            - id: 3456
+                              name: Instrucciones de Cuidado y Limpieza
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                            - id: 3457
+                              name: material
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                        - id: 22171
+                          name: Desinfectantes
+                          parent_id: 22147
+                          childs: []
+                          property:
+                            - id: 3456
+                              name: Instrucciones de Cuidado y Limpieza
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                            - id: 3457
+                              name: material
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                    - id: 22148
+                      name: Monitoreo y Medición
+                      parent_id: 22097
+                      childs:
+                        - id: 22161
+                          name: Termómetros
+                          parent_id: 22148
+                          childs: []
+                          property:
+                            - id: 3456
+                              name: Instrucciones de Cuidado y Limpieza
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                            - id: 3457
+                              name: material
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                        - id: 22162
+                          name: Oxímetros
+                          parent_id: 22148
+                          childs: []
+                          property:
+                            - id: 3456
+                              name: Instrucciones de Cuidado y Limpieza
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                            - id: 3457
+                              name: material
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                        - id: 22163
+                          name: Glucómetros, Tiras y Lancetas
+                          parent_id: 22148
+                          childs: []
+                          property:
+                            - id: 3456
+                              name: Instrucciones de Cuidado y Limpieza
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                            - id: 3457
+                              name: material
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                        - id: 22164
+                          name: Baumanómetros
+                          parent_id: 22148
+                          childs: []
+                          property:
+                            - id: 3456
+                              name: Instrucciones de Cuidado y Limpieza
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+                            - id: 3457
+                              name: material
+                              type: string
+                              maxLength: 100
+                              minLength: 10
+                              required: false
+              pagination:
+                total_count: 204
+                page: 1
+                page_size: 15
