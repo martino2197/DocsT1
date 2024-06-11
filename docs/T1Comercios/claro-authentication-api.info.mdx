@@ -1,7 +1,7 @@
 ---
 id: claro-authentication-api
 title: "Claro Authentication API"
-description: "API for authenticating users with Claro platform."
+description: "Esta API se utiliza para autenticar usuarios en la plataforma T1 y obtener tokens de acceso necesarios para interactuar con otros endpoints protegidos."
 sidebar_label: Introduction
 sidebar_position: 0
 hide_title: true
@@ -29,7 +29,16 @@ import Export from "@theme/ApiExplorer/Export";
 
 
 
-API for authenticating users with Claro platform.
+Esta API se utiliza para autenticar usuarios en la plataforma T1 y obtener tokens de acceso necesarios para interactuar con otros endpoints protegidos.
+
+El proceso de autenticación se realiza a través de un Single Sign-On (SSO), que permite a los usuarios autenticarse una sola vez para acceder a múltiples aplicaciones sin la necesidad de volver a autenticarse en cada una.
+
+Para obtener un token de acceso válido, se requiere ingresar las  credenciales válidas proporcionadas por T1Comercios, que incluyen el ID del cliente, el método de concesión, el nombre de usuario y la contraseña.
+
+Las respuestas de este endpoint pueden incluir un token de acceso, su duración, un token de actualización y otros detalles relevantes para la autorización y la seguridad de la sesión.
+
+Es importante mantener seguras las credenciales y utilizarlas solo para solicitudes autorizadas.
+
 
 <div
   style={{"marginBottom":"2rem"}}

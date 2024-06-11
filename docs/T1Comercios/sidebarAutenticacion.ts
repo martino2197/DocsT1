@@ -12,8 +12,8 @@ const sidebar: SidebarsConfig = {
       items: [
         {
           type: "doc",
-          id: "T1Comercios/obtain-access-token",
-          label: "Obtain access token",
+          id: "T1Comercios/obtener-token-de-acceso",
+          label: "Obtener token de acceso",
           className: "api-method post",
         },
       ],

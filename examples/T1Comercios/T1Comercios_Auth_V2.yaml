@@ -1,0 +1,126 @@
+openapi: 3.0.0
+info:
+  title: Claro Authentication API
+  description: |
+    Esta API se utiliza para autenticar usuarios en la plataforma T1 y obtener tokens de acceso necesarios para interactuar con otros endpoints protegidos.
+
+    El proceso de autenticación se realiza a través de un Single Sign-On (SSO), que permite a los usuarios autenticarse una sola vez para acceder a múltiples aplicaciones sin la necesidad de volver a autenticarse en cada una.
+
+    Para obtener un token de acceso válido, se requiere ingresar las  credenciales válidas proporcionadas por T1Comercios, que incluyen el ID del cliente, el método de concesión, el nombre de usuario y la contraseña.
+
+    Las respuestas de este endpoint pueden incluir un token de acceso, su duración, un token de actualización y otros detalles relevantes para la autorización y la seguridad de la sesión.
+
+    Es importante mantener seguras las credenciales y utilizarlas solo para solicitudes autorizadas.
+
+  version: 1.0.0
+servers:
+  - url: https://loginclaro.com
+    description: Claro Authentication Server
+paths:
+  /auth/realms/plataforma-claro/protocol/openid-connect/token:
+    post:
+      summary: Obtener token de acceso
+      description: |
+        Este endpoint permite obtener un token de acceso válido para realizar solicitudes autorizadas en la plataforma Claro.
+
+        Para obtener el token, se deben proporcionar las credenciales correctas proporcionadas por T1Comercios, que incluyen el ID del cliente, el método de concesión, el nombre de usuario y la contraseña.
+
+        El token de acceso emitido se utiliza para autorizar las solicitudes a otros endpoints protegidos en la plataforma Claro.
+
+        **Nota:** Utiliza este endpoint de manera responsable y asegúrate de mantener seguras tus credenciales de acceso.
+
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                client_id:
+                  description: "ID del cliente para el Single Sign-On (SSO). El valor predeterminado es 'integradores'."
+                  type: string
+                  default: integradores
+                  example: integradores
+                grant_type:
+                  description: "Método utilizado para solicitar el token de acceso. El valor predeterminado es 'password'."
+                  type: string
+                  default: password
+                  example: password
+                username:
+                  description: "Nombre de usuario de la API, proporcionado por T1Comercios."
+                  type: string
+                  example: "store_204787_Integracion_T1"
+                password:
+                  description: "Contraseña del usuario para la API, proporcionada por T1Comercios."
+                  type: string
+                  example: 170amN123
+              required:
+                - client_id
+                - grant_type
+                - username
+                - password
+      responses:
+        '200':
+          description: Respuesta exitosa
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  access_token:
+                    type: string
+                    description: El token de acceso emitido por el servidor de autenticación.
+                    example: eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICI3M2ZiUk1KbmVSQmU4el9zRXNQZTcyRjdBZFVrNnlDZ0VnN2VwWDM3RWJvIn0
+                  expires_in:
+                    type: integer
+                    description: La duración en segundos del token de acceso.
+                    example: 3600
+                  refresh_expires_in:
+                    type: integer
+                    description: La duración en segundos del token de actualización.
+                    example: 1314000
+                  refresh_token:
+                    type: string
+                    description: El token de actualización que se puede utilizar para obtener un nuevo token de acceso.
+                    example: eyJhbGciOiJIUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJlMzAzZWJlMy03NGNkLTQxN2EtOWQyMC05YjQzMmY0YjQwMGEif
+                  token_type:
+                    type: string
+                    description: El tipo de token emitido.
+                    example: bearer
+                  not-before-policy:
+                    type: integer
+                    description: La política de no-antes.
+                    example: 1615933740
+                  session_state:
+                    type: string
+                    description: El estado de la sesión.
+                    example: 9330a815-5e71-418a-9086-81f34df577ee
+                  scope:
+                    type: string
+                    description: El alcance del token de acceso.
+                    example: profile email
+        '400':
+          description: Solicitud incorrecta
+        '401':
+          description: No autorizado
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: invalid_grant
+                  error_description:
+                    type: string
+                    example: Credenciales de usuario inválidas
+        '500':
+          description: Error interno del servidor
+      security:
+        - cookieAuth: []
+components:
+  securitySchemes:
+    cookieAuth:
+      type: apiKey
+      in: cookie
+      name: Cookie
