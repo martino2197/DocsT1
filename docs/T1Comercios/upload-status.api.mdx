@@ -1,0 +1,548 @@
+---
+id: upload-status
+title: "uploadStatus"
+description: "Actualizar estado de envío que se realizó por guía Manual."
+sidebar_label: "uploadStatus"
+hide_title: true
+hide_table_of_contents: true
+api: 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
+sidebar_class_name: "post api-method"
+info_path: docs/T1Comercios/pedidos
+custom_edit_url: null
+---
+
+import ApiTabs from "@theme/ApiTabs";
+import DiscriminatorTabs from "@theme/DiscriminatorTabs";
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import SecuritySchemes from "@theme/ApiExplorer/SecuritySchemes";
+import MimeTabs from "@theme/MimeTabs";
+import ParamsItem from "@theme/ParamsItem";
+import ResponseSamples from "@theme/ResponseSamples";
+import SchemaItem from "@theme/SchemaItem";
+import SchemaTabs from "@theme/SchemaTabs";
+import Markdown from "@theme/Markdown";
+import Heading from "@theme/Heading";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"uploadStatus"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"post"}
+  path={"/kidal/v1/order/seller/{IDSELLER}/marketplace/{marketplace}/order/{orderid}/shipment/{shipmentId}/status"}
+>
+  
+</MethodEndpoint>
+
+
+
+Actualizar estado de envío que se realizó por guía Manual. 
+
+- Este endpoint permite actualizar el estado de envío de las partidas que se encuentran en una guía de envío generada de forma manual. 
+
+- Al enviar una solicitud a este endpoint con el ID del vendedor, el nombre del marketplace, el ID del pedido, el ID de la guía de envío y el estado de envío deseado, se cambiará el estado de las partidas correspondientes en la guía de envío.
+
+- Actualmente, este endpoint solo acepta el valor "entregado" como estado de envío válido. Asegúrate de proporcionar el valor correcto para actualizar el estado de las partidas de manera adecuada.
+
+- Nota: Se requiere un token de autorización válido y permisos adecuados para realizar cambios en el estado de envío de las partidas de una guía de envío manual.
+
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+  children={"Request"}
+>
+</Heading>
+
+<details
+  style={{"marginBottom":"1rem"}}
+  className={"openapi-markdown__details"}
+  data-collapsed={false}
+  open={true}
+>
+  <summary
+    style={{}}
+  >
+    <h3
+      className={"openapi-markdown__details-summary-header-params"}
+    >
+      Path Parameters
+    </h3>
+  </summary><div>
+    <ul>
+      <ParamsItem
+        className={"paramsItem"}
+        param={{"name":"IDSELLER","in":"path","required":true,"description":"ID del vendedor","schema":{"type":"string"}}}
+      >
+        
+      </ParamsItem><ParamsItem
+        className={"paramsItem"}
+        param={{"name":"marketplace","in":"path","required":true,"description":"Identificador del marketplace (SR, CS, SN)","schema":{"type":"string","enum":["SR","CS","SN"]}}}
+      >
+        
+      </ParamsItem><ParamsItem
+        className={"paramsItem"}
+        param={{"name":"orderid","in":"path","required":true,"description":"Número de pedido","schema":{"type":"string","example":8099326}}}
+      >
+        
+      </ParamsItem><ParamsItem
+        className={"paramsItem"}
+        param={{"name":"shipmentId","in":"path","description":"Número de guía","required":true,"schema":{"type":"string","example":666149610196428}}}
+      >
+        
+      </ParamsItem>
+    </ul>
+  </div>
+</details><MimeTabs
+  className={"openapi-tabs__mime"}
+>
+  <TabItem
+    label={"application/json"}
+    value={"application/json-schema"}
+  >
+    <details
+      style={{}}
+      className={"openapi-markdown__details mime"}
+      data-collapsed={false}
+      open={true}
+    >
+      <summary
+        style={{}}
+        className={"openapi-markdown__details-summary-mime"}
+      >
+        <h3
+          className={"openapi-markdown__details-summary-header-body"}
+        >
+          Body
+        </h3><strong
+          className={"openapi-schema__required"}
+        >
+          required
+        </strong>
+      </summary><div
+        style={{"textAlign":"left","marginLeft":"1rem"}}
+      >
+        
+      </div><ul
+        style={{"marginLeft":"1rem"}}
+      >
+        <SchemaItem
+          collapsible={false}
+          name={"status"}
+          required={false}
+          schemaName={"string"}
+          qualifierMessage={"**Possible values:** [`entregado`]"}
+          schema={{"type":"string","description":"Estado de entrega","enum":["entregado"]}}
+        >
+          
+        </SchemaItem>
+      </ul>
+    </details>
+  </TabItem>
+</MimeTabs><div>
+  <div>
+    <ApiTabs
+      label={undefined}
+      id={undefined}
+    >
+      <TabItem
+        label={"200"}
+        value={"200"}
+      >
+        <div>
+          
+          
+          Guía cargada exitosamente
+          
+          
+        </div><div>
+          <MimeTabs
+            className={"openapi-tabs__mime"}
+            schemaType={"response"}
+          >
+            <TabItem
+              label={"application/json"}
+              value={"application/json"}
+            >
+              <SchemaTabs
+                className={"openapi-tabs__schema"}
+              >
+                <TabItem
+                  label={"Schema"}
+                  value={"Schema"}
+                >
+                  <details
+                    style={{}}
+                    className={"openapi-markdown__details response"}
+                    data-collapsed={false}
+                    open={true}
+                  >
+                    <summary
+                      style={{}}
+                      className={"openapi-markdown__details-summary-response"}
+                    >
+                      <strong>
+                        Schema
+                      </strong>
+                    </summary><div
+                      style={{"textAlign":"left","marginLeft":"1rem"}}
+                    >
+                      
+                    </div><ul
+                      style={{"marginLeft":"1rem"}}
+                    >
+                      <SchemaItem
+                        collapsible={true}
+                        className={"schemaItem"}
+                      >
+                        <details
+                          style={{}}
+                          className={"openapi-markdown__details"}
+                        >
+                          <summary
+                            style={{}}
+                          >
+                            <span
+                              className={"openapi-schema__container"}
+                            >
+                              <strong
+                                className={"openapi-schema__property"}
+                              >
+                                metadata
+                              </strong><span
+                                className={"openapi-schema__name"}
+                              >
+                                 object
+                              </span>
+                            </span>
+                          </summary><div
+                            style={{"marginLeft":"1rem"}}
+                          >
+                            <SchemaItem
+                              collapsible={false}
+                              name={"status"}
+                              required={false}
+                              schemaName={"string"}
+                              qualifierMessage={undefined}
+                              schema={{"type":"string","example":"success"}}
+                            >
+                              
+                            </SchemaItem><SchemaItem
+                              collapsible={false}
+                              name={"message"}
+                              required={false}
+                              schemaName={"string"}
+                              qualifierMessage={undefined}
+                              schema={{"type":"string","example":"ok"}}
+                            >
+                              
+                            </SchemaItem><SchemaItem
+                              collapsible={false}
+                              name={"http_code"}
+                              required={false}
+                              schemaName={"integer"}
+                              qualifierMessage={undefined}
+                              schema={{"type":"integer","example":200}}
+                            >
+                              
+                            </SchemaItem><SchemaItem
+                              collapsible={false}
+                              name={"date_time"}
+                              required={false}
+                              schemaName={"date-time"}
+                              qualifierMessage={undefined}
+                              schema={{"type":"string","format":"date-time","example":"2024-06-10T18:02:59.990+00:00"}}
+                            >
+                              
+                            </SchemaItem>
+                          </div>
+                        </details>
+                      </SchemaItem>
+                    </ul>
+                  </details>
+                </TabItem><TabItem
+                  label={"Example (from schema)"}
+                  value={"Example (from schema)"}
+                >
+                  <ResponseSamples
+                    responseExample={"{\n  \"metadata\": {\n    \"status\": \"success\",\n    \"message\": \"ok\",\n    \"http_code\": 200,\n    \"date_time\": \"2024-06-10T18:02:59.990+00:00\"\n  }\n}"}
+                    language={"json"}
+                  >
+                    
+                  </ResponseSamples>
+                </TabItem>
+              </SchemaTabs>
+            </TabItem>
+          </MimeTabs>
+        </div>
+      </TabItem><TabItem
+        label={"400"}
+        value={"400"}
+      >
+        <div>
+          
+          
+          No se encuentra la guía o el pedido.
+          
+          
+        </div><div>
+          <MimeTabs
+            className={"openapi-tabs__mime"}
+            schemaType={"response"}
+          >
+            <TabItem
+              label={"application/json"}
+              value={"application/json"}
+            >
+              <SchemaTabs
+                className={"openapi-tabs__schema"}
+              >
+                <TabItem
+                  label={"Schema"}
+                  value={"Schema"}
+                >
+                  <details
+                    style={{}}
+                    className={"openapi-markdown__details response"}
+                    data-collapsed={false}
+                    open={true}
+                  >
+                    <summary
+                      style={{}}
+                      className={"openapi-markdown__details-summary-response"}
+                    >
+                      <strong>
+                        Schema
+                      </strong>
+                    </summary><div
+                      style={{"textAlign":"left","marginLeft":"1rem"}}
+                    >
+                      
+                    </div><ul
+                      style={{"marginLeft":"1rem"}}
+                    >
+                      <SchemaItem
+                        collapsible={true}
+                        className={"schemaItem"}
+                      >
+                        <details
+                          style={{}}
+                          className={"openapi-markdown__details"}
+                        >
+                          <summary
+                            style={{}}
+                          >
+                            <span
+                              className={"openapi-schema__container"}
+                            >
+                              <strong
+                                className={"openapi-schema__property"}
+                              >
+                                metadata
+                              </strong><span
+                                className={"openapi-schema__name"}
+                              >
+                                 object
+                              </span>
+                            </span>
+                          </summary><div
+                            style={{"marginLeft":"1rem"}}
+                          >
+                            <SchemaItem
+                              collapsible={false}
+                              name={"status"}
+                              required={false}
+                              schemaName={"string"}
+                              qualifierMessage={undefined}
+                              schema={{"type":"string","example":"fail"}}
+                            >
+                              
+                            </SchemaItem><SchemaItem
+                              collapsible={false}
+                              name={"message"}
+                              required={false}
+                              schemaName={"string"}
+                              qualifierMessage={undefined}
+                              schema={{"type":"string","example":"Pedido: {{Pedido}}no encontrato con estos criterios"}}
+                            >
+                              
+                            </SchemaItem><SchemaItem
+                              collapsible={false}
+                              name={"http_code"}
+                              required={false}
+                              schemaName={"integer"}
+                              qualifierMessage={undefined}
+                              schema={{"type":"integer","example":200}}
+                            >
+                              
+                            </SchemaItem><SchemaItem
+                              collapsible={false}
+                              name={"date_time"}
+                              required={false}
+                              schemaName={"date-time"}
+                              qualifierMessage={undefined}
+                              schema={{"type":"string","format":"date-time","example":"2024-06-10T18:02:59.990+00:00"}}
+                            >
+                              
+                            </SchemaItem>
+                          </div>
+                        </details>
+                      </SchemaItem>
+                    </ul>
+                  </details>
+                </TabItem><TabItem
+                  label={"Example (from schema)"}
+                  value={"Example (from schema)"}
+                >
+                  <ResponseSamples
+                    responseExample={"{\n  \"metadata\": {\n    \"status\": \"fail\",\n    \"message\": \"Pedido: {{Pedido}}no encontrato con estos criterios\",\n    \"http_code\": 200,\n    \"date_time\": \"2024-06-10T18:02:59.990+00:00\"\n  }\n}"}
+                    language={"json"}
+                  >
+                    
+                  </ResponseSamples>
+                </TabItem>
+              </SchemaTabs>
+            </TabItem>
+          </MimeTabs>
+        </div>
+      </TabItem><TabItem
+        label={"404"}
+        value={"404"}
+      >
+        <div>
+          
+          
+          No se encuentra la guía o el pedido.
+          
+          
+        </div><div>
+          <MimeTabs
+            className={"openapi-tabs__mime"}
+            schemaType={"response"}
+          >
+            <TabItem
+              label={"application/json"}
+              value={"application/json"}
+            >
+              <SchemaTabs
+                className={"openapi-tabs__schema"}
+              >
+                <TabItem
+                  label={"Schema"}
+                  value={"Schema"}
+                >
+                  <details
+                    style={{}}
+                    className={"openapi-markdown__details response"}
+                    data-collapsed={false}
+                    open={true}
+                  >
+                    <summary
+                      style={{}}
+                      className={"openapi-markdown__details-summary-response"}
+                    >
+                      <strong>
+                        Schema
+                      </strong>
+                    </summary><div
+                      style={{"textAlign":"left","marginLeft":"1rem"}}
+                    >
+                      
+                    </div><ul
+                      style={{"marginLeft":"1rem"}}
+                    >
+                      <SchemaItem
+                        collapsible={true}
+                        className={"schemaItem"}
+                      >
+                        <details
+                          style={{}}
+                          className={"openapi-markdown__details"}
+                        >
+                          <summary
+                            style={{}}
+                          >
+                            <span
+                              className={"openapi-schema__container"}
+                            >
+                              <strong
+                                className={"openapi-schema__property"}
+                              >
+                                metadata
+                              </strong><span
+                                className={"openapi-schema__name"}
+                              >
+                                 object
+                              </span>
+                            </span>
+                          </summary><div
+                            style={{"marginLeft":"1rem"}}
+                          >
+                            <SchemaItem
+                              collapsible={false}
+                              name={"status"}
+                              required={false}
+                              schemaName={"string"}
+                              qualifierMessage={undefined}
+                              schema={{"type":"string","example":"fail"}}
+                            >
+                              
+                            </SchemaItem><SchemaItem
+                              collapsible={false}
+                              name={"message"}
+                              required={false}
+                              schemaName={"string"}
+                              qualifierMessage={undefined}
+                              schema={{"type":"string","example":"Pedido: {{Pedido}}no encontrato con estos criterios"}}
+                            >
+                              
+                            </SchemaItem><SchemaItem
+                              collapsible={false}
+                              name={"http_code"}
+                              required={false}
+                              schemaName={"integer"}
+                              qualifierMessage={undefined}
+                              schema={{"type":"integer","example":200}}
+                            >
+                              
+                            </SchemaItem><SchemaItem
+                              collapsible={false}
+                              name={"date_time"}
+                              required={false}
+                              schemaName={"date-time"}
+                              qualifierMessage={undefined}
+                              schema={{"type":"string","format":"date-time","example":"2024-06-10T18:02:59.990+00:00"}}
+                            >
+                              
+                            </SchemaItem>
+                          </div>
+                        </details>
+                      </SchemaItem>
+                    </ul>
+                  </details>
+                </TabItem><TabItem
+                  label={"Example (from schema)"}
+                  value={"Example (from schema)"}
+                >
+                  <ResponseSamples
+                    responseExample={"{\n  \"metadata\": {\n    \"status\": \"fail\",\n    \"message\": \"Pedido: {{Pedido}}no encontrato con estos criterios\",\n    \"http_code\": 200,\n    \"date_time\": \"2024-06-10T18:02:59.990+00:00\"\n  }\n}"}
+                    language={"json"}
+                  >
+                    
+                  </ResponseSamples>
+                </TabItem>
+              </SchemaTabs>
+            </TabItem>
+          </MimeTabs>
+        </div>
+      </TabItem>
+    </ApiTabs>
+  </div>
+</div>
+      
