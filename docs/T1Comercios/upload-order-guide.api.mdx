@@ -1,0 +1,356 @@
+---
+id: upload-order-guide
+title: "Carga la guía de un pedido"
+description: "Carga los detalles de la guía de un pedido, incluyendo el tipo, el carrier y los números de partidas."
+sidebar_label: "Carga la guía de un pedido"
+hide_title: true
+hide_table_of_contents: true
+api: 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
+sidebar_class_name: "post api-method"
+info_path: docs/T1Comercios/pedidos
+custom_edit_url: null
+---
+
+import ApiTabs from "@theme/ApiTabs";
+import DiscriminatorTabs from "@theme/DiscriminatorTabs";
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import SecuritySchemes from "@theme/ApiExplorer/SecuritySchemes";
+import MimeTabs from "@theme/MimeTabs";
+import ParamsItem from "@theme/ParamsItem";
+import ResponseSamples from "@theme/ResponseSamples";
+import SchemaItem from "@theme/SchemaItem";
+import SchemaTabs from "@theme/SchemaTabs";
+import Markdown from "@theme/Markdown";
+import Heading from "@theme/Heading";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Carga la guía de un pedido"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"post"}
+  path={"/kidal/v1/order/seller/{IDSELLER}/marketplace/{marketplace}/order/{orderid}/shipment"}
+>
+  
+</MethodEndpoint>
+
+
+
+Carga los detalles de la guía de un pedido, incluyendo el tipo, el carrier y los números de partidas.
+Reglas de negocio:
+- Las guías automáticas son guías proporcionadas por T1Envíos.
+- Se puede colocar más de una partida en una guía automática.
+- La suma de los pesos volumétricos o físicos de las partidas seleccionadas para la guía no debe exceder los 65 kg.
+- Los carriers proporcionados como guías automáticas son DHL y FEDEX.
+- Solo a las guías automáticas se les asigna una orden de compra.
+- Las partidas marcadas como FF no pueden tener asignada una guía automática o manual.
+
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+  children={"Request"}
+>
+</Heading>
+
+<details
+  style={{"marginBottom":"1rem"}}
+  className={"openapi-markdown__details"}
+  data-collapsed={false}
+  open={true}
+>
+  <summary
+    style={{}}
+  >
+    <h3
+      className={"openapi-markdown__details-summary-header-params"}
+    >
+      Path Parameters
+    </h3>
+  </summary><div>
+    <ul>
+      <ParamsItem
+        className={"paramsItem"}
+        param={{"name":"IDSELLER","in":"path","required":true,"description":"ID del vendedor","schema":{"type":"string"}}}
+      >
+        
+      </ParamsItem><ParamsItem
+        className={"paramsItem"}
+        param={{"name":"marketplace","in":"path","required":true,"description":"Identificador del marketplace (SR, CS, SN)","schema":{"type":"string","enum":["SR","CS","SN"]}}}
+      >
+        
+      </ParamsItem><ParamsItem
+        className={"paramsItem"}
+        param={{"name":"orderid","in":"path","required":true,"description":"Número de pedido","schema":{"type":"string","example":8099326}}}
+      >
+        
+      </ParamsItem>
+    </ul>
+  </div>
+</details><MimeTabs
+  className={"openapi-tabs__mime"}
+>
+  <TabItem
+    label={"application/json"}
+    value={"application/json-schema"}
+  >
+    <details
+      style={{}}
+      className={"openapi-markdown__details mime"}
+      data-collapsed={false}
+      open={true}
+    >
+      <summary
+        style={{}}
+        className={"openapi-markdown__details-summary-mime"}
+      >
+        <h3
+          className={"openapi-markdown__details-summary-header-body"}
+        >
+          Body
+        </h3><strong
+          className={"openapi-schema__required"}
+        >
+          required
+        </strong>
+      </summary><div
+        style={{"textAlign":"left","marginLeft":"1rem"}}
+      >
+        <div
+          style={{"marginTop":"1rem","marginBottom":"1rem"}}
+        >
+          
+          
+          Detalles de la guía del pedido
+          
+          
+        </div>
+      </div><ul
+        style={{"marginLeft":"1rem"}}
+      >
+        <SchemaItem
+          collapsible={false}
+          name={"kind"}
+          required={false}
+          schemaName={"string"}
+          qualifierMessage={"**Possible values:** [`manual`, `automatica`]"}
+          schema={{"type":"string","description":"Tipo de guía","enum":["manual","automatica"],"example":"automatica"}}
+        >
+          
+        </SchemaItem><SchemaItem
+          collapsible={false}
+          name={"carrier"}
+          required={false}
+          schemaName={"string"}
+          qualifierMessage={"**Possible values:** [`DHL`, `Fedex`]"}
+          schema={{"type":"string","description":"Empresa de transporte","enum":["DHL","Fedex"],"example":"fedex"}}
+        >
+          
+        </SchemaItem><SchemaItem
+          collapsible={false}
+          name={"colocations"}
+          required={false}
+          schemaName={"string[]"}
+          qualifierMessage={undefined}
+          schema={{"type":"array","description":"Lista de número de  de partidas.","items":{"type":"string","example":"12560808"}}}
+        >
+          
+        </SchemaItem><SchemaItem
+          collapsible={false}
+          name={"trackId"}
+          required={false}
+          schemaName={"string[]"}
+          qualifierMessage={undefined}
+          schema={{"type":"array","description":"Si estás utilizando una guía manual, incluye en este campo el número de guía asignado por el carrier del vendedor.r. \n","items":{"type":"string","example":"12560808"}}}
+        >
+          
+        </SchemaItem>
+      </ul>
+    </details>
+  </TabItem>
+</MimeTabs><div>
+  <div>
+    <ApiTabs
+      label={undefined}
+      id={undefined}
+    >
+      <TabItem
+        label={"200"}
+        value={"200"}
+      >
+        <div>
+          
+          
+          Guía cargada exitosamente
+          
+          
+        </div><div>
+          <MimeTabs
+            className={"openapi-tabs__mime"}
+            schemaType={"response"}
+          >
+            <TabItem
+              label={"application/json"}
+              value={"application/json"}
+            >
+              <SchemaTabs
+                className={"openapi-tabs__schema"}
+              >
+                <TabItem
+                  label={"Schema"}
+                  value={"Schema"}
+                >
+                  <details
+                    style={{}}
+                    className={"openapi-markdown__details response"}
+                    data-collapsed={false}
+                    open={true}
+                  >
+                    <summary
+                      style={{}}
+                      className={"openapi-markdown__details-summary-response"}
+                    >
+                      <strong>
+                        Schema
+                      </strong>
+                    </summary><div
+                      style={{"textAlign":"left","marginLeft":"1rem"}}
+                    >
+                      
+                    </div><ul
+                      style={{"marginLeft":"1rem"}}
+                    >
+                      <SchemaItem
+                        collapsible={true}
+                        className={"schemaItem"}
+                      >
+                        <details
+                          style={{}}
+                          className={"openapi-markdown__details"}
+                        >
+                          <summary
+                            style={{}}
+                          >
+                            <span
+                              className={"openapi-schema__container"}
+                            >
+                              <strong
+                                className={"openapi-schema__property"}
+                              >
+                                metadata
+                              </strong><span
+                                className={"openapi-schema__name"}
+                              >
+                                 object
+                              </span>
+                            </span>
+                          </summary><div
+                            style={{"marginLeft":"1rem"}}
+                          >
+                            <SchemaItem
+                              collapsible={false}
+                              name={"status"}
+                              required={false}
+                              schemaName={"string"}
+                              qualifierMessage={undefined}
+                              schema={{"type":"string","example":"success"}}
+                            >
+                              
+                            </SchemaItem><SchemaItem
+                              collapsible={false}
+                              name={"message"}
+                              required={false}
+                              schemaName={"string"}
+                              qualifierMessage={undefined}
+                              schema={{"type":"string","example":"ok"}}
+                            >
+                              
+                            </SchemaItem><SchemaItem
+                              collapsible={false}
+                              name={"http_code"}
+                              required={false}
+                              schemaName={"integer"}
+                              qualifierMessage={undefined}
+                              schema={{"type":"integer","example":200}}
+                            >
+                              
+                            </SchemaItem><SchemaItem
+                              collapsible={false}
+                              name={"date_time"}
+                              required={false}
+                              schemaName={"date-time"}
+                              qualifierMessage={undefined}
+                              schema={{"type":"string","format":"date-time","example":"2024-06-10T18:02:59.990+00:00"}}
+                            >
+                              
+                            </SchemaItem>
+                          </div>
+                        </details>
+                      </SchemaItem>
+                    </ul>
+                  </details>
+                </TabItem><TabItem
+                  label={"Example (from schema)"}
+                  value={"Example (from schema)"}
+                >
+                  <ResponseSamples
+                    responseExample={"{\n  \"metadata\": {\n    \"status\": \"success\",\n    \"message\": \"ok\",\n    \"http_code\": 200,\n    \"date_time\": \"2024-06-10T18:02:59.990+00:00\"\n  }\n}"}
+                    language={"json"}
+                  >
+                    
+                  </ResponseSamples>
+                </TabItem>
+              </SchemaTabs>
+            </TabItem>
+          </MimeTabs>
+        </div>
+      </TabItem><TabItem
+        label={"400"}
+        value={"400"}
+      >
+        <div>
+          
+          
+          Solicitud incorrecta. Error en los parámetros.
+          
+          
+        </div><div>
+          
+        </div>
+      </TabItem><TabItem
+        label={"401"}
+        value={"401"}
+      >
+        <div>
+          
+          
+          No autorizado. Token de acceso no válido o no proporcionado.
+          
+          
+        </div><div>
+          
+        </div>
+      </TabItem><TabItem
+        label={"500"}
+        value={"500"}
+      >
+        <div>
+          
+          
+          Error interno del servidor.
+          
+          
+        </div><div>
+          
+        </div>
+      </TabItem>
+    </ApiTabs>
+  </div>
+</div>
+      

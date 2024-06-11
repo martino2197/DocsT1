@@ -1,0 +1,304 @@
+---
+id: cancel-order
+title: "Cancelación de una partida de un pedido"
+description: "Cancela un pedido existente en el sistema. Solo se puede cancelar un pedido si está en el estado 'por enviar'.  Esto significa que un pedido no se puede cancelar si ya tiene guía asignada."
+sidebar_label: "Cancelación de una partida de un pedido"
+hide_title: true
+hide_table_of_contents: true
+api: eJztWEtvGzkS/isEj1q5LcmvuLFYwEnsRRaZGcH2Yg+WMSiTZZkxm+yQbE08hn5MjnPIKbe96o8tiuyWKPkRB8hpkZMerPqqWFX8WMV7HmDqeXnB34ARqMGxGqWS1hf8ss8leuFUHZQ1vOxEWGNaIYaflA9oAjI0DDXz9LOCgp1ZbZlHVjcokYkOe6XpFUMfFp9bRfQBpGUTXlvH0MwUuAkvGDv2gWSnRl0rAexjgxmGecyEV+wOWFBokE2bxRdgQPogoZiYLXZMTk4bFZ0WEBaftZ1apowkfG09q2xQM+vZClSoxVfDyLMK3C2GWoPAcmImhm2xXu/NWa9XTgxjLP4cDXu9kp0rrGpLIGiCwykw/CSi25nkiCTHzspGBOvZmTLsOEVUKMjkdnM5djS1FKxsff/59b1uvUIPz7u0H02dodbomLdaCRUWX9cCkQnvrdmFZJf5qL0SOzzMMZGBc1grE9TiKzmjgc3QhGy/w8Eg0/jVttlEzerOllS+tkZdaczVhplaaGaW5K80VuCZsKnOzGzxxeY6o2/qCOscrunskM4pihv4kzZMlTF2OKO0xQBRofV6Z6dtXTyfI1rd2Uk1ExoqYWOZQ2GNFciErWoHS7ndl8l9MzMxL3Hrv7QJQRMWX2LRRySnl84dJufQTG08fG18YngqtczJUnzvxemO4vvfl+uoc/AdiY4Kr16cZd7ntkYHxHnvJC95qv3fnETH+9zhxwZ9eG3lHS/v40/lUPIyuAb7XFhDfEhLUNdaiYiz/cETgd5zL26wAvoW7mrkJbdXH1AE3ue1I6tBoafVRHCZnA9OmSnvc/wEVa3pr1c7+7uHu6NdvknT794ySfFLJAlLaiz4nPzXy609hz4cjfaGBwcHj6NTFmtwQUnYNKAkZVDmm1Qm4DRGb4k/HOztDp+ETgitv+A3vH0Ebn/viSAkMm9hcxaL4BmdPx+Ns9MHcfhlpZuFu+DzeT+riosulWuRz6KU7XDdn8s+DypE629WFXiayo/P58kOnQyfamY0GNDHupf/jDegADcFSXyvgvVQ0eXHf1ixVhhAQniBpA8QGv98qH0jBHof04Pew/QbqbG3JHoTQv27sBKfr5PRYDDvcwkBfw+qehT52roKAi+j1FaUys2NBqPdrcH+1nBwPnxVDkbl3mFxeDj422BQDgYxLfOUG4+icSrc8fLinl8hOHRHTbjh5cXl/JL2Fm4s0UttfQwU0BrfvlUS9PZsuG0p3duperZT5XJCdTN0PoKuZxp0fUOX+4z3eeM0L2NMfLm9XQuo1VZcLyTOilpDgLjNLaHB2ULYis/7m4Bjh4mC43l5HLVwqBE8PoF5uQrDGRVTqoI8GMv4EyztL4rxshXi/fbLSZeVf/3nPB4xKtLTFRcfdwlacWdOkDnr5dS2IquWkFZ0Q5Syxg9EAsRv5joRc3s4x6ld5n1OiUmhGxaDYvCAMY59QHY0fkd3T22dUNYAu25M/KKVBImeWBWIq6boQ2w7JXYdObXKjel6bFrI/CvYxLwHz2qnjFA1aPQPsJURurlDU3YdynuV2u7MhowNtrAVkoNlr8fG6CoVkNmrgAYd3ZX6W3oMfY1i8eVaCVt01t6ij0REslTdZtVt0NbSwbNs/PYkNytbLUdR2VST+TiQ2dzAe9QFDOpjgwF86oipXXihG/5R3e/15U3niMQAmvIlu4klh8qd6DyI8V4pUbk80Osv003uaBZUbfux0QHnFDp2F3HM4r8VupTA9kb3SxePRGhAqz/bCUiuBrWNbXcOVGAa0LnL0EE49oQ2xbOzHAc8T6uioSEFTCr6dfzo33tgtO5V51sED43vPOr6Exr3MA2n3dx3rZsPNp6CYcF6vfFy5iTP369U04Qaqz0dTI+tZJwmR50ydeEaRXgZwFJaQhwdKDm0k9q6QJLFxOwQ8rFhAipl7KOg2K2yGxAKmG+oRoMydOB2k36c8uSm/g3FhIqiXQcGutWFAE4RwB4BnFDy3NMA1+06FCxyW5td387+EFsKBkuOoE475tG3iUQqtf0iHobYmrXDlNAxT0+Ybdu4VfRacQYmpAOxnqaDhwZmaCRKu5muJy108k+ZmJhe71cbwBNge3aKXu+pZ5Dche9+E/nBTyLJ29fk7TjdPb5LEjTBVovPQQnwRBf5Qa3ACZBxfKosOznpk2n0zKBAT0XEpnRbxDcf6CqF/lv85chtmUc1HY2GafWxUbJt0Mm1H/taQ081Za+XhsL9vTKOm3GszcbNNptnpy+TpDs3kn3MBl232JFzDE/cmojNt5G1VSZs8FvqEegqQUNM7jE1XMxF2KBmlCXqPKhTrCC25gaq1WCwZOc12svvgs1W5H7V+v981Pv5qPfzUe/no97//aNeO2cG/BS2aw0qUmocae/b4fuCx+GbJrkhvQK2L35LCm2H8Ms+v6GZvbzg9/dX4PHfTs/n9PfHBh3N+5d9PgOn4IoGxItLep5AIDCa2m/xjlg38e/WOXlF4roh7x48w9BYnjSOhMA6PCubPyuMfzs7p+m5faes4tMId/AHTcPwBy/5hE94fOwkhDiYx//vuQYzbeK7C0+4NG/D+ri+MZ7HnbVLYO4yL//+Ogqwc3uL5h+83+4m0E8+v5zP5/8DxjEKsg==
+sidebar_class_name: "post api-method"
+info_path: docs/T1Comercios/pedidos
+custom_edit_url: null
+---
+
+import ApiTabs from "@theme/ApiTabs";
+import DiscriminatorTabs from "@theme/DiscriminatorTabs";
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import SecuritySchemes from "@theme/ApiExplorer/SecuritySchemes";
+import MimeTabs from "@theme/MimeTabs";
+import ParamsItem from "@theme/ParamsItem";
+import ResponseSamples from "@theme/ResponseSamples";
+import SchemaItem from "@theme/SchemaItem";
+import SchemaTabs from "@theme/SchemaTabs";
+import Markdown from "@theme/Markdown";
+import Heading from "@theme/Heading";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Cancelación de una partida de un pedido"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"post"}
+  path={"/kidal/v1/order/pedido/cancel"}
+>
+  
+</MethodEndpoint>
+
+
+
+Cancela un pedido existente en el sistema. Solo se puede cancelar un pedido si está en el estado "por enviar".  Esto significa que un pedido no se puede cancelar si ya tiene guía asignada.
+- El siguiente catálogo indica los motivos de cancelación por marketplace:
+
+ - **CS**:
+    - **21**: Tiempo de entrega excedido
+    - **22**: Productos Sin Existencia
+    - **24**: Producto Agotado
+    - **26**: Producto Agotado
+    - **56**: Promesa de entrega excedido
+    - **64**: Seller solicitó cancelación
+    - **65**: Producto agotado seller
+    - **99**: Seller se arrepintió de la venta
+    - **100**: Seller No tiene el producto disponible
+    - **101**: Seller tuvo problemas con el envío
+    - **102**: Seller tuvo problemas con el correo
+    - **103**: Rechazado por Prevención
+
+- **SR**:
+  - **26**: Producto Agotado
+  - **33**: Titular no reconoce compra
+  - **34**: Titular no reconoce compra
+  - **65**: Producto agotado seller
+  - **92**: Me arrepentí de comprarlo
+  - **93**: Tengo un problema con mi producto
+  - **95**: Seller se arrepintió de la venta
+  - **96**: Seller No tiene el producto disponible
+  - **97**: Seller tuvo problemas con el envío
+  - **98**: Seller tuvo problemas con el correo
+
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+  children={"Request"}
+>
+</Heading>
+
+<MimeTabs
+  className={"openapi-tabs__mime"}
+>
+  <TabItem
+    label={"application/json"}
+    value={"application/json-schema"}
+  >
+    <details
+      style={{}}
+      className={"openapi-markdown__details mime"}
+      data-collapsed={false}
+      open={true}
+    >
+      <summary
+        style={{}}
+        className={"openapi-markdown__details-summary-mime"}
+      >
+        <h3
+          className={"openapi-markdown__details-summary-header-body"}
+        >
+          Body
+        </h3><strong
+          className={"openapi-schema__required"}
+        >
+          required
+        </strong>
+      </summary><div
+        style={{"textAlign":"left","marginLeft":"1rem"}}
+      >
+        
+      </div><ul
+        style={{"marginLeft":"1rem"}}
+      >
+        <SchemaItem
+          collapsible={false}
+          name={"pedido"}
+          required={true}
+          schemaName={"string"}
+          qualifierMessage={undefined}
+          schema={{"type":"string","example":"83649424","description":"ID del pedido a cancelar."}}
+        >
+          
+        </SchemaItem><SchemaItem
+          collapsible={false}
+          name={"relationId"}
+          required={true}
+          schemaName={"string"}
+          qualifierMessage={undefined}
+          schema={{"type":"string","example":"12251777","description":"ID de la partida a cancelar."}}
+        >
+          
+        </SchemaItem><SchemaItem
+          collapsible={false}
+          name={"idtienda"}
+          required={true}
+          schemaName={"integer"}
+          qualifierMessage={undefined}
+          schema={{"type":"integer","example":10541,"description":"ID de la tienda."}}
+        >
+          
+        </SchemaItem><SchemaItem
+          collapsible={false}
+          name={"reasonId"}
+          required={true}
+          schemaName={"integer"}
+          qualifierMessage={undefined}
+          schema={{"type":"integer","example":65,"description":"ID del motivo de la cancelación."}}
+        >
+          
+        </SchemaItem><SchemaItem
+          collapsible={false}
+          name={"marketplace"}
+          required={true}
+          schemaName={"string"}
+          qualifierMessage={undefined}
+          schema={{"type":"string","example":"SR","description":"Marketplace del pedido."}}
+        >
+          
+        </SchemaItem>
+      </ul>
+    </details>
+  </TabItem>
+</MimeTabs><div>
+  <div>
+    <ApiTabs
+      label={undefined}
+      id={undefined}
+    >
+      <TabItem
+        label={"200"}
+        value={"200"}
+      >
+        <div>
+          
+          
+          Guía cargada exitosamente
+          
+          
+        </div><div>
+          <MimeTabs
+            className={"openapi-tabs__mime"}
+            schemaType={"response"}
+          >
+            <TabItem
+              label={"application/json"}
+              value={"application/json"}
+            >
+              <SchemaTabs
+                className={"openapi-tabs__schema"}
+              >
+                <TabItem
+                  label={"Schema"}
+                  value={"Schema"}
+                >
+                  <details
+                    style={{}}
+                    className={"openapi-markdown__details response"}
+                    data-collapsed={false}
+                    open={true}
+                  >
+                    <summary
+                      style={{}}
+                      className={"openapi-markdown__details-summary-response"}
+                    >
+                      <strong>
+                        Schema
+                      </strong>
+                    </summary><div
+                      style={{"textAlign":"left","marginLeft":"1rem"}}
+                    >
+                      
+                    </div><ul
+                      style={{"marginLeft":"1rem"}}
+                    >
+                      <SchemaItem
+                        collapsible={true}
+                        className={"schemaItem"}
+                      >
+                        <details
+                          style={{}}
+                          className={"openapi-markdown__details"}
+                        >
+                          <summary
+                            style={{}}
+                          >
+                            <span
+                              className={"openapi-schema__container"}
+                            >
+                              <strong
+                                className={"openapi-schema__property"}
+                              >
+                                metadata
+                              </strong><span
+                                className={"openapi-schema__name"}
+                              >
+                                 object
+                              </span>
+                            </span>
+                          </summary><div
+                            style={{"marginLeft":"1rem"}}
+                          >
+                            <SchemaItem
+                              collapsible={false}
+                              name={"status"}
+                              required={false}
+                              schemaName={"string"}
+                              qualifierMessage={undefined}
+                              schema={{"type":"string","example":"success"}}
+                            >
+                              
+                            </SchemaItem><SchemaItem
+                              collapsible={false}
+                              name={"message"}
+                              required={false}
+                              schemaName={"string"}
+                              qualifierMessage={undefined}
+                              schema={{"type":"string","example":"ok"}}
+                            >
+                              
+                            </SchemaItem><SchemaItem
+                              collapsible={false}
+                              name={"http_code"}
+                              required={false}
+                              schemaName={"integer"}
+                              qualifierMessage={undefined}
+                              schema={{"type":"integer","example":200}}
+                            >
+                              
+                            </SchemaItem><SchemaItem
+                              collapsible={false}
+                              name={"date_time"}
+                              required={false}
+                              schemaName={"date-time"}
+                              qualifierMessage={undefined}
+                              schema={{"type":"string","format":"date-time","example":"2024-06-10T18:02:59.990+00:00"}}
+                            >
+                              
+                            </SchemaItem>
+                          </div>
+                        </details>
+                      </SchemaItem>
+                    </ul>
+                  </details>
+                </TabItem><TabItem
+                  label={"Example (from schema)"}
+                  value={"Example (from schema)"}
+                >
+                  <ResponseSamples
+                    responseExample={"{\n  \"metadata\": {\n    \"status\": \"success\",\n    \"message\": \"ok\",\n    \"http_code\": 200,\n    \"date_time\": \"2024-06-10T18:02:59.990+00:00\"\n  }\n}"}
+                    language={"json"}
+                  >
+                    
+                  </ResponseSamples>
+                </TabItem>
+              </SchemaTabs>
+            </TabItem>
+          </MimeTabs>
+        </div>
+      </TabItem>
+    </ApiTabs>
+  </div>
+</div>
+      

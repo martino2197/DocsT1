@@ -1,0 +1,984 @@
+openapi: 3.0.0
+info:
+  title: Pedidos
+  version: 1.0.0
+  
+  description: |
+    Este API proporciona funcionalidades para la gestión de pedidos en un sistema de marketplace. 
+    Las principales funcionalidades incluyen:
+    
+    - **Listado de pedidos de un comercio:** Permite obtener el listado de pedidos de un comercio específico.
+    
+    - **Descarga de orden de compra en formato PDF:** Permite descargar la orden de compra de un pedido específico en formato PDF.
+    
+    - **Descarga de etiquetas de envío en formato PDF:** Permite descargar las etiquetas de envío de un pedido específico en formato PDF.
+    
+    - **Carga de detalles de guía de un pedido:** Permite cargar los detalles de la guía de un pedido, incluyendo el tipo, el carrier y los números de partidas.
+    
+    - **Actualización del estado de envío de una guía manual:** Permite actualizar el estado de envío de las partidas que se encuentran en una guía manual.
+    
+    La transición de estatus de una partida sigue el siguiente flujo:
+    
+    1. **Por enviar:** La partida está lista para ser enviada.
+    2. **Por recolectar:** La partida está lista para ser recolectada por el transportista.
+    3. **En camino:** La partida está en camino hacia su destino.
+    4. **Entregado:** La partida ha sido entregada al destinatario.
+    5. **Facturado:** La partida ha sido facturada. Este estado solo se aplica a pedidos con guías manuales.
+    6. **Cancelado por cliente:** La partida ha sido cancelada por el cliente antes de ser enviada.
+    7. **Cancelado por vendedor:** La partida ha sido cancelada por el vendedor antes de ser enviada.
+    
+    **Notas:** 
+    - **A.** Solo se puede cancelar por vendedor un pedido si está en el estado "por enviar". Esto significa que un pedido no se puede cancelar si ya tiene guía asignada.
+    
+    - **B.** Para las guías automáticas y las partidas marcadas como FF, no es necesario generar una factura genérica del vendedor para su liquidación.
+    
+    El siguiente catálogo indica los motivos de cancelación por marketplace:
+    
+    **CS:**
+      - 65: No tengo el producto.
+    
+    **SR:**
+      - 65: No tengo el producto.
+    
+    Las especificaciones detalladas para cada endpoint se encuentran descritas en la sección respectiva.
+
+
+
+servers:
+ # - description: SwaggerHub API Auto Mocking
+ #  url: https://virtserver.swaggerhub.com/pcarrilloj/productosT1/1.0.0
+  - description: alpha dev
+    url: https://pcapi-alpha.dev.plataforma-claro.com
+  - description: Preproducción
+    url: https://pcapi.release.plataforma-claro.com
+
+paths: 
+  /kidal/v1/Ordersfull/seller/{IDSELLER}:
+    get:
+      tags: 
+        - Lista pedidos Pedidos
+      summary: Listado de pedidos de un comercio.
+      description: >
+        Este endpoint permite obtener un listado completo de los pedidos de un comercio específico basado en el ID del vendedor proporcionado. 
+        Los parámetros de filtro opcionales incluyen el estado, la fecha de rango, el tamaño de página y la paginación para facilitar la búsqueda y el manejo de grandes volúmenes de pedidos.
+        Ten en cuenta que los pedidos devueltos en este listado pueden tener diferentes estados y detalles, lo que te permite gestionar eficazmente tu inventario y las operaciones de envío.
+
+        Los parámetros disponibles para filtrar los pedidos son:
+          - `filter-status-family`: Filtra por la familia de estados de los pedidos.
+          - `filter-date-range-end` y `filter-date-range-begin`: Filtra por rango de fechas de los pedidos.
+          - `filter-status`: Filtra por un estado específico de los pedidos.
+          - `pageSize` y `page`: Controlan el tamaño de la página y la paginación para la respuesta.
+          - `filter-orderId`: Filtra por ID de pedido específico.
+
+        Para obtener más detalles sobre los parámetros y las respuestas posibles, consulta la sección de especificaciones correspondiente.
+
+        Nota: Es necesario proporcionar un token de autorización válido en la solicitud para acceder a este endpoint.
+      operationId: getOrdersFull
+      parameters:
+        - $ref: '#/components/parameters/IDSELLER'
+        - $ref: '#/components/parameters/filter-status-family'
+        - $ref: '#/components/parameters/filter-date-range-end'
+        - $ref: '#/components/parameters/filter-date-range-begin'
+        - $ref: '#/components/parameters/filter-status'
+        - $ref: '#/components/parameters/pageSize'
+        - $ref: '#/components/parameters/page'
+        - $ref: '#/components/parameters/filter-orderId'
+      responses:
+        '200':
+          $ref: '#/components/responses/basic_200'
+      security:
+        - bearerAuth: []
+  
+  /kidal/v1/order/seller/{IDSELLER}/marketplace/{marketplace}/order/{orderid}/payment_order/{payment_order}:
+    get:
+      tags:
+        - Anexos
+      summary: Descarga la Orden de compra  de un pedido en formato PDF
+      description: >
+        - Este endpoint permite descargar en formato PDF la Orden de Compra asociada a un pedido específico dentro de un marketplace determinado. 
+        Proporciona acceso al archivo PDF que contiene los detalles de la Orden de Compra del pedido identificado por el ID del pedido y la ID de la orden de pago especificada.
+
+        - Es importante tener en cuenta que este servicio está diseñado para obtener la versión PDF de la Orden de Compra, lo que facilita su visualización y manejo dentro del sistema o para su impresión si es necesario.
+
+        - Para utilizar este endpoint, proporciona el ID del vendedor, el nombre del marketplace, el ID del pedido, y la ID de guía en la ruta de la solicitud.
+
+      operationId: downloadOrderservicePDF
+      parameters:
+        - $ref: '#/components/parameters/IDSELLER'
+        - $ref: '#/components/parameters/marketplace'
+        - $ref: '#/components/parameters/orderid'
+        - $ref: '#/components/parameters/payment_order'
+      responses:
+        '200':
+          description: Archivo PDF descargado correctamente
+          content:
+            application/pdf:
+              schema:
+                type: string
+                format: binary
+        '401':
+          description: No autorizado. Token de acceso no válido o no proporcionado.
+        '404':
+          description: No se encontró la guía especificada.
+        '500':
+          description: Error interno del servidor.
+      security:
+        - bearerAuth: []
+  /kidal/v1/order/seller/{IDSELLER}/marketplace/{marketplace}/order/{orderid}/shipping_label/{payment_order}:
+    get:
+      tags:
+        - Anexos
+      summary: Descarga la guía un pedido en formato PDF
+      description: >
+        Este endpoint permite la descarga en formato PDF de la guía de envío asociada a un pedido específico dentro de un marketplace determinado. 
+        - Proporciona acceso al archivo PDF que contiene la guía de envío del pedido identificado por el ID del pedido y la ID de la guía especificada.
+
+        - La guía de envío es un documento esencial para el proceso logístico, ya que contiene información crucial como la dirección de envío, el transportista asignado, y los detalles de las partidas del pedido.
+
+        - Al utilizar este endpoint, proporciona el ID del vendedor, el nombre del marketplace, el ID del pedido y la ID de la orden de pago en la ruta de la solicitud.
+
+        - Nota: Asegúrate de contar con los permisos adecuados y un token de autorización válido para acceder a esta funcionalidad.
+        
+      operationId: downloadOrderGuidePDF
+      parameters:
+        - $ref: '#/components/parameters/IDSELLER'
+        - $ref: '#/components/parameters/marketplace'
+        - $ref: '#/components/parameters/orderid'
+        - $ref: '#/components/parameters/payment_order'
+      responses:
+        '200':
+          description: Archivo PDF descargado correctamente
+          content:
+            application/pdf:
+              schema:
+                type: string
+                format: binary
+        '401':
+          description: No autorizado. Token de acceso no válido o no proporcionado.
+        '404':
+          description: No se encontró la guía especificada.
+        '500':
+          description: Error interno del servidor.
+      security:
+        - bearerAuth: []
+  
+  /kidal/v1/order/seller/{IDSELLER}/marketplace/{marketplace}/order/{orderid}/shipment:
+    post:
+      tags:
+        - Guías
+      summary: Carga la guía de un pedido
+      description:  |
+        Carga los detalles de la guía de un pedido, incluyendo el tipo, el carrier y los números de partidas.
+        Reglas de negocio:
+        - Las guías automáticas son guías proporcionadas por T1Envíos.
+        - Se puede colocar más de una partida en una guía automática.
+        - La suma de los pesos volumétricos o físicos de las partidas seleccionadas para la guía no debe exceder los 65 kg.
+        - Los carriers proporcionados como guías automáticas son DHL y FEDEX.
+        - Solo a las guías automáticas se les asigna una orden de compra.
+        - Las partidas marcadas como FF no pueden tener asignada una guía automática o manual.
+      operationId: uploadOrderGuide
+      parameters:
+        - $ref: '#/components/parameters/IDSELLER'
+        - $ref: '#/components/parameters/marketplace'
+        - $ref: '#/components/parameters/orderid'
+      requestBody:
+        description: Detalles de la guía del pedido
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                kind:
+                  type: string
+                  description: Tipo de guía
+                  enum: 
+                  - manual
+                  - automatica
+                  example: automatica
+                carrier:
+                  type: string
+                  description: Empresa de transporte
+                  enum:
+                    - DHL
+                    - Fedex
+                  example: fedex
+                colocations:
+                  type: array
+                  description: Lista de número de  de partidas.
+                  items:
+                    type: string
+                    example: "12560808"
+                trackId:
+                  type: array
+                  description: >
+                    Si estás utilizando una guía manual, incluye en este campo el número de guía asignado por el carrier del vendedor.r. 
+                  items:
+                    type: string
+                    example: "12560808"
+      responses:
+        '200':
+          description: Guía cargada exitosamente
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  metadata:
+                    type: object
+                    properties:
+                      status:
+                        type: string
+                        example: success
+                      message:
+                        type: string
+                        example: ok
+                      http_code:
+                        type: integer
+                        example: 200
+                      date_time:
+                        type: string
+                        format: date-time
+                        example: "2024-06-10T18:02:59.990+00:00"
+        '400':
+          description: Solicitud incorrecta. Error en los parámetros.
+        '401':
+          description: No autorizado. Token de acceso no válido o no proporcionado.
+        '500':
+          description: Error interno del servidor.
+      security:
+        - bearerAuth: []
+  
+  /kidal/v1/order/seller/{IDSELLER}/marketplace/{marketplace}/order/{orderid}/shipment/{shipmentId}/status:
+    post:
+      description: |
+        Actualizar estado de envío que se realizó por guía Manual. 
+      
+        - Este endpoint permite actualizar el estado de envío de las partidas que se encuentran en una guía de envío generada de forma manual. 
+  
+        - Al enviar una solicitud a este endpoint con el ID del vendedor, el nombre del marketplace, el ID del pedido, el ID de la guía de envío y el estado de envío deseado, se cambiará el estado de las partidas correspondientes en la guía de envío.
+
+        - Actualmente, este endpoint solo acepta el valor "entregado" como estado de envío válido. Asegúrate de proporcionar el valor correcto para actualizar el estado de las partidas de manera adecuada.
+
+        - Nota: Se requiere un token de autorización válido y permisos adecuados para realizar cambios en el estado de envío de las partidas de una guía de envío manual.
+
+      tags:
+        - Guías
+      operationId: 'uploadStatus'
+      parameters:
+        - $ref: '#/components/parameters/IDSELLER'
+        - $ref: '#/components/parameters/marketplace'
+        - $ref: '#/components/parameters/orderid'
+        - $ref: '#/components/parameters/shipmentId'
+        
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                status:
+                  type: string
+                  description: Estado de entrega
+                  enum:
+                    - entregado
+                    
+      responses:
+        '200':
+          description: Guía cargada exitosamente
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  metadata:
+                    type: object
+                    properties:
+                      status:
+                        type: string
+                        example: success
+                      message:
+                        type: string
+                        example: ok
+                      http_code:
+                        type: integer
+                        example: 200
+                      date_time:
+                        type: string
+                        format: date-time
+                        example: "2024-06-10T18:02:59.990+00:00"
+        '404':
+          description: No se encuentra la guía o el pedido. 
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  metadata:
+                    type: object
+                    properties:
+                      status:
+                        type: string
+                        example: fail
+                      message:
+                        type: string
+                        example: "Pedido: {{Pedido}}no encontrato con estos criterios"
+                      http_code:
+                        type: integer
+                        example: 200
+                      date_time:
+                        type: string
+                        format: date-time
+                        example: "2024-06-10T18:02:59.990+00:00"
+        
+        '400':
+          description: No se encuentra la guía o el pedido. 
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  metadata:
+                    type: object
+                    properties:
+                      status:
+                        type: string
+                        example: fail
+                      message:
+                        type: string
+                        example: "Pedido: {{Pedido}}no encontrato con estos criterios"
+                      http_code:
+                        type: integer
+                        example: 200
+                      date_time:
+                        type: string
+                        format: date-time
+                        example: "2024-06-10T18:02:59.990+00:00"
+        
+      security:
+        - bearerAuth: []
+  
+  /kidal/v1/order/pedido/cancel:
+    post:
+      tags:
+        - Cancelar pedidos.
+      summary: Cancelación de una partida de un pedido
+      description: >
+        Cancela un pedido existente en el sistema. Solo se puede cancelar un pedido si está en el estado "por enviar". 
+        Esto significa que un pedido no se puede cancelar si ya tiene guía asignada.
+        
+        - El siguiente catálogo indica los motivos de cancelación por marketplace:
+        
+         - **CS**:
+            - **21**: Tiempo de entrega excedido
+            - **22**: Productos Sin Existencia
+            - **24**: Producto Agotado
+            - **26**: Producto Agotado
+            - **56**: Promesa de entrega excedido
+            - **64**: Seller solicitó cancelación
+            - **65**: Producto agotado seller
+            - **99**: Seller se arrepintió de la venta
+            - **100**: Seller No tiene el producto disponible
+            - **101**: Seller tuvo problemas con el envío
+            - **102**: Seller tuvo problemas con el correo
+            - **103**: Rechazado por Prevención
+        
+        - **SR**:
+          - **26**: Producto Agotado
+          - **33**: Titular no reconoce compra
+          - **34**: Titular no reconoce compra
+          - **65**: Producto agotado seller
+          - **92**: Me arrepentí de comprarlo
+          - **93**: Tengo un problema con mi producto
+          - **95**: Seller se arrepintió de la venta
+          - **96**: Seller No tiene el producto disponible
+          - **97**: Seller tuvo problemas con el envío
+          - **98**: Seller tuvo problemas con el correo
+      operationId: cancelOrder
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CancelOrderRequest'
+      responses:
+        '200':
+          description: Guía cargada exitosamente
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  metadata:
+                    type: object
+                    properties:
+                      status:
+                        type: string
+                        example: success
+                      message:
+                        type: string
+                        example: ok
+                      http_code:
+                        type: integer
+                        example: 200
+                      date_time:
+                        type: string
+                        format: date-time
+                        example: "2024-06-10T18:02:59.990+00:00"
+        
+      security:
+        - bearerAuth: []
+
+          
+components: 
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+  parameters:
+    
+    shipmentId:
+      name: shipmentId
+      in: path
+      description: Número de guía
+      required: true
+      schema: 
+        type: string
+        example:
+          6661496_10196428
+    
+    marketplace:
+      name: marketplace
+      in: path
+      required: true
+      description: Identificador del marketplace (SR, CS, SN)
+      schema:
+        type: string
+        enum:
+          - SR
+          - CS
+          - SN
+    orderid:
+      name: orderid
+      in: path
+      required: true
+      description: Número de pedido
+      schema:
+        type: string
+        example: 8099326
+    payment_order:
+      name: payment_order
+      in: path
+      required: true
+      description: Número de guía
+      schema:
+        type: string
+        example: 776246619245  
+    IDSELLER:
+      name: IDSELLER
+      in: path
+      required: true
+      description: ID del vendedor
+      schema:
+        type: string
+    filter-status-family:
+      name: filter-status-family
+      in: query
+      required: false
+      description: Filtrar por familia de estado
+      schema:
+        type: array
+        items:
+          type: string
+        example: [listo_para_enviar]
+    filter-date-range-end:
+      name: filter-date-range-end
+      in: query
+      required: false
+      description: Fecha de fin del rango
+      schema:
+        type: string
+        format: date
+        example: 2023-01-01
+    filter-date-range-begin:
+      name: filter-date-range-begin
+      in: query
+      required: false
+      description: Fecha de inicio del rango
+      schema:
+        type: string
+        format: date
+        example: 2023-01-31
+    filter-status:
+      name: filter-status
+      in: query
+      required: false
+      description: Filtrar por estado
+      schema:
+        type: string
+        enum:
+        - por enviar
+        - por recolectar
+        - En camino
+        - Entregado
+        - Facturado 
+        - cancelado por vendedor
+        - cancelado por cliente
+        example: por recolectar
+    pageSize:
+      name: pageSize
+      in: query
+      required: false
+      description: Tamaño de la página
+      schema:
+        type: integer
+        example: 10
+    page:
+      name: page
+      in: query
+      required: false
+      description: Número de la página
+      schema:
+        type: integer
+        example: 19
+    filter-orderId:
+      name: filter-orderId
+      in: query
+      required: false
+      description: Filtrar por ID de orden
+      schema:
+        type: string
+        example: 83649424
+  responses:
+    basic_200: 
+      description: Respuesta exitosa
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Response'
+  schemas:
+    CancelOrderRequest:
+      type: object
+      properties:
+        pedido:
+          type: string
+          example: "83649424"
+          description: ID del pedido a cancelar.
+        relationId:
+          type: string
+          example: "12251777"
+          description: ID de la partida a cancelar.
+        idtienda:
+          type: integer
+          example: 10541
+          description: ID de la tienda.
+        reasonId:
+          type: integer
+          example: 65
+          description: ID del motivo de la cancelación.
+        marketplace:
+          type: string
+          example: "SR"
+          description: Marketplace del pedido.
+      required:
+        - pedido
+        - relationId
+        - idtienda
+        - reasonId
+        - marketplace
+  
+    Response:
+      type: object
+      description: Estructura de respuesta exitosa
+      properties:
+        metadata:
+          type: object
+          description: Metadatos sobre la respuesta
+          properties:
+            status:
+              type: string
+              description: Estado de la respuesta
+              example: success
+            message:
+              type: string
+              description: Mensaje de la respuesta
+              example: OK
+            http_code:
+              type: integer
+              description: Código de estado HTTP
+              example: 200
+            date_time:
+              type: string
+              format: date-time
+              description: Fecha y hora de la respuesta
+              example: 2024-06-08T05:35:59.515+00:00
+        data:
+          type: array
+          description: Lista de pedidos
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+                description: Identificador único del pedido
+                example: f976e8e4cae393af65251a81805ad3de
+              orderid:
+                type: string
+                description: ID de la orden en el marketPlace
+                example: 83783474
+              marketplace:
+                type: string
+                description: Identificador del marketPlace
+                enum:
+                  - CS
+                  - SR
+                  - SN
+                example: SR
+              sellerID:
+                type: string
+                description: ID del vendedor
+                example: 10541
+              external_id:
+                type: string
+                description: ID externo
+                nullable: true
+                example: null
+              purchase_date:
+                type: string
+                format: date-time
+                description: Fecha y hora de compra
+                example: 2024-05-24T12:09:48.000+00:00
+              authorization_date:
+                type: string
+                format: date-time
+                description: Fecha y hora de autorización
+                example: 2024-05-24T12:17:18.000+00:00
+              paymentData:
+                type: object
+                description: Datos de pago, información no disponible por API para 3ros.
+                properties:
+                  status:
+                    type: string
+                    description: Estado del pago, información no disponible por API para 3ros.
+                    nullable: true
+                    example: null
+                  plan:
+                    type: string
+                    description: Plan de pago, información no disponible por API para 3ros.
+                    nullable: true
+                    example: null
+                  paymentMetod:
+                    type: string
+                    description: Método de pago, información no disponible por API para 3ros.
+                    nullable: true
+                    example: null
+                  paymentDueDate:
+                    type: string
+                    format: date
+                    description: Fecha de vencimiento del pago, información no disponible por API para 3ros.
+                    nullable: true
+                    example: null
+                  paymentReference:
+                    type: string
+                    description: Referencia de pago, información no disponible por API para 3ros.
+                    nullable: true
+                    example: null
+                  bank:
+                    type: string
+                    description: Nombre del banco, información no disponible por API para 3ros.
+                    example: ""
+                  binCard:
+                    type: string
+                    description: Número de identificación bancaria (BIN) de la tarjeta, información no disponible por API para 3ros.
+                    nullable: true
+                    example: null
+                  cardLastDigits:
+                    type: string
+                    description: Últimos dígitos de la tarjeta, información no disponible por API para 3ros.
+                    nullable: true
+                    example: null
+                  cardType:
+                    type: string
+                    description: Tipo de tarjeta (e.g., Visa, MasterCard), información no disponible por API para 3ros.
+                    nullable: true
+                    example: null
+                  bankAffiliation:
+                    type: string
+                    description: Afiliación bancaria, información no disponible por API para 3ros.
+                    example: ""
+                  paymentNoInstallments:
+                    type: integer
+                    description: Número de cuotas, información no disponible por API para 3ros.
+                    example: 1
+                  paymentInstallments:
+                    type: string
+                    description: Cuotas de pago, información no disponible por API para 3ros.
+                    nullable: true
+                    example: null
+                  subtotal:
+                    type: number
+                    format: float
+                    description: Subtotal
+                    example: 350.0
+                  discount:
+                    type: string
+                    description: Descuento aplicado, información no disponible por API para 3ros.
+                    nullable: true
+                    example: null
+                  couponAmount:
+                    type: string
+                    description: Monto del cupón aplicado, información no disponible por API para 3ros.
+                    nullable: true
+                    example: null
+                  shippingCosts:
+                    type: number
+                    format: float
+                    description: Costos de envío
+                    example: 82.0
+                  total:
+                    type: number
+                    format: float
+                    description: Total
+                    example: 432.0
+                  commissions:
+                    type: string
+                    description: Comisiones aplicadas, información no disponible por API para 3ros.
+                    nullable: true
+                    example: null
+              shippingAddress:
+                type: object
+                description: Dirección de envío
+                properties:
+                  zipCode:
+                    type: string
+                    description: Código postal
+                    example: 15670
+                  city:
+                    type: string
+                    description: Ciudad
+                    example: Venustiano Carranza
+                  phoneNumber:
+                    type: string
+                    description: Número de teléfono
+                    example: 5579797979
+                  notes:
+                    type: string
+                    description: Notas sobre la dirección
+                    example: ""
+                  outdoorNumber:
+                    type: string
+                    description: Número exterior
+                    example: 13
+                  interiorNumber:
+                    type: string
+                    description: Número interior
+                    example: "INT 1"
+                  borough:
+                    type: string
+                    description: Delegación
+                    example: Venustiano Carranza
+                  betweenStreets:
+                    type: string
+                    description: Entre calles
+                    example: Calle 1 y Calle 2
+                  suburb:
+                    type: string
+                    description: Colonia
+                    example: Adolfo López Mateos
+                  stateCode:
+                    type: string
+                    description: Código del estado
+                    nullable: true
+                    example: null
+                  state:
+                    type: string
+                    description: Estado
+                    example: Ciudad de México
+                  street:
+                    type: string
+                    description: Calle
+                    example: Calle Entrega
+                  addressee:
+                    type: string
+                    description: Destinatario
+                    example: Jaime Fulanito
+              clientData:
+                type: object
+                description: Datos del cliente
+                properties:
+                  id:
+                    type: string
+                    description: ID del cliente
+                    example: 1106754
+                  fullname:
+                    type: string
+                    description: Nombre completo del cliente
+                    example: Jaime Flulainito
+                  email:
+                    type: string
+                    description: Correo electrónico del cliente
+                    example: correo_cliente@hotmail.com
+              orderedProductsList:
+                type: array
+                description: Lista de productos ordenados
+                items:
+                  type: object
+                  properties:
+                    colocationId:
+                      type: string
+                      description: ID de colocación, (Partida)
+                      example: 12491524
+                    idProduct:
+                      type: string
+                      description: ID de la publicación en el marketPlace
+                      example: 2948290
+                    name:
+                      type: string
+                      description: Nombre del producto
+                      example: Producto de prueba Mongo
+                    sku:
+                      type: string
+                      description: SKU del producto
+                      example: SKUP_V1
+                    universal_id:
+                      type: string
+                      description: ID universal
+                      nullable: true
+                      example: null
+                    saleDiscount:
+                      type: number
+                      format: float
+                      description: Descuento de venta
+                      example: 0.0
+                    totalSale:
+                      type: number
+                      format: float
+                      description: Venta total
+                      example: 350.0
+                    colocationStatus:
+                      type: object
+                      description: Estado de la partida.
+                      properties:
+                        id:
+                          type: string
+                          description: ID del estado
+                          enum:
+                           - "1"
+                           - "2"
+                           - "3"
+                           - "4"
+                           - "5"
+                           - "6"
+                           - "7"
+                          example: 5
+                        name:
+                          type: string
+                          description: Nombre del estado
+                           - por enviar
+                           - por recolectar
+                           - En camino
+                           - Entregado
+                           - Facturado 
+                           - cancelado por cliente
+                           - cancelado por vendedor
+                           
+                          example: facturado
+                        reasonID:
+                          type: string
+                          description: ID de la razón
+                          nullable: true
+                          example: null
+                        reasonName:
+                          type: string
+                          description: Nombre de la razón
+                          nullable: true
+                          example: null
+                    deliveryTrackId:
+                      type: string
+                      description: ID de seguimiento de entrega, ( Número de guía)
+                      example: 258746698885
+                    deliveryCarrierId:
+                      type: string
+                      description: ID del transportista
+                      example: 13
+                    deliveryCarrierName:
+                      type: string
+                      description: Nombre del transportista
+                      example: Manual
+                    deliveryType:
+                      type: string
+                      description: Tipo de entrega
+                      enum: 
+                        - dropshipping
+                        - fulfillment
+                      example: dropshipping
+                    productType:
+                      type: string
+                      description: Tipo de producto
+                      example: physicals
+                    dimensions:
+                      type: array
+                      description: Dimensiones del producto
+                      items:
+                        type: object
+                        properties:
+                          height:
+                            type: number
+                            format: float
+                            description: Altura del producto
+                            example: 1
+                          width:
+                            type: number
+                            format: float
+                            description: Ancho del producto
+                            example: 1
+                          depth:
+                            type: number
+                            format: float
+                            description: Profundidad del producto
+                            example: 1
+                          weight:
+                            type: number
+                            format: float
+                            description: Peso del producto
+                            example: 1
+                    idFulfillment:
+                      type: string
+                      description: ID Fulfillment
+                      example: 0
+                    imageLinkThumbnail:
+                      type: string
+                      description: Enlace a la imagen en miniatura del producto
+                      example: https://resources.claroshop.com/medios-plazavip/t1/1715320187ImagendeWhatsApp20240417alas11461309c23dcdjpg
+                    clickAndCollect:
+                      type: string
+                      description: Información de click and collect
+                      nullable: true
+                      example: null
+                    statusInvoice:
+                      type: string
+                      description: Estado de la factura
+                      example: invoiced
+                      
+        pagination:
+          type: object
+          description: Información de paginación
+          properties:
+            total_registros:
+              type: integer
+              description: Número total de registros
+              example: 51
+            total_count:
+              type: integer
+              description: Número total de elementos en la página actual
+              example: 2
+            page:
+              type: integer
+              description: Número de la página actual
+              example: 1
+            page_size:
+              type: integer
+              description: Tamaño de la página
+              example: 2

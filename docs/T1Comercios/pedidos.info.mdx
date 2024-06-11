@@ -1,7 +1,7 @@
 ---
 id: pedidos
 title: "Pedidos"
-description: ""
+description: "Este API proporciona funcionalidades para la gestión de pedidos en un sistema de marketplace."
 sidebar_label: Introduction
 sidebar_position: 0
 hide_title: true
@@ -29,6 +29,43 @@ import Export from "@theme/ApiExplorer/Export";
 
 
 
+Este API proporciona funcionalidades para la gestión de pedidos en un sistema de marketplace. 
+Las principales funcionalidades incluyen:
+
+- **Listado de pedidos de un comercio:** Permite obtener el listado de pedidos de un comercio específico.
+
+- **Descarga de orden de compra en formato PDF:** Permite descargar la orden de compra de un pedido específico en formato PDF.
+
+- **Descarga de etiquetas de envío en formato PDF:** Permite descargar las etiquetas de envío de un pedido específico en formato PDF.
+
+- **Carga de detalles de guía de un pedido:** Permite cargar los detalles de la guía de un pedido, incluyendo el tipo, el carrier y los números de partidas.
+
+- **Actualización del estado de envío de una guía manual:** Permite actualizar el estado de envío de las partidas que se encuentran en una guía manual.
+
+La transición de estatus de una partida sigue el siguiente flujo:
+
+1. **Por enviar:** La partida está lista para ser enviada.
+2. **Por recolectar:** La partida está lista para ser recolectada por el transportista.
+3. **En camino:** La partida está en camino hacia su destino.
+4. **Entregado:** La partida ha sido entregada al destinatario.
+5. **Facturado:** La partida ha sido facturada. Este estado solo se aplica a pedidos con guías manuales.
+6. **Cancelado por cliente:** La partida ha sido cancelada por el cliente antes de ser enviada.
+7. **Cancelado por vendedor:** La partida ha sido cancelada por el vendedor antes de ser enviada.
+
+**Notas:** 
+- **A.** Solo se puede cancelar por vendedor un pedido si está en el estado "por enviar". Esto significa que un pedido no se puede cancelar si ya tiene guía asignada.
+
+- **B.** Para las guías automáticas y las partidas marcadas como FF, no es necesario generar una factura genérica del vendedor para su liquidación.
+
+El siguiente catálogo indica los motivos de cancelación por marketplace:
+
+**CS:**
+  - 65: No tengo el producto.
+
+**SR:**
+  - 65: No tengo el producto.
+
+Las especificaciones detalladas para cada endpoint se encuentran descritas en la sección respectiva.
 
 
 <div
