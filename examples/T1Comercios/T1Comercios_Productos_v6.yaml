@@ -1,0 +1,1690 @@
+openapi: 3.0.0
+info:
+  title: DOCUMENTACIÓN API V2 T1COMERCIOS
+  description: |
+    Esta API permite a los comercios gestionar sus productos, incluyendo la creación, actualización, eliminación y obtención de información sobre productos. Además, proporciona funcionalidades para pausar y activar productos en distintos canales de venta. 
+  
+  version: 
+    2.0.0
+  
+servers:
+  # Added by API Auto Mocking Plugin
+  - description: alpha dev
+    url: https://pcapi-alpha.dev.plataforma-claro.com
+  - description: preoductivo release
+    url: https://pcapi.release.plataforma-claro.com
+
+#Paths principales
+paths:
+ /cm/v2/product/commerce/{IDCommerce}/product:
+  parameters:
+   - $ref: '#/components/parameters/IDCommerce'
+
+#CREACION PRODUCTO
+  post: 
+   tags:
+    - Productos
+   summary: |
+    Creación de un producto en la plataforma T1comercios
+   description: |
+    Este esquema define la estructura para la creación de un producto en T1COMERCIOS. Permite a los comercios agregar nuevos productos a su catálogo, especificando detalles como SKU, nombre, categoría, marca, descripción, fotos, videos, garantías, precios, canales de venta y variaciones, entre otros.
+
+    Reglas de negocio:
+      - El campo "sku_padre" debe ser un identificador único externo y no se puede repetir dentro de toda la tienda, ya sea como SKU PADRE o SKU VARIACIÓN.
+      - El campo "packing_days" debe ser un número positivo que indique los días que el comercio tarda en embarcar el producto.
+      - El campo "photo" debe contener un array de imágenes, con un máximo de 10 fotos por producto.
+      - El campo "video" debe contener un array de videos, actualmente solo se permite la inclusión de videos de YouTube.
+      - El campo "bullets" debe ser un array de máximo 7 strings que describan el producto de manera concisa, se mostrarán como listado en los portales de venta.
+      - El campo "sales_channel" define los canales de venta y sus configuraciones, incluyendo precios, categorías y estado del producto en cada canal.
+      - El campo "sku" define las variaciones del producto, con detalles como SKU, stock, identificador universal, color y talla (opcional).
+      - El campo "list_price" en "sales_channel" representa el precio base de la publicación en cada canal de venta.
+      - El campo "sales_price" en "sales_channel" indica el precio al que se venderá el producto, antes conocido como Precio Oferta. Este precio no puede ser menor al 71% del valor del campo "list_price".
+      - El campo "warranty" define las garantías proporcionadas por el vendedor y el fabricante, indicando la cantidad y la medida de tiempo de la garantía.
+      - El campo "invoice" indica los códigos del tipo de mercancía para el cumplimiento de la ley "Carta Porte", incluyendo el código SAT y la unidad de medida SAT.
+      - El campo "category_t1comercios" debe ser el ID de la categoría de T1Comercios a la que pertenece el producto, asegurando que el producto exista en el catálogo de T1Comercios.
+      - El campo "category_name_t1comercios" proporciona el nombre textual de la categoría T1Comercios para una mejor identificación y referencia del producto.
+      - En "sales_channel", el campo "category" representa el ID de la categoría del canal de venta específico (por ejemplo, Claroshop, SEARS, Sanborns), asegurando que el producto esté correctamente categorizado en cada canal.
+      - En "sales_channel", el campo "category_name" proporciona el nombre textual de la categoría del canal de venta para una mejor identificación y referencia del producto en cada canal.
+      - Los objetos CS, SR y SN en el campo "sales_channel" son obligatorios incluso si el producto no se va a publicar dentro del canal de venta correspondiente. Estos objetos deben estar presentes y sus valores pueden definirse según sea necesario para el funcionamiento interno del sistema de gestión de productos en T1COMERCIOS.
+    
+    Creación de productos con y sin variaciones:
+      - Para crear un producto con variaciones utilizando este esquema, especifica el SKU Padre y define las variaciones utilizando el objeto 'sku' en el cuerpo de la solicitud.
+      - Para crear un producto sin variaciones, utiliza el mismo SKU tanto para el SKU Padre como para la única variación en el objeto 'sku'.
+      
+    Es importante seguir estas reglas para garantizar la correcta creación y funcionamiento de los productos en la plataforma T1COMERCIOS.
+    
+   parameters:
+   - $ref: '#/components/parameters/IDCommerce'
+   requestBody:
+        description: Body principal para el alta de un producto sin variación
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/schema_full_product'
+   responses:
+    200: 
+     $ref: '#/components/responses/ProductAcepted'
+     
+    409:
+     $ref: '#/components/responses/product_error_409'
+   security:
+     - bearerAuth: []
+  
+  #LISTADO DE PRODUCTO
+  get:
+   tags:
+    - Productos
+   summary: Listado de productos del comercio 
+   description: Listado de productos creadas por una tienda en T1comercios. Este listado regresa la información basica de un producto en  T1COMERCIOS  y su estatus en los canales de venta CS, SEARS  y SANBORNS.
+   parameters:
+      - $ref: '#/components/parameters/IDCommerce'
+      - $ref: '#/components/parameters/ProductFullTextQuery'
+      - $ref: '#/components/parameters/product_order_price'
+      - $ref: '#/components/parameters/product_order_name'
+      - $ref: '#/components/parameters/order_fecha_creacion'
+      - $ref: '#/components/parameters/ProductFilterChannel'
+      - $ref: '#/components/parameters/dropshipping_filter'
+      - $ref: '#/components/parameters/fulfillment_filter'
+      - $ref: '#/components/parameters/Page'
+      - $ref: '#/components/parameters/PageSize'
+      
+   responses:
+    200:
+      $ref: '#/components/responses/response_product_list'
+   security:
+     - bearerAuth: []
+  
+ /cm/v2/product/commerce/{IDCommerce}/product/{IDProduct}: 
+  parameters:
+    - $ref: '#/components/parameters/IDCommerce'
+    - $ref: '#/components/parameters/IDProduct'
+   
+  patch:
+    tags:
+     - Productos
+    summary: |
+      Actualización de información de un producto 
+    description: |
+      Este endpoint permite actualizar un producto existente en el catálogo de T1COMERCIOS. Se deben proporcionar los campos que se desean modificar, manteniendo las reglas de negocio y validaciones internas establecidas.
+    
+      Actualiza los datos del producto, implementa JSON Merge Patch como se describe en el rfc7386
+
+      Reglas de negocio:
+      - El campo "sku_padre" no se puede editar una vez creado el producto.
+      - El campo "ean" no se puede editar una vez creado el producto.
+      - El campo "packing_days" debe ser un número positivo que indique los días que el comercio tarda en embarcar el producto.
+      - El campo "photo" debe contener un array de imágenes, con un máximo de 10 fotos por producto.
+      - El campo "video" debe contener un array de videos, actualmente solo se permite la inclusión de videos de YouTube.
+      - El campo "bullets" debe ser un array de máximo 7 strings que describan el producto de manera concisa, se mostrarán como listado en los portales de venta.
+      - El campo "sales_channel" define los canales de venta y sus configuraciones, incluyendo precios, categorías y estado del producto en cada canal.
+      - El campo "sku" define las variaciones del producto, con detalles como SKU, stock, identificador universal, color y talla (opcional).
+      - El campo "list_price" en "sales_channel" representa el precio base de la publicación en cada canal de venta.
+      - El campo "sales_price" en "sales_channel" indica el precio al que se venderá el producto, antes conocido como Precio Oferta. Este precio no puede ser menor al 71% del valor del campo "list_price".
+      - Los nuevos valores de los campos "list_price" y "sales_price" no pueden ser menores al 70% de los valores previos a la actualización. 
+      - El campo "warranty" define las garantías proporcionadas por el vendedor y el fabricante, indicando la cantidad y la medida de tiempo de la garantía.
+      - El campo "invoice" indica los códigos del tipo de mercancía para el cumplimiento de la ley "Carta Porte", incluyendo el código SAT y la unidad de medida SAT.
+      - El campo "category_t1comercios" debe ser el ID de la categoría de T1Comercios a la que pertenece el producto, asegurando que el producto exista en el catálogo de T1Comercios.
+      - El campo "category_name_t1comercios" proporciona el nombre textual de la categoría T1Comercios para una mejor identificación y referencia del producto.
+      - En "sales_channel", el campo "category" representa el ID de la categoría del canal de venta específico (por ejemplo, Claroshop, SEARS, Sanborns), asegurando que el producto esté correctamente categorizado en cada canal.
+      - En "sales_channel", el campo "category_name" proporciona el nombre textual de la categoría del canal de venta para una mejor identificación y referencia del producto en cada canal.
+       - Los objetos CS, SR y SN en el campo "sales_channel" son obligatorios incluso si el producto no se va a publicar dentro del canal de venta correspondiente. Estos objetos deben estar presentes y sus valores pueden definirse según sea necesario para el funcionamiento interno del sistema de gestión de productos en T1COMERCIOS.
+
+      
+    requestBody:
+     description: Solo se deben mandar los parametros a modificar.
+     required: true
+     content:
+          application/merge-patch+json:
+            schema:
+              $ref: '#/components/schemas/schema_full_product'
+    responses:
+     200: 
+      $ref: '#/components/responses/patch_product_acepted'
+     404:
+       $ref: "#/components/responses/basic_response_404"
+     409:
+       $ref: "#/components/responses/product_error_409"
+    security:
+     - bearerAuth: []
+  
+  get:
+      tags:
+       - Productos
+      summary: Obtener información del producto
+      parameters:
+        - in: path
+          name: IDProduct
+          required: true
+          schema:
+            type: string
+          description: Identificador del producto
+      responses:
+        '200':
+          description: Respuesta exitosa
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProductResponse'
+      security:
+        - bearerAuth: []
+
+  
+  delete:
+   tags:
+    - Productos
+   summary: Eliminación del producto en T1comercios
+   description: |
+    Eliminación del producto en T1comercios
+    Al eliminar el producto, se inactiva de todos los canales de venta.
+   responses:
+    200: 
+      $ref: '#/components/responses/basic_response_200'
+    404: 
+      $ref: '#/components/responses/basic_response_404'
+   security:
+     - bearerAuth: []
+    
+    
+
+ /cm/v2/product/commerce/{IDCommerce}/pause/:
+  parameters:
+   - $ref: '#/components/parameters/IDCommerce'
+  
+  post:
+   tags:
+    - Productos
+   summary: Pausar publicación 
+   description: Pausa la publicación en los canales de venta indicados. 
+   
+   requestBody:
+    description: Solo mandar los canales de venta donde se quiere realizar la operación. 
+    required: true
+    content: 
+     application/json:
+      schema:
+       $ref: "#/components/schemas/schema_active_inactive"
+      
+   responses:
+     200: 
+       $ref: '#/components/responses/basic_response_200'
+     404:
+       $ref: "#/components/responses/basic_response_404"
+   security:
+     - bearerAuth: []
+ 
+ /cm/v2/product/commerce/{IDCommerce}/active/:
+  parameters:
+   - $ref: '#/components/parameters/IDCommerce'
+  
+  post:
+   tags:
+    - Productos
+   summary: Activar publicación 
+   description: Activa la publicación en los canales de venta indicados. 
+   
+   requestBody:
+    description: Solo mandar los canales de venta donde se quiere realizar la operación. 
+    required: true
+    content: 
+     application/json:
+      schema:
+       $ref: "#/components/schemas/schema_active_inactive"
+      
+   responses:
+     200: 
+       $ref: '#/components/responses/basic_response_200'
+     404:
+       $ref: "#/components/responses/basic_response_404"
+   security:
+     - bearerAuth: []
+ 
+ /cm/v2/product/commerce/{IDCommerce}/product/{IDProduct}/sku:
+  parameters:
+   - $ref: '#/components/parameters/IDCommerce'
+   - $ref: '#/components/parameters/IDProduct'
+  
+  get:
+   tags:
+    - Productos
+   summary: Obtiene información de las variaciones de un producto 
+   description: Obtiene los datos de los SKUS ( Variaciones ) de un producto. 
+   responses:
+     200: 
+       $ref: '#/components/responses/response_skus'
+     404:
+       $ref: "#/components/responses/basic_response_404"
+   security:
+     - bearerAuth: []
+    
+ 
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+
+#PARAMETROS
+  parameters:
+    IDCommerce:
+      name: IDCommerce
+      in: path
+      description: Identificador único del comercio o seller.
+      required: true
+      schema:
+        type: integer
+        example: 10541
+    
+    IDProduct:
+      name: IDProduct
+      in: path
+      description: Identificador único del producto.
+      required: true
+      schema:
+        type: integer
+        example: "665e12a1d8d10a6811644542"
+
+#PAGINADO
+    Page:
+      name: page
+      in: query
+      description: "No, de página que se desea obtener"
+      schema:
+        type: integer
+        format: int32
+        minimum: 1
+        example: 1
+        default: 1
+    
+    PageSize:
+      name: page_size
+      in: query
+      description: "Tamaño de la página que se desea obtener"
+      schema:
+        type: integer
+        format: int32
+        minimum: 1
+        maximum: 50
+        example: 20
+        default: 15
+   
+   
+  #ORDENAMIENTOS
+    product_order_price:
+      name: order_precio
+      in: query
+      description: "Ordenamiento de resultados por precios, toma el precio más alto de todos los canales de venta."
+      schema:
+        type: string
+        enum:
+        - DESC
+        - ASC
+        example: ASC
+        
+    product_order_name:
+      name: order_name
+      in: query
+      description: "Ordenamiento de resultados por nombre."
+      schema:
+        type: string
+        enum:
+        - DESC
+        - ASC
+        example: ASC
+    
+    order_fecha_creacion:
+      name: order_fecha_creacion
+      in: query
+      description: "Ordenamiento por fecha de creación."
+      schema:
+        type: string
+        enum:
+        - DESC
+        - ASC
+        example: ASC
+    
+    
+    #FILTROS
+    ProductFullTextQuery:
+      name: q
+      in: query
+      description: "Búsquedas de full text en el producto, busca en el nombre, sku_padre y sku variaciones."
+      schema:
+        type: array
+        items:
+            description: palabras de busqueda
+            type: string
+        example:
+          - "Celular T1COMERCIOS"
+          - "SKU_P_01"
+
+    ProductFilterChannel:
+      name: filter_marketplace
+      in: query
+      description: "Filtro de productos activos para el canal de venta seleccionado."
+      schema:
+        type: string
+        enum:
+        - CS
+        - SR
+        - SN
+        example:
+        - CS
+      
+    fulfillment_filter:
+      name: filter_fulfillment
+      in: query
+      description: "Filtros para productos con la modailidad de entrega FULFILLMENT"
+      schema:
+        type: boolean
+        example: TRUE
+    
+    dropshipping_filter:
+      name: filter_dropshipping
+      in: query
+      description: "Filtros para productos con la modailidad de entrega FULFILLMENT"
+      schema:
+        type: boolean
+        example: TRUE
+        
+          
+    
+   
+  #SCHEMAS
+  schemas:
+  #Schema básico de un producto 
+   schema_full_product:
+      description: Schema básico de un producto, este schema es para cualquer tipo de producto, con o sin variación. 
+      type:  object
+      properties:
+         
+         sku_padre:
+           description: Indetificador único externo. El valor de este campo NO se puede repetir dentro de todo la tienda. Ni como SKU PADRE o como SKU VARIACION.
+           type: string
+           pattern: /^[0-9a-zA-Z-]+$/
+           example: SKU_01
+         
+         name:
+          description: Título principal  de la publicación.
+          type: string
+          pattern: /^[0-9a-zA-Z-]+$/
+          example: Título de producto de prueba.
+         
+         description:
+          description: Descripción  de la publicación.
+          type: string
+          example: Descripción de la publicación. Producto de prueba. 
+
+         category_t1comercios:
+          description: ID Categoría de T1Comercios. Este producto debe existir dentro del catalógo de T1Comercios. 
+          type: integer
+          example: 11769
+         
+         category_name_t1comercios:
+          description: Texto del nombre de la categoría T1Comercios. 
+          type: string
+          example: Cajas
+         
+         brand: 
+          description: Marca de la publicación. 
+          type: string
+          example: cuvo
+         
+
+         
+         packing_days:
+          description: Número de días en que el comercio tarda en embarcar el producto. 
+          type: integer
+          example: 1
+          minimum: 0
+
+         sales_channel:
+          description: Objecto que indica los canales de venta en los cuales se va a comercializar la publicación.
+          type: object
+          properties:
+           CS: 
+            description: Objecto que define la configuración del venta del canal Claroshop.com
+            type: object
+            properties: 
+             category: 
+              description: IDCategoría del canal de venta Claroshop.
+              type: string
+              example: "22080"
+             category_name:
+              description: Nombre de la Categoría del canal de venta Claroshop.com
+              type: string
+              example: "Aceites, Salsas, Vinagres y Aderezos"
+             list_price:
+              description: Precio del lista de la publicación para el canal Claroshop. 
+              type: integer
+              example: 100
+             sales_price:
+              description: Precio en que el producto se venderá, antes conocido como Precio Oferta. **El precio oferta no puede ser menor al 71% del valor del nodo, "list_price"**.
+              type: integer
+              example: 90
+             active:
+              description: EStatus del producto en el canal de venta.  
+              type: boolean
+              example: true
+           SR: 
+            description: Objecto que define la configuración del venta del canal Claroshop.com
+            type: object
+            properties: 
+             category: 
+              description: IDCategoría del canal de venta Claroshop.
+              type: string
+              example: "22080"
+             category_name:
+              description: Nombre de la Categoría del canal de venta SEARS.com.mx
+              type: string
+              example: "Aceites, Salsas, Vinagres y Aderezos"
+             list_price:
+              description: Precio del lista de la publicación para el canal SEARS.com.mx 
+              type: integer
+              example: 100
+             sales_price:
+              description: Precio en que el producto se venderá, antes conocido como Precio Oferta. **El precio oferta no puede ser menor al 71% del valor del nodo, "list_price"**.
+              type: integer
+              example: 90
+             active:
+              description: EStatus del producto en el canal de venta.  
+              type: boolean
+              example: true
+           SN: 
+            description: Objecto que define la configuración del venta del canal Claroshop.com
+            type: object
+            properties: 
+             category: 
+              description: IDCategoría del canal de venta sanborns.com.mx.
+              type: string
+              example: "22080"
+             category_name:
+              description: Nombre de la Categoría del canal de venta sanborns.com.mx
+              type: string
+              example: "Aceites, Salsas, Vinagres y Aderezos"
+             list_price:
+              description: Precio del lista de la publicación para el canal sanborns.com.mx
+              type: integer
+              example: 100
+             sales_price:
+              description: Precio en que el producto se venderá, antes conocido como Precio Oferta. **El precio oferta no puede ser menor al 71% del valor del nodo, "list_price"**.
+              type: integer
+              example: 90
+             active:
+              description: EStatus del producto en el canal de venta.  
+              type: boolean
+              example: true
+         
+         bullets:
+          description: Arreglo de strings que describen el producto, estos se pintaran a manera de listado en los portales de claroshop, SEARS y Sanborns. Se permiten 7 bullets por producto. 
+          type: array
+          items: 
+            type: string
+            maxLength: 500
+          maxItems: 10
+          example: [100% Algodón , Tejido hecho a mano]
+             
+                
+         volumetry:
+          description: Arreglo de medidas volumetricas.
+          type: array
+          items:
+            type: object
+            description: Medidas de volumetria de un paquete
+            properties:
+              higth:
+                description: Alto del paquete
+                type: integer
+                example: 20
+              width:
+                description: Ancho del paquete
+                type: integer
+                example: 20
+              deep:
+                description: Profundo del paquete
+                type: integer
+                example: 20
+              weight:
+                description: Peso del paquete
+                type: integer
+                example: 20
+            required:
+             - higth
+             - width
+             - deep
+             - weight
+         
+         warranty:
+           description: Objeto de inidica los tipos  garantías que ofrece el vendedor en la publicación. 
+           type: object
+           properties:
+            seller:
+              description: Garantía que proporciona el vendedor. 
+              type: object
+              properties:
+                quantity:
+                  type: integer
+                  example: 10
+                measure:
+                  type: string
+                  enum:
+                  - days
+                  - months
+                  - years
+            manufacturer:
+              description: Garantía de fábrica que ofrece la publicación. 
+              type: object
+              properties:
+                quantity:
+                  type: integer
+                  example: 10
+                measure:
+                  type: string
+                  enum:
+                  - days
+                  - months
+         
+         invoice:
+          description: Arreglo que indica los códigos del tipo de mercancia. Para el cumplimiento de la ley "Carta Porte". 
+          type: object
+          properties:
+            sat-code:
+             description: ID  del catalógo de SAT.  
+             type: string
+             example: "53111500"
+              
+            sat-measure-unit:
+              description: Texto del valor del código SAT.
+              type: string
+              example: "Botas"
+            
+            iva:
+             description: Nodo que indica si el producto grava o no grava IVA. 
+             type: boolean
+             example: false
+         
+         tags:
+          description: |
+            Palabras clave del producto, estas palabras clave, ayudan a mejorar el SEO del producto. Máximo 10 tags por productos.
+          type: array
+          items:
+            type: string
+          example: 
+            ["T1comercios","producto","Ejemplo"]
+         
+         property:
+          description: |
+            Array de atributos específicos de la categoría. Cada categoría tiene sus propios atributos y tipos de variación. Para obtener los detalles de estos atributos y sus variaciones, consulte el endpoint "Categorías" utilizando el ID de la categoría correspondiente.
+          type: array
+          items:
+            type: object
+            properties:
+              property_id:
+                type: integer
+                example: 10176
+              name:
+                type: string
+                example: Altura de la Bota
+              value:
+                type: string
+                example: media pierna
+            
+         sku:
+          type: array
+          description: Schema qe define el array de ojectos "Variaciones."
+          items:
+           type: object
+           description: Objeto que define una variación.
+           properties: 
+        
+            sku: 
+             type: string
+             description: Unidad de mantenimiento en almacén', valor único para el comercio.
+             pattern: /^[0-9a-zA-Z-]+$/
+             example: SKU_VARIACION_01
+      
+            stock: 
+             type: integer
+             description: Stock de la variacion. 
+             example: 2
+        
+            universal_id_type:
+              description: tipo de identificador universal usado
+              type: string
+              enum:
+               - ean-8
+               - upc-12
+               - upc-8
+               - gtin-14
+               - isbn-13
+               - issn-12
+               - otro
+        
+            universal_id:
+             description: Identificador universal del producto, valor único para el comercio.
+             type: string
+             example: "1234567890"
+             pattern: /^[0-9]+$/
+             
+            status:
+              description: Estatus de la variacion
+              type: string
+              enum: 
+                - active
+                - inactive
+              
+            variation: 
+              description: Define los tipos y valores de la variación. 
+              type: array
+              items:
+                type: object
+                properties:
+                  variationName: 
+                    type: string
+                    #example: color
+                  variation_value:
+                    type: string
+                    #example: Negro
+              example:
+                [{"variationName":"color","variation_value":"azul"},{"variationName": "talla","variation_value":"Grande"}]
+            
+      
+    
+         photo:
+          type: array
+          description: Array de fotos de la publicación. Una publicación puede tener máximo 10 imagenes. 
+          items:
+            type: object
+            description: Objecto que define una imagen asociada a la publicación. 
+            properties: 
+              url: 
+                type: string
+                description: Url de la imagen que se cargo en el método FileManager.
+                example: "https://medios.plazavip.com/t1/1715047030ImagendeWhatsApp20240417alas11461309c23dcdjpg"
+              order: 
+                type: integer
+                description: Orden en que se mostrará la imagen dentro de la plataforma y en los canales de venta. 
+                example: 1
+              variation:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    variationName:
+                      type: string
+                      example: color
+                    variation_value:
+                      type: string
+                      example: azul
+            required:
+             - url
+             - order
+         video:
+          description: Listado de videos, actualmente solo se permiten videos de youtube. 
+          type: array
+          items:
+            type: object
+            description: Array de videos de un producto. En caso de que el producto no tenga videos, envíar el objeto vacio. 
+            properties:
+             order:
+              type: integer
+              description: Siempre envíar el valor "1".
+              example: 1
+             skus: 
+              description: Array de SKUS que le pertenecen al objeto.Para producto Sin Vairación, envíar array vacío.
+              type: array
+              items:
+                 type: string
+                 description: SKUS a lo que pertenece el vieo
+                 example: ["SKU_01","SKU_02"]
+            required: 
+             - order
+             - skus
+         
+      required:
+       - sku_padre
+       - name
+       - category_t1comercios
+       - category_name_t1comercios
+       - brand
+       - description
+       - packing_days
+       - volumetry
+       - photo
+       - video
+       - bullets
+       - warranty
+       - invoice
+       - sales_channel
+       - sku
+       - tag
+       - property
+   
+  #SCHEMA DEL LISTADO DE PRODUCTOS
+   schema_product_list:
+    description: Schema del listado de productos. 
+    type: array
+    items:
+     description: "Objecto que define un producto en el listado. "
+     type: object
+     properties:
+      
+      id:
+       type: string
+       description: "IDPRODUCTO, identificador unico por publicación en T1Comercios"
+       example: "664513f364296966e9627198"
+      
+      sku_padre:
+       type: string
+       description: "Indetificador externo principal de la publicación"
+       example: "SKUP_01"
+       
+      name: 
+        type: string
+        description: "Titulo de la publicación"
+        example: "Producto de prueba T1Comercios"
+      
+      shipping_method:
+       type: string
+       description: "Método de envío de la publicación"
+       example: "Dropshipping"
+       enum: 
+        - "Dropshipping"
+        - "fulfillment"
+        
+      firstPhoto:
+       type: string
+       description: "URL de la imagen  principal de la publicación"
+       example: "https://resources.claroshop.com/medios-plazavip/t1/1715047030ImagendeWhatsApp20240417alas11461309c23dcdjpg"
+      
+      sales_channel:
+        description: "Objecto con información de los canales de venta"
+        type: object
+        
+        properties:
+         CS:
+          description: "Objecto que ibtiene la información de cada canal de venta"
+          type: object
+          properties:
+            
+            product_id:
+             description: "Número de publicación en el canal de venta"
+             type: string
+             example: 17633415
+           
+            category:
+             description: "Id de la Categoría de la publicación dentro del canal de venta"
+             type: string
+             example: "22080"
+            
+            category_name:
+             description: "Texto del título de la Categoría de la publicación dentro del canal de venta"
+             type: string
+             example: "Aceites"
+            
+            list_price:
+             description: "Precio base de la publicación para el canal de venta"
+             type: integer
+             example: 999
+             
+            sale_price:
+             description: "Precio Oferta de la publicación para el canal de venta. ( Precio final de la publicación)"
+             type: integer
+             example: 699
+            
+            url:
+             description: "URL de la publicación en el canal de venta"
+             type: string
+             example: "https://www.claroshop.com/producto/17633415/producto-validacion/"
+            
+            active:
+              description: "Bandera que indica si el producto esta activo para el canal de venta"
+              type: boolean
+              example: true
+           
+            status:
+              description:  |
+               Estatus de la publicación en el canal de ventas
+                      
+               * received : Cuando se recibe el producto o alguna actualización del mismo, queda en este status, hasta que se valide que el producto cumple con las condiciones necesarias para poder ser revisado para su aprovacion manual o actualizado en el canal de ventas
+
+               * incomplete: si el producto no cumple con algun dato necesario para su publiacion en el canal de ventas queda en este status ejemplo, hace falta una caracteristica necesaria para la categoria en el canl de ventas
+
+               * pending_validation: cuando el producto es nuevo o requiere que sea aprovado algún cambio en el canal de ventas el producto queda en este status.
+
+               * validated: si el producto ya está validado y listo para ser publicado al canal de ventas.
+
+               * published: si el producto esta publicado y sincronizado con el canal de ventas
+
+               * rejected: cuando el producto no fue aprobado para su publicacion en el canal de ventas ( para uso futuro )
+
+               * unpublished: cuando el producto fue dado de baja en el canal ( para uso futuro )
+              
+              type: string
+              example: "published"
+              
+           #prices_per_variant:
+          #3    description: "Precio por variante, dentro del canal de venta. | Esta funcionalidad no esta implementada es para usos futuros"
+          ##  type: array
+            
+            prices_per_variant:
+             description: |
+              Precios separados por sku, este campo solo se usara cuando el producto tenga precios diferentes para diferentes variantes del mismo (talla, color, tamaño, etc), cada precio indicara un arreglo de skus para los cuales aplica el precio, puede haber cualquier cantidad de precios diferentes, siempre que se cumpla con las siguientes reglas.
+              * todos los skus tienen un precio asignado
+              * cada sku tiene solo un precio asignado
+              * no hay precios que no tengan al menos un sku asignado
+            
+              Cuando se usa este objeto los valores de los nodos sales_price y list_price generales no serán considerados, por lo que deberian viajar en nulo.
+             type: array
+             items: 
+              type: object
+              properties:
+                sale_price:
+                  description: precio de oferta, precio de venta al cliente final, debe ser menor o igual al precio de lista
+                  type: number
+                  format: float
+                  multipleOf: 0.01
+                  minimum: 11.00
+                  maximum: 999999.99
+                  example: 1971.19
+                 
+                list_price:
+                  description: precio de lista, si es mayor al precio de oferta se mostrara en el portal como una rebaja, la diferencia entre el precio de lista y el precio de oferta no podra ser mayor al 70% por seguridad
+                  type: number
+                  format: float
+                  multipleOf: 0.01
+                  minimum: 11.00
+                  maximum: 999999.99
+                  example: 1971.19
+                
+                skus: 
+                  type: array
+                  items:
+                   type: string
+             
+   
+   schema_active_inactive:   
+    description: "Objeto con IDS y canales de de venta en los que se aplicará la operación"
+    type: object
+    properties:
+      ids:
+       description: "ID's Productos en los que aplicará la operación"
+       type: array
+       items:
+        description: palabras de busqueda
+        type: string
+        example:
+             - "665e12a1d8d10a6811644542"
+             - "665e12a1d8d10a6811644543"
+      salesChannels:
+        description: "Canales de venta en donde se aplicarán los cambios."
+        type: array
+        items:
+         description: palabras de busqueda
+         type: string
+         example:
+          - "CS"
+          - "SR"
+          - "SN"
+
+ 
+   schema_skus_list:
+    description: "Array de objetos SKUS."
+    type: array
+    items:
+      description: "Objeto que define el SKU , (variación) del producto"
+      type: object
+      properties:
+        sku:
+          description: "SKU de la variación"
+          type: "string"
+          example: "SKU_V_01"
+        name:
+          description: "Título del producto."
+          type: "string"
+          example: "Variación 1 del producto"
+        variation_name:
+         description: "Título de la variación : Talla +  Color"
+         example: "talla: G, color: Rojo"
+        universal_id:
+         description: "Valor del campo Universal_id"
+         example: "10000000000171"
+        universal_id_type:
+         description: "Tipo de Unversal ID"
+         example: "EAN"
+         enum:
+          - EAN 
+          - ean-8
+          - upc-12
+          - upc-8
+          - gtin-14
+          - isbn-13
+          - issn-12
+          - otro
+        variation: 
+         type: array
+         items:
+          description: "Array de objectos que definen los tipos de variaciones"
+          type: object
+          properties:
+            variationName:
+              description: "Nombre de la variación"
+              type: "string"
+              example: "talla"
+            variation_value:
+              description: "Valor del tipo de variación"
+              type: "string"
+              example: "EG"
+        stock:
+          description: "Stock de la variación"
+          type: integer
+          example: 100
+        status:
+          description: "Estatus de la variación, por el momento, simpre regresa 'active'"
+          type: string
+          example: active
+        fulfillment:
+          description: "Indica si la variación es FF"
+          type: boolean
+          example: false
+        sales_chanel: 
+          description: "Objeto  de objetos que indica los precios por canal de venta"
+          type: object
+          properties:
+            cs:
+              description: "Objeto con los precios del SKU en el canal de venta, actualmente regresa los precios del sku principal en el canal de venta"
+              type: object
+              properties:
+               list_price:
+                description: "Precio Lista en el canal de venta."
+                type: integer
+                example: 999
+               sale_price:
+                 description: "Precio Oferta en el canal de venta."
+                 type: integer
+                 example: 799
+            sr:
+              description: "Objeto con los precios del SKU en el canal de venta, actualmente regresa los precios del sku principal en el canal de venta"
+              type: object
+              properties:
+               list_price:
+                description: "Precio Lista en el canal de venta."
+                type: integer
+                example: 999
+               sale_price:
+                 description: "Precio Oferta en el canal de venta."
+                 type: integer
+                 example: 799  
+            sn:
+              description: "Objeto con los precios del SKU en el canal de venta, actualmente regresa los precios del sku principal en el canal de venta"
+              type: object
+              properties:
+               list_price:
+                description: "Precio Lista en el canal de venta."
+                type: integer
+                example: 999
+               sale_price:
+                 description: "Precio Oferta en el canal de venta."
+                 type: integer
+                 example: 799 
+        photo:
+            description:  "Array de objectos con las imagenes del sku"
+            type: array
+            items:
+              type: object
+              properties: 
+                order:
+                  description: "Orden de la ímagen."
+                  type: string
+                  example: 1
+                url: 
+                  description: "URL de la imagen del SKU"
+                  type: string
+                  example: "https://resources.claroshop.com/medios-plazavip/t1/1715953442images"
+                  
+   ProductResponse:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Identificador del producto
+        shipping_method:
+          type: string
+          description: Método de envío del producto
+        firstPhoto:
+          type: string
+          format: uri
+          description: URL de la primera foto del producto
+        stock:
+          type: integer
+          description: Cantidad disponible en stock
+        has_variants:
+          type: boolean
+          description: Indica si el producto tiene variantes
+        variations_tree:
+          $ref: '#/components/schemas/VariationsTree'
+        bread_crumbs:
+          type: array
+          items:
+            $ref: '#/components/schemas/Breadcrumb'
+          description: Breadcrumbs de la categoría del producto
+        product_completition:
+          $ref: '#/components/schemas/ProductCompletion'
+        price:
+          $ref: '#/components/schemas/Price'
+        category_name_t1comercios:
+          type: string
+          description: Nombre de la categoría
+        photos_gen:
+          type: array
+          items:
+            $ref: '#/components/schemas/Photo'
+        info_by_sku:
+          type: array
+          items:
+            $ref: '#/components/schemas/InfoBySku'
+        variant_values:
+          type: array
+          items:
+            $ref: '#/components/schemas/VariantValue'
+        volumetry_variant:
+          $ref: '#/components/schemas/VolumetryVariant'
+      example:
+        id: "6668e0714e25f22bf6dabcac"
+        shipping_method: "fulfillment"
+        firstPhoto: "https://resources.claroshop.com/medios-plazavip/t1/1718151647ImagendeWhatsApp20240611alas180819cecc52afjpg"
+        stock: 40
+        has_variants: true
+        variations_tree:
+          sin_tallas: null
+          sin_colores: null
+          colors: []
+        bread_crumbs:
+          - id_cat: "6669001"
+            channel: "SN"
+            icon: "https://resources.claroshop.com/medios-plazavip/dev_quarkus_s32/1687887093marketplaceSNB"
+            breadcrumbs:
+              - id: "666"
+                name: "Marketplace"
+                level: 1
+              - id: "66690"
+                name: "Marketplace N2"
+                level: 2
+              - id: "6669001"
+                name: "Marketplace N3"
+                level: 3
+        product_completition:
+          index_compleated: 59
+          total_items: 8
+          total_pending: 5
+          total_completed: 3
+          pending:
+            - "Agrega caracteristicas principales"
+            - "Agrega video"
+            - "Agrega varias palabras clave"
+            - "Mejora los días de embarque"
+            - "Ofrece garantía"
+          compleated:
+            - "Descripción del producto"
+            - "Varias fotos"
+            - "Días de embarque"
+        price:
+          flag_variant: false
+          flag_channel: false
+          unique:
+            sale_price: 100.0
+            list_price: 100.0
+          channel: {}
+          variant: []
+          price_per_channel_variation: {}
+        category_name_t1comercios: "Botas"
+        photos_gen:
+          - id: 1718151373
+            order: 1
+            url: "https://resources.claroshop.com/medios-plazavip/t1/1718151647ImagendeWhatsApp20240611alas180819cecc52afjpg"
+        info_by_sku:
+          - variation:
+              - variationName: "color"
+                variation_value: "Morado"
+            photos:
+              - id: 1718151375
+                order: 3
+                url: "https://resources.claroshop.com/medios-plazavip/t1/1718149473WhatsAppImage20240611at52832PMjpeg"
+            sku:
+              - sku: "1106-4-2"
+                variation:
+                  - variationName: "talla"
+                    variation_value: "28.5"
+                stock: 10
+                universal_id: "110641000002"
+                universal_id_type: "UPC"
+                status: "active"
+                sequence: null
+          - variation:
+              - variationName: "color"
+                variation_value: "Azul"
+            photos:
+              - id: 1718151374
+                order: 2
+                url: "https://resources.claroshop.com/medios-plazavip/t1/1718150142WhatsAppImage20240611at52832PMjpeg"
+            sku:
+              - sku: "1106-4-1"
+                variation:
+                  - variationName: "talla"
+                    variation_value: "28.5"
+                stock: 30
+                universal_id: "110641000001"
+                universal_id_type: "UPC"
+                status: "active"
+                sequence: null
+        variant_values:
+          - name: "talla"
+            values:
+              - name: "28.5"
+          - name: "color"
+            values:
+              - name: "Morado"
+              - name: "Azul"
+        volumetry_variant:
+          flag_per_variant: false
+          unique:
+            height: 10
+            width: 10
+            deep: 10
+            weight: 10
+            variation: []
+
+   VariationsTree:
+      type: object
+      properties:
+        sin_tallas:
+          type: string
+          nullable: true
+        sin_colores:
+          type: string
+          nullable: true
+        colors:
+          type: array
+          items:
+            type: string
+          description: Lista de colores disponibles
+
+   Breadcrumb:
+      type: object
+      properties:
+        id_cat:
+          type: string
+          description: ID de la categoría
+        channel:
+          type: string
+          description: Canal de venta
+        icon:
+          type: string
+          format: uri
+          description: URL del icono
+        breadcrumbs:
+          type: array
+          items:
+            $ref: '#/components/schemas/BreadcrumbItem'
+          description: Lista de breadcrumbs
+
+   BreadcrumbItem:
+      type: object
+      properties:
+        id:
+          type: string
+          description: ID del breadcrumb
+        name:
+          type: string
+          description: Nombre del breadcrumb
+        level:
+          type: integer
+          description: Nivel del breadcrumb
+
+   ProductCompletion:
+      type: object
+      properties:
+        index_compleated:
+          type: integer
+          description: Índice de completitud
+        total_items:
+          type: integer
+          description: Total de ítems
+        total_pending:
+          type: integer
+          description: Total de pendientes
+        total_completed:
+          type: integer
+          description: Total de completados
+        pending:
+          type: array
+          items:
+            type: string
+          description: Lista de pendientes
+        compleated:
+          type: array
+          items:
+            type: string
+          description: Lista de completados
+
+   Price:
+      type: object
+      properties:
+        flag_variant:
+          type: boolean
+          description: Indica si el precio varía por variante
+        flag_channel:
+          type: boolean
+          description: Indica si el precio varía por canal
+        unique:
+          $ref: '#/components/schemas/PriceDetails'
+        channel:
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/PriceDetails'
+        variant:
+          type: array
+          items:
+            $ref: '#/components/schemas/PriceDetails'
+        price_per_channel_variation:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              $ref: '#/components/schemas/PriceDetails'
+
+   PriceDetails:
+      type: object
+      properties:
+        sale_price:
+          type: number
+          format: float
+          nullable: true
+          description: Precio de venta
+        list_price:
+          type: number
+          format: float
+          nullable: true
+          description: Precio de lista
+
+   Photo:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: ID de la foto
+        order:
+          type: integer
+          description: Orden de la foto
+        url:
+          type: string
+          format: uri
+          description: URL de la foto
+
+   InfoBySku:
+      type: object
+      properties:
+        variation:
+          type: array
+          items:
+            $ref: '#/components/schemas/Variation'
+          description: Variaciones del SKU
+        photos:
+          type: array
+          items:
+            $ref: '#/components/schemas/Photo'
+          description: Fotos del SKU
+        sku:
+          type: array
+          items:
+            $ref: '#/components/schemas/Sku'
+          description: Detalles del SKU
+
+   Variation:
+      type: object
+      properties:
+        variationName:
+          type: string
+          description: Nombre de la variación
+        variation_value:
+          type: string
+          description: Valor de la variación
+
+   Sku:
+      type: object
+      properties:
+        sku:
+          type: string
+          description: Código SKU
+        variation:
+          type: array
+          items:
+            $ref: '#/components/schemas/Variation'
+          description: Variaciones del SKU
+        stock:
+          type: integer
+          description: Cantidad en stock
+        universal_id:
+          type: string
+          description: ID universal
+        universal_id_type:
+          type: string
+          description: Tipo de ID universal
+        status:
+          type: string
+          description: Estado del SKU
+        sequence:
+          type: integer
+          nullable: true
+          description: Secuencia del SKU
+
+   VariantValue:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Nombre de la variante
+        values:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+                description: Nombre del valor de la variante
+          description: Valores disponibles para la variante
+
+   VolumetryVariant:
+      type: object
+      properties:
+        flag_per_variant:
+          type: boolean
+          description: Indica si el volumen varía por variante
+        unique:
+          $ref: '#/components/schemas/Volumetry'
+        per_variant:
+          type: array
+          items:
+            $ref: '#/components/schemas/Volumetry'
+
+   Volumetry:
+      type: object
+      properties:
+        height:
+          type: number
+          format: float
+          description: Altura del producto
+        width:
+          type: number
+          format: float
+          description: Ancho del producto
+        deep:
+          type: number
+          format: float
+          description: Profundidad del producto
+        weight:
+          type: number
+          format: float
+          description: Peso del producto
+        variation:
+          type: array
+          items:
+            $ref: '#/components/schemas/Variation'
+          description: Variaciones del producto       
+          
+            
+         
+          
+          
+         
+      
+    
+    
+         
+
+###### BASIC ESCHEMAS
+  
+   BasicMetadata:
+      title: Metadata
+      type: object
+      properties:
+          status:
+            type: string
+            default: success
+            enum:
+              - success
+              - error
+              - fail
+          http_code:
+            type: integer
+            example: 200
+          date_time:
+            type: string
+            format: date-time
+            example: '2019-08-27T18:18:31Z'
+          message:
+            type: string
+            example: "ok"
+  
+   productError_404:
+    title: Product Errors 404 - Producto no encontrado
+    type:  object
+    properties: 
+      status:
+        type: string
+        default: fail
+      http_code: 
+        type: integer
+        example: 404
+      date_time:
+            type: string
+            format: date-time
+            example: '2019-08-27T18:18:31Z'
+      message:
+        type: string
+        default: "object not found"
+        example: "object not found"
+   
+   productError_409: 
+    title: Product Error 409 - Producto en conflicto
+    type: object
+    properties: 
+      status:
+        type: string
+        default: fail
+        enum:
+              - success
+              - error
+              - fail
+      http_code: 
+        type: integer
+        example: 409
+      date_time:
+            type: string
+            format: date-time
+            example: '2019-08-27T18:18:31Z'
+   
+    
+      
+
+   
+   PaginationMetadata:
+      title: paginationMetadata
+      type: object
+      properties:
+        total_count:
+          type: integer
+          format: int64
+          minimum: 0
+          example: 300
+        page:
+          type: integer
+          format: int32
+          minimum: 1
+          example: 25
+        page_size:
+          type: integer
+          format: int32
+          minimum: 1
+          example: 50
+
+##RESPONSES
+  responses: 
+    
+   basic_response_200:
+    description: "En caso de éxito"
+    content:
+     application/json:
+          schema:
+            type: object
+            properties:
+              metadata:
+               $ref: '#/components/schemas/BasicMetadata'
+   
+   ProductAcepted:
+      description: "En caso de éxito"
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              metadata:
+               $ref: '#/components/schemas/BasicMetadata'
+              data:
+                description: "IDProducto interno de T1COMERCIOS, con este ID se realizarán las operaciones / modificaciones hacía la publicación"
+                type: object
+                properties:
+                  id:
+                    type: string
+                    example: 66444ec564296966e96270a2
+   
+   basic_response_404: 
+      description: "En caso de que el producto no exista"
+      content:
+       application/json:
+        schema:
+          type: object
+          properties:
+           metadata:
+            $ref: '#/components/schemas/productError_404'
+    
+   product_error_409: 
+      description: "En caso de no cumplir con una regla de negocio"
+      content:
+       application/json:
+        schema:
+          type: object
+          properties:
+           metadata:
+            $ref: '#/components/schemas/productError_409'
+           data:
+               type: object
+               properties:
+                  error_code:
+                    description: "Codigo de error en caso de que el producto no compla con una validación interna"
+                    type: string
+                    example: ERR-001
+                    enum: 
+                    - "ERR-001"
+                    - "ERR-002"
+                    - "ERR-003"
+                    - "ERR-004"
+                    - "ERR-005"
+                    - "ERR-006"
+                    - "ERR-007"
+                    - "ERR-008"
+                    - "ERR-009"
+                    - "ERR-010"
+                    - "ERR-011"
+                    - "ERR-012"
+                    - "ERR-013"
+                    - "ERR-014"
+                    - "ERR-015"
+                    - "ERR-016"
+                    - "ERR-017"
+                    - "ERR-018"
+                    - "ERR-019"
+                    - "ERR-020"
+                    - "ERR-021"
+                    
+                  message:
+                    description: "Descripción del error, al momento de crear la publicación."
+                    type: string
+                    example: "SKU se encuentra en el sistema"
+                    enum: 
+                    - "sku - Ya encuentra registrados en el sistema"
+                    - "ean - Ya encuentra registrados en el sistema"
+                    - "picture - El producto debe incluir almenos una imagen."
+                    - "sku_padre - Ya encuentra registrados en el sistema"
+                    - "category_t1 - Debe enviar una categoria t1 valida"
+                    - "brand- El producto debe tener una marca"
+                    - "stock - Se debe considerar stock al crear el producto"
+                    - "invoice - Se deben llenar los datos del objeto invoice"
+                    - "description - El producto debe contener una descripcion"
+                    - "sales_channel/estatus - Cada item dentro de sku debe contener status"
+                    - "sales_channel/active - La propiedad active dentro del objeto sales channel es necesaria"
+                    - "Volumetry - La volumetria es necesaria, ademas los valores deven ser > 0"
+                    - "packing_days - Dias de embarque necesario"
+                    - "warranty- El atributo garantía es necesario"
+                    - "prices - Existe conflicto entre el precio base y precio oferta"
+                    - "SKU_PADRE -  NO se puede editar."
+                    - "EAN - NO se puede editar."
+                    - "list_price - El precio base no debe ser menor al 70% del valor actual."
+                    - "sales_price - El precio oferta no debe ser menor al 70% del valor actual."
+                    - "volumetry -  Producto FF,  No se puede modificar los datos de voluemtría."
+                    - "stock - Producto FF,No se puede modificar el stock."
+                    
+   
+   patch_product_acepted:
+    description: "En caso de que el producto se actualizo correctamente"
+    content:
+      application/json:
+        schema:
+         type: object
+         properties:
+          metadata:
+           $ref: '#/components/schemas/BasicMetadata'
+          data:
+           $ref: '#/components/schemas/schema_full_product'
+        
+   response_product_full: 
+    description: "Respuesta de get del producto"
+    content:
+     application/json:
+      schema:
+       type: object
+       properties:
+          metadata:
+           $ref: '#/components/schemas/BasicMetadata'
+          data:
+           $ref: '#/components/schemas/schema_full_product'
+  
+  
+   response_product_list:
+    description: "Respuesta del listado de productos de un comercio."
+    content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              metadata:
+               $ref: '#/components/schemas/BasicMetadata'
+              data:
+               $ref: '#/components/schemas/schema_product_list'
+              pagination: 
+               $ref: '#/components/schemas/PaginationMetadata'
+                    
+   response_skus:
+    description: "Respuesta con el listado de SKUS de un produdcto"
+    content:
+      application/json:
+          schema:
+            type: object
+            properties:
+              metadata:
+               $ref: '#/components/schemas/BasicMetadata'
+              data:
+               $ref: '#/components/schemas/schema_skus_list'
+              pagination:
+               $ref: '#/components/schemas/PaginationMetadata'
