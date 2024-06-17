@@ -446,7 +446,7 @@ paths:
       - PRODUCTOS.
       summary: CmV2ProductCommerceProductByIDCommerce_DELETE
       description: >
-        Eliminación del producto en T1comercios.
+        Eliminación del producto en T1comercios
 
         Al eliminar el producto, se inactiva de todos los canales de venta.
       operationId: CmV2ProductCommerceProductByIDCommerce_DELETE
