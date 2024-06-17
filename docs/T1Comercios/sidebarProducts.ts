@@ -12,7 +12,7 @@ const sidebar: SidebarsConfig = {
       items: [
         {
           type: "doc",
-          id: "T1Comercios/creacrion-de-un-producto-en-la-plataforma-t-1-comercios",
+          id: "T1Comercios/creacion-de-un-producto-en-la-plataforma-t-1-comercios",
           label: "Creación de un producto en la plataforma T1comercios",
           className: "api-method post",
         },
@@ -24,7 +24,7 @@ const sidebar: SidebarsConfig = {
         },
         {
           type: "doc",
-          id: "T1Comercios/actualizacion-de-informacion-de-un-proudcto",
+          id: "T1Comercios/actualizacion-de-informacion-de-un-producto",
           label: "Actualización de información de un producto \n",
           className: "api-method patch",
         },
@@ -48,7 +48,7 @@ const sidebar: SidebarsConfig = {
         },
         {
           type: "doc",
-          id: "T1Comercios/actuvar-publicacion",
+          id: "T1Comercios/activar-publicacion",
           label: "Activar publicación",
           className: "api-method post",
         },
