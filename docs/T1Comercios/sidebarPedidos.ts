@@ -8,12 +8,12 @@ const sidebar: SidebarsConfig = {
     },
     {
       type: "category",
-      label: "Lista pedidos Pedidos",
+      label: "Lista de pedidos",
       items: [
         {
           type: "doc",
           id: "T1Comercios/get-orders-full",
-          label: "Listado de pedidos de un comercio.",
+          label: "Listado de pedidos de un comercio",
           className: "api-method get",
         },
       ],
@@ -49,14 +49,14 @@ const sidebar: SidebarsConfig = {
         {
           type: "doc",
           id: "T1Comercios/upload-status",
-          label: "uploadStatus",
+          label: "Entrega guías manuales",
           className: "api-method post",
         },
       ],
     },
     {
       type: "category",
-      label: "Cancelar pedidos",
+      label: "Cancelar Partidas",
       items: [
         {
           type: "doc",
