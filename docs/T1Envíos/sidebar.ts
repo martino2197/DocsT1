@@ -7,15 +7,15 @@ const sidebar: SidebarsConfig = {
       id: "T1Envíos/t-1-envios",
     },
     {
+      type: "doc",
+      id: "T1Envíos/obtenerun-accesstoken",
+      label: "Obtener un Access token",
+      className: "api-method post",
+    },
+    {
       type: "category",
       label: "API",
       items: [
-        {
-          type: "doc",
-          id: "T1Envíos/obtenerun-accesstoken",
-          label: "Obtener un Access token",
-          className: "api-method post",
-        },
         {
           type: "doc",
           id: "T1Envíos/generarcotizacion",

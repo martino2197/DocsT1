@@ -21,7 +21,7 @@ info:
     }
   contact:
     name: T1Envios
-    url: https://enapi.t1envios.com/t1/pgs
+    url: https://enapi.t1envios.com
   version: '1.0.0'
   x-codegen-settings:
     Nullify404: false
@@ -134,7 +134,7 @@ info:
       description: ''
       servers:
       - name: default
-        url: https://enapi.t1envios.com/t1/pgs
+        url: https://enapi.t1envios.com
     - name: environment2
       description: ''
       servers:
@@ -144,14 +144,14 @@ info:
   x-image-uri: ''
 jsonSchemaDialect: https://json-schema.org/draft/2020-12/schema
 servers:
-- url: https://enapi.t1envios.com/t1/pgs
+- url: https://enapi.t1envios.com
   description: ''
   variables: {}
 - url: https://pcapi.plataforma-claro.com
   description: ''
   variables: {}
 paths:
-  /mensajeria-cotizador:
+  /t1/pgs/mensajeria-cotizador:
     post:
       tags:
       - API
@@ -160,13 +160,13 @@ paths:
       operationId: Generarcotización
       parameters: []
       requestBody:
-        description: Pet to add to the store
+        description: Json de datos para armar la petición.
         content:
           application/json:
             schema:
               allOf:
               - $ref: '#/components/schemas/RootTypeforGenerarCotizacion'
-              - description: Pet to add to the store
+              - description: Json de datos para armar la petición.
                 examples:
                 - codigo_postal_origen: '55555'
                   codigo_postal_destino: '99993'
@@ -352,7 +352,7 @@ paths:
       x-unitTests:
       - request:
           method: POST
-          uri: /mensajeria-cotizador
+          uri: /t1/pgs/mensajeria-cotizador
           headers:
             Content-Type: application/json
           body: '{"codigo_postal_origen":"55555","codigo_postal_destino":"99993","peso":10,"largo":65,"ancho":20,"alto":30,"dias_embarque":1,"seguro":true,"valor_paquete":1200,"tipo_paquete":2,"comercio_id":"clave"}'
@@ -371,7 +371,7 @@ paths:
         x-testName: Test Generar cotización
         x-testDescription: Método para la generación de la cotización.
     parameters: []
-  /generar-guia-mensajeria/{tokenCotizacion}:
+  /t1/pgs/generar-guia-mensajeria/{tokenCotizacion}:
     post:
       tags:
       - API
@@ -393,8 +393,66 @@ paths:
             schema:
               allOf:
               - $ref: '#/components/schemas/GenerarGuiaAPartirDeCotizacionPreviaRequest'
-              - {}
+              - description: Json de datos para armar la petición.
+                examples:
+                - contenido: "Breve descripción del contenido"
+                  nombre_origen: "David"
+                  apellidos_origen: "Pérez"
+                  email_origen: "david_perez@correo.com"
+                  calle_origen: "Lago mayor"
+                  numero_origen: "20"
+                  colonia_origen: "Flores"
+                  telefono_origen: "81345345"
+                  estado_origen: "Estado de México"
+                  municipio_origen: "Coacalco"
+                  referencias_origen: "Referencia remitente"
+                  nombre_destino: "Jesus"
+                  apellidos_destino: "Luna"
+                  email_destino: "jesus@correo.com"
+                  calle_destino: "Duraznos"
+                  numero_destino: "20"
+                  colonia_destino: "Granjas"
+                  telefono_destino: "67865432"
+                  estado_destino: "Sonora"
+                  municipio_destino: "Sonora"
+                  referencias_destino: "Referencia destino"
+                  generar_recoleccion: false
+                  tiene_notificacion: true
+                  origen_guia: "t1paginas"
+                  comercio_id: "clave"
+                  nombre_comercio_origen: "Comercio A"
+                  nombre_comercio_destino: "Comercio B"
               contentMediaType: application/json
+            examples:
+              'Estructura de Request:':
+                value:
+                  contenido: "Breve descripción del contenido"
+                  nombre_origen: "David"
+                  apellidos_origen: "Pérez"
+                  email_origen: "david_perez@correo.com"
+                  calle_origen: "Lago mayor"
+                  numero_origen: "20"
+                  colonia_origen: "Flores"
+                  telefono_origen: "81345345"
+                  estado_origen: "Estado de México"
+                  municipio_origen: "Coacalco"
+                  referencias_origen: "Referencia remitente"
+                  nombre_destino: "Jesus"
+                  apellidos_destino: "Luna"
+                  email_destino: "jesus@correo.com"
+                  calle_destino: "Duraznos"
+                  numero_destino: "20"
+                  colonia_destino: "Granjas"
+                  telefono_destino: "67865432"
+                  estado_destino: "Sonora"
+                  municipio_destino: "Sonora"
+                  referencias_destino: "Referencia destino"
+                  generar_recoleccion: false
+                  tiene_notificacion: true
+                  origen_guia: "t1paginas"
+                  comercio_id: "clave"
+                  nombre_comercio_origen: "Comercio A"
+                  nombre_comercio_destino: "Comercio B"
         required: true
       responses:
         '200':
@@ -455,7 +513,7 @@ paths:
         SkipAdditionalHeaders: false
       x-unitTests: []
     parameters: []
-  /guias/comercio/{clave}/registros/{total_registros}/pag/{numero_pagina}:
+  /t1/pgs/guias/comercio/{clave}/registros/{total_registros}/pag/{numero_pagina}:
     get:
       tags:
       - API
@@ -595,7 +653,7 @@ paths:
         SkipAdditionalHeaders: false
       x-unitTests: []
     parameters: []
-  /sl/comercio/{clave}:
+  /t1/pgs/sl/comercio/{clave}:
     get:
       tags:
       - API
@@ -663,7 +721,7 @@ paths:
         SkipAdditionalHeaders: false
       x-unitTests: []
     parameters: []
-  /webhook/estado-guia/{guia}:
+  /webhook-maestro/webhook/estado-guia/{guia}:
     get:
       tags:
       - API
@@ -745,7 +803,7 @@ paths:
         SkipAdditionalHeaders: false
       x-unitTests: []
     parameters: []
-  /sl-mov/comercio/{clave}/items/10/pag/{numeroPagina}:
+  /t1/pgs/sl-mov/comercio/{clave}/items/10/pag/{numeroPagina}:
     get:
       tags:
       - API
@@ -796,7 +854,7 @@ paths:
           type: string
       - name: fecha_inicio
         in: query
-        description: Fecha en que se creo el movimiento
+        description: "Fecha en que se creo el movimiento Date: yyyy-mm-dd"
         style: form
         explode: true
         schema:
@@ -804,7 +862,7 @@ paths:
           contentEncoding: date
       - name: fecha_fin
         in: query
-        description: Indica la fecha final de búsqueda
+        description: "Indica la fecha final de búsqueda Date: yyyy-mm-dd"
         style: form
         explode: true
         schema:
@@ -865,7 +923,7 @@ paths:
         SkipAdditionalHeaders: false
       x-unitTests: []
     parameters: []
-  /auth/realms/claroshop-sapi-sa-cv/proto col/openid-connect/token:
+  /auth/realms/claroshop-sapi-sa-cv/protocol/openid-connect/token:
     post:
       tags:
       - API
@@ -1177,13 +1235,13 @@ components:
         contenido:
           maxLength: 25
           type: string
-          description: 'Breve descripción del contenido del paquete (Max: 256)'
+          description: 'Breve descripción del contenido del paquete (Max: 25)'
         nombre_origen:
           type: string
-          description: 'Nombre de remitente (Max: 50)'
+          description: 'Nombre de remitente'
         apellidos_origen:
           type: string
-          description: 'Código postal de la dirección remitente (Max: 30)'
+          description: 'Apellidos remitente'
         email_origen:
           type: string
           description: Email de remitente
@@ -1207,13 +1265,13 @@ components:
           description: Municipio remitente
         referencias_origen:
           type: string
-          description: 'Referencias de remitente (Max: 81)'
+          description: 'Referencias de remitente'
         nombre_destino:
           type: string
-          description: 'Nombre de destinatario (Max: 20)'
+          description: 'Nombre de destinatario'
         apellidos_destino:
           type: string
-          description: 'Apellidos de destinatario (Max: 20)'
+          description: 'Apellidos de destinatario'
         email_destino:
           type: string
           description: Email de destinatario
@@ -1237,7 +1295,7 @@ components:
           description: Municipio de destinatario
         referencias_destino:
           type: string
-          description: 'Referencias de destinatario (Max: 81)'
+          description: 'Referencias de destinatario'
         generar_recoleccion:
           type: boolean
           description: True si desea generar recolección cuando se genera la guía
@@ -1248,10 +1306,16 @@ components:
           type: string
           description: >-
             Origen desde donde se genera la guía, los valores permitidos son:
-             -t1envios
+            "t1envios",
         comercio_id:
           type: string
           description: Clave de comercio proporcionada
+        nombre_comercio_origen:
+          type: string
+          description: "Nombre de el comercio de origen (Max: 60)"
+        nombre_comercio_destino:
+          type: string
+          description: "Nombre de el comercio de destino (Max: 60)"
       description: >-
         Para las siguientes mensajerías el largo máximo permitido son:
 
