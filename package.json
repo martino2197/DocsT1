@@ -17,7 +17,10 @@
   "dependencies": {
     "@docusaurus/core": "3.3.2",
     "@docusaurus/preset-classic": "3.3.2",
+    "@emotion/react": "^11.11.4",
+    "@emotion/styled": "^11.11.5",
     "@mdx-js/react": "^3.0.0",
+    "@mui/material": "^5.15.20",
     "clsx": "^2.0.0",
     "docusaurus-plugin-openapi-docs": "^3.0.0-beta.10",
     "docusaurus-theme-openapi-docs": "^3.0.0-beta.10",

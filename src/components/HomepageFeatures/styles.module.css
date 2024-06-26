@@ -6,6 +6,11 @@
 }
 
 .featureSvg {
-  height: 200px;
-  width: 200px;
+  height: 40px;
+  width: 130px;
+}
+
+.cardRowContainer {
+  display: flex;
+  overflow-x: auto;
 }
