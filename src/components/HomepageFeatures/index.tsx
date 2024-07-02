@@ -63,7 +63,7 @@ const FeatureList: FeatureItem[] = [
       </p>
     ),
     buttonLabel: "Ver documentación",
-    route: "/docs/T1Pagos/t-1-pagos",
+    route: "https://ayuda.t1paginas.com/",
   },
 ];
 
