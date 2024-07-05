@@ -1,0 +1,234 @@
+---
+id: packagesbypriorityandrule-update
+title: "Reglas y Prioridades"
+description: "Método para actualizar el estado y la prioridad de los servicios de envío de un comercio específico según una regla definida. Paqueterías: ['DHL', 'FEDEX', 'IVOY', '99MIN', 'UPS', 'EXPRESS'] Reglas: ['T1', 'Fast', 'Economic', 'Custom']"
+sidebar_label: "Reglas y Prioridades"
+hide_title: true
+hide_table_of_contents: true
+api: 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
+sidebar_class_name: "post api-method"
+info_path: docs/T1Envíos/t-1-enviosaws
+custom_edit_url: null
+---
+
+import ApiTabs from "@theme/ApiTabs";
+import DiscriminatorTabs from "@theme/DiscriminatorTabs";
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import SecuritySchemes from "@theme/ApiExplorer/SecuritySchemes";
+import MimeTabs from "@theme/MimeTabs";
+import ParamsItem from "@theme/ParamsItem";
+import ResponseSamples from "@theme/ResponseSamples";
+import SchemaItem from "@theme/SchemaItem";
+import SchemaTabs from "@theme/SchemaTabs";
+import Markdown from "@theme/Markdown";
+import Heading from "@theme/Heading";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Reglas y Prioridades"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"post"}
+  path={"/dev"}
+>
+  
+</MethodEndpoint>
+
+
+
+Método para actualizar el estado y la prioridad de los servicios de envío de un comercio específico según una regla definida. Paqueterías: ['DHL', 'FEDEX', 'IVOY', '99MIN', 'UPS', 'EXPRESS'] Reglas: ['T1', 'Fast', 'Economic', 'Custom']
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+  children={"Request"}
+>
+</Heading>
+
+<MimeTabs
+  className={"openapi-tabs__mime"}
+>
+  <TabItem
+    label={"application/json"}
+    value={"application/json-schema"}
+  >
+    <details
+      style={{}}
+      className={"openapi-markdown__details mime"}
+      data-collapsed={false}
+      open={true}
+    >
+      <summary
+        style={{}}
+        className={"openapi-markdown__details-summary-mime"}
+      >
+        <h3
+          className={"openapi-markdown__details-summary-header-body"}
+        >
+          Body
+        </h3><strong
+          className={"openapi-schema__required"}
+        >
+          required
+        </strong>
+      </summary><div
+        style={{"textAlign":"left","marginLeft":"1rem"}}
+      >
+        
+      </div><ul
+        style={{"marginLeft":"1rem"}}
+      >
+        <SchemaItem
+          collapsible={false}
+          name={"comercio_id"}
+          required={true}
+          schemaName={"string"}
+          qualifierMessage={undefined}
+          schema={{"type":"string","description":"Id del comercio"}}
+        >
+          
+        </SchemaItem><SchemaItem
+          collapsible={false}
+          name={"rule"}
+          required={true}
+          schemaName={"string"}
+          qualifierMessage={undefined}
+          schema={{"type":"string","description":"Es necesario que se envíe el nombre de la mensajería tal cual aparece en el listado de reglas."}}
+        >
+          
+        </SchemaItem><SchemaItem
+          collapsible={true}
+          className={"schemaItem"}
+        >
+          <details
+            style={{}}
+            className={"openapi-markdown__details"}
+          >
+            <summary
+              style={{}}
+            >
+              <span
+                className={"openapi-schema__container"}
+              >
+                <strong
+                  className={"openapi-schema__property"}
+                >
+                  carriers
+                </strong><span
+                  className={"openapi-schema__name"}
+                >
+                   object[]
+                </span><span
+                  className={"openapi-schema__divider"}
+                >
+                  
+                </span><span
+                  className={"openapi-schema__required"}
+                >
+                  required
+                </span>
+              </span>
+            </summary><div
+              style={{"marginLeft":"1rem"}}
+            >
+              <div
+                style={{"marginTop":".5rem","marginBottom":".5rem"}}
+              >
+                
+                
+                Las paqueterías deben enviarse dentro de un arreglo de objetos, ya sea una sola mensajería o varias estas serán objetos con las siguientes propiedades. * status: true y false * priority: del numero 0 a n dependiendo de la cantidad de paqueterías que tengas y en que posición la necesites 0 será la prioridad mas alta * name: el nombre de la paquetería tal cual se encuentra en el listado de paqueterías
+                
+                
+              </div><li>
+                <div
+                  style={{"fontSize":"var(--ifm-code-font-size)","opacity":"0.6","marginLeft":"-.5rem","paddingBottom":".5rem"}}
+                >
+                  Array [
+                </div>
+              </li><SchemaItem
+                collapsible={false}
+                name={"status"}
+                required={true}
+                schemaName={"boolean"}
+                qualifierMessage={undefined}
+                schema={{"type":"boolean"}}
+              >
+                
+              </SchemaItem><SchemaItem
+                collapsible={false}
+                name={"priority"}
+                required={true}
+                schemaName={"integer"}
+                qualifierMessage={undefined}
+                schema={{"type":"integer","contentEncoding":"int32"}}
+              >
+                
+              </SchemaItem><SchemaItem
+                collapsible={false}
+                name={"name"}
+                required={true}
+                schemaName={"string"}
+                qualifierMessage={undefined}
+                schema={{"type":"string"}}
+              >
+                
+              </SchemaItem><li>
+                <div
+                  style={{"fontSize":"var(--ifm-code-font-size)","opacity":"0.6","marginLeft":"-.5rem"}}
+                >
+                  ]
+                </div>
+              </li>
+            </div>
+          </details>
+        </SchemaItem>
+      </ul>
+    </details>
+  </TabItem>
+</MimeTabs><div>
+  <div>
+    <ApiTabs
+      label={undefined}
+      id={undefined}
+    >
+      <TabItem
+        label={"200"}
+        value={"200"}
+      >
+        <div>
+          
+          
+          
+          
+          
+        </div><details
+          style={{"textAlign":"left","marginBottom":"1rem"}}
+          className={"openapi-markdown__details"}
+          data-collaposed={true}
+          open={false}
+        >
+          <summary
+            style={{}}
+          >
+            <strong>
+              Response Headers
+            </strong>
+          </summary><ul
+            style={{"marginLeft":"1rem"}}
+          >
+            
+          </ul>
+        </details><div>
+          
+        </div>
+      </TabItem>
+    </ApiTabs>
+  </div>
+</div>
+      
