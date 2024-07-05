@@ -80,8 +80,6 @@ function Feature({ title, Svg, description, buttonLabel, route }: FeatureItem) {
         maxWidth: "340px",
         minHeight: "415px",
         padding: "2rem",
-        // paddingTop: "2rem",
-        // paddingBottom: "2rem",
         borderRadius: 12,
       }}
     >
