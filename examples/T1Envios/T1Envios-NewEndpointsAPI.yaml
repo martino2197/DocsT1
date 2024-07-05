@@ -1,0 +1,653 @@
+openapi: 3.1.0
+info:
+  title: T1EnviosAWS
+  contact: {}
+  version: '1.0'
+  x-codegen-settings:
+    Nullify404: false
+    GenerateAsyncCode: true
+    UseMethodPrefix: false
+    UseModelPostfix: false
+    UseControllerPrefix: true
+    UseEnumPostfix: true
+    CollectParameters: false
+    UseConstructorsForConfig: false
+    UseCommonSDKLibrary: false
+    iOSUseAppInfoPlist: false
+    AndroidUseAppManifest: false
+    BodySerialization: 0
+    EnableAdditionalModelProperties: false
+    PreserveParameterOrder: true
+    AppendContentHeaders: true
+    iOSGenerateCoreData: false
+    GenerateInterfaces: false
+    NodeHttpClient: NODE_REQUEST
+    ValidateRequiredParameters: false
+    JavaUsePropertiesConfig: false
+    Timeout: 0
+    StoreTimezoneInformation: false
+    EnablePHPComposerVersionString: false
+    EnableLogging: false
+    ArraySerialization: Indexed
+    ModelSerializationScheme: Json
+    UseExceptionPrefix: true
+    RunscopeEnabled: false
+    AndroidHttpClient: ANDROID_OK
+    ObjCHttpClient: UNIREST
+    CSharpHttpClient: UNIREST
+    PHPHttpClient: UNIREST
+    JavaHttpClient: JAVA_OK
+    ParameterArrayFormat: ParamArrayWithIndex
+    SecurityProtocols:
+    - Ssl3
+    - Tls
+    GenerateTravisConfig: false
+    GenerateCircleConfig: false
+    GenerateAppveyorConfig: false
+    GenerateJenkinsConfig: false
+    EnableHttpCache: false
+    Retries: 0
+    RetryInterval: 1
+    GenerateAdvancedDocs: true
+    UnderscoreNumbers: true
+    UseSingletonPattern: true
+    DisableLinting: false
+    ApplyCustomizations: []
+    SortResources: false
+    AllowSkippingSSLCertVerification: false
+    DoNotSplitWords: []
+    EnableGlobalUserAgent: true
+    ReturnCompleteHttpResponse: false
+    GenerateModels: true
+    GenerateExceptions: true
+    IgnoreIfNullJson: false
+    DisableDocs: false
+    LiftParameterDescriptionFromCustomType: false
+    ThrowForHttpErrorStatusCodes: true
+    ResponseMapping:
+      Type: Simple
+    ForceKeywordArgsInRuby: false
+    SymbolizeHashKeysInRuby: false
+    UsageExampleEndpoint:
+      Description: ''
+      EndpointGroupName: ''
+      EndpointName: ''
+    IsLatestVersion: false
+    EnableImmutableModels: false
+    GenerateEnums: true
+    BackoffFactor: 2
+    StatusCodesToRetry:
+    - 408
+    - 413
+    - 429
+    - 500
+    - 502
+    - 503
+    - 504
+    - 521
+    - 522
+    - 524
+    RequestMethodsToRetry:
+    - GET
+    - PUT
+    UserConfigurableRetries: true
+    UseEndpointMethodName: false
+    EncodeTemplateParameters: true
+    GenerateExamplesForOptionalFields: false
+    MultitargetDotnetVersions: false
+    BackoffMax: 0
+    RetryOnTimeout: true
+    EnableCookies: false
+    EnableJsonPassThroughForAny: false
+    PascalCaseEnumForCSharp: false
+    PascalCaseEnumForTypeScript: false
+    DisableMultipleAuth: false
+    AddSingleAuthDeprecatedCode: true
+    EnableExperimentalTypeCombinatorGeneration: false
+    ErrorTemplates: {}
+    UseSecuritySchemeNameForSingleAuth: false
+    EnableModelKeywordArgsInRuby: false
+    NullifyEmptyResponses: false
+  x-server-configuration:
+    default-environment: production
+    default-server: Server 1
+    environments:
+    - name: production
+      servers:
+      - name: Server 1
+        url: https://hcn7zu6pyk.execute-api.us-east-1.amazonaws.com
+      - name: Server 2
+        url: https://vvu7dv9791.execute-api.us-east-1.amazonaws.com
+    parameters: []
+  x-image-uri: ''
+jsonSchemaDialect: https://json-schema.org/draft/2020-12/schema
+servers:
+- url: https://hcn7zu6pyk.execute-api.us-east-1.amazonaws.com
+  variables: {}
+- url: https://vvu7dv9791.execute-api.us-east-1.amazonaws.com
+  variables: {}
+paths:
+  /Dev:
+    post:
+      tags:
+      - Misc
+      summary: consult packages by shop id
+      operationId: consultpackagesbyshopid
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/consultpackagesbyshopidrequest'
+              - examples:
+                - comercio_id: '12028'
+              contentMediaType: application/json
+            example:
+              comercio_id: '12028'
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      servers:
+      - url: https://hcn7zu6pyk.execute-api.us-east-1.amazonaws.com
+        variables: {}
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+        ErrorTemplates: {}
+        SkipAdditionalHeaders: false
+      x-unitTests:
+      - request:
+          method: POST
+          uri: /Dev
+          headers:
+            Content-Type: application/json
+          body: >-
+            {
+
+              "comercio_id": "12028"
+
+            }
+        expectedResponse:
+          x-allowExtraHeaders: true
+          x-bodyMatchMode: NONE
+          x-arrayOrderedMatching: false
+          x-arrayCheckCount: false
+          x-matchResponseSchema: true
+          statusCode: '200'
+          headers: {}
+        x-testShouldPass: true
+        x-testEnabled: true
+        x-testName: consult packages by shop id
+      x-server-name: Server 1
+    parameters: []
+  /Dev/update-carrier:
+    post:
+      tags:
+      - Misc
+      summary: Activación paqueterías
+      description: "Método para actualizar el estado (activo o inactivo) de los servicios de envío de un comercio específico. Paqueterías: ['DHL', 'FEDEX', 'IVOY', '99MIN', 'UPS', 'EXPRESS'] Reglas: ['T1', 'Fast', 'Economic', 'Custom']"
+      operationId: updatesactiveandinactivepackages
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/updatesactiveandinactivepackagesrequest'
+              - examples:
+                - comercio_id: 12028
+                  carriers:
+                  - name: DHL
+                    status: false
+                  - name: FEDEX
+                    status: false
+                  - name: IVOY
+                    status: false
+                  - name: '99MIN '
+                    status: false
+                  - name: UPS
+                    status: false
+                  - name: EXPRESS
+                    status: true
+              contentMediaType: application/json
+            example:
+              comercio_id: 12028
+              carriers:
+              - name: DHL
+                status: false
+              - name: FEDEX
+                status: false
+              - name: IVOY
+                status: false
+              - name: '99MIN '
+                status: false
+              - name: UPS
+                status: false
+              - name: EXPRESS
+                status: true
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      servers:
+      - url: https://hcn7zu6pyk.execute-api.us-east-1.amazonaws.com
+        variables: {}
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+        ErrorTemplates: {}
+        SkipAdditionalHeaders: false
+      x-unitTests:
+      - request:
+          method: POST
+          uri: /Dev/update-carrier
+          headers:
+            Content-Type: application/json
+          body: >-
+            {
+
+              "comercio_id": 12028,
+
+              "carriers": [
+
+                {
+
+                  "name": "DHL",
+
+                  "status": false
+
+                },
+
+                {
+
+                  "name": "FEDEX",
+
+                  "status": false
+
+                },
+
+                {
+
+                  "name": "IVOY",
+
+                  "status": false
+
+                },
+
+                {
+
+                  "name": "99MIN ",
+
+                  "status": false
+
+                },
+
+                {
+
+                  "name": "UPS",
+
+                  "status": false
+
+                },
+
+                {
+
+                  "name": "EXPRESS",
+
+                  "status": true
+
+                }
+
+              ]
+
+            }
+        expectedResponse:
+          x-allowExtraHeaders: true
+          x-bodyMatchMode: NONE
+          x-arrayOrderedMatching: false
+          x-arrayCheckCount: false
+          x-matchResponseSchema: true
+          statusCode: '200'
+          headers: {}
+        x-testShouldPass: true
+        x-testEnabled: false
+        x-testName: Activación paqueterías
+      x-server-name: Server 1
+    parameters: []
+  /dev:
+    post:
+      tags:
+      - Misc
+      summary: Reglas y Prioridades
+      description: "Método para actualizar el estado y la prioridad de los servicios de envío de un comercio específico según una regla definida. Paqueterías: ['DHL', 'FEDEX', 'IVOY', '99MIN', 'UPS', 'EXPRESS'] Reglas: ['T1', 'Fast', 'Economic', 'Custom']"
+      operationId: packagesbypriorityandruleUpdate
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/packagesbypriorityandruleUpdateRequest'
+              - examples:
+                - comercio_id: '12028'
+                  rule: Custom
+                  carriers:
+                  - status: false
+                    priority: 0
+                    name: DHL
+                  - status: false
+                    priority: 3
+                    name: FEDEX
+                  - status: false
+                    priority: 2
+                    name: UPS
+                  - status: false
+                    priority: 1
+                    name: EXPRESS
+              contentMediaType: application/json
+            example:
+              comercio_id: '12028'
+              rule: Custom
+              carriers:
+              - status: false
+                priority: 0
+                name: DHL
+              - status: false
+                priority: 3
+                name: FEDEX
+              - status: false
+                priority: 2
+                name: UPS
+              - status: false
+                priority: 1
+                name: EXPRESS
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      servers:
+      - url: https://vvu7dv9791.execute-api.us-east-1.amazonaws.com
+        variables: {}
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+        ErrorTemplates: {}
+        SkipAdditionalHeaders: false
+      x-unitTests:
+      - request:
+          method: POST
+          uri: /dev
+          headers:
+            Content-Type: application/json
+          body: >-
+            {
+
+              "comercio_id": "12028",
+
+              "rule": "Custom",
+
+              "carriers": [
+
+                {
+
+                  "status": false,
+
+                  "priority": 0,
+
+                  "name": "DHL"
+
+                },
+
+                {
+
+                  "status": false,
+
+                  "priority": 3,
+
+                  "name": "FEDEX"
+
+                },
+
+                {
+
+                  "status": false,
+
+                  "priority": 2,
+
+                  "name": "UPS"
+
+                },
+
+                {
+
+                  "status": false,
+
+                  "priority": 1,
+
+                  "name": "EXPRESS"
+
+                }
+
+              ]
+
+            }
+        expectedResponse:
+          x-allowExtraHeaders: true
+          x-bodyMatchMode: NONE
+          x-arrayOrderedMatching: false
+          x-arrayCheckCount: false
+          x-matchResponseSchema: true
+          statusCode: '200'
+          headers: {}
+        x-testShouldPass: true
+        x-testEnabled: false
+        x-testName: Reglas y Prioridades
+      x-server-name: Server 2
+    parameters: []
+  /dev/rule-status:
+    post:
+      tags:
+      - Misc
+      summary: Consulta regla
+      description: Método que permite consultar la regla de envío aplicada y los detalles de los transportistas asociados a un comercio específico. Se utiliza para obtener información sobre la configuración actual de los servicios de envío del comercio.
+      operationId: Consulta regla
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/Consulta regla-request'
+              - examples:
+                - comercio_id: '12028'
+              contentMediaType: application/json
+            example:
+              comercio_id: '12028'
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      servers:
+      - url: https://vvu7dv9791.execute-api.us-east-1.amazonaws.com
+        variables: {}
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+        ErrorTemplates: {}
+        SkipAdditionalHeaders: false
+      x-unitTests:
+      - request:
+          method: POST
+          uri: /dev/rule-status
+          headers:
+            Content-Type: application/json
+          body: >-
+            {
+
+              "comercio_id": "12028"
+
+            }
+        expectedResponse:
+          x-allowExtraHeaders: true
+          x-bodyMatchMode: NONE
+          x-arrayOrderedMatching: false
+          x-arrayCheckCount: false
+          x-matchResponseSchema: true
+          statusCode: '200'
+          headers: {}
+        x-testShouldPass: true
+        x-testEnabled: false
+        x-testName: Consulta regla
+      x-server-name: Server 2
+    parameters: []
+components:
+  schemas:
+    consultpackagesbyshopidrequest:
+      title: consultpackagesbyshopidrequest
+      required:
+      - comercio_id
+      type: object
+      properties:
+        comercio_id:
+          type: string
+      examples:
+      - comercio_id: '12028'
+    updatesactiveandinactivepackagesrequest:
+      title: updatesactiveandinactivepackagesrequest
+      required:
+      - comercio_id
+      - carriers
+      type: object
+      properties:
+        comercio_id:
+          type: integer
+          contentEncoding: int32
+        carriers:
+          type: array
+          items:
+            $ref: '#/components/schemas/Carrier'
+          description: 'Las paqueterías deben enviarse dentro de un arreglo de objetos, ya sea una sola mensajería o varias.
+                          * status: true y false
+                          * name: el nombre de la paquetería tal cual se encuentra en el listado de paqueterías'
+      examples:
+      - comercio_id: 12028
+        carriers:
+        - name: DHL
+          status: false
+        - name: FEDEX
+          status: false
+        - name: IVOY
+          status: false
+        - name: '99MIN '
+          status: false
+        - name: UPS
+          status: false
+        - name: EXPRESS
+          status: true
+    Carrier:
+      title: Carrier
+      required:
+      - name
+      - status
+      type: object
+      properties:
+        name:
+          type: string
+        status:
+          type: boolean
+      examples:
+      - name: DHL
+        status: false
+    packagesbypriorityandruleUpdateRequest:
+      title: packagesbypriorityandruleUpdateRequest
+      required:
+      - comercio_id
+      - rule
+      - carriers
+      type: object
+      properties:
+        comercio_id:
+          type: string
+          description: Id del comercio
+        rule:
+          type: string
+          description: Es necesario que se envíe el nombre de la mensajería tal cual aparece en el listado de reglas.
+        carriers:
+          type: array
+          items:
+            $ref: '#/components/schemas/Carrier1'
+          description: 'Las paqueterías deben enviarse dentro de un arreglo de objetos, ya sea una sola mensajería o varias estas serán objetos con las siguientes propiedades.
+                          * status: true y false
+                          * priority: del numero 0 a n dependiendo de la cantidad de paqueterías que tengas y en que posición la necesites 0 será la prioridad mas alta
+                          * name: el nombre de la paquetería tal cual se encuentra en el listado de paqueterías'
+      examples:
+      - comercio_id: '12028'
+        rule: Custom
+        carriers:
+        - status: false
+          priority: 0
+          name: DHL
+        - status: false
+          priority: 3
+          name: FEDEX
+        - status: false
+          priority: 2
+          name: UPS
+        - status: false
+          priority: 1
+          name: EXPRESS
+    Carrier1:
+      title: Carrier1
+      required:
+      - status
+      - priority
+      - name
+      type: object
+      properties:
+        status:
+          type: boolean
+        priority:
+          type: integer
+          contentEncoding: int32
+        name:
+          type: string
+      examples:
+      - status: false
+        priority: 0
+        name: DHL
+    Consulta regla-request:
+      title: Consulta regla-request
+      required:
+      - comercio_id
+      type: object
+      properties:
+        comercio_id:
+          type: string
+          description: Id del comercio
+      examples:
+      - comercio_id: '12028'
+tags:
+- name: Misc
+  description: ''

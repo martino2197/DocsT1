@@ -167,7 +167,7 @@ const config: Config = {
             },
           },
           T1Envios: {
-            specPath: "examples/T1Envios/T1Envios-OpenApi31Yaml.yaml", // path or URL to the OpenAPI spec
+            specPath: "examples/T1Envios/T1Envios-NewEndpointsAPI.yaml", // path or URL to the OpenAPI spec
             outputDir: "docs/T1Envíos", // output directory for generated *.mdx and sidebar.js files
             sidebarOptions: {
               groupPathsBy: "tag", // generate a sidebar.js slice that groups operations by tag
