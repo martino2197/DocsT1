@@ -59,12 +59,12 @@ const config: Config = {
 
   themeConfig: {
     // Replace with your project's social card
-    image: "img/docusaurus-social-card.jpg",
+    image: "img/T1logo.jpg",
     navbar: {
       title: "",
       logo: {
         alt: "T1 Logo",
-        src: "img/T1logo.png",
+        src: "img/T1logo.jpg",
       },
       items: [
         {
