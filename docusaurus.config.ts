@@ -64,7 +64,7 @@ const config: Config = {
       title: "",
       logo: {
         alt: "T1 Logo",
-        src: "img/docusaurus-social-card.jpg",
+        src: "img/T1logo.png",
       },
       items: [
         {
