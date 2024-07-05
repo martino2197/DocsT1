@@ -59,12 +59,14 @@ const config: Config = {
 
   themeConfig: {
     // Replace with your project's social card
-    image: "img/T1logo.jpg",
+    image: "img/t1-logo.jpg",
     navbar: {
       title: "",
       logo: {
         alt: "T1 Logo",
-        src: "img/T1logo.jpg",
+        src: "img/t1-logo.jpg",
+        // width: 32,
+        // height: 32,
       },
       items: [
         {
