@@ -32,7 +32,7 @@ const config: Config = {
 
   presets: [
     [
-      "classic",
+      "@docusaurus/preset-classic",
       {
         docs: {
           sidebarPath: "./sidebars.ts",
@@ -51,7 +51,7 @@ const config: Config = {
             "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/",
         },
         theme: {
-          customCss: "./src/css/custom.css",
+          customCss: [require.resolve("./src/styles/custom.scss")],
         },
       } satisfies Preset.Options,
     ],
@@ -61,21 +61,38 @@ const config: Config = {
     // Replace with your project's social card
     image: "img/t1-logo.jpg",
     navbar: {
+      hideOnScroll: true,
       title: "",
       logo: {
         alt: "T1 Logo",
         src: "img/t1-logo.jpg",
+        href: "/",
+        target: "_self",
+        // width: 139,
+        // height: 28,
         // width: 32,
         // height: 32,
       },
       items: [
         {
           type: "docSidebar",
-          sidebarId: "tutorialSidebar",
-          position: "left",
-          label: "Documentación",
+          sidebarId: "t1envios",
+          label: "T1Envíos",
+          position: "right",
         },
-        { to: "/blog", label: "Blog", position: "left" },
+        {
+          type: "docSidebar",
+          sidebarId: "t1comercios",
+          label: "T1Comercios",
+          position: "right",
+        },
+        {
+          type: "docSidebar",
+          sidebarId: "t1pagos",
+          position: "right",
+          label: "T1Pagos",
+        },
+        { to: "/blog", label: "Blog", position: "right" },
         // {
         //   href: 'https://github.com/facebook/docusaurus',
         //   label: 'GitHub',
@@ -147,6 +164,7 @@ const config: Config = {
   } satisfies Preset.ThemeConfig,
 
   plugins: [
+    "docusaurus-plugin-sass",
     [
       "docusaurus-plugin-openapi-docs",
       {

@@ -4,6 +4,25 @@
  * work well for content-centric websites.
  */
 
+//  @use url('https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap');
+@use './components/admonition';
+@use './components/back-to-top-button';
+@use './components/code';
+// @use './components/doc-root';
+@use './components/doc-sidebar';
+@use './components/edit-this-page';
+// @use './components/markdown';
+@use './components/navbar';
+@use './components/navbar-sidebar';
+@use './components/pagination';
+@use './components/search';
+@use './components/table';
+@use './components/tabs';
+// @use './components/theme-toggle';
+@use './components/toc';
+@import "./components//font.css";
+
+
 /* You can override the default Infima variables here. */
 :root {
   /* --ifm-color-primary: #2e8555;
@@ -24,6 +43,12 @@
   --ifm-color-primary-lightest: tint(#DB3B2B, 20%); /* 20% lighter shade of primary */
   --ifm-code-font-size: 95%;
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
+  font-family: "Manrope";
+
+  //#region ----------- Z Indices ------------
+  --z-sidebar: 2000;
+  --z-backdrop: 1100;
+  //#endregion
 }
 
 /* For readability concerns, you should choose a lighter palette in dark mode. */
