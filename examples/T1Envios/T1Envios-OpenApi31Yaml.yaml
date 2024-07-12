@@ -375,7 +375,7 @@ paths:
     post:
       tags:
       - API
-      summary: Generar guía a partir de cotización previa
+      summary: Generar guía
       description: Método para la generación de una guía a partir de una cotización.
       operationId: Generarguíaapartirdecotizaciónprevia
       parameters:
@@ -657,7 +657,7 @@ paths:
     get:
       tags:
       - API
-      summary: Consulta Saldo
+      summary: Consultar saldo
       description: Método para consultar saldo.
       operationId: ConsultaSaldo
       parameters:
@@ -670,14 +670,14 @@ paths:
           type: string
       responses:
         '200':
-          description: Respuesta de petición consulta saldo.
+          description: Respuesta de petición Consultar saldo.
           headers: {}
           content:
             application/json:
               schema:
                 allOf:
                 - $ref: '#/components/schemas/RootTypeforConsultaSaldoResponse'
-                - description: Respuesta de petición consulta saldo.
+                - description: Respuesta de petición Consultar saldo.
                   examples:
                   - success: true
                     message: Búsqueda exitosa!
@@ -685,7 +685,7 @@ paths:
                       monto_actual: '5000'
                 contentMediaType: application/json
               examples:
-                Respuesta de petición consulta saldo:
+                Respuesta de petición Consultar saldo:
                   value:
                     success: true
                     message: Búsqueda exitosa!
@@ -725,7 +725,7 @@ paths:
     get:
       tags:
       - API
-      summary: Consulta de estado de guía
+      summary: Rastreo de guía 
       description: Método para consultar el estado de una guía.
       operationId: Consultadeestadodeguía
       parameters:
@@ -1510,7 +1510,7 @@ components:
           allOf:
           - $ref: '#/components/schemas/Detail'
           - description: detalle de monto actual
-      description: Respuesta de petición consulta saldo.
+      description: Respuesta de petición Consultar saldo.
       examples:
       - success: true
         message: Búsqueda exitosa!

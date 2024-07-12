@@ -24,8 +24,20 @@ const sidebar: SidebarsConfig = {
         },
         {
           type: "doc",
+          id: "T1Envíos/updatesactiveandinactivepackages",
+          label: "Activación paqueterías",
+          className: "api-method post",
+        },
+        {
+          type: "doc",
           id: "T1Envíos/generarguiaapartirdecotizacionprevia",
-          label: "Generar guía a partir de cotización previa",
+          label: "Generar guía",
+          className: "api-method post",
+        },
+        {
+          type: "doc",
+          id: "T1Envíos/packagesbypriorityandrule-update",
+          label: "Reglas y Prioridades",
           className: "api-method post",
         },
         {
@@ -37,13 +49,13 @@ const sidebar: SidebarsConfig = {
         {
           type: "doc",
           id: "T1Envíos/consulta-saldo",
-          label: "Consulta Saldo",
+          label: "Consultar saldo",
           className: "api-method get",
         },
         {
           type: "doc",
           id: "T1Envíos/consultadeestadodeguia",
-          label: "Consulta de estado de guía",
+          label: "Rastreo de guía ",
           className: "api-method get",
         },
         {
@@ -52,24 +64,12 @@ const sidebar: SidebarsConfig = {
           label: "Saldos y Movimientos",
           className: "api-method get",
         },
-        {
-          type: "doc",
-          id: "T1Envíos/updatesactiveandinactivepackages",
-          label: "Activación paqueterías",
-          className: "api-method post",
-        },
-        {
-          type: "doc",
-          id: "T1Envíos/packagesbypriorityandrule-update",
-          label: "Reglas y Prioridades",
-          className: "api-method post",
-        },
-        {
-          type: "doc",
-          id: "T1Envíos/consulta-regla",
-          label: "Consulta regla",
-          className: "api-method post",
-        },
+        // {
+        //   type: "doc",
+        //   id: "T1Envíos/consulta-regla",
+        //   label: "Consulta regla",
+        //   className: "api-method post",
+        // },
       ],
     },
   ],

@@ -32,7 +32,16 @@ html[data-theme='dark'] {
 //overrides
 #__docusaurus {
   .theme-doc-sidebar-container {
-    background: var(--token-primary-bg-c);
+    // background: var(--token-primary-bg-c);
+
+    //OpenIA background color
+    background-color: #fbfbfb;
+
+    border: .5px solid var(--divider);
+    border-top-left-radius: 8px;
+    border-bottom-left-radius: 8px;
+    // border-radius: 8px;
+    margin-left: 10px;
 
     position: sticky;
     top: 0;
@@ -41,10 +50,14 @@ html[data-theme='dark'] {
 
     height: 100vh;
 
+    max-width: 220px;
+
     // border-inline-end: 1px solid var(--sidebar-border-c);
 
     [class^='sidebarViewport'] {
       // Targets the logo
+      display: flex;
+      justify-content: center;
       > a {
         display: flex;
         align-items: center;
@@ -58,12 +71,20 @@ html[data-theme='dark'] {
 
   [class^='sidebar_'] {
     max-height: calc(100vh - var(--ifm-navbar-height));
+    
     position: static;
 
     overflow-y: auto;
 
-    padding-inline-start: var(--sidebar-spacing-horizontal);
-    padding-inline-end: var(--sidebar-spacing-horizontal);
+    max-width: 196px;
+
+
+    // padding-inline-start: var(--sidebar-spacing-horizontal);
+    padding-inline-start: 12px;
+
+    // padding-inline-end: var(--sidebar-spacing-horizontal);
+    padding-inline-end: 12px;
+
     padding-block-start: 1rem;
 
     > .menu {
@@ -91,11 +112,17 @@ html[data-theme='dark'] {
 
     .menu__list {
       .menu__link--sublist {
-        margin-inline-start: calc(-1 * (var(--dropdown-icon-width) + var(--dropdown-icon-gap)));
+        // margin-inline-start: calc(-1 * (var(--dropdown-icon-width) + var(--dropdown-icon-gap)));
+        // padding-inline-start: var(--sidebar-spacing-horizontal);
+        padding-inline-start: 12px;
+
+        // padding-inline-end: var(--sidebar-spacing-horizontal);
+        padding-inline-end: 12px;
 
         &::after {
           // The chevron icon will have less opacity when it's not on the first level.
-          opacity: 0.6;
+          // opacity: 0.6;
+          display: none;
         }
       }
     }
@@ -106,7 +133,7 @@ html[data-theme='dark'] {
       }
       .menu__list {
         .menu__link {
-          padding-inline-start: calc(var(--dropdown-icon-width) + var(--dropdown-icon-gap));
+          // padding-inline-start: calc(var(--dropdown-icon-width) + var(--dropdown-icon-gap));
         }
       }
       &-collapsible {
@@ -151,11 +178,11 @@ html[data-theme='dark'] {
   
   .menu__link--active {
     // color: #000000 !important;
-    font-weight: 600;
+    font-weight: 650;
   }
   .menu__link--sublist {
-    padding-inline-start: 0;
-    padding-inline-end: 0;
+    padding-inline-start: 12px;
+    padding-inline-end: 12px;
 
     margin-block-end: 0;
 
@@ -165,18 +192,19 @@ html[data-theme='dark'] {
     justify-content: flex-end;
   
     &::after {
-      background: var(--ifm-menu-link-sublist-icon) center / var(--dropdown-icon-width) var(--dropdown-icon-height);
-      background-repeat: no-repeat;
+      // background: var(--ifm-menu-link-sublist-icon) center / var(--dropdown-icon-width) var(--dropdown-icon-height);
+      // background-repeat: no-repeat;
 
-      min-width: auto;
+      // min-width: auto;
 
-      width: var(--dropdown-icon-width);
-      height: var(--dropdown-icon-height);
+      // width: var(--dropdown-icon-width);
+      // height: var(--dropdown-icon-height);
 
-      margin-inline-end: var(--dropdown-icon-gap);
-      margin-block-end: 0;
+      // margin-inline-end: var(--dropdown-icon-gap);
+      // margin-block-end: 0;
 
-      margin-inline-start: unset;
+      // margin-inline-start: unset;
+      display: none;
     }
   }
 
