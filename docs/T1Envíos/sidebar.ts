@@ -22,24 +22,24 @@ const sidebar: SidebarsConfig = {
           label: "Generar cotización",
           className: "api-method post",
         },
-        {
-          type: "doc",
-          id: "T1Envíos/updatesactiveandinactivepackages",
-          label: "Activación paqueterías",
-          className: "api-method post",
-        },
+        // {
+        //   type: "doc",
+        //   id: "T1Envíos/updatesactiveandinactivepackages",
+        //   label: "Activación paqueterías",
+        //   className: "api-method post",
+        // },
         {
           type: "doc",
           id: "T1Envíos/generarguiaapartirdecotizacionprevia",
           label: "Generar guía",
           className: "api-method post",
         },
-        {
-          type: "doc",
-          id: "T1Envíos/packagesbypriorityandrule-update",
-          label: "Reglas y Prioridades",
-          className: "api-method post",
-        },
+        // {
+        //   type: "doc",
+        //   id: "T1Envíos/packagesbypriorityandrule-update",
+        //   label: "Reglas y Prioridades",
+        //   className: "api-method post",
+        // },
         {
           type: "doc",
           id: "T1Envíos/consultarguias",
