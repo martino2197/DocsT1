@@ -25,7 +25,7 @@ html[data-theme='dark'] {
 
   .navbar {
     padding: 0 var(--ifm-navbar-padding-horizontal);
-    
+
     &__inner {
       width: initial;
       flex-grow: 1;
@@ -259,13 +259,13 @@ html[data-theme='dark'] {
       // color: var(--navbar-link-c);
     }
 
-    // &__brand {
-    //   display: none;
-    // }
+    &__brand {
+      display: none;
+    }
 
-    // &__logo {
-    //   display: none;
-    // }
+    &__logo {
+      display: none;
+    }
 
     .separator {
       width: 1px;

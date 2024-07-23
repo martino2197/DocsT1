@@ -59,13 +59,13 @@ const config: Config = {
 
   themeConfig: {
     // Replace with your project's social card
-    image: "img/t1-logo.jpg",
+    image: "img/t1envios-logo.svg",
     navbar: {
       hideOnScroll: true,
       title: "",
       logo: {
         alt: "T1 Logo",
-        src: "img/t1-logo.jpg",
+        src: "img/t1envios-logo.svg",
         href: "/",
         target: "_self",
         // width: 139,

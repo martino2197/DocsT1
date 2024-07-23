@@ -35,13 +35,13 @@ html[data-theme='dark'] {
     // background: var(--token-primary-bg-c);
 
     //OpenIA background color
-    background-color: #fbfbfb;
+    // background-color: #fbfbfb;
 
-    border: .5px solid var(--divider);
-    border-top-left-radius: 8px;
-    border-bottom-left-radius: 8px;
+    // border: .5px solid #000000;
+    // border-top-left-radius: 8px;
+    // border-bottom-left-radius: 8px;
     // border-radius: 8px;
-    margin-left: 10px;
+    // margin-left: 10px;
 
     position: sticky;
     top: 0;
@@ -52,12 +52,12 @@ html[data-theme='dark'] {
 
     max-width: 220px;
 
-    // border-inline-end: 1px solid var(--sidebar-border-c);
+    border-inline-end: 1px solid #F2F2F2;
 
     [class^='sidebarViewport'] {
       // Targets the logo
-      display: flex;
-      justify-content: center;
+      // display: flex;
+      // justify-content: center;
       > a {
         display: flex;
         align-items: center;
@@ -71,7 +71,7 @@ html[data-theme='dark'] {
 
   [class^='sidebar_'] {
     max-height: calc(100vh - var(--ifm-navbar-height));
-    
+
     position: static;
 
     overflow-y: auto;
@@ -79,12 +79,8 @@ html[data-theme='dark'] {
     max-width: 196px;
 
 
-    // padding-inline-start: var(--sidebar-spacing-horizontal);
-    padding-inline-start: 12px;
-
-    // padding-inline-end: var(--sidebar-spacing-horizontal);
-    padding-inline-end: 12px;
-
+    padding-inline-start: var(--sidebar-spacing-horizontal);
+    padding-inline-end: var(--sidebar-spacing-horizontal);
     padding-block-start: 1rem;
 
     > .menu {
@@ -113,10 +109,8 @@ html[data-theme='dark'] {
     .menu__list {
       .menu__link--sublist {
         // margin-inline-start: calc(-1 * (var(--dropdown-icon-width) + var(--dropdown-icon-gap)));
-        // padding-inline-start: var(--sidebar-spacing-horizontal);
         padding-inline-start: 12px;
 
-        // padding-inline-end: var(--sidebar-spacing-horizontal);
         padding-inline-end: 12px;
 
         &::after {
