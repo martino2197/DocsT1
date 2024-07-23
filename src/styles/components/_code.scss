@@ -10,11 +10,11 @@
 }
 
 html[data-theme='light'] {
-  --code-block-bg-c: var(--c-indigo-10);
+  // --code-block-bg-c: #3e444f;
 }
 
 html[data-theme='dark'] {
-  --code-block-bg-c: var(--token-secondary-bg-c);
+  // --code-block-bg-c: #3e444f;
 }
 
 :not(pre) > code {
@@ -93,7 +93,7 @@ pre[class*='language-'] {
 /* Inline code */
 :not(pre) > code[class*='language-'] {
   padding: 0.15em 0.2em 0.05em;
-  border-radius: 0.3em;
+  // border-radius: 0.3em;
   border: 0.13em solid hsl(30, 20%, 40%);
   box-shadow: 1px 1px 0.3em -0.1em black inset;
   white-space: normal;
