@@ -66,6 +66,23 @@ const config: Config = {
       logo: {
         alt: "T1 Logo",
         src: "img/t1envios-logo.svg",
+
+        // src: ({ docPath }) => {
+        //   let match;
+        //   if ((match = docPath.match(/api\/(.*)\.md/)) != null) {
+        //     return `https://github.com/ionic-team/ionic-docs/tree/main/docs/api/${match[1]}.md`;
+        //   }
+        //   if ((match = docPath.match(/cli\/commands\/(.*)\.md/)) != null) {
+        //     return `https://github.com/ionic-team/ionic-cli/edit/develop/packages/@ionic/cli/src/commands/${match[1].replace(
+        //       '-',
+        //       '/'
+        //     )}.ts`;
+        //   }
+        //   if ((match = docPath.match(/native\/(.*)\.md/)) != null) {
+        //     return `https://github.com/ionic-team/capacitor-plugins/edit/main/${match[1]}/README.md`;
+        //   }
+        //   return `https://github.com/ionic-team/ionic-docs/edit/main/${versionDocsDirPath}/${docPath}`;
+        // },
         href: "/",
         target: "_self",
         // width: 139,
@@ -92,7 +109,7 @@ const config: Config = {
           position: "right",
           label: "T1Pagos",
         },
-        { to: "/blog", label: "Blog", position: "right" },
+        // { to: "/blog", label: "Blog", position: "right" },
         // {
         //   href: 'https://github.com/facebook/docusaurus',
         //   label: 'GitHub',
