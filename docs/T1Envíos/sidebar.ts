@@ -97,12 +97,12 @@ const sidebar: SidebarsConfig = {
         // },
       ],
     },
-    {
-      type: "doc",
-      id: "T1Envíos/faq",
-      label: "FAQ",
-      className: "api-method post",
-    },
+    // {
+    //   type: "doc",
+    //   id: "T1Envíos/faq",
+    //   label: "FAQ",
+    //   className: "api-method post",
+    // },
     {
       type: "doc",
       id: "T1Envíos/response-times-limitations",
