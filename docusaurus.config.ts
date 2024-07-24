@@ -124,63 +124,63 @@ const config: Config = {
         // },
       ],
     },
-    footer: {
-      style: "dark",
-      // links: [
-      //   {
-      //     title: "Docs",
-      //     items: [
-      //       {
-      //         label: "T1Pagos",
-      //         to: "/docs/T1Pagos/t-1-pagos",
-      //       },
-      //       {
-      //         label: "T1Comercios",
-      //         to: "/docs/T1Comercios/claro-authentication-api",
-      //       },
-      //       {
-      //         label: "T1Envíos",
-      //         to: "/docs/T1Envíos/t-1-envios",
-      //       },
-      //     ],
-      //   },
-      //   {
-      //     title: "Community",
-      //     items: [
-      //       {
-      //         label: "Facebook",
-      //         href: "https://www.facebook.com/t1paginas",
-      //       },
-      //       {
-      //         label: "Twitter",
-      //         href: "https://x.com/t1paginas",
-      //       },
-      //       {
-      //         label: "Instagram",
-      //         href: "https://www.instagram.com/t1paginas/",
-      //       },
-      //       {
-      //         label: "Linkedin",
-      //         href: "https://www.linkedin.com/company/t1paginas/",
-      //       },
-      //     ],
-      //   },
-      //   {
-      //     title: "More",
-      //     items: [
-      //       {
-      //         label: "Blog",
-      //         to: "/blog",
-      //       },
-      //       // {
-      //       //   label: 'GitHub',
-      //       //   href: 'https://github.com/facebook/docusaurus',
-      //       // },
-      //     ],
-      //   },
-      // ],
-      copyright: `Copyright © ${new Date().getFullYear()} CLAROSHOP.COM, S.A. DE C.V. & CLARO PAGOS, S.A. DE C.V.`,
-    },
+    // footer: {
+    //   style: "light",
+    //   // links: [
+    //   //   {
+    //   //     title: "Docs",
+    //   //     items: [
+    //   //       {
+    //   //         label: "T1Pagos",
+    //   //         to: "/docs/T1Pagos/t-1-pagos",
+    //   //       },
+    //   //       {
+    //   //         label: "T1Comercios",
+    //   //         to: "/docs/T1Comercios/claro-authentication-api",
+    //   //       },
+    //   //       {
+    //   //         label: "T1Envíos",
+    //   //         to: "/docs/T1Envíos/t-1-envios",
+    //   //       },
+    //   //     ],
+    //   //   },
+    //   //   {
+    //   //     title: "Community",
+    //   //     items: [
+    //   //       {
+    //   //         label: "Facebook",
+    //   //         href: "https://www.facebook.com/t1paginas",
+    //   //       },
+    //   //       {
+    //   //         label: "Twitter",
+    //   //         href: "https://x.com/t1paginas",
+    //   //       },
+    //   //       {
+    //   //         label: "Instagram",
+    //   //         href: "https://www.instagram.com/t1paginas/",
+    //   //       },
+    //   //       {
+    //   //         label: "Linkedin",
+    //   //         href: "https://www.linkedin.com/company/t1paginas/",
+    //   //       },
+    //   //     ],
+    //   //   },
+    //   //   {
+    //   //     title: "More",
+    //   //     items: [
+    //   //       {
+    //   //         label: "Blog",
+    //   //         to: "/blog",
+    //   //       },
+    //   //       // {
+    //   //       //   label: 'GitHub',
+    //   //       //   href: 'https://github.com/facebook/docusaurus',
+    //   //       // },
+    //   //     ],
+    //   //   },
+    //   // ],
+    //   copyright: `Copyright © ${new Date().getFullYear()} CLAROSHOP.COM, S.A. DE C.V. & CLARO PAGOS, S.A. DE C.V.`,
+    // },
     prism: {
       theme: prismThemes.vsLight,
       darkTheme: prismThemes.vsLight,

@@ -928,7 +928,8 @@ paths:
       tags:
       - API
       summary: Autenticación
-      description: Método para iniciar sesión en el API y obtener un token de acceso. Utilizar https://pcapi.plataforma-claro.com/auth/realms/claroshop-sapi-sa-cv/protocol/openid-connect/token
+      description: Antes de realizar cualquier operación, es necesario obtener un token de acceso proporcionando tus credenciales (username y password), que son tu correo electrónico y contraseña con los que ingresas a t1envios.com. 
+Los valores de client_id, grant_type y client_secret son preestablecidos y deben usarse tal cual vienen en esta documentación.
       operationId: ObtenerunAccesstoken
       parameters:
       - name: Content-Type
