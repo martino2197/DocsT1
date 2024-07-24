@@ -1,0 +1,45 @@
+---
+id: response-times-limitations
+title: "Tiempos de Respuesta y Limitaciones"
+description: "Información sobre los tiempos de respuesta y limitaciones de la API de T1 Envíos."
+sidebar_label: Tiempos de Respuesta
+sidebar_position: 1
+hide_title: true
+custom_edit_url: null
+---
+
+import ApiLogo from "@theme/ApiLogo";
+import Heading from "@theme/Heading";
+import SchemaTabs from "@theme/SchemaTabs";
+import TabItem from "@theme/TabItem";
+import Export from "@theme/ApiExplorer/Export";
+
+{/* <span
+  className={"theme-doc-version-badge badge badge--secondary"}
+  children={"Version: 1.0.0"}
+>
+</span> */}
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Tiempos de Respuesta y Limitaciones"}
+/>
+
+<div style={{"marginBottom": "var(--ifm-paragraph-margin-bottom)"}}>
+  <h3 style={{"marginBottom":"0.25rem"}}>
+    Tiempo de Respuesta
+  </h3>
+  <p>
+    Las solicitudes a la API usualmente responden en un tiempo de 1-5 segundos, dependiendo de la complejidad de la solicitud y la carga del servidor.
+  </p>
+</div>
+
+<div style={{"marginBottom": "var(--ifm-paragraph-margin-bottom)"}}>
+  <h3 style={{"marginBottom":"0.25rem"}}>
+    Límite de Tasa
+  </h3>
+  <p>
+    Hasta 100 solicitudes por minuto por usuario. Si se exceden los límites de tasa, se recibirá una respuesta con el código de estado <strong>429 (Too Many Requests)</strong>.
+  </p>
+</div>

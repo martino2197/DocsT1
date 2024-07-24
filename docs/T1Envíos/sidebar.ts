@@ -6,12 +6,12 @@ const sidebar: SidebarsConfig = {
       type: "doc",
       id: "T1Envíos/t-1-envios",
     },
-    {
-      type: "doc",
-      id: "T1Envíos/obtenerun-accesstoken",
-      label: "Autenticación",
-      className: "api-method post",
-    },
+    // {
+    //   type: "doc",
+    //   id: "T1Envíos/obtenerun-accesstoken",
+    //   label: "Autenticación",
+    //   className: "api-method post",
+    // },
     {
       type: "doc",
       id: "T1Envíos/obteneruntoken",
@@ -23,9 +23,15 @@ const sidebar: SidebarsConfig = {
       label: "ENDPOINTS",
       collapsed: false,
       items: [
+        // {
+        //   type: "doc",
+        //   id: "T1Envíos/generarcotizacion",
+        //   label: "Generar cotización",
+        //   className: "api-method post",
+        // },
         {
           type: "doc",
-          id: "T1Envíos/generarcotizacion",
+          id: "T1Envíos/newgenerarcotizacion",
           label: "Generar cotización",
           className: "api-method post",
         },
@@ -77,19 +83,37 @@ const sidebar: SidebarsConfig = {
         //   label: "Consulta regla",
         //   className: "api-method post",
         // },
-        {
-          type: "doc",
-          id: "T1Envíos/cotizador",
-          label: "Cotizador",
-          className: "api-method post",
-        },
-        {
-          type: "doc",
-          id: "T1Envíos/generaguia",
-          label: "Genera guia",
-          className: "api-method post",
-        },
+        // {
+        //   type: "doc",
+        //   id: "T1Envíos/cotizador",
+        //   label: "Cotizador",
+        //   className: "api-method post",
+        // },
+        // {
+        //   type: "doc",
+        //   id: "T1Envíos/generaguia",
+        //   label: "Genera guia",
+        //   className: "api-method post",
+        // },
       ],
+    },
+    {
+      type: "doc",
+      id: "T1Envíos/faq",
+      label: "FAQ",
+      className: "api-method post",
+    },
+    {
+      type: "doc",
+      id: "T1Envíos/response-times-limitations",
+      label: "Tiempos de Respuesta",
+      className: "api-method post",
+    },
+    {
+      type: "doc",
+      id: "T1Envíos/common-errors",
+      label: "Errores Comunes",
+      className: "api-method post",
     },
   ],
 };

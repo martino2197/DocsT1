@@ -22,18 +22,18 @@ const sidebar: SidebarsConfig = {
       type: "category",
       label: "Collections",
       items: [
-        {
-          type: "doc",
-          id: "T1Envíos/cotizador",
-          label: "Cotizador",
-          className: "api-method post",
-        },
-        {
-          type: "doc",
-          id: "T1Envíos/generaguia",
-          label: "Genera guia",
-          className: "api-method post",
-        },
+        // {
+        //   type: "doc",
+        //   id: "T1Envíos/cotizador",
+        //   label: "Cotizador",
+        //   className: "api-method post",
+        // },
+        // {
+        //   type: "doc",
+        //   id: "T1Envíos/generaguia",
+        //   label: "Genera guia",
+        //   className: "api-method post",
+        // },
       ],
     },
   ],
