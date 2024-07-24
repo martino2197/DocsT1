@@ -96,7 +96,7 @@ pre[class*='language-'] {
   margin: 0 0;
   overflow: auto;
   /* border: .3em solid hsl(30, 20%, 40%); */
-  border-radius: 0.5em;
+  // border-radius: 0.5em;
   /* box-shadow: 1px 1px .5em black inset; */
 }
 
@@ -118,6 +118,7 @@ pre[class*='language-'] {
 }
 
 .token.punctuation {
+  color: #FFFFFF !important;
   opacity: 0.7;
 }
 
@@ -171,6 +172,10 @@ pre[class*='language-'] {
 .token.keyword,
 .token.important {
   color: #f55073 !important;
+}
+
+.token.plain {
+  color: #00a67d !important;
 }
 
 .token.important,

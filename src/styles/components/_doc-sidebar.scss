@@ -172,7 +172,7 @@ html[data-theme='dark'] {
   
   .menu__link--active {
     // color: #000000 !important;
-    font-weight: 650;
+    font-weight: 700;
   }
   .menu__link--sublist {
     padding-inline-start: 12px;
@@ -184,6 +184,9 @@ html[data-theme='dark'] {
     align-items: center;
     flex-direction: row-reverse;
     justify-content: flex-end;
+
+    font-weight: 700;
+    // font-size: 0.938rem;
   
     &::after {
       // background: var(--ifm-menu-link-sublist-icon) center / var(--dropdown-icon-width) var(--dropdown-icon-height);
@@ -207,8 +210,8 @@ html[data-theme='dark'] {
       .menu__link {
         color: var(--sidebar-category-c);
   
-        font-weight: 600;
-        font-size: 0.938rem;
+        font-weight: 700;
+        // font-size: 0.938rem;
         line-height: 100%;
       }
     }

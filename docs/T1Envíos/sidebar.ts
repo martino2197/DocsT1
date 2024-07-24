@@ -14,7 +14,8 @@ const sidebar: SidebarsConfig = {
     },
     {
       type: "category",
-      label: "Endpoints",
+      label: "ENDPOINTS",
+      collapsed: false,
       items: [
         {
           type: "doc",
