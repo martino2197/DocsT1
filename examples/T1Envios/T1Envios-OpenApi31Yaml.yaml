@@ -156,7 +156,7 @@ paths:
       tags:
       - API
       summary: Generar cotización
-      description: Método para la generación de la cotización.
+      description: Este endpoint permite a los usuarios generar cotizaciones de envío con diferentes paqueterías basadas en el código postal de origen y destino, así como en las dimensiones y peso del paquete. Es útil para obtener un costo estimado del envío antes de proceder con la creación de la guía. Al proporcionar la información requerida, el sistema devolverá las cotizaciones disponibles de diversas paqueterías.
       operationId: Generarcotización
       parameters: []
       requestBody:
@@ -369,7 +369,7 @@ paths:
         x-testShouldPass: true
         x-testEnabled: true
         x-testName: Test Generar cotización
-        x-testDescription: Método para la generación de la cotización.
+        x-testDescription: Este endpoint permite a los usuarios generar cotizaciones de envío con diferentes paqueterías basadas en el código postal de origen y destino, así como en las dimensiones y peso del paquete. Es útil para obtener un costo estimado del envío antes de proceder con la creación de la guía. Al proporcionar la información requerida, el sistema devolverá las cotizaciones disponibles de diversas paqueterías.
     parameters: []
   /t1/pgs/generar-guia-mensajeria/{tokenCotizacion}:
     post:
