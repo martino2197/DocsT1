@@ -6,12 +6,12 @@ const sidebar: SidebarsConfig = {
       type: "doc",
       id: "T1Envíos/t-1-envios",
     },
-    // { Old Autenticacion
-    //   type: "doc",
-    //   id: "T1Envíos/obtenerun-accesstoken",
-    //   label: "Autenticación",
-    //   className: "api-method post",
-    // },
+    {
+      type: "doc",
+      id: "T1Envíos/obtenerun-accesstoken",
+      label: "Autenticación",
+      className: "api-method post",
+    },
     {
       type: "doc",
       id: "T1Envíos/obteneruntoken",

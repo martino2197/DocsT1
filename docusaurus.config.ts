@@ -9,7 +9,7 @@ const config: Config = {
   favicon: "img/T1Logo.svg",
 
   // Set the production url of your site here
-  url: "https://your-docusaurus-site.example.com",
+  url: "https://t1docs.dev.plataformat1.com",
   // Set the /<baseUrl>/ pathname under which your site is served
   // For GitHub pages deployment, it is often '/<projectName>/'
   baseUrl: "/",
@@ -29,6 +29,14 @@ const config: Config = {
     defaultLocale: "en",
     locales: ["en"],
   },
+
+  // proxy: {
+  //   '/auth': {
+  //     target: 'https://loginclaro.com',
+  //     changeOrigin: true,
+  //     pathRewrite: { '^/auth': '' },
+  //   },
+  // },
 
   presets: [
     [

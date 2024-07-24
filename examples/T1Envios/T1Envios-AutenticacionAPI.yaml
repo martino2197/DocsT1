@@ -21,7 +21,7 @@ paths:
       parameters:
       - name: Content-Type
         in: header
-        description: ''
+        description: 'application/x-www-form-urlencoded'
         required: true
         style: simple
         schema:
@@ -43,22 +43,27 @@ paths:
               type: object
               properties:
                 grant_type:
+                  description: password
                   type: string
                   examples:
                   - password
                 client_id:
+                  description: t1envios
                   type: string
                   examples:
                   - t1envios
                 username:
+                  description: Correo con que se registro en la pagina
                   type: string
                   examples:
                   - correopruebamonadic@gmail.com
                 password:
+                  description: Contraseña que registro en la pagina
                   type: string
                   examples:
                   - Monadic#2020
                 client_secret:
+                  description: d1d661be-8487-4660-bc19-540dbb12fb05
                   type: string
                   examples:
                   - d1d661be-8487-4660-bc19-540dbb12fb05
