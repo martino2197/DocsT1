@@ -6,15 +6,16 @@
   --code-block-line-height: 1.5;
 
   //inline code
-  --ifm-code-background: var(--c-indigo-10);
+  // --ifm-code-background: var(--c-indigo-10);
+  // --ifm-pre-background: #000000
 }
 
 html[data-theme='light'] {
-  // --code-block-bg-c: #3e444f;
+  --code-block-bg-c: #13171c;
 }
 
 html[data-theme='dark'] {
-  // --code-block-bg-c: #3e444f;
+  --code-block-bg-c: #13171c;
 }
 
 :not(pre) > code {
@@ -46,6 +47,15 @@ code {
   border: none;
 
   // padding: 0.375rem 0.25rem 0.25rem;
+}
+
+.code-block-code-line-number {
+  background: var(--code-block-bg-c);
+}
+
+.openapi-explorer__code-block-code-line-number {
+  color: #c5c5d2;
+  background: var(--code-block-bg-c) !important;
 }
 
 // Overrides
@@ -150,7 +160,7 @@ pre[class*='language-'] {
 .language-css .token.string,
 .style .token.string,
 .token.variable {
-  color: #42b983;
+  color: #FFFFFF !important;
 }
 
 .token.atrule {
@@ -160,7 +170,7 @@ pre[class*='language-'] {
 .token.regex,
 .token.keyword,
 .token.important {
-  color: #f55073;
+  color: #f55073 !important;
 }
 
 .token.important,

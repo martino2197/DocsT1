@@ -66,22 +66,29 @@ const config: Config = {
       logo: {
         alt: "T1 Logo",
         src: "img/t1envios-logo.svg",
-
+        // @ts-ignore: Razón por la que estamos ignorando esta línea
         // src: ({ docPath }) => {
-        //   let match;
-        //   if ((match = docPath.match(/api\/(.*)\.md/)) != null) {
-        //     return `https://github.com/ionic-team/ionic-docs/tree/main/docs/api/${match[1]}.md`;
+        //   try {
+        //     let match;
+        //     if ((match = docPath.match(/api\/(.*)\.md/)) != null) {
+        //       return `https://github.com/ionic-team/ionic-docs/tree/main/docs/api/${match[1]}.md`;
+        //     }
+        //     if ((match = docPath.match(/cli\/commands\/(.*)\.md/)) != null) {
+        //       return `https://github.com/ionic-team/ionic-cli/edit/develop/packages/@ionic/cli/src/commands/${match[1].replace(
+        //         '-',
+        //         '/'
+        //       )}.ts`;
+        //     }
+        //     if ((match = docPath.match(/native\/(.*)\.md/)) != null) {
+        //       return `https://github.com/ionic-team/capacitor-plugins/edit/main/${match[1]}/README.md`;
+        //     }
+        //     // Si ninguno de los patrones coincide, usa la URL por defecto
+        //     return "img/t1envios-logo.svg";
+        //   } catch (error) {
+        //     console.error('Error al generar la URL del documento:', error);
+        //     // Devuelve una URL por defecto o null en caso de error
+        //     return "";
         //   }
-        //   if ((match = docPath.match(/cli\/commands\/(.*)\.md/)) != null) {
-        //     return `https://github.com/ionic-team/ionic-cli/edit/develop/packages/@ionic/cli/src/commands/${match[1].replace(
-        //       '-',
-        //       '/'
-        //     )}.ts`;
-        //   }
-        //   if ((match = docPath.match(/native\/(.*)\.md/)) != null) {
-        //     return `https://github.com/ionic-team/capacitor-plugins/edit/main/${match[1]}/README.md`;
-        //   }
-        //   return `https://github.com/ionic-team/ionic-docs/edit/main/${versionDocsDirPath}/${docPath}`;
         // },
         href: "/",
         target: "_self",

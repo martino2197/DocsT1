@@ -111,7 +111,7 @@ const sidebars: SidebarsConfig = {
   t1envios: [
     {
       type: "category",
-      label: "T1Envíos",
+      label: "Primeros pasos",
       items: require("./docs/T1Envíos/sidebar.ts"),
     },
   ],

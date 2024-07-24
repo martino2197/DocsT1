@@ -9,12 +9,12 @@ const sidebar: SidebarsConfig = {
     {
       type: "doc",
       id: "T1Envíos/obtenerun-accesstoken",
-      label: "Obtener un Access token",
+      label: "Autenticación",
       className: "api-method post",
     },
     {
       type: "category",
-      label: "API",
+      label: "Endpoints",
       items: [
         {
           type: "doc",
@@ -42,6 +42,12 @@ const sidebar: SidebarsConfig = {
         // },
         {
           type: "doc",
+          id: "T1Envíos/consultadeestadodeguia",
+          label: "Rastreo de guía ",
+          className: "api-method get",
+        },
+        {
+          type: "doc",
           id: "T1Envíos/consultarguias",
           label: "Consultar guías",
           className: "api-method get",
@@ -52,18 +58,12 @@ const sidebar: SidebarsConfig = {
           label: "Consultar saldo",
           className: "api-method get",
         },
-        {
-          type: "doc",
-          id: "T1Envíos/consultadeestadodeguia",
-          label: "Rastreo de guía ",
-          className: "api-method get",
-        },
-        {
-          type: "doc",
-          id: "T1Envíos/saldosy-movimientos",
-          label: "Saldos y Movimientos",
-          className: "api-method get",
-        },
+        // {
+        //   type: "doc",
+        //   id: "T1Envíos/saldosy-movimientos",
+        //   label: "Saldos y Movimientos",
+        //   className: "api-method get",
+        // },
         // {
         //   type: "doc",
         //   id: "T1Envíos/consulta-regla",

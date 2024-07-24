@@ -927,7 +927,7 @@ paths:
     post:
       tags:
       - API
-      summary: Obtener un Access token
+      summary: Autenticación
       description: Método para iniciar sesión en el API y obtener un token de acceso. Utilizar https://pcapi.plataforma-claro.com/auth/realms/claroshop-sapi-sa-cv/protocol/openid-connect/token
       operationId: ObtenerunAccesstoken
       parameters:
@@ -1033,7 +1033,7 @@ paths:
           body: '{"access_token":"eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6IC..","expires_in":1800,"refresh_expires_in":7776000,"refresh_token":"eyJhbGciOiJIUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICI3..","token_type":"bearer","not-before-policy":1627348134,"session_state":"92167821-edd8-4b3b-9338-277afe04e8a2","scope":"email profile"}'
         x-testShouldPass: true
         x-testEnabled: true
-        x-testName: Test Obtener un Access token
+        x-testName: Test Autenticación
         x-testDescription: Método para iniciar sesión en el API y obtener un token de acceso.
     parameters: []
 components:

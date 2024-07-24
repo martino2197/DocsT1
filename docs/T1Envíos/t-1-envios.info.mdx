@@ -14,11 +14,11 @@ import SchemaTabs from "@theme/SchemaTabs";
 import TabItem from "@theme/TabItem";
 import Export from "@theme/ApiExplorer/Export";
 
-<span
+{/* <span
   className={"theme-doc-version-badge badge badge--secondary"}
   children={"Version: 1.0.0"}
 >
-</span>
+</span> */}
 
 <Heading
   as={"h1"}
@@ -29,7 +29,7 @@ import Export from "@theme/ApiExplorer/Export";
 
 
 
-Es un servicio creado para poder cotizar y generar guías.
+{/* Es un servicio creado para poder cotizar y generar guías.
 
 
 Requests API
@@ -40,9 +40,39 @@ Todas las peticiones deben llevar los siguientes Headers :
 \{
     Accept: "application/json",
     Authorization: "Bearer \{token\}"
-\}
+\} */}
 
-<div
+{/* ## T1 Envíos */}
+
+La API de T1 Envíos está diseñada para facilitar la integración de funcionalidades de cotización y generación de guías de envío en cualquier aplicación web o móvil. Utiliza una arquitectura RESTful y el protocolo HTTP para proporcionar una interfaz uniforme y fácil de usar, con respuestas en formato JSON y códigos de estado estándar.
+
+### Características Principales
+
+- **Autenticación Segura**: Utiliza el esquema de autenticación Bearer, donde cada solicitud requiere un token de acceso que se obtiene a través de credenciales válidas.
+- **Cotización de Envíos**: Permite obtener cotizaciones precisas de envíos basadas en el origen, destino, peso y dimensiones del paquete.
+- **Generación de Guías**: Facilita la creación de guías de envío una vez que se ha cotizado y confirmado un envío.
+- **Rastreo de Guías**: Proporciona la capacidad de rastrear el estado y la ubicación de los envíos en tiempo real.
+
+## Primeros Pasos
+
+### Paso 1: Crear una Tienda
+
+Primero, crea una cuenta en [t1envios.com](https://t1envios.com). Desde tu dashboard, podrás gestionar tus datos personales y configurar las opciones iniciales de tu tienda.
+
+### Paso 2: Configurar tu Cuenta
+
+Accede al administrador para configurar tu cuenta. Aquí puedes agregar saldo a tu cuenta y definir reglas de envío según tus necesidades. Esta configuración inicial es crucial para asegurarte de que tu tienda esté lista para operar.
+
+### Paso 3: Autenticación vía API
+
+Utiliza los accesos de usuario, contraseña y el ID de tienda proporcionados al crear tu cuenta para autenticarte a través de la API. Esta autenticación es necesaria para poder realizar solicitudes seguras a la API.
+
+## Contacto
+
+Para más información o asistencia, puedes contactar al equipo de T1 Envíos a través del correo electrónico [hola@t1envios.com](mailto:hola@t1envios.com) o visitar nuestro sitio web en [t1envios.com](https://t1envios.com).
+
+
+{/* <div
   style={{"display":"flex","flexDirection":"column","marginBottom":"var(--ifm-paragraph-margin-bottom)"}}
 >
   <h3
@@ -54,5 +84,5 @@ Todas las peticiones deben llevar los siguientes Headers :
   </span><span>
     URL: [https://enapi.t1envios.com](mailto:https://enapi.t1envios.com)
   </span>
-</div>
+</div> */}
       
