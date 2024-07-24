@@ -78,45 +78,28 @@ paths:
               schema:
                 allOf:
                 - $ref: '#/components/schemas/SuccessfulResponse'
-                - examples:
-                  - user:
-                      id: 12345678
-                      username: taylor-lee
-                      email: taylor.lee@example.com
-                      fullName: Taylor Lee
-                      avatar: https://example.com/user/r5u9qpvmujfjf6lbqmga.jpg
-                      isPublic: true
-                    operations:
-                    - name: mock_usage
-                      limit: 1000000
-                      usage: 110276
-                      overage: 0
-                    - name: monitor_request_runs
-                      limit: 10000000
-                      usage: 1141750
-                      overage: 0
-                    - name: api_usage
-                      limit: 1000000
-                      usage: 16240
-                      overage: 0
-                    - name: custom_domains
-                      limit: 25
-                      usage: 25
-                      overage: 0
-                    - name: serverless_requests
-                      limit: 10000
-                      usage: 0
-                      overage: 0
-                    - name: integrations
-                      limit: 5000
-                      usage: 1018
-                      overage: 0
-                    - name: cloud_agent_requests
-                      limit: 1000000
-                      usage: 1615
-                      overage: 0
+                - description: Respuesta de petición de cotización JSON.
+                  examples:
+                  - access_token: eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6IC..
+                    expires_in: 1800
+                    refresh_expires_in: 7776000
+                    refresh_token: eyJhbGciOiJIUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICI3..
+                    token_type: bearer
+                    not-before-policy: 1627348134
+                    session_state: 92167821-edd8-4b3b-9338-277afe04e8a2
+                    scope: email profile
                 contentMediaType: application/json
-              example:
+              examples:
+                Respuesta de petición de cotización JSON.:
+                  value:
+                    access_token: eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6IC..
+                    expires_in: 1800
+                    refresh_expires_in: 7776000
+                    refresh_token: eyJhbGciOiJIUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICI3..
+                    token_type: bearer
+                    not-before-policy: 1627348134
+                    session_state: 92167821-edd8-4b3b-9338-277afe04e8a2
+                    scope: email profile
                 user:
                   id: 12345678
                   username: taylor-lee
@@ -474,57 +457,45 @@ components:
   schemas:
     SuccessfulResponse:
       title: SuccessfulResponse
-      required:
-      - user
-      - operations
       type: object
       properties:
-        user:
-          allOf:
-          - $ref: '#/components/schemas/User'
-          - {}
-        operations:
-          type: array
-          items:
-            $ref: '#/components/schemas/Operation'
-          description: ''
+        access_token:
+          type: string
+          description: Contiene el JWT Token de acceso
+        expires_in:
+          type: integer
+          description: Tiempo de vida en segundos del access_token.
+          contentEncoding: int32
+        refresh_expires_in:
+          type: integer
+          description: Tiempo de vida en segundos del token de actualización
+          contentEncoding: int32
+        refresh_token:
+          type: string
+          description: El token de actualización, que se puede usar para obtener nuevos tokens de acceso utilizando la misma concesión de autorización
+        token_type:
+          type: string
+          description: Tipo de token “bearer”
+        not-before-policy:
+          type: integer
+          description: Políticas de revocación no antes por dominio, aplicación y usuario
+          contentEncoding: int32
+        session_state:
+          type: string
+          description: String que representa el estado de inicio de sesión del usuario
+        scope:
+          type: string
+          description: scopes otorgados
+      description: Respuesta de petición de cotización JSON.
       examples:
-      - user:
-          id: 12345678
-          username: taylor-lee
-          email: taylor.lee@example.com
-          fullName: Taylor Lee
-          avatar: https://example.com/user/r5u9qpvmujfjf6lbqmga.jpg
-          isPublic: true
-        operations:
-        - name: mock_usage
-          limit: 1000000
-          usage: 110276
-          overage: 0
-        - name: monitor_request_runs
-          limit: 10000000
-          usage: 1141750
-          overage: 0
-        - name: api_usage
-          limit: 1000000
-          usage: 16240
-          overage: 0
-        - name: custom_domains
-          limit: 25
-          usage: 25
-          overage: 0
-        - name: serverless_requests
-          limit: 10000
-          usage: 0
-          overage: 0
-        - name: integrations
-          limit: 5000
-          usage: 1018
-          overage: 0
-        - name: cloud_agent_requests
-          limit: 1000000
-          usage: 1615
-          overage: 0
+      - access_token: eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6IC..
+        expires_in: 1800
+        refresh_expires_in: 7776000
+        refresh_token: eyJhbGciOiJIUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICI3..
+        token_type: bearer
+        not-before-policy: 1627348134
+        session_state: 92167821-edd8-4b3b-9338-277afe04e8a2
+        scope: email profile
     User:
       title: User
       required:
