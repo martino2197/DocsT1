@@ -103,18 +103,18 @@ const sidebar: SidebarsConfig = {
     //   label: "FAQ",
     //   className: "api-method post",
     // },
-    {
-      type: "doc",
-      id: "T1Envíos/response-times-limitations",
-      label: "Tiempos de Respuesta",
-      className: "api-method post",
-    },
-    {
-      type: "doc",
-      id: "T1Envíos/common-errors",
-      label: "Errores Comunes",
-      className: "api-method post",
-    },
+    // {
+    //   type: "doc",
+    //   id: "T1Envíos/response-times-limitations",
+    //   label: "Tiempos de Respuesta",
+    //   className: "api-method post",
+    // },
+    // {
+    //   type: "doc",
+    //   id: "T1Envíos/common-errors",
+    //   label: "Errores Comunes",
+    //   className: "api-method post",
+    // },
   ],
 };
 
