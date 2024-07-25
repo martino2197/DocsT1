@@ -77,8 +77,21 @@ code {
 .openapi-explorer__response-container {
   // background: var(--code-block-bg-c) !important;
   div {
-    background: inherit !important;
+    background: inherit;
   }
+}
+
+
+.openapi-explorer__code-block-btn-group {
+  background: transparent !important;
+
+  button {
+    background: #FFFFFF !important;
+  }
+}
+
+.openapi-explorer__code-block-code-btn {
+  background: transparent !important;
 }
 
 // Overrides

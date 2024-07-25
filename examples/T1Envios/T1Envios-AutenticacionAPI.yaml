@@ -150,34 +150,18 @@ paths:
       tags:
       - Collections
       summary: Cotizador
-      description: >-
-        Creates a collection using the [Postman Collection v2 schema format](https://schema.postman.com/json/collection/v2.1.0/docs/index.html). Include a `collection` object in the request body that contains the following required properties:
-
-
-        *   `info` — An **object** that contains the following properties:
-            *   `name` — A **string** value that contains the collection's name.
-            *   `schema` — A **string** that contains a URL to the collection's schema. For example, the `https://schema.getpostman.com/collection/v1` URL.
-        *   `item` — An **object** that contains the HTTP request and response information.
-            *   `request` — An **object** that contains the collection's request information. For a complete list of values, refer to the `definitions.request` entry in the [collection.json schema file](https://schema.postman.com/json/collection/v2.1.0/collection.json). If you pass an empty object for this value, the system defaults to an untitled GET request.
-
-        **Note:**
-
-
-        *   For a complete list of available property values for this endpoint, use the following references available in the [collection.json schema file](https://schema.postman.com/json/collection/v2.1.0/collection.json):
-            *   `info` object — Use the `definitions.info` entry.
-            *   `item` object — Use the `definitions.items` entry.
-        *   For all other possible values, refer to the [collection.json schema file](https://schema.postman.com/json/collection/v2.1.0/collection.json).
+      description: Este endpoint permite a los usuarios generar cotizaciones de envío con diferentes paqueterías basadas en el código postal de origen y destino, así como en las dimensiones y peso del paquete. Es útil para obtener un costo estimado del envío antes de proceder con la creación de la guía. Al proporcionar la información requerida, el sistema devolverá las cotizaciones disponibles de diversas paqueterías.
       operationId: Cotizador
       parameters:
       - name: Authorization
         in: header
-        description: ''
+        description: Bearer "access_token"
         required: true
-        style: simple
-        schema:
-          type: string
-          examples:
-          - Baerer eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICI3M2ZiUk1KbmVSQmU4el9zRXNQZTcyRjdBZFVrNnlDZ0VnN2VwWDM3RWJvIn0.eyJleHAiOjE3MjE3OTkyMTAsImlhdCI6MTcyMTc5NTYxMCwianRpIjoiMmIwNGQ0N2UtYzIwMS00MjFlLWExZjEtMTM4ZTg3ZWQxMzUyIiwiaXNzIjoiaHR0cHM6Ly9sb2dpbmNsYXJvLmNvbS9hdXRoL3JlYWxtcy9wbGF0YWZvcm1hLWNsYXJvIiwiYXVkIjoiYWNjb3VudCIsInN1YiI6IjQ0YzY1NDI5LWI0MGItNDhlMC05MDcyLTM5MzFlYzhkOWZmYSIsInR5cCI6IkJlYXJlciIsImF6cCI6InQxZW52aW9zIiwic2Vzc2lvbl9zdGF0ZSI6IjBiZTJjZTIzLTFlMDctNDE1MC1hNGE2LWViMjA4YTYwMzlmMiIsImFjciI6IjEiLCJyZWFsbV9hY2Nlc3MiOnsicm9sZXMiOlsib2ZmbGluZV9hY2Nlc3MiLCJ1bWFfYXV0aG9yaXphdGlvbiJdfSwicmVzb3VyY2VfYWNjZXNzIjp7ImFjY291bnQiOnsicm9sZXMiOlsibWFuYWdlLWFjY291bnQiLCJtYW5hZ2UtYWNjb3VudC1saW5rcyIsInZpZXctcHJvZmlsZSJdfX0sInNjb3BlIjoicHJvZmlsZSBlbWFpbCIsImJpcnRoRGF5IjoiMTAtMTAtMTk5MCIsImVtYWlsX3ZlcmlmaWVkIjpmYWxzZSwiZ2VuZGVyIjoiTWFzY3VsaW5vIiwibmFtZSI6IkFydHVybyBNb25hZGljIiwibW9iaWxlIjoiMjM4MTczMzU3MSIsInByZWZlcnJlZF91c2VybmFtZSI6ImNvcnJlb3BydWViYW1vbmFkaWNAZ21haWwuY29tIiwiZ2l2ZW5fbmFtZSI6IkFydHVybyIsImZhbWlseV9uYW1lIjoiTW9uYWRpYyIsImVtYWlsIjoiY29ycmVvcHJ1ZWJhbW9uYWRpY0BnbWFpbC5jb20ifQ.VN6a-T8HK-oanThRiy7WoIXeUR88pFUWMU3FBZQ3MKrZflnF5hRHkujtfUjD9TxxyKQBvojyk_EebY63-sH5w2Z3iKkaQOPR_i4LriyEy4BKeArV7SERvB8jCWAJLyaIadxkbe4UYtP_9RPz4ROzNdWbVBrPOIhI31EvXKcpMgvW5MmJB1FwEnLiiqkH_Y_1aEHMFXlRHeAlJHS-kMDgY7CHa-URF7NDxsPz7aQp5yyPm4P9rRYG1MQAnRhOML1gVYHO8GCJ1gT3R7v3McFV6-V7YlQUdoh3TUBGw9C8DqNlVbpMXYgGvugvr_fHUFXFMiJibF7WDt3CqzneYWDoxg
+        # style: simple
+        # schema:
+          # type: string
+          # examples:
+          # - Baerer eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICI3M2ZiUk1KbmVSQmU4el9zRXNQZTcyRjdBZFVrNnlDZ0VnN2VwWDM3RWJvIn0.eyJleHAiOjE3MjE3OTkyMTAsImlhdCI6MTcyMTc5NTYxMCwianRpIjoiMmIwNGQ0N2UtYzIwMS00MjFlLWExZjEtMTM4ZTg3ZWQxMzUyIiwiaXNzIjoiaHR0cHM6Ly9sb2dpbmNsYXJvLmNvbS9hdXRoL3JlYWxtcy9wbGF0YWZvcm1hLWNsYXJvIiwiYXVkIjoiYWNjb3VudCIsInN1YiI6IjQ0YzY1NDI5LWI0MGItNDhlMC05MDcyLTM5MzFlYzhkOWZmYSIsInR5cCI6IkJlYXJlciIsImF6cCI6InQxZW52aW9zIiwic2Vzc2lvbl9zdGF0ZSI6IjBiZTJjZTIzLTFlMDctNDE1MC1hNGE2LWViMjA4YTYwMzlmMiIsImFjciI6IjEiLCJyZWFsbV9hY2Nlc3MiOnsicm9sZXMiOlsib2ZmbGluZV9hY2Nlc3MiLCJ1bWFfYXV0aG9yaXphdGlvbiJdfSwicmVzb3VyY2VfYWNjZXNzIjp7ImFjY291bnQiOnsicm9sZXMiOlsibWFuYWdlLWFjY291bnQiLCJtYW5hZ2UtYWNjb3VudC1saW5rcyIsInZpZXctcHJvZmlsZSJdfX0sInNjb3BlIjoicHJvZmlsZSBlbWFpbCIsImJpcnRoRGF5IjoiMTAtMTAtMTk5MCIsImVtYWlsX3ZlcmlmaWVkIjpmYWxzZSwiZ2VuZGVyIjoiTWFzY3VsaW5vIiwibmFtZSI6IkFydHVybyBNb25hZGljIiwibW9iaWxlIjoiMjM4MTczMzU3MSIsInByZWZlcnJlZF91c2VybmFtZSI6ImNvcnJlb3BydWViYW1vbmFkaWNAZ21haWwuY29tIiwiZ2l2ZW5fbmFtZSI6IkFydHVybyIsImZhbWlseV9uYW1lIjoiTW9uYWRpYyIsImVtYWlsIjoiY29ycmVvcHJ1ZWJhbW9uYWRpY0BnbWFpbC5jb20ifQ.VN6a-T8HK-oanThRiy7WoIXeUR88pFUWMU3FBZQ3MKrZflnF5hRHkujtfUjD9TxxyKQBvojyk_EebY63-sH5w2Z3iKkaQOPR_i4LriyEy4BKeArV7SERvB8jCWAJLyaIadxkbe4UYtP_9RPz4ROzNdWbVBrPOIhI31EvXKcpMgvW5MmJB1FwEnLiiqkH_Y_1aEHMFXlRHeAlJHS-kMDgY7CHa-URF7NDxsPz7aQp5yyPm4P9rRYG1MQAnRhOML1gVYHO8GCJ1gT3R7v3McFV6-V7YlQUdoh3TUBGw9C8DqNlVbpMXYgGvugvr_fHUFXFMiJibF7WDt3CqzneYWDoxg
       requestBody:
         description: ''
         content:

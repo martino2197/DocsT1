@@ -35,6 +35,12 @@ const sidebar: SidebarsConfig = {
           label: "Generar cotización",
           className: "api-method post",
         },
+        {
+          type: "doc",
+          id: "T1Envíos/cotizador",
+          label: "Cotización",
+          className: "api-method post",
+        },
         // {
         //   type: "doc",
         //   id: "T1Envíos/updatesactiveandinactivepackages",
