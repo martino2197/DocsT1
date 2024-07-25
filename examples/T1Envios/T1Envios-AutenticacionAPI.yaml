@@ -18,61 +18,50 @@ paths:
       summary: Autenticación
       description: Antes de realizar cualquier operación, es necesario obtener un token de acceso proporcionando tus credenciales (`username` y `password`), que son tu correo electrónico y contraseña con los que ingresas a [t1envios.com](https://t1envios.com). Los valores de `client_id`, `grant_type` y `client_secret` son preestablecidos y deben usarse tal cual vienen en esta documentación.
       operationId: Obteneruntoken
-      parameters:
-      - name: Content-Type
-        in: header
-        description: 'application/x-www-form-urlencoded'
-        required: true
-        style: simple
-        schema:
-          const: application/x-www-form-urlencoded
-          type: string
-          examples:
-          - application/x-www-form-urlencoded
+      # parameters:
+      # - name: Content-Type
+        # in: header
+        # description: 'application/x-www-form-urlencoded'
+        # required: true
+        # schema:
+        #   type: string
+        #   enum: ['application/x-www-form-urlencoded']
       requestBody:
         content:
           application/x-www-form-urlencoded:
-            encoding: {}
             schema:
+              type: object
+              properties:
+                grant_type:
+                  description: password
+                  type: string
+                  examples: password
+                client_id:
+                  description: t1envios
+                  type: string
+                  examples: t1envios
+                username:
+                  description: Correo con que se registro en la pagina
+                  type: string
+                  examples: correopruebamonadic@gmail.com
+                password:
+                  description: Contraseña que registro en la pagina
+                  type: string
+                  examples: Monadic#2020
+                client_secret:
+                  description: d1d661be-8487-4660-bc19-540dbb12fb05
+                  type: string
+                  examples: d1d661be-8487-4660-bc19-540dbb12fb05
               required:
               - grant_type
               - client_id
               - username
               - password
               - client_secret
-              type: object
-              properties:
-                grant_type:
-                  description: password
-                  type: string
-                  examples:
-                  - password
-                client_id:
-                  description: t1envios
-                  type: string
-                  examples:
-                  - t1envios
-                username:
-                  description: Correo con que se registro en la pagina
-                  type: string
-                  examples:
-                  - correopruebamonadic@gmail.com
-                password:
-                  description: Contraseña que registro en la pagina
-                  type: string
-                  examples:
-                  - Monadic#2020
-                client_secret:
-                  description: d1d661be-8487-4660-bc19-540dbb12fb05
-                  type: string
-                  examples:
-                  - d1d661be-8487-4660-bc19-540dbb12fb05
-              contentMediaType: application/x-www-form-urlencoded
-        required: false
+        required: true
       responses:
         '200':
           description: OK
-          headers: {}
           content:
             application/json:
               schema:
