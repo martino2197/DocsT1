@@ -70,17 +70,14 @@ code {
   color: inherit !important;
 }
 
-// .openapi-explorer__playground-editor {
-//   background-color: inherit !important;
-// }
-
 .openapi-explorer__response-container {
   // background: var(--code-block-bg-c) !important;
-  div {
-    background: inherit;
+  // background: inherit !important;
+
+  > div {
+    background: inherit !important;
   }
 }
-
 
 .openapi-explorer__code-block-btn-group {
   background: transparent !important;
