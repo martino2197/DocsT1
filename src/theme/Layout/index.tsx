@@ -18,6 +18,7 @@ import LayoutProvider from '@theme/Layout/Provider';
 import ErrorPageContent from '@theme/ErrorPageContent';
 import type { Props } from '@theme/Layout';
 import styles from '@docusaurus/theme-classic/src/theme/Layout/styles.module.css';
+import CustomLogo from '@site/src/components/CustomLogo';
 
 export default function Layout(props: Props): JSX.Element {
   const {
@@ -40,6 +41,7 @@ export default function Layout(props: Props): JSX.Element {
       {/* CUSTOM CODE - remove navbar placement */}
       {/* <Navbar /> */}
 
+      <CustomLogo />
       <div
         id={SkipToContentFallbackId}
         className={clsx(ThemeClassNames.wrapper.main, styles.mainWrapper, wrapperClassName)}

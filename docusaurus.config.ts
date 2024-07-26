@@ -100,10 +100,8 @@ const config: Config = {
         // },
         href: "/",
         target: "_self",
-        // width: 139,
+        width: 162,
         // height: 28,
-        // width: 32,
-        // height: 32,
       },
       items: [
         {

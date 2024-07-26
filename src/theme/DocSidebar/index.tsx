@@ -14,7 +14,7 @@ import Logo from '@theme-original/Logo';
 export default function DocSidebarWrapper(props: Props): JSX.Element {
   return (
     <>
-      <Logo />
+      <Logo class="navbar__logo" width={"100px"}/>
       <DocSidebar {...props} />
     </>
   );
