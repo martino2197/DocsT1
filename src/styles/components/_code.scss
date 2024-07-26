@@ -177,7 +177,7 @@ pre[class*='language-'] {
 .token.number,
 .token.constant,
 .token.symbol {
-  color: #8454ff;
+  color: #df3079;
 }
 
 .token.selector,
@@ -185,7 +185,7 @@ pre[class*='language-'] {
 .token.function,
 .token.builtin,
 .token.inserted {
-  color: #ff6810;
+  color: #2e95d3 !important
 }
 
 .token.operator,

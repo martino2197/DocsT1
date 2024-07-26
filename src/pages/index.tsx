@@ -4,6 +4,8 @@ import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 import Layout from "@theme/Layout";
 import HomepageFeatures from "@site/src/components/HomepageFeatures";
 import Heading from "@theme/Heading";
+import Navbar from '@theme/Navbar';
+
 
 import styles from "./index.module.css";
 import { Button, Card, IconButton, Typography } from "@mui/material";
@@ -22,7 +24,8 @@ const LinkedinIcon = require("@site/static/img/linkedinIcon.svg").default;
 
 function HomepageHeader() {
   const { siteConfig } = useDocusaurusContext();
-  return (
+  return (<>
+    <Navbar /> 
     <header className={clsx("hero", styles.heroBanner)}>
       <div
         className="container"
@@ -68,6 +71,7 @@ function HomepageHeader() {
         <p className="hero__subtitle">{siteConfig.tagline}</p> */}
       </div>
     </header>
+    </>
   );
 }
 
