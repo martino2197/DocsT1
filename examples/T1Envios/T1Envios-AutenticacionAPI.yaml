@@ -558,34 +558,45 @@ components:
       properties:
         codigo_postal_origen:
           type: string
+          description: Código postal de la dirección origen
         codigo_postal_destino:
           type: string
+          description: Código postal de la dirección destino
         peso:
           type: integer
           contentEncoding: int32
+          description: Peso de paquete en kilogramos
         largo:
           type: integer
           contentEncoding: int32
+          description: Largo de paquete en centímetros
         ancho:
           type: integer
           contentEncoding: int32
+          description: Ancho de paquete en centímetros
         alto:
           type: integer
           contentEncoding: int32
+          description: Alto de paquete en centímetros
         dias_embarque:
           type: integer
           contentEncoding: int32
+          description: Tiempo de preparar tu paquete antes de enviarlo con la paquetería
         seguro:
           type: integer
           contentEncoding: int32
+          description: Determina si el paquete tiene seguro. True para asegurar paquete, False para caso contrario
         valor_paquete:
           type: integer
           contentEncoding: int32
+          description: Es requerido si el campo "seguro" es true. Valor de factura del paquete
         tipo_paquete:
           type: integer
           contentEncoding: int32
+          description: Indica si es paquete o sobre, 1 para sobre y 2 para paquete
         comercio_id:
           type: string
+          description: Identificador único de tienda
         productos:
           type: array
           items:
