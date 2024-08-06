@@ -29,17 +29,9 @@ import TabItem from "@theme/TabItem";
   as={"h1"}
   className={"openapi__heading"}
   children={"Generar cotización"}
->
-</Heading>
+></Heading>
 
-<MethodEndpoint
-  method={"post"}
-  path={"/mensajeria-Generar cotización"}
->
-  
-</MethodEndpoint>
-
-
+<MethodEndpoint method={"post"} path={"/mensajeria-cotizador"}></MethodEndpoint>
 
 Este endpoint permite a los usuarios generar cotizaciones de envío con diferentes paqueterías basadas en el código postal de origen y destino, así como en las dimensiones y peso del paquete. Es útil para obtener un costo estimado del envío antes de proceder con la creación de la guía. Al proporcionar la información requerida, el sistema devolverá las cotizaciones disponibles de diversas paqueterías.
 
@@ -48,8 +40,7 @@ Este endpoint permite a los usuarios generar cotizaciones de envío con diferent
   as={"h2"}
   className={"openapi-tabs__heading"}
   children={"Request"}
->
-</Heading>
+></Heading>
 
 <details
   style={{"marginBottom":"1rem"}}
@@ -486,76 +477,6 @@ Este endpoint permite a los usuarios generar cotizaciones de envío con diferent
             </TabItem>
           </MimeTabs>
         </div>
-
-        ### FAQ
-#### ¿Qué requisitos hay para el peso y las dimensiones del paquete?
-El peso del paquete debe ser mayor a 0 kg. Las dimensiones del paquete deben estar en centímetros y ser mayores a 0.
-
-#### ¿Puedo obtener cotizaciones para múltiples paquetes a la vez?
-Actualmente, este endpoint solo permite cotizar un paquete por solicitud. Para cotizar múltiples paquetes, realice solicitudes separadas para cada uno.
-
-#### ¿Qué hago si recibo un error 401 Unauthorized?
-Verifique que está utilizando el token de acceso correcto y que no ha expirado. Si el problema persiste, intente autenticarse nuevamente para obtener un nuevo token.
-
-#### ¿Qué debo hacer si recibo un error 500 Internal Server Error?
-Esto puede ser causado por problemas temporales del servidor. Espere unos minutos e intente nuevamente. Si el problema continúa, contacte al soporte técnico.
-
-#### ¿Cómo puedo actualizar la información de mi cuenta?
-Inicie sesión en el dashboard de t1envios.com y vaya a la sección de configuración de cuenta para actualizar su información.
-
-
-
-<div style={{"marginBottom": "var(--ifm-paragraph-margin-bottom)"}}>
-  #### Tiempo de Respuesta
-  <p>
-    Las solicitudes a la API usualmente responden en un tiempo de 1-5 segundos, dependiendo de la complejidad de la solicitud y la carga del servidor.
-  </p>
-</div>
-
-<div style={{"marginBottom": "var(--ifm-paragraph-margin-bottom)"}}>
-  #### Límite de Tasa
-
-  <p>
-    Hasta 100 solicitudes por minuto por usuario. Si se exceden los límites de tasa, se recibirá una respuesta con el código de estado <strong>429 (Too Many Requests)</strong>.
-  </p>
-</div>
-
-### Errores Comunes
-
-<div style={{"marginBottom": "var(--ifm-paragraph-margin-bottom)"}}>
-  #### 400 Bad Request
-  <p>
-    Asegúrese de que todos los campos obligatorios están incluidos y correctamente formateados.
-  </p>
-</div>
-
-<div style={{"marginBottom": "var(--ifm-paragraph-margin-bottom)"}}>
-  #### 401 Unauthorized
-  <p>
-    Asegúrese de que el token de acceso es válido y no ha expirado.
-  </p>
-</div>
-
-<div style={{"marginBottom": "var(--ifm-paragraph-margin-bottom)"}}>
-  #### 403 Forbidden
-  <p>
-    Verifique que tiene los permisos necesarios para acceder al recurso solicitado.
-  </p>
-</div>
-
-<div style={{"marginBottom": "var(--ifm-paragraph-margin-bottom)"}}>
-  #### 404 Not Found
-  <p>
-    El recurso solicitado no existe. Verifique la URL y los parámetros de la solicitud.
-  </p>
-</div>
-
-<div style={{"marginBottom": "var(--ifm-paragraph-margin-bottom)"}}>
-  #### 500 Internal Server Error
-  <p>
-    Puede ser causado por problemas temporales del servidor. Intente nuevamente después de unos minutos.
-  </p>
-</div>
       </TabItem><TabItem
         label={"400"}
         value={"400"}
@@ -992,5 +913,78 @@ Inicie sesión en el dashboard de t1envios.com y vaya a la sección de configura
       </TabItem>
     </ApiTabs>
   </div>
+  ### FAQ
+#### ¿Qué requisitos hay para el peso y las dimensiones del paquete?
+El peso del paquete debe ser mayor a 0 kg. Las dimensiones del paquete deben estar en centímetros y ser mayores a 0.
+
+#### ¿Puedo obtener cotizaciones para múltiples paquetes a la vez?
+
+Actualmente, este endpoint solo permite cotizar un paquete por solicitud. Para cotizar múltiples paquetes, realice solicitudes separadas para cada uno.
+
+#### ¿Qué hago si recibo un error 401 Unauthorized?
+
+Verifique que está utilizando el token de acceso correcto y que no ha expirado. Si el problema persiste, intente autenticarse nuevamente para obtener un nuevo token.
+
+#### ¿Qué debo hacer si recibo un error 500 Internal Server Error?
+
+Esto puede ser causado por problemas temporales del servidor. Espere unos minutos e intente nuevamente. Si el problema continúa, contacte al soporte técnico.
+
+#### ¿Cómo puedo actualizar la información de mi cuenta?
+
+Inicie sesión en el dashboard de t1envios.com y vaya a la sección de configuración de cuenta para actualizar su información.
+
+<div style={{ marginBottom: "var(--ifm-paragraph-margin-bottom)" }}>
+  #### Tiempo de Respuesta
+  <p>
+    Las solicitudes a la API usualmente responden en un tiempo de 1-5 segundos,
+    dependiendo de la complejidad de la solicitud y la carga del servidor.
+  </p>
 </div>
-      
+
+<div style={{"marginBottom": "var(--ifm-paragraph-margin-bottom)"}}>
+  #### Límite de Tasa
+
+  <p>
+    Hasta 100 solicitudes por minuto por usuario. Si se exceden los límites de tasa, se recibirá una respuesta con el código de estado <strong>429 (Too Many Requests)</strong>.
+  </p>
+</div>
+
+### Errores Comunes
+
+<div style={{ marginBottom: "var(--ifm-paragraph-margin-bottom)" }}>
+  #### 400 Bad Request
+  <p>
+    Asegúrese de que todos los campos obligatorios están incluidos y
+    correctamente formateados.
+  </p>
+</div>
+
+<div style={{ marginBottom: "var(--ifm-paragraph-margin-bottom)" }}>
+  #### 401 Unauthorized
+  <p>Asegúrese de que el token de acceso es válido y no ha expirado.</p>
+</div>
+
+<div style={{ marginBottom: "var(--ifm-paragraph-margin-bottom)" }}>
+  #### 403 Forbidden
+  <p>
+    Verifique que tiene los permisos necesarios para acceder al recurso
+    solicitado.
+  </p>
+</div>
+
+<div style={{ marginBottom: "var(--ifm-paragraph-margin-bottom)" }}>
+  #### 404 Not Found
+  <p>
+    El recurso solicitado no existe. Verifique la URL y los parámetros de la
+    solicitud.
+  </p>
+</div>
+
+<div style={{"marginBottom": "var(--ifm-paragraph-margin-bottom)"}}>
+  #### 500 Internal Server Error
+  <p>
+    Puede ser causado por problemas temporales del servidor. Intente nuevamente después de unos minutos.
+  </p>
+</div>
+</div>
+

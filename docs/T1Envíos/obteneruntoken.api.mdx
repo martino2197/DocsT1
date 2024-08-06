@@ -45,6 +45,66 @@ Antes de realizar cualquier operación, es necesario obtener un token de acceso 
 
 Los valores de `client_id`, `grant_type` y `client_secret` son preestablecidos y deben usarse tal cual vienen en esta documentación.
 
+Antes de realizar cualquier operación, es necesario obtener un token de acceso proporcionando tus credenciales (`username` y `password`), que son tu correo electrónico y contraseña con los que ingresas a [t1envios.com](https://t1envios.com). 
+
+Los valores de `client_id`, `grant_type` y `client_secret` son preestablecidos y deben usarse tal cual vienen en esta documentación.
+
+### Tutorial paso a paso
+
+#### Paso 1: Registro en T1Envios
+
+Primero, necesitas crear una cuenta en [t1envios.com](https://t1envios.com). Si ya tienes una cuenta, simplemente inicia sesión.
+
+#### Paso 2: Obtener credenciales
+
+Una vez que tengas tu cuenta, asegúrate de tener tu correo electrónico (username) y tu contraseña a la mano. Estos serán necesarios para autenticarse.
+
+#### Paso 3: Configurar Postman
+
+1. **Abrir Postman:** Si no tienes Postman instalado, puedes descargarlo de [aquí](https://www.postman.com/downloads/).
+
+2. **Crear una nueva colección:** En Postman, crea una nueva colección para organizar tus peticiones a la API de T1Envios.
+
+3. **Crear una nueva petición:** Dentro de tu colección, crea una nueva petición `POST`.
+
+#### Paso 4: Realizar una petición para obtener un token
+
+1. **Configurar la petición:**
+    - Método: `POST`
+    - URL: `https://api.t1envios.com/token`
+    - Encabezado: `Content-Type: application/x-www-form-urlencoded`
+
+2. **Añadir los parámetros:**
+    - `grant_type`: `password`
+    - `client_id`: `t1envios`
+    - `username`: `TU_CORREO`
+    - `password`: `TU_CONTRASEÑA`
+    - `client_secret`: `SECRET`
+
+3. **Enviar la petición:** Haz clic en el botón "Send" para enviar la petición.
+
+4. **Copiar el token:** Copia el valor del `access_token` de la respuesta.
+
+#### Paso 5: Incluir el token en tus solicitudes
+
+1. **Crear una nueva petición:** Crea una nueva petición dentro de la misma colección en Postman.
+
+2. **Añadir el encabezado de autorización:**
+    - Encabezado: `Authorization`
+    - Valor: `Bearer TU_ACCESS_TOKEN`
+
+3. **Configurar la petición:** Configura el método y la URL de la petición según el endpoint que deseas utilizar.
+
+#### Paso 6: Probar tu integración
+
+Prueba tu integración realizando peticiones a los diferentes endpoints de la API de T1Envios utilizando el token de acceso.
+
+#### Paso 7: Renovar el token
+
+Recuerda que los tokens tienen una duración limitada. Debes asegurarte de renovar tu token cuando expire utilizando el `refresh_token`.
+
+Con estos pasos, deberías poder autenticarse y empezar a utilizar la API de T1Envios con éxito.
+
 <Heading
   id={"request"}
   as={"h2"}

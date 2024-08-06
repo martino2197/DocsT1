@@ -14,12 +14,6 @@ import SchemaTabs from "@theme/SchemaTabs";
 import TabItem from "@theme/TabItem";
 import Export from "@theme/ApiExplorer/Export";
 
-{/* <span
-  className={"theme-doc-version-badge badge badge--secondary"}
-  children={"Version: 1.0.0"}
->
-</span> */}
-
 <Heading
   as={"h1"}
   className={"openapi__heading"}
@@ -27,26 +21,9 @@ import Export from "@theme/ApiExplorer/Export";
 >
 </Heading>
 
-
-
-{/* Es un servicio creado para poder cotizar y generar guías.
-
-
-Requests API
-Las peticiones requieren por seguridad Autenticarse por el esquema de autenticación Bearer, por lo que previamente se requiere obtener un access_token, el cual regresara un token de autenticación.
-
-Headers
-Todas las peticiones deben llevar los siguientes Headers :
-\{
-    Accept: "application/json",
-    Authorization: "Bearer \{token\}"
-\} */}
-
-{/* ## T1 Envíos */}
-
 La API de T1 Envíos está diseñada para facilitar la integración de funcionalidades de cotización y generación de guías de envío en cualquier aplicación web o móvil. Utiliza una arquitectura RESTful y el protocolo HTTP para proporcionar una interfaz uniforme y fácil de usar, con respuestas en formato JSON y códigos de estado estándar.
 
-### Características Principales
+## Características Principales
 
 - **Autenticación Segura**: Utiliza el esquema de autenticación Bearer, donde cada solicitud requiere un token de acceso que se obtiene a través de credenciales válidas.
 - **Cotización de Envíos**: Permite obtener cotizaciones precisas de envíos basadas en el origen, destino, peso y dimensiones del paquete.
@@ -65,24 +42,56 @@ Accede al administrador para configurar tu cuenta. Aquí puedes agregar saldo a 
 
 ### Paso 3: Autenticación vía API
 
-Utiliza tu correo y contraseña con los que entras a t1envios.com para autenticarse a través de la API. Esta autenticación es necesaria para obtener un token y poder realizar solicitudes seguras a la API.
+Utiliza tu correo y contraseña con los que entras a t1envios.com para autenticarse a través de la API. Esta autenticación es necesaria para obtener un token y poder realizar solicitudes seguras a la API. Consulta la sección de [Autenticación](obteneruntoken) para obtener tu clave de API.
 
-## Contacto
+## Endpoints Disponibles
 
-Para más información o asistencia, puedes contactar al equipo de T1 Envíos a través del correo electrónico [hola@t1envios.com](mailto:hola@t1envios.com) o visitar nuestro sitio web en [t1envios.com](https://t1envios.com).
+La API de T1Envios incluye los siguientes endpoints principales:
+
+<div style={{ display: 'flex', flexDirection: 'column', gap: '20px', marginTop: '20px', marginBottom: '20px' }}>
+  <div style={{ display: 'flex', alignItems: 'center', border: '1px solid #ddd', borderRadius: '8px', padding: '10px', boxSizing: 'border-box' }}>
+    <div style={{ marginRight: '15px', fontSize: '24px' }}>📦</div>
+    <div>
+      <h3 style={{ margin: '0' }}><a href="/docs/T1Envíos/generarcotizacion">Generar Cotización</a></h3>
+      <p style={{ margin: '0' }}>Permite generar una cotización para el envío.</p>
+    </div>
+  </div>
+  <div style={{ display: 'flex', alignItems: 'center', border: '1px solid #ddd', borderRadius: '8px', padding: '10px', boxSizing: 'border-box' }}>
+    <div style={{ marginRight: '15px', fontSize: '24px' }}>📄</div>
+    <div>
+      <h3 style={{ margin: '0' }}><a href="/docs/T1Envíos/generarguiaapartirdecotizacionprevia">Generar Guía</a></h3>
+      <p style={{ margin: '0' }}>Permite generar una guía de envío.</p>
+    </div>
+  </div>
+  <div style={{ display: 'flex', alignItems: 'center', border: '1px solid #ddd', borderRadius: '8px', padding: '10px', boxSizing: 'border-box' }}>
+    <div style={{ marginRight: '15px', fontSize: '24px' }}>🚚</div>
+    <div>
+      <h3 style={{ margin: '0' }}><a href="/docs/T1Envíos/consultadeestadodeguia">Rastreo de Guía</a></h3>
+      <p style={{ margin: '0' }}>Permite rastrear el estado de una guía.</p>
+    </div>
+  </div>
+  <div style={{ display: 'flex', alignItems: 'center', border: '1px solid #ddd', borderRadius: '8px', padding: '10px', boxSizing: 'border-box' }}>
+    <div style={{ marginRight: '15px', fontSize: '24px' }}>📑</div>
+    <div>
+      <h3 style={{ margin: '0' }}><a href="/docs/T1Envíos/consultarguias">Consultar Guías</a></h3>
+      <p style={{ margin: '0' }}>Permite consultar las guías generadas.</p>
+    </div>
+  </div>
+  <div style={{ display: 'flex', alignItems: 'center', border: '1px solid #ddd', borderRadius: '8px', padding: '10px', boxSizing: 'border-box' }}>
+    <div style={{ marginRight: '15px', fontSize: '24px' }}>💰</div>
+    <div>
+      <h3 style={{ margin: '0' }}><a href="/docs/T1Envíos/consulta-saldo">Consultar Saldo</a></h3>
+      <p style={{ margin: '0' }}>Permite consultar el saldo disponible.</p>
+    </div>
+  </div>
+</div>
 
 
-{/* <div
-  style={{"display":"flex","flexDirection":"column","marginBottom":"var(--ifm-paragraph-margin-bottom)"}}
->
-  <h3
-    style={{"marginBottom":"0.25rem"}}
-  >
-    Contact
-  </h3><span>
-    T1Envios: 
-  </span><span>
-    URL: [https://enapi.t1envios.com](mailto:https://enapi.t1envios.com)
-  </span>
-</div> */}
-      
+## Ejemplos de Uso
+
+En cada sección de esta documentación, encontrarás ejemplos detallados de cómo utilizar cada endpoint, incluyendo los parámetros necesarios y las posibles respuestas.
+
+
+## Soporte
+
+Si tienes alguna pregunta o necesitas asistencia adicional, por favor contacta con nuestro equipo de soporte a través del portal de T1Envios. Para más información o asistencia, puedes contactar al equipo de T1 Envíos a través del correo electrónico [hola@t1envios.com](mailto:hola@t1envios.com) o visitar nuestro sitio web en [t1envios.com](https://t1envios.com).

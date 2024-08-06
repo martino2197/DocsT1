@@ -29,17 +29,12 @@ import TabItem from "@theme/TabItem";
   as={"h1"}
   className={"openapi__heading"}
   children={"Rastreo de guía "}
->
-</Heading>
+></Heading>
 
 <MethodEndpoint
   method={"get"}
   path={"/webhook-maestro/webhook/estado-guia/{guia}"}
->
-  
-</MethodEndpoint>
-
-
+></MethodEndpoint>
 
 Método para consultar el estado de una guía.
 
@@ -48,8 +43,7 @@ Método para consultar el estado de una guía.
   as={"h2"}
   className={"openapi-tabs__heading"}
   children={"Request"}
->
-</Heading>
+></Heading>
 
 <details
   style={{"marginBottom":"1rem"}}
@@ -283,7 +277,7 @@ Método para consultar el estado de una guía.
                     responseExample={"{\n  \"success\": true,\n  \"message\": \"string\",\n  \"detail\": {\n    \"id_seller\": \"string\",\n    \"codigo\": \"string\",\n    \"descripcion\": \"string\",\n    \"familia_interna\": \"string\",\n    \"familia_externa\": \"string\",\n    \"guia\": \"string\",\n    \"fecha\": \"string\",\n    \"recibe\": \"string\"\n  }\n}"}
                     language={"json"}
                   >
-                    
+
                   </ResponseSamples>
                 </TabItem><TabItem
                   label={"Estructura de Response:"}
@@ -293,7 +287,7 @@ Método para consultar el estado de una guía.
                     responseExample={"{\n  \"success\": true,\n  \"message\": \"Petición exitosa!\",\n  \"detail\": {\n    \"id_seller\": \"1\",\n    \"codigo\": \"4\",\n    \"descripcion\": \"Producto entregado\",\n    \"familia_interna\": \"0\",\n    \"familia_generica\": \"\",\n    \"guia\": \"0122445\",\n    \"fecha\": \"2021-08-18T10:00:39.178463435\",\n    \"recibe\": \"Jhon Snow\"\n  }\n}"}
                     language={"json"}
                   >
-                    
+
                   </ResponseSamples>
                 </TabItem>
               </SchemaTabs>
@@ -305,11 +299,11 @@ Método para consultar el estado de una guía.
         value={"400"}
       >
         <div>
-          
-          
+
+
           Posibles errores debido a que no se pudo realizar la consulta.
-          
-          
+
+
         </div><details
           style={{"textAlign":"left","marginBottom":"1rem"}}
           className={"openapi-markdown__details"}
@@ -325,7 +319,7 @@ Método para consultar el estado de una guía.
           </summary><ul
             style={{"marginLeft":"1rem"}}
           >
-            
+
           </ul>
         </details><div>
           <MimeTabs
@@ -359,7 +353,7 @@ Método para consultar el estado de una guía.
                     </summary><div
                       style={{"textAlign":"left","marginLeft":"1rem"}}
                     >
-                      
+
                     </div><ul
                       style={{"marginLeft":"1rem"}}
                     >
@@ -371,7 +365,7 @@ Método para consultar el estado de una guía.
                         qualifierMessage={undefined}
                         schema={{"type":"boolean"}}
                       >
-                        
+
                       </SchemaItem><SchemaItem
                         collapsible={false}
                         name={"message"}
@@ -380,7 +374,7 @@ Método para consultar el estado de una guía.
                         qualifierMessage={undefined}
                         schema={{"type":"string"}}
                       >
-                        
+
                       </SchemaItem><SchemaItem
                         collapsible={false}
                         name={"error"}
@@ -389,7 +383,7 @@ Método para consultar el estado de una guía.
                         qualifierMessage={undefined}
                         schema={{"type":"string"}}
                       >
-                        
+
                       </SchemaItem>
                     </ul>
                   </details>
@@ -401,7 +395,7 @@ Método para consultar el estado de una guía.
                     responseExample={"{\n  \"success\": true,\n  \"message\": \"string\",\n  \"error\": \"string\"\n}"}
                     language={"json"}
                   >
-                    
+
                   </ResponseSamples>
                 </TabItem><TabItem
                   label={"Posibles errores debido a que no se pudo realizar la consulta."}
@@ -411,7 +405,7 @@ Método para consultar el estado de una guía.
                     responseExample={"{\n  \"success\": false,\n  \"message\": \"Error al pocesar petición\",\n  \"error\": \"La guia numero_guia no existe\"\n}"}
                     language={"json"}
                   >
-                    
+
                   </ResponseSamples>
                 </TabItem>
               </SchemaTabs>
@@ -420,6 +414,72 @@ Método para consultar el estado de una guía.
         </div>
       </TabItem>
     </ApiTabs>
+
   </div>
+          ### FAQ
+
+        #### ¿Qué hago si recibo un error 401 Unauthorized?
+
+        Verifique que está utilizando el token de acceso correcto y que no ha expirado. Si el problema persiste, intente autenticarse nuevamente para obtener un nuevo token.
+
+        #### ¿Qué debo hacer si recibo un error 500 Internal Server Error?
+
+        Esto puede ser causado por problemas temporales del servidor. Espere unos minutos e intente nuevamente. Si el problema continúa, contacte al soporte técnico.
+
+        #### ¿Cómo puedo actualizar la información de mi cuenta?
+
+        Inicie sesión en el dashboard de t1envios.com y vaya a la sección de configuración de cuenta para actualizar su información.
+
+
+        <div style={{"marginBottom": "var(--ifm-paragraph-margin-bottom)"}}>
+          #### Tiempo de Respuesta
+          <p>
+            Las solicitudes a la API usualmente responden en un tiempo de 1-5 segundos, dependiendo de la complejidad de la solicitud y la carga del servidor.
+          </p>
+        </div>
+
+        <div style={{"marginBottom": "var(--ifm-paragraph-margin-bottom)"}}>
+          #### Límite de Tasa
+          <p>
+            Hasta 100 solicitudes por minuto por usuario. Si se exceden los límites de tasa, se recibirá una respuesta con el código de estado <strong>429 (Too Many Requests)</strong>.
+          </p>
+        </div>
+
+        ### Errores Comunes
+
+        <div style={{"marginBottom": "var(--ifm-paragraph-margin-bottom)"}}>
+          #### 400 Bad Request
+          <p>
+            Asegúrese de que todos los campos obligatorios están incluidos y correctamente formateados.
+          </p>
+        </div>
+
+        <div style={{"marginBottom": "var(--ifm-paragraph-margin-bottom)"}}>
+          #### 401 Unauthorized
+          <p>
+            Asegúrese de que el token de acceso es válido y no ha expirado.
+          </p>
+        </div>
+
+        <div style={{"marginBottom": "var(--ifm-paragraph-margin-bottom)"}}>
+          #### 403 Forbidden
+          <p>
+            Verifique que tiene los permisos necesarios para acceder al recurso solicitado.
+          </p>
+        </div>
+
+        <div style={{"marginBottom": "var(--ifm-paragraph-margin-bottom)"}}>
+          #### 404 Not Found
+          <p>
+            El recurso solicitado no existe. Verifique la URL y los parámetros de la solicitud.
+          </p>
+        </div>
+
+        <div style={{"marginBottom": "var(--ifm-paragraph-margin-bottom)"}}>
+          #### 500 Internal Server Error
+          <p>
+            Puede ser causado por problemas temporales del servidor. Intente nuevamente después de unos minutos.
+          </p>
+        </div>
+
 </div>
-      

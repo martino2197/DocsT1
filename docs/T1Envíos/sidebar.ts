@@ -23,18 +23,6 @@ const sidebar: SidebarsConfig = {
       label: "ENDPOINTS",
       collapsed: false,
       items: [
-        // {
-        //   type: "doc",
-        //   id: "T1Envíos/generarcotizacion",
-        //   label: "Generar cotización",
-        //   className: "api-method post",
-        // },
-        // {
-        //   type: "doc",
-        //   id: "T1Envíos/newgenerarcotizacion",
-        //   label: "Generar cotización",
-        //   className: "api-method post",
-        // },
         {
           type: "doc",
           id: "T1Envíos/generarcotizacion",

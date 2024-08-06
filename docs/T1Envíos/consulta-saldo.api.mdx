@@ -358,5 +358,69 @@ Método para consultar saldo.
       </TabItem>
     </ApiTabs>
   </div>
+            ### FAQ
+
+        #### ¿Qué hago si recibo un error 401 Unauthorized?
+
+        Verifique que está utilizando el token de acceso correcto y que no ha expirado. Si el problema persiste, intente autenticarse nuevamente para obtener un nuevo token.
+
+        #### ¿Qué debo hacer si recibo un error 500 Internal Server Error?
+
+        Esto puede ser causado por problemas temporales del servidor. Espere unos minutos e intente nuevamente. Si el problema continúa, contacte al soporte técnico.
+
+        #### ¿Cómo puedo actualizar la información de mi cuenta?
+
+        Inicie sesión en el dashboard de t1envios.com y vaya a la sección de configuración de cuenta para actualizar su información.
+
+        <div style={{"marginBottom": "var(--ifm-paragraph-margin-bottom)"}}>
+          #### Tiempo de Respuesta
+          <p>
+            Las solicitudes a la API usualmente responden en un tiempo de 1-5 segundos, dependiendo de la complejidad de la solicitud y la carga del servidor.
+          </p>
+        </div>
+
+        <div style={{"marginBottom": "var(--ifm-paragraph-margin-bottom)"}}>
+          #### Límite de Tasa
+          <p>
+            Hasta 100 solicitudes por minuto por usuario. Si se exceden los límites de tasa, se recibirá una respuesta con el código de estado <strong>429 (Too Many Requests).</strong> 
+          </p>
+        </div>
+
+        ### Errores Comunes
+
+        <div style={{"marginBottom": "var(--ifm-paragraph-margin-bottom)"}}>
+          #### 400 Bad Request
+          <p>
+            Asegúrese de que todos los campos obligatorios están incluidos y correctamente formateados.
+          </p>
+        </div>
+
+        <div style={{"marginBottom": "var(--ifm-paragraph-margin-bottom)"}}>
+          #### 401 Unauthorized
+          <p>
+            Asegúrese de que el token de acceso es válido y no ha expirado.
+          </p>
+        </div>
+
+        <div style={{"marginBottom": "var(--ifm-paragraph-margin-bottom)"}}>
+          #### 403 Forbidden
+          <p>
+            Verifique que tiene los permisos necesarios para acceder al recurso solicitado.
+          </p>
+        </div>
+
+        <div style={{"marginBottom": "var(--ifm-paragraph-margin-bottom)"}}>
+          #### 404 Not Found
+          <p>
+            El recurso solicitado no existe. Verifique la URL y los parámetros de la solicitud.
+          </p>
+        </div>
+
+        <div style={{"marginBottom": "var(--ifm-paragraph-margin-bottom)"}}>
+          #### 500 Internal Server Error
+          <p>
+            Puede ser causado por problemas temporales del servidor. Intente nuevamente después de unos minutos.
+          </p>
+        </div>
 </div>
       
