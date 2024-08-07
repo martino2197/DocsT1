@@ -1,7 +1,7 @@
 ---
 id: consultadeestadodeguia
 title: "Rastreo de guía "
-description: "Método para consultar el estado de una guía."
+description: "Este endpoint permite a los usuarios consultar el estado actual de una guía de envío. Al proporcionar el número de guía, el sistema devolverá información detallada sobre la ubicación y el estatus del paquete, incluyendo eventos recientes y el nombre del receptor, si ya ha sido entregado. Esta funcionalidad es crucial para el seguimiento en tiempo real y la gestión eficiente de los envíos."
 sidebar_label: "Rastreo de guía "
 hide_title: true
 hide_table_of_contents: true
@@ -36,7 +36,7 @@ import TabItem from "@theme/TabItem";
   path={"/webhook-maestro/webhook/estado-guia/{guia}"}
 ></MethodEndpoint>
 
-Método para consultar el estado de una guía.
+Este endpoint permite a los usuarios consultar el estado actual de una guía de envío. Al proporcionar el número de guía, el sistema devolverá información detallada sobre la ubicación y el estatus del paquete, incluyendo eventos recientes y el nombre del receptor, si ya ha sido entregado. Esta funcionalidad es crucial para el seguimiento en tiempo real y la gestión eficiente de los envíos.
 
 <Heading
   id={"request"}

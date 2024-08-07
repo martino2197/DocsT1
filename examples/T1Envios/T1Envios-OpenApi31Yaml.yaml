@@ -376,7 +376,7 @@ paths:
       tags:
       - API
       summary: Generar guía
-      description: Método para la generación de una guía a partir de una cotización.
+      description: Este endpoint permite a los usuarios generar una guía de envío a partir de una cotización previamente obtenida. Al proporcionar el token de cotización y la información requerida del remitente y destinatario, el sistema generará una guía válida para el envío, la cual puede incluir opciones como recolección y notificaciones. Esta guía es esencial para la logística del envío y proporciona un seguimiento detallado del paquete desde su origen hasta su destino.
       operationId: Generarguíaapartirdecotizaciónprevia
       parameters:
       - name: tokenCotizacion
@@ -518,7 +518,7 @@ paths:
       tags:
       - API
       summary: Consultar guías
-      description: Método para consultar guiás generadas el cual recibe el número de registros que desea consultar y el número de pagina.
+      description: Este endpoint permite a los usuarios consultar las guías de envío generadas, proporcionando la opción de paginación y filtrado. Al especificar el número de registros por página y el número de página, junto con parámetros adicionales como fechas, estatus, y mensajería, los usuarios pueden obtener una lista detallada y organizada de las guías generadas, facilitando la gestión y el seguimiento de sus envíos.
       operationId: Consultarguías
       parameters:
       - name: clave
@@ -658,7 +658,7 @@ paths:
       tags:
       - API
       summary: Consultar saldo
-      description: Método para consultar saldo.
+      description: Este endpoint permite a los usuarios consultar el saldo disponible en su cuenta de T1Envios. Al proporcionar la clave del comercio, el sistema devolverá el monto actual del saldo, facilitando la gestión financiera y la planificación de futuros envíos.
       operationId: ConsultaSaldo
       parameters:
       - name: clave
@@ -726,7 +726,7 @@ paths:
       tags:
       - API
       summary: Rastreo de guía 
-      description: Método para consultar el estado de una guía.
+      description: Este endpoint permite a los usuarios consultar el estado actual de una guía de envío. Al proporcionar el número de guía, el sistema devolverá información detallada sobre la ubicación y el estatus del paquete, incluyendo eventos recientes y el nombre del receptor, si ya ha sido entregado. Esta funcionalidad es crucial para el seguimiento en tiempo real y la gestión eficiente de los envíos.
       operationId: Consultadeestadodeguía
       parameters:
       - name: guia
