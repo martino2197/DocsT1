@@ -25,7 +25,7 @@ const sidebar: SidebarsConfig = {
         {
           type: "doc",
           id: "T1Comercios/actualizacion-de-informacion-de-un-producto",
-          label: "Actualización de información de un producto \n",
+          label: "Actualización de información de un producto",
           className: "api-method patch",
         },
         {
