@@ -22,23 +22,15 @@ info:
     1. **Por enviar:** La partida está lista para ser enviada.
     2. **Por recolectar:** La partida está lista para ser recolectada por el transportista.
     3. **En camino:** La partida está en camino hacia su destino.
-    4. **Entregado:** La partida ha sido entregada al destinatario.
-    5. **Facturado:** La partida ha sido facturada. Este estado solo se aplica a pedidos con guías manuales.
+    4. **Entregado:** La partida ha sido entregada al destinatario. Si la guía de las partidas entregadas es de tipo "Manual", es necesario carga la evidencia de entrega para que pueda ser pagada al vendedor. 
+    5. **Facturado:** Se ha cargado la evidencia de entrega de las partidas de un pedido enviadas por una guía manual.
     6. **Cancelado por cliente:** La partida ha sido cancelada por el cliente antes de ser enviada.
     7. **Cancelado por vendedor:** La partida ha sido cancelada por el vendedor antes de ser enviada.
     
     **Notas:** 
     - **A.** Solo se puede cancelar por vendedor un pedido si está en el estado "por enviar". Esto significa que un pedido no se puede cancelar si ya tiene guía asignada.
     
-    - **B.** Para las guías automáticas y las partidas marcadas como FF, no es necesario generar una factura genérica del vendedor para su liquidación.
-    
-    El siguiente catálogo indica los motivos de cancelación por marketplace:
-    
-    **CS:**
-      - 65: No tengo el producto.
-    
-    **SR:**
-      - 65: No tengo el producto.
+    - **B.** Para las guías automáticas y las partidas marcadas como FF, no es necesario cargar la evidnecia de entrega  para su liquidación.
     
     Las especificaciones detalladas para cada endpoint se encuentran descritas en la sección respectiva.
 
@@ -58,21 +50,27 @@ paths:
       tags: 
         - Lista pedidos Pedidos
       summary: Listado de pedidos de un comercio
-      description: >
-        Este endpoint permite obtener un listado completo de los pedidos de un comercio específico basado en el ID del vendedor proporcionado. 
-        Los parámetros de filtro opcionales incluyen el estado, la fecha de rango, el tamaño de página y la paginación para facilitar la búsqueda y el manejo de grandes volúmenes de pedidos.
-        Ten en cuenta que los pedidos devueltos en este listado pueden tener diferentes estados y detalles, lo que te permite gestionar eficazmente tu inventario y las operaciones de envío.
+      description: |
+        Este endpoint permite obtener un listado completo de los pedidos de un comercio específico basado en el ID del vendedor proporcionado. Los pedidos en este listado son aquellos con pagos aprobados y están listos para ser enviados; sin embargo, pueden ser cancelados durante el proceso de envío, siempre y cuando el producto no cuente con guía.
+
+        Los parámetros de filtro opcionales incluyen el estado, el rango de fechas, el tamaño de página y la paginación para facilitar la búsqueda y el manejo de grandes volúmenes de pedidos. Ten en cuenta que los pedidos devueltos pueden tener diferentes estados y detalles, lo que te permite gestionar eficazmente tu inventario y las operaciones de envío.
 
         Los parámetros disponibles para filtrar los pedidos son:
-          - `filter-status-family`: Filtra por la familia de estados de los pedidos.
-          - `filter-date-range-end` y `filter-date-range-begin`: Filtra por rango de fechas de los pedidos.
-          - `filter-status`: Filtra por un estado específico de los pedidos.
-          - `pageSize` y `page`: Controlan el tamaño de la página y la paginación para la respuesta.
-          - `filter-orderId`: Filtra por ID de pedido específico.
+        
+        - `filter-status-family`: Filtra por la familia de estados de los pedidos.
+        - `filter-date-range-end` y `filter-date-range-begin`: Filtra por rango de fechas de los pedidos.
+        - `filter-status`: Filtra por un estado específico de los pedidos.
+        - `pageSize` y `page`: Controlan el tamaño de la página y la paginación para la respuesta.
+        - `filter-orderId`: Filtra por ID de pedido específico.
 
         Para obtener más detalles sobre los parámetros y las respuestas posibles, consulta la sección de especificaciones correspondiente.
 
         Nota: Es necesario proporcionar un token de autorización válido en la solicitud para acceder a este endpoint.
+
+
+
+
+
       operationId: getOrdersFull
       parameters:
         - $ref: '#/components/parameters/IDSELLER'
@@ -251,8 +249,9 @@ paths:
   
   /kidal/v1/order/seller/{IDSELLER}/marketplace/{marketplace}/order/{orderid}/shipment/{shipmentId}/status:
     post:
+      summary: Entrega guías manuales
       description: |
-        Actualizar estado de envío que se realizó por guía Manual. 
+        Actualizar estado de envío que se realizó por guía Manual.
       
         - Este endpoint permite actualizar el estado de envío de las partidas que se encuentran en una guía de envío generada de forma manual. 
   
@@ -264,7 +263,6 @@ paths:
 
       tags:
         - Guías
-      operationId: 'uploadStatus'
       parameters:
         - $ref: '#/components/parameters/IDSELLER'
         - $ref: '#/components/parameters/marketplace'
@@ -358,17 +356,75 @@ paths:
         
       security:
         - bearerAuth: []
+        
+  /order/seller/{sellerId}/marketplace/{marketplace}/order/{orderId}/shipment/{shipmentId}/evidence/:
+   post:
+      summary: "Subir evidencia para un envío específico"
+      tags:
+        - "Evidencia de entrega para guías manuales"
+      parameters:
+        - name: sellerId
+          description: IDSELLER de T1comercios
+          in: path
+          required: true
+          schema:
+            type: string
+            example: 10541
+        - name: marketplace
+          description: MarketPlace al que pertenece la orden. 
+          in: path
+          required: true
+          schema:
+            type: string
+            enum: 
+              - SN
+              - SR
+              - CS
+            example: CS
+        - name: orderId
+          description: Número de pedido. 
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: shipmentId
+          description: Número de guía que se entrego y se esta cargando la evidencia. 
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                evidencia:
+                  type: string
+                  format: binary
+      responses:
+        '200':
+          description: "Evidencia subida exitosamente"
+        '400':
+          description: "Solicitud incorrecta"
+        '401':
+          description: "No autorizado"
+        '500':
+          description: "Error del servidor"
+      security:
+        - bearerAuth: []
   
   /kidal/v1/order/pedido/cancel:
     post:
       tags:
-        - Cancelar pedidos.
+        - Cancelar Partidas
       summary: Cancelación de una partida de un pedido
       description: >
-        Cancela un pedido existente en el sistema. Solo se puede cancelar un pedido si está en el estado "por enviar". 
-        Esto significa que un pedido no se puede cancelar si ya tiene guía asignada.
-        
-        - El siguiente catálogo indica los motivos de cancelación por marketplace:
+        Cancela un pedido existente en el sistema. Solo se puede cancelar por partida y si la partida está en el estado "por enviar". 
+        Esto significa que un pedido no se puede cancelar si ya tiene una guía asignada.
+    
+         - El siguiente catálogo indica los motivos de cancelación por marketplace:
         
          - **CS**:
             - **21**: Tiempo de entrega excedido

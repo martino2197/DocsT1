@@ -8,7 +8,7 @@ const sidebar: SidebarsConfig = {
     },
     {
       type: "category",
-      label: "Lista pedidos Pedidos",
+      label: "Lista de pedidos",
       items: [
         {
           type: "doc",
@@ -48,20 +48,8 @@ const sidebar: SidebarsConfig = {
         },
         {
           type: "doc",
-          id: "T1Comercios/entrega-guias-manuales",
+          id: "T1Comercios/upload-status",
           label: "Entrega guías manuales",
-          className: "api-method post",
-        },
-      ],
-    },
-    {
-      type: "category",
-      label: "Evidencia de entrega para guías manuales",
-      items: [
-        {
-          type: "doc",
-          id: "T1Comercios/subir-evidencia-para-un-envio-especifico",
-          label: "Subir evidencia para un envío específico",
           className: "api-method post",
         },
       ],

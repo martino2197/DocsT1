@@ -47,23 +47,15 @@ La transición de estatus de una partida sigue el siguiente flujo:
 1. **Por enviar:** La partida está lista para ser enviada.
 2. **Por recolectar:** La partida está lista para ser recolectada por el transportista.
 3. **En camino:** La partida está en camino hacia su destino.
-4. **Entregado:** La partida ha sido entregada al destinatario.
-5. **Facturado:** La partida ha sido facturada. Este estado solo se aplica a pedidos con guías manuales.
+4. **Entregado:** La partida ha sido entregada al destinatario. Si la guía de las partidas entregadas es de tipo "Manual", es necesario carga la evidencia de entrega para que pueda ser pagada al vendedor. 
+5. **Facturado:** Se ha cargado la evidencia de entrega de las partidas de un pedido enviadas por una guía manual.
 6. **Cancelado por cliente:** La partida ha sido cancelada por el cliente antes de ser enviada.
 7. **Cancelado por vendedor:** La partida ha sido cancelada por el vendedor antes de ser enviada.
 
 **Notas:** 
 - **A.** Solo se puede cancelar por vendedor un pedido si está en el estado "por enviar". Esto significa que un pedido no se puede cancelar si ya tiene guía asignada.
 
-- **B.** Para las guías automáticas y las partidas marcadas como FF, no es necesario generar una factura genérica del vendedor para su liquidación.
-
-El siguiente catálogo indica los motivos de cancelación por marketplace:
-
-**CS:**
-  - 65: No tengo el producto.
-
-**SR:**
-  - 65: No tengo el producto.
+- **B.** Para las guías automáticas y las partidas marcadas como FF, no es necesario cargar la evidnecia de entrega  para su liquidación.
 
 Las especificaciones detalladas para cada endpoint se encuentran descritas en la sección respectiva.
 

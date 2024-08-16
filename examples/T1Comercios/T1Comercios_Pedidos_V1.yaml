@@ -16,8 +16,8 @@ paths:
     get:
       tags: 
         - Pedidos
-      summary: Listado de pedidos de un comercio.
-      description: Retorna el listado de pedidos de un comercio. 
+      summary: Listado de pedidos de un comercio
+      description: Retorna el Listado de pedidos de un comercio 
       operationId: getOrdersFull
       parameters:
         - $ref: '#/components/parameters/IDSELLER'

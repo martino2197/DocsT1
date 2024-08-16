@@ -57,7 +57,7 @@ paths:
     get:
       tags: 
         - Lista pedidos Pedidos
-      summary: Listado de pedidos de un comercio.
+      summary: Listado de pedidos de un comercio
       description: |
         Este endpoint permite obtener un listado completo de los pedidos de un comercio específico basado en el ID del vendedor proporcionado. Los pedidos en este listado son aquellos con pagos aprobados y están listos para ser enviados; sin embargo, pueden ser cancelados durante el proceso de envío, siempre y cuando el producto no cuente con guía.
 
@@ -369,7 +369,7 @@ paths:
   /kidal/v1/order/pedido/cancel:
     post:
       tags:
-        - Cancelar Partidas.
+        - Cancelar Partidas
       summary: Cancelación de una partida de un pedido
       description: >
         Cancela un pedido existente en el sistema. Solo se puede cancelar por partida y si la partida está en el estado "por enviar". 
