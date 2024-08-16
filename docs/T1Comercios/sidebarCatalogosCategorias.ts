@@ -25,19 +25,19 @@ const sidebar: SidebarsConfig = {
         {
           type: "doc",
           id: "T1Comercios/get-categories-by-sales-channel",
-          label: "Retorna el árbol de categorías por canal de venta.",
+          label: "Árbol de categorías por canal de venta.",
           className: "api-method get",
         },
         {
           type: "doc",
           id: "T1Comercios/get-categories-by-sales-channelby-id",
-          label: "Rerorna información de la categoría seleccionada.",
+          label: "Detalle una categoría.",
           className: "api-method get",
         },
         {
           type: "doc",
           id: "T1Comercios/getmatches",
-          label: "Obtiene coincidencias de una categoría t1 con los canales de ventas.",
+          label: "Matches de categorías T1 a los canales de venta. ",
           className: "api-method get",
         },
       ],
